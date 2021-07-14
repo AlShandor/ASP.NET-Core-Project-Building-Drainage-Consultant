@@ -17,7 +17,7 @@ namespace BuildingDrainageConsultant
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options => options
+            services.AddDbContext<BuildingDrainageConsultantDbContext>(options => options
                 .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
@@ -29,7 +29,7 @@ namespace BuildingDrainageConsultant
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
             })
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<BuildingDrainageConsultantDbContext>();
 
             services.AddControllersWithViews();
         }
