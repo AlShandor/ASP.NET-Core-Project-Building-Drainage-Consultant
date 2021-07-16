@@ -1,6 +1,7 @@
 namespace BuildingDrainageConsultant
 {
     using BuildingDrainageConsultant.Data;
+    using BuildingDrainageConsultant.Infrastructure;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -36,6 +37,8 @@ namespace BuildingDrainageConsultant
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.PrepareDatabase();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

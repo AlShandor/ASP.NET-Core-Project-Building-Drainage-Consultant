@@ -15,5 +15,17 @@
         public DbSet<DrainageDetail> DrainageDetails { get; set; }
         public DbSet<Seller> Sellers { get; set; }
         public DbSet<AtticaPart> AtticaParts { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder
+                .Entity<AtticaDrain>()
+                .HasOne(a => a.DrainageDetail)
+                .WithMany(a => a.AtticaDrains)
+                .HasForeignKey(a => a.DrainageDetailId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            base.OnModelCreating(builder);
+        }
     }
 }

@@ -10,6 +10,7 @@
 
         public string Name { get; init; }
 
+        [Url]
         public string ImageUrl { get; set; }
 
         [Required]
