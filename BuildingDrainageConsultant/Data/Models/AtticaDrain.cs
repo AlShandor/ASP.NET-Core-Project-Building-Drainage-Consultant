@@ -1,5 +1,6 @@
 ﻿namespace BuildingDrainageConsultant.Data.Models
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     public class AtticaDrain
     {
@@ -31,5 +32,7 @@
 
 
         public DrainageDetail DrainageDetail { get; set; }
+
+        public IEnumerable<AtticaPart> Parts { get; set; } = new List<AtticaPart>();
     }
 }

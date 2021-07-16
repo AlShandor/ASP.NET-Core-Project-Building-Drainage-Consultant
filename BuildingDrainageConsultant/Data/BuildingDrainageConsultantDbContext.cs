@@ -14,5 +14,6 @@
         public DbSet<AtticaDrain> AtticaDrains { get; set; }
         public DbSet<DrainageDetail> DrainageDetails { get; set; }
         public DbSet<Seller> Sellers { get; set; }
+        public DbSet<AtticaPart> AtticaParts { get; set; }
     }
 }
