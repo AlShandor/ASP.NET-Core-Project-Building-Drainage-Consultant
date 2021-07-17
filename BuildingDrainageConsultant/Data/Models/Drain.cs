@@ -1,5 +1,6 @@
 ﻿namespace BuildingDrainageConsultant.Data.Models
 {
+    using BuildingDrainageConsultant.Data.Models.Enums;
     using System.ComponentModel.DataAnnotations;
     public class Drain
     {
@@ -27,11 +28,11 @@
 
         [Required]
 
-        public string VisiblePart { get; init; }
+        public DrainVisiblePartEnum VisiblePart { get; init; }
 
         [Required]
 
-        public string Waterproofing { get; init; }
+        public DrainWaterproofingEnum Waterproofing { get; init; }
 
         [Required]
 
