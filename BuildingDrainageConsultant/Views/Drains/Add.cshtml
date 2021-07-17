@@ -1,0 +1,58 @@
+﻿@model AddDrainFormModel
+
+@{
+    ViewData["Title"] = "Add Drain";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="offset-md-3 col-md-6">
+            <h2 class="heading-margin text-center">Add Drain</h2>
+            <form method="post">
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input class="form-control" asp-for="Name" placeholder="e.g. HL3020">
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="FlowRate"></label>
+                    <input class="form-control" asp-for="FlowRate" placeholder="l/s">
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="DrainageArea"></label>
+                    <input class="form-control" asp-for="DrainageArea" placeholder="m³">
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="VisiblePart"></label>
+                    <select class="form-control" asp-for="VisiblePart" asp-items="Html.GetEnumSelectList<DrainVisiblePartEnum>()">
+                        <option value="">Select an option</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Waterproofing"></label>
+                    <select class="form-control" asp-for="Waterproofing" asp-items="Html.GetEnumSelectList<DrainWaterproofingEnum>()">
+                        <option value="">Select an option</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ImageUrl"></label>
+                    <input class="form-control" asp-for="ImageUrl">
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Description"></label>
+                    <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                </div>
+
+                <input class="btn btn-primary" type="submit" value="Save" />
+            </form>
+
+        </div>
+    </div>
+</div>
+
+

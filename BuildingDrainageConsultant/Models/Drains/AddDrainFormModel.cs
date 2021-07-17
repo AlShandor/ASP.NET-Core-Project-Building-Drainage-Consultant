@@ -7,10 +7,10 @@
     {
         public string Name { get; set; }
 
-        [Display(Name = "Flow Rate [l/s]")]
+        [Display(Name = "Flow Rate")]
         public double FlowRate { get; init; }
 
-        [Display(Name = "Drainage Area [m³]")]
+        [Display(Name = "Drainage Area")]
         public int DrainageArea { get; init; }
 
         [Display(Name = "Visible Part")]
@@ -32,8 +32,5 @@
 
         public string Description { get; set; }
 
-        [BindProperty]
-        public string Gender { get; set; }
-        public string[] Genders = new[] { "Male", "Female", "Unspecified" };
     }
 }
