@@ -25,6 +25,13 @@
                 </div>
 
                 <div class="form-group">
+                    <label asp-for="Diameter"></label>
+                    <select class="form-control" asp-for="Diameter" asp-items="Html.GetEnumSelectList<DrainDiameterEnum>()">
+                        <option value="">Select an option</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label asp-for="VisiblePart"></label>
                     <select class="form-control" asp-for="VisiblePart" asp-items="Html.GetEnumSelectList<DrainVisiblePartEnum>()">
                         <option value="">Select an option</option>

@@ -1,5 +1,6 @@
 ﻿namespace BuildingDrainageConsultant.Data.Models
 {
+    using BuildingDrainageConsultant.Data.Models.Enums;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     public class AtticaDrain
@@ -8,7 +9,6 @@
         public int Id { get; init; }
 
         [Required]
-
         public string Name { get; init; }
 
         [Required]
@@ -17,23 +17,20 @@
         [Required]
         public int DrainageArea { get; init; }
 
-        public string ScreedWaterproofing { get; init; }
+        public DrainWaterproofingEnum ScreedWaterproofing { get; init; }
 
         [Required]
-        public string ConcreteWaterproofing { get; init; }
+        public AtticaConcreteWaterproofingEnum ConcreteWaterproofing { get; init; }
 
         [Required]
-
-        public int Diameter { get; init; }
+        public AtticaDiameterEnum Diameter { get; init; }
 
         [Required]
-
-        public string VisiblePart { get; init; }
+        public AtticaVisiblePartEnum VisiblePart { get; init; }
 
         public int DrainageDetailId { get; set; }
 
-
-        public DrainageDetail DrainageDetail { get; set; }
+        public AtticaDetail DrainageDetail { get; set; }
 
         public IEnumerable<AtticaPart> Parts { get; set; } = new List<AtticaPart>();
     }
