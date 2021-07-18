@@ -1,7 +1,7 @@
 ﻿@model AddDrainFormModel
 
 @{
-    ViewData["Title"] = "Add Drain";
+    ViewData["Title"] = "Add Drains";
 }
 
 <div class="container">
@@ -12,16 +12,19 @@
                 <div class="form-group">
                     <label asp-for="Name"></label>
                     <input class="form-control" asp-for="Name" placeholder="e.g. HL3020">
+                    <span asp-validation-for="Name" class="small text-danger"></span>
                 </div>
 
                 <div class="form-group">
                     <label asp-for="FlowRate"></label>
                     <input class="form-control" asp-for="FlowRate" placeholder="l/s">
+                    <span asp-validation-for="FlowRate" class="small text-danger"></span>
                 </div>
 
                 <div class="form-group">
                     <label asp-for="DrainageArea"></label>
                     <input class="form-control" asp-for="DrainageArea" placeholder="m³">
+                    <span asp-validation-for="DrainageArea" class="small text-danger"></span>
                 </div>
 
                 <div class="form-group">
@@ -29,6 +32,7 @@
                     <select class="form-control" asp-for="Diameter" asp-items="Html.GetEnumSelectList<DrainDiameterEnum>()">
                         <option value="">Select an option</option>
                     </select>
+                    <span asp-validation-for="Diameter" class="small text-danger"></span>
                 </div>
 
                 <div class="form-group">
@@ -36,6 +40,7 @@
                     <select class="form-control" asp-for="VisiblePart" asp-items="Html.GetEnumSelectList<DrainVisiblePartEnum>()">
                         <option value="">Select an option</option>
                     </select>
+                    <span asp-validation-for="VisiblePart" class="small text-danger"></span>
                 </div>
 
                 <div class="form-group">
@@ -43,16 +48,52 @@
                     <select class="form-control" asp-for="Waterproofing" asp-items="Html.GetEnumSelectList<DrainWaterproofingEnum>()">
                         <option value="">Select an option</option>
                     </select>
+                    <span asp-validation-for="Waterproofing" class="small text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="HasHeating"></label>
+                    <div class="form-control">
+                        @Html.RadioButtonFor(drain => drain.HasHeating, true)
+                        <label class="radio-button-margin">Yes</label>
+                        @Html.RadioButtonFor(drain => drain.HasHeating, false)
+                        <label>No</label>
+                    </div>
+                    <span asp-validation-for="HasHeating" class="small text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ForRenovation"></label>
+                    <div class="form-control">
+                        @Html.RadioButtonFor(drain => drain.ForRenovation, true)
+                        <label class="radio-button-margin">Yes</label>
+                        @Html.RadioButtonFor(drain => drain.ForRenovation, false)
+                        <label>No</label>
+                    </div>
+                    <span asp-validation-for="ForRenovation" class="small text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="HasFlapSeal"></label>
+                    <div class="form-control">
+                        @Html.RadioButtonFor(drain => drain.HasFlapSeal, true)
+                        <label class="radio-button-margin">Yes</label>
+                        @Html.RadioButtonFor(drain => drain.HasFlapSeal, false)
+                        <label>No</label>
+                    </div>
+                    <span asp-validation-for="HasFlapSeal" class="small text-danger"></span>
                 </div>
 
                 <div class="form-group">
                     <label asp-for="ImageUrl"></label>
                     <input class="form-control" asp-for="ImageUrl">
+                    <span asp-validation-for="ImageUrl" class="small text-danger"></span>
                 </div>
 
                 <div class="form-group">
                     <label asp-for="Description"></label>
                     <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                    <span asp-validation-for="Description" class="small text-danger"></span>
                 </div>
 
                 <input class="btn btn-primary" type="submit" value="Save" />

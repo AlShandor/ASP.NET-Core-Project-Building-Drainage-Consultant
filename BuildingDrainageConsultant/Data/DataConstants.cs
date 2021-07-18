@@ -1,4 +1,4 @@
-﻿namespace BuildingDrainageConsultant.Data.Models
+﻿namespace BuildingDrainageConsultant.Data
 {
     public static class DataConstants
     {

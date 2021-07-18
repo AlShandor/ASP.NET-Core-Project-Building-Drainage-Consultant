@@ -4,20 +4,54 @@ using BuildingDrainageConsultant.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BuildingDrainageConsultant.Data.Migrations
 {
     [DbContext(typeof(BuildingDrainageConsultantDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210718185540_DrainSellerAtticaDetailAtticaDrainAtticaPartTables")]
+    partial class DrainSellerAtticaDetailAtticaDrainAtticaPartTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.AtticaDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsWalkable")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("RoofType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ScreedWaterproofing")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VisiblePart")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DrainageDetails");
+                });
 
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.AtticaDrain", b =>
                 {
@@ -26,9 +60,8 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ConcreteWaterproofing")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ConcreteWaterproofing")
+                        .HasColumnType("int");
 
                     b.Property<int>("Diameter")
                         .HasColumnType("int");
@@ -46,12 +79,11 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ScreedWaterproofing")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ScreedWaterproofing")
+                        .HasColumnType("int");
 
-                    b.Property<string>("VisiblePart")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("VisiblePart")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -72,14 +104,16 @@ namespace BuildingDrainageConsultant.Data.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.HasKey("Id");
 
@@ -97,12 +131,18 @@ namespace BuildingDrainageConsultant.Data.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("Diameter")
+                        .HasColumnType("int");
 
                     b.Property<int>("DrainageArea")
+                        .HasMaxLength(400)
                         .HasColumnType("int");
 
                     b.Property<double>("FlowRate")
+                        .HasMaxLength(15)
                         .HasColumnType("float");
 
                     b.Property<bool>("ForRenovation")
@@ -119,41 +159,18 @@ namespace BuildingDrainageConsultant.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
-                    b.Property<string>("VisiblePart")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("VisiblePart")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Waterproofing")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Waterproofing")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.ToTable("Drains");
-                });
-
-            modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.DrainageDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ScreedWaterproofing")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("VisiblePart")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DrainageDetails");
                 });
 
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.Seller", b =>
@@ -165,22 +182,30 @@ namespace BuildingDrainageConsultant.Data.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("City")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WebSite")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("Id");
 
@@ -389,7 +414,7 @@ namespace BuildingDrainageConsultant.Data.Migrations
 
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.AtticaDrain", b =>
                 {
-                    b.HasOne("BuildingDrainageConsultant.Data.Models.DrainageDetail", "DrainageDetail")
+                    b.HasOne("BuildingDrainageConsultant.Data.Models.AtticaDetail", "DrainageDetail")
                         .WithMany("AtticaDrains")
                         .HasForeignKey("DrainageDetailId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -456,14 +481,14 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.AtticaDetail", b =>
+                {
+                    b.Navigation("AtticaDrains");
+                });
+
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.AtticaDrain", b =>
                 {
                     b.Navigation("Parts");
-                });
-
-            modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.DrainageDetail", b =>
-                {
-                    b.Navigation("AtticaDrains");
                 });
 #pragma warning restore 612, 618
         }

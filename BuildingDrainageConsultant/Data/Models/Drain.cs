@@ -22,7 +22,7 @@
         public int DrainageArea { get; init; }
 
         [Required]
-        public DrainDiameterEnum Diameter { get; set; }
+        public DrainDiameterEnum Diameter { get; init; }
 
         [Required]
         public DrainVisiblePartEnum VisiblePart { get; init; }
