@@ -4,7 +4,7 @@
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Models.Drains;
     using Microsoft.AspNetCore.Mvc;
-
+    using System.Linq;
     using static Data.DataConstants.Drain;
     public class DrainsController : Controller
     {
@@ -40,7 +40,22 @@
             this.data.Drains.Add(drainData);
             this.data.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(All));
+        }
+
+        public IActionResult All()
+        {
+            var drains = this.data
+                .Drains
+                .OrderByDescending(d => d.Id)
+                .Select(d => new DrainListingViewModel
+                {
+                    Name = d.Name,
+                    ImageUrl = d.ImageUrl
+                })
+                .ToList();
+
+            return View(drains);
         }
     }
 }

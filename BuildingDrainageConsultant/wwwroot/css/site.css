@@ -78,3 +78,13 @@ body {
 .radio-button-margin{
     margin-right: 30px;
 }
+
+.card-img-top {
+    width: 100%;
+    height: 12vw;
+    object-fit: contain;
+}
+
+.card-row {
+    padding-bottom: 25px;
+}
