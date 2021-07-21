@@ -2,6 +2,7 @@ namespace BuildingDrainageConsultant
 {
     using BuildingDrainageConsultant.Data;
     using BuildingDrainageConsultant.Infrastructure;
+    using BuildingDrainageConsultant.Services.Drains;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -33,6 +34,8 @@ namespace BuildingDrainageConsultant
                 .AddEntityFrameworkStores<BuildingDrainageConsultantDbContext>();
 
             services.AddControllersWithViews();
+
+            services.AddTransient<IDrainService, DrainService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

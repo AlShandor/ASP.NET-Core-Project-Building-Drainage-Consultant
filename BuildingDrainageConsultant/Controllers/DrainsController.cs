@@ -3,14 +3,21 @@
     using BuildingDrainageConsultant.Data;
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Models.Drains;
+    using BuildingDrainageConsultant.Services.Drains;
     using Microsoft.AspNetCore.Mvc;
     using System.Linq;
+
     using static Data.DataConstants.Drain;
     public class DrainsController : Controller
     {
         private readonly BuildingDrainageConsultantDbContext data;
+        private readonly IDrainService drains;
 
-        public DrainsController(BuildingDrainageConsultantDbContext data) => this.data = data;
+        public DrainsController(IDrainService drains, BuildingDrainageConsultantDbContext data)
+        {
+            this.drains = drains;
+            this.data = data;
+        }
 
         public IActionResult Add() => View();
 
@@ -43,19 +50,17 @@
             return RedirectToAction(nameof(All));
         }
 
-        public IActionResult All()
+        public IActionResult All([FromQuery] AllDrainsQueryModel query)
         {
-            var drains = this.data
-                .Drains
-                .OrderByDescending(d => d.Id)
-                .Select(d => new DrainListingViewModel
-                {
-                    Name = d.Name,
-                    ImageUrl = d.ImageUrl
-                })
-                .ToList();
+            var queryResult = this.drains.All(
+                query.SearchTerm,
+                query.CurrentPage,
+                AllDrainsQueryModel.DrainsPerPage);
 
-            return View(drains);
+            query.TotalDrains = queryResult.TotalDrains;
+            query.Drains = queryResult.Drains;
+
+            return View(query);
         }
     }
 }
