@@ -62,5 +62,30 @@
 
             return View(query);
         }
+
+        public IActionResult Details(int id)
+        {
+            var drainDetails = this.data
+                .Drains
+                .Where(d => d.Id == id)
+                .Select(d => new DrainDetailsView
+                {
+                    Id = d.Id,
+                    Name = d.Name,
+                    FlowRate = d.FlowRate,
+                    DrainageArea = d.DrainageArea,
+                    Diameter = d.Diameter,
+                    VisiblePart = d.VisiblePart,
+                    Waterproofing = d.Waterproofing,
+                    HasHeating = d.HasHeating,
+                    ForRenovation = d.ForRenovation,
+                    HasFlapSeal = d.HasFlapSeal,
+                    ImageUrl = d.ImageUrl,
+                    Description = d.Description
+                })
+                .FirstOrDefault();
+
+            return View(drainDetails);
+        }
     }
 }
