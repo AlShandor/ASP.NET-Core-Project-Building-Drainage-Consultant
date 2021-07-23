@@ -1,11 +1,13 @@
 ﻿namespace BuildingDrainageConsultant.Models.Drains
 {
+    using BuildingDrainageConsultant.Data.Models.Enums;
     using System.ComponentModel.DataAnnotations;
-    using Data.Models.Enums;
 
     using static Data.DataConstants.Drain;
-    public class AddDrainFormModel
+    public class DrainDetailsModel
     {
+        public int Id { get; init; }
+
         [Required]
         [StringLength(NameMaxLength)]
         public string Name { get; set; }
@@ -43,12 +45,11 @@
         [Display(Name = "Flap Seal")]
         public bool HasFlapSeal { get; init; }
 
-
         [Display(Name = "Image Url")]
-        public string ImageUrl { get; set; }
+        public string ImageUrl { get; init; }
 
         [Required]
         [StringLength(DescriptionMaxLength)]
-        public string Description { get; set; }
+        public string Description { get; init; }
     }
 }

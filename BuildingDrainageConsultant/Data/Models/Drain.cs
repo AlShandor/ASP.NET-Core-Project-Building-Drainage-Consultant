@@ -11,33 +11,33 @@
 
         [Required]
         [MaxLength(NameMaxLength)]
-        public string Name { get; init; }
+        public string Name { get; set; }
 
         [Required]
         [MaxLength(FlowRateMax)]
-        public double FlowRate { get; init; }
+        public double FlowRate { get; set; }
 
         [Required]
         [MaxLength(DraingeAreaMax)]
-        public int DrainageArea { get; init; }
+        public int DrainageArea { get; set; }
 
         [Required]
-        public DrainDiameterEnum Diameter { get; init; }
+        public DrainDiameterEnum Diameter { get; set; }
 
         [Required]
-        public DrainVisiblePartEnum VisiblePart { get; init; }
+        public DrainVisiblePartEnum VisiblePart { get; set; }
 
         [Required]
-        public DrainWaterproofingEnum Waterproofing { get; init; }
+        public DrainWaterproofingEnum Waterproofing { get; set; }
 
         [Required]
-        public bool HasHeating { get; init; }
+        public bool HasHeating { get; set; }
 
         [Required]
-        public bool ForRenovation { get; init; }
+        public bool ForRenovation { get; set; }
 
         [Required]
-        public bool HasFlapSeal { get; init; }
+        public bool HasFlapSeal { get; set; }
 
         [Url]
         public string ImageUrl { get; set; } = DefaultImageUrl;

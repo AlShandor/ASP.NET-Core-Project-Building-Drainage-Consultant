@@ -68,7 +68,7 @@
             var drainDetails = this.data
                 .Drains
                 .Where(d => d.Id == id)
-                .Select(d => new DrainDetailsView
+                .Select(d => new DrainDetailsModel
                 {
                     Id = d.Id,
                     Name = d.Name,
@@ -85,7 +85,90 @@
                 })
                 .FirstOrDefault();
 
+            if (drainDetails == null)
+            {
+                return NotFound();
+            }
+
             return View(drainDetails);
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var drainData = this.data
+                .Drains
+                .Where(d => d.Id == id)
+                .Select(d => new DrainDetailsModel
+                {
+                    Id = d.Id,
+                    Name = d.Name,
+                    FlowRate = d.FlowRate,
+                    DrainageArea = d.DrainageArea,
+                    Diameter = d.Diameter,
+                    VisiblePart = d.VisiblePart,
+                    Waterproofing = d.Waterproofing,
+                    HasHeating = d.HasHeating,
+                    ForRenovation = d.ForRenovation,
+                    HasFlapSeal = d.HasFlapSeal,
+                    ImageUrl = d.ImageUrl,
+                    Description = d.Description
+                })
+                .FirstOrDefault();
+
+            return View(drainData);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id, DrainDetailsModel drainEdited)
+        {
+            var drainToEdit = this.data.Drains
+                .Where(d => d.Id == id)
+                .FirstOrDefault();
+
+            if (drainToEdit == null)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                drainToEdit.Name = drainEdited.Name;
+                drainToEdit.FlowRate = drainEdited.FlowRate;
+                drainToEdit.DrainageArea = drainEdited.DrainageArea;
+                drainToEdit.Diameter = drainEdited.Diameter;
+                drainToEdit.VisiblePart = drainEdited.VisiblePart;
+                drainToEdit.Waterproofing = drainEdited.Waterproofing;
+                drainToEdit.HasHeating = drainEdited.HasHeating;
+                drainToEdit.ForRenovation = drainEdited.ForRenovation;
+                drainToEdit.HasFlapSeal = drainEdited.HasFlapSeal;
+                drainToEdit.ImageUrl = drainEdited.ImageUrl;
+                drainToEdit.Description = drainEdited.Description;
+
+                this.data.SaveChanges();
+
+                return RedirectToAction(nameof(Details), new { id = id });
+            }
+
+            return View(drainEdited);
+        }
+
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var drainToDelete = this.data.Drains
+                .Where(d => d.Id == id)
+                .FirstOrDefault();
+
+            if (drainToDelete == null)
+            {
+                return NotFound();
+            }
+
+            this.data.Drains.Remove(drainToDelete);
+            data.SaveChanges();
+
+            return RedirectToAction(nameof(All));
         }
     }
 }
