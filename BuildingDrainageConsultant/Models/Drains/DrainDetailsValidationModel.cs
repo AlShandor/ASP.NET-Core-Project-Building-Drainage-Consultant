@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using static Data.DataConstants.Drain;
-    public class DrainDetailsModel
+    public class DrainDetailsValidationModel
     {
         public int Id { get; init; }
 

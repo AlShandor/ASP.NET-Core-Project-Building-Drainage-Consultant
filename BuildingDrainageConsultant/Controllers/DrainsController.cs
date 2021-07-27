@@ -68,7 +68,7 @@
             var drainDetails = this.data
                 .Drains
                 .Where(d => d.Id == id)
-                .Select(d => new DrainDetailsModel
+                .Select(d => new DrainDetailsValidationModel
                 {
                     Id = d.Id,
                     Name = d.Name,
@@ -98,7 +98,7 @@
             var drainData = this.data
                 .Drains
                 .Where(d => d.Id == id)
-                .Select(d => new DrainDetailsModel
+                .Select(d => new DrainDetailsValidationModel
                 {
                     Id = d.Id,
                     Name = d.Name,
@@ -119,7 +119,7 @@
         }
 
         [HttpPost]
-        public IActionResult Edit(int id, DrainDetailsModel drainEdited)
+        public IActionResult Edit(int id, DrainDetailsValidationModel drainEdited)
         {
             var drainToEdit = this.data.Drains
                 .Where(d => d.Id == id)

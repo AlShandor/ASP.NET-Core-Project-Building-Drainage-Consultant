@@ -2,6 +2,12 @@
 {
     public static class DataConstants
     {
+        public class IdentityUser
+        {
+            public const int PasswordMaxLength = 100;
+            public const int PasswordMinLength = 6;
+
+        }
 
         public class Drain
         {
@@ -41,6 +47,7 @@
             public const int AddressMaxLength = 300;
             public const int WebsiteMaxLength = 200;
             public const int EmailMaxLength = 100;
+            public const int PhoneNumberMaxLength = 20;
         }
 
     }
