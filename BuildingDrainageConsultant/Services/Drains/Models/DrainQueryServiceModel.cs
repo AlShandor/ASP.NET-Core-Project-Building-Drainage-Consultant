@@ -1,4 +1,4 @@
-﻿namespace BuildingDrainageConsultant.Services.Drains
+﻿namespace BuildingDrainageConsultant.Services.Drains.Models
 {
     using System.Collections.Generic;
     public class DrainQueryServiceModel
@@ -9,6 +9,6 @@
 
         public int TotalDrains { get; init; }
 
-        public IEnumerable<DrainServiceModel> Drains { get; init; }
-}
+        public IEnumerable<DrainDetailsServiceModel> Drains { get; init; }
+    }
 }

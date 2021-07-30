@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using static Data.DataConstants.Drain;
-    public class DrainDetailsValidationModel
+    public class DrainFormModel
     {
         public int Id { get; init; }
 
@@ -14,12 +14,12 @@
 
         [Required]
         [Range(0, FlowRateMax)]
-        [Display(Name = "Flow Rate")]
+        [Display(Name = "Flow Rate (l/s)")]
         public double FlowRate { get; init; }
 
         [Required]
         [Range(0, DraingeAreaMax)]
-        [Display(Name = "Drainage Area")]
+        [Display(Name = "Drainage Area (m²)")]
         public int DrainageArea { get; init; }
 
         [Required]

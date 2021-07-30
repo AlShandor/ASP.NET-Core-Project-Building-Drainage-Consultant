@@ -1,14 +1,21 @@
 ﻿namespace BuildingDrainageConsultant.Services.Drains
 {
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
     using BuildingDrainageConsultant.Data;
+    using BuildingDrainageConsultant.Services.Drains.Models;
     using System.Linq;
 
     public class DrainService : IDrainService
     {
         private readonly BuildingDrainageConsultantDbContext data;
+        private readonly IConfigurationProvider mapper;
 
-        public DrainService(BuildingDrainageConsultantDbContext data)
-            => this.data = data;
+        public DrainService(BuildingDrainageConsultantDbContext data, IMapper mapper)
+        {
+            this.data = data;
+            this.mapper = mapper.ConfigurationProvider;
+        }
 
         public DrainQueryServiceModel All(
             string searchTerm,
@@ -27,13 +34,7 @@
             var drains = drainQuery
                 .Skip((currentPage - 1) * drainsPerPage)
                 .Take(drainsPerPage)
-                .Select(d => new DrainServiceModel
-                {
-                    Id = d.Id,
-                    Name = d.Name,
-                    Description = d.Description,
-                    ImageUrl = d.ImageUrl,
-                })
+                .ProjectTo<DrainDetailsServiceModel>(this.mapper)
                 .ToList();
 
             return new DrainQueryServiceModel
@@ -44,5 +45,12 @@
                 Drains = drains
             };
         }
+
+        public DrainServiceModel Details(int id)
+            => this.data
+                .Drains
+                .Where(c => c.Id == id)
+                .ProjectTo<DrainServiceModel>(this.mapper)
+                .FirstOrDefault();
     }
 }

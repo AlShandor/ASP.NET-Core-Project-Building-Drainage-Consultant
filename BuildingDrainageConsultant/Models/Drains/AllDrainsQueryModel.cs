@@ -1,6 +1,6 @@
 ﻿namespace BuildingDrainageConsultant.Models.Drains
 {
-    using BuildingDrainageConsultant.Services.Drains;
+    using BuildingDrainageConsultant.Services.Drains.Models;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -15,6 +15,6 @@
 
         public int TotalDrains { get; set; }
 
-        public IEnumerable<DrainServiceModel> Drains { get; set; }
+        public IEnumerable<DrainDetailsServiceModel> Drains { get; set; }
     }
 }

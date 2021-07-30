@@ -1,5 +1,6 @@
 ﻿namespace BuildingDrainageConsultant.Controllers
 {
+    using AutoMapper;
     using BuildingDrainageConsultant.Data;
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Models.Drains;
@@ -12,11 +13,16 @@
     {
         private readonly BuildingDrainageConsultantDbContext data;
         private readonly IDrainService drains;
+        private readonly IMapper mapper;
 
-        public DrainsController(IDrainService drains, BuildingDrainageConsultantDbContext data)
+        public DrainsController(
+            IDrainService drains, 
+            BuildingDrainageConsultantDbContext data, 
+            IMapper mapper)
         {
             this.drains = drains;
             this.data = data;
+            this.mapper = mapper;
         }
 
         public IActionResult Add() => View();
@@ -68,7 +74,7 @@
             var drainDetails = this.data
                 .Drains
                 .Where(d => d.Id == id)
-                .Select(d => new DrainDetailsValidationModel
+                .Select(d => new DrainFormModel
                 {
                     Id = d.Id,
                     Name = d.Name,
@@ -95,31 +101,15 @@
 
         public IActionResult Edit(int id)
         {
-            var drainData = this.data
-                .Drains
-                .Where(d => d.Id == id)
-                .Select(d => new DrainDetailsValidationModel
-                {
-                    Id = d.Id,
-                    Name = d.Name,
-                    FlowRate = d.FlowRate,
-                    DrainageArea = d.DrainageArea,
-                    Diameter = d.Diameter,
-                    VisiblePart = d.VisiblePart,
-                    Waterproofing = d.Waterproofing,
-                    HasHeating = d.HasHeating,
-                    ForRenovation = d.ForRenovation,
-                    HasFlapSeal = d.HasFlapSeal,
-                    ImageUrl = d.ImageUrl,
-                    Description = d.Description
-                })
-                .FirstOrDefault();
+            var drain = this.drains.Details(id);
 
-            return View(drainData);
+            var drainForm = this.mapper.Map<DrainFormModel>(drain);
+
+            return View(drainForm);
         }
 
         [HttpPost]
-        public IActionResult Edit(int id, DrainDetailsValidationModel drainEdited)
+        public IActionResult Edit(int id, DrainFormModel drainEdited)
         {
             var drainToEdit = this.data.Drains
                 .Where(d => d.Id == id)

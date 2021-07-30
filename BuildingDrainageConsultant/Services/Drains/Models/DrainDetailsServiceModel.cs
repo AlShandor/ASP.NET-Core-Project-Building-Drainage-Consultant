@@ -1,6 +1,6 @@
-﻿namespace BuildingDrainageConsultant.Services.Drains
+﻿namespace BuildingDrainageConsultant.Services.Drains.Models
 {
-    public class DrainServiceModel
+    public class DrainDetailsServiceModel
     {
         public int Id { get; init; }
 

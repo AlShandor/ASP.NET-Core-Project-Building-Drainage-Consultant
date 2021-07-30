@@ -88,3 +88,8 @@ body {
 .card-row {
     padding-bottom: 25px;
 }
+
+
+.result-message {
+    padding-bottom: 10px;
+}
