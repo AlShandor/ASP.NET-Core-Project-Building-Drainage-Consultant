@@ -28,30 +28,25 @@
         public IActionResult Add() => View();
 
         [HttpPost]
-        public IActionResult Add(AddDrainFormModel drain)
+        public IActionResult Add(DrainFormModel drain)
         {
             if (!ModelState.IsValid)
             {
                 return View(drain);
             }
 
-            var drainData = new Drain
-            {
-                Name = drain.Name,
-                FlowRate = drain.FlowRate,
-                DrainageArea = drain.DrainageArea,
-                Diameter = drain.Diameter,
-                VisiblePart = drain.VisiblePart,
-                Waterproofing = drain.Waterproofing,
-                HasHeating = drain.HasHeating,
-                ForRenovation = drain.ForRenovation,
-                HasFlapSeal = drain.HasFlapSeal,
-                ImageUrl = drain.ImageUrl == null ? DefaultImageUrl : drain.ImageUrl,
-                Description = drain.Description
-            };
-
-            this.data.Drains.Add(drainData);
-            this.data.SaveChanges();
+            this.drains.Create(
+                drain.Name,
+                drain.FlowRate,
+                drain.DrainageArea,
+                drain.Diameter,
+                drain.VisiblePart,
+                drain.Waterproofing,
+                drain.HasHeating,
+                drain.ForRenovation,
+                drain.HasFlapSeal,
+                drain.ImageUrl,
+                drain.Description);
 
             return RedirectToAction(nameof(All));
         }
@@ -71,32 +66,14 @@
 
         public IActionResult Details(int id)
         {
-            var drainDetails = this.data
-                .Drains
-                .Where(d => d.Id == id)
-                .Select(d => new DrainFormModel
-                {
-                    Id = d.Id,
-                    Name = d.Name,
-                    FlowRate = d.FlowRate,
-                    DrainageArea = d.DrainageArea,
-                    Diameter = d.Diameter,
-                    VisiblePart = d.VisiblePart,
-                    Waterproofing = d.Waterproofing,
-                    HasHeating = d.HasHeating,
-                    ForRenovation = d.ForRenovation,
-                    HasFlapSeal = d.HasFlapSeal,
-                    ImageUrl = d.ImageUrl,
-                    Description = d.Description
-                })
-                .FirstOrDefault();
+            var drain = this.drains.Details(id);
 
-            if (drainDetails == null)
+            if (drain == null)
             {
                 return NotFound();
             }
 
-            return View(drainDetails);
+            return View(drain);
         }
 
         public IActionResult Edit(int id)

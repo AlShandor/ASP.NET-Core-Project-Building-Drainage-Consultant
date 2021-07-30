@@ -3,6 +3,8 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
     using BuildingDrainageConsultant.Data;
+    using BuildingDrainageConsultant.Data.Models;
+    using BuildingDrainageConsultant.Data.Models.Enums;
     using BuildingDrainageConsultant.Services.Drains.Models;
     using System.Linq;
 
@@ -32,6 +34,7 @@
             var totalDrains = drainQuery.Count();
 
             var drains = drainQuery
+                .OrderByDescending(d => d.Id)
                 .Skip((currentPage - 1) * drainsPerPage)
                 .Take(drainsPerPage)
                 .ProjectTo<DrainDetailsServiceModel>(this.mapper)
@@ -52,5 +55,39 @@
                 .Where(c => c.Id == id)
                 .ProjectTo<DrainServiceModel>(this.mapper)
                 .FirstOrDefault();
+
+        public int Create(
+            string name, 
+            double flowRate, 
+            int drainageArea, 
+            DrainDiameterEnum diameter, 
+            DrainVisiblePartEnum visiblePart,
+            DrainWaterproofingEnum waterproofing, 
+            bool hasHeating,
+            bool forRenovation,
+            bool hasFlapSeal,
+            string imageUrl,
+            string description)
+        {
+            var drainData = new Drain
+            {
+                Name = name,
+                FlowRate = flowRate,
+                DrainageArea = drainageArea,
+                Diameter = diameter,
+                VisiblePart = visiblePart,
+                Waterproofing = waterproofing,
+                HasHeating = hasHeating,
+                ForRenovation = forRenovation,
+                HasFlapSeal = hasFlapSeal,
+                ImageUrl = imageUrl,
+                Description = description
+            };
+
+            this.data.Drains.Add(drainData);
+            this.data.SaveChanges();
+
+            return drainData.Id;
+        }
     }
 }
