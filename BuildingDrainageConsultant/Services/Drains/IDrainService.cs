@@ -24,5 +24,21 @@
             bool hasFlapSeal,
             string imageUrl,
             string description);
+
+        public bool Edit(
+            int id,
+            string name,
+            double flowRate,
+            int drainageArea,
+            DrainDiameterEnum diameter,
+            DrainVisiblePartEnum visiblePart,
+            DrainWaterproofingEnum waterproofing,
+            bool hasHeating,
+            bool forRenovation,
+            bool hasFlapSeal,
+            string imageUrl,
+            string description);
+
+        public bool Delete(int id);
     }
 }

@@ -2,13 +2,12 @@
 {
     using AutoMapper;
     using BuildingDrainageConsultant.Data;
-    using BuildingDrainageConsultant.Data.Models;
+    using BuildingDrainageConsultant.Infrastructure;
     using BuildingDrainageConsultant.Models.Drains;
     using BuildingDrainageConsultant.Services.Drains;
     using Microsoft.AspNetCore.Mvc;
     using System.Linq;
 
-    using static Data.DataConstants.Drain;
     public class DrainsController : Controller
     {
         private readonly BuildingDrainageConsultantDbContext data;
@@ -86,54 +85,47 @@
         }
 
         [HttpPost]
-        public IActionResult Edit(int id, DrainFormModel drainEdited)
+        public IActionResult Edit(int id, DrainFormModel drain)
         {
-            var drainToEdit = this.data.Drains
-                .Where(d => d.Id == id)
-                .FirstOrDefault();
 
-            if (drainToEdit == null)
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                return View(drain);
             }
 
-            if (ModelState.IsValid)
-            {
-                drainToEdit.Name = drainEdited.Name;
-                drainToEdit.FlowRate = drainEdited.FlowRate;
-                drainToEdit.DrainageArea = drainEdited.DrainageArea;
-                drainToEdit.Diameter = drainEdited.Diameter;
-                drainToEdit.VisiblePart = drainEdited.VisiblePart;
-                drainToEdit.Waterproofing = drainEdited.Waterproofing;
-                drainToEdit.HasHeating = drainEdited.HasHeating;
-                drainToEdit.ForRenovation = drainEdited.ForRenovation;
-                drainToEdit.HasFlapSeal = drainEdited.HasFlapSeal;
-                drainToEdit.ImageUrl = drainEdited.ImageUrl;
-                drainToEdit.Description = drainEdited.Description;
+            // todo
+            //if (!User.IsAdmin())
+            //{
+            //    return BadRequest();
+            //}
 
-                this.data.SaveChanges();
+            this.drains.Edit(
+                id,
+                drain.Name,
+                drain.FlowRate,
+                drain.DrainageArea,
+                drain.Diameter,
+                drain.VisiblePart,
+                drain.Waterproofing,
+                drain.HasHeating,
+                drain.ForRenovation,
+                drain.HasFlapSeal,
+                drain.ImageUrl,
+                drain.Description);
 
-                return RedirectToAction(nameof(Details), new { id = id });
-            }
-
-            return View(drainEdited);
+            return RedirectToAction(nameof(All));
         }
 
 
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            var drainToDelete = this.data.Drains
-                .Where(d => d.Id == id)
-                .FirstOrDefault();
+            var drain = this.drains.Delete(id);
 
-            if (drainToDelete == null)
+            if (drain == false)
             {
                 return NotFound();
             }
-
-            this.data.Drains.Remove(drainToDelete);
-            data.SaveChanges();
 
             return RedirectToAction(nameof(All));
         }

@@ -89,5 +89,58 @@
 
             return drainData.Id;
         }
+
+        public bool Edit(
+            int id, 
+            string name, 
+            double flowRate, 
+            int drainageArea, 
+            DrainDiameterEnum diameter,
+            DrainVisiblePartEnum visiblePart,
+            DrainWaterproofingEnum waterproofing,
+            bool hasHeating,
+            bool forRenovation,
+            bool hasFlapSeal,
+            string imageUrl, 
+            string description)
+        {
+            var drainData = this.data.Drains.Find(id);
+
+            if (drainData == null)
+            {
+                return false;
+            }
+
+            drainData.Name = name;
+            drainData.FlowRate = flowRate;
+            drainData.DrainageArea = drainageArea;
+            drainData.Diameter = diameter;
+            drainData.VisiblePart = visiblePart;
+            drainData.Waterproofing = waterproofing;
+            drainData.HasHeating = hasHeating;
+            drainData.ForRenovation = forRenovation;
+            drainData.HasFlapSeal = hasFlapSeal;
+            drainData.ImageUrl = imageUrl;
+            drainData.Description = description;
+
+            this.data.SaveChanges();
+
+            return true;
+        }
+
+        public bool Delete(int id)
+        {
+            var drainToDelete = this.data.Drains.Find(id);
+
+            if (drainToDelete == null)
+            {
+                return false;
+            }
+
+            this.data.Drains.Remove(drainToDelete);
+            data.SaveChanges();
+
+            return true;
+        }
     }
 }
