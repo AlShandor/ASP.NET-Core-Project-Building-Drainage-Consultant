@@ -1,0 +1,54 @@
+﻿@model AllDrainsQueryModel
+
+
+<div class="col-md-4 order-md-1 col-lg-3 sidebar-filter">
+    <form method="get">
+        <div class="mt-2 mb-2 pl-2">
+            <input class="form-control" asp-for="SearchTerm" type="text" placeholder="Search by name...">
+        </div>
+        <hr />
+
+        <div class="mt-3 mb-2 pl-2">
+            <select class="form-control" asp-for="Diameter" asp-items="Html.GetEnumSelectList<DrainDiameterEnum>()">
+                <option value="">-- Select Diameter --</option>
+            </select>
+        </div>
+
+        <div class="mt-3 mb-2 pl-2">
+            <select class="form-control" asp-for="VisiblePart" asp-items="Html.GetEnumSelectList<DrainVisiblePartEnum>()">
+                <option value="">-- Select Visible Part --</option>
+            </select>
+        </div>
+
+        <div class="mt-3 mb-2 pl-2">
+            <select class="form-control" asp-for="Waterproofing" asp-items="Html.GetEnumSelectList<DrainWaterproofingEnum>()">
+                <option value="">-- Select Waterproofing --</option>
+            </select>
+        </div>
+
+        <hr />
+        <div class="mt-3 mb-2 pl-2">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input">
+                <label class="custom-control-label">Heating</label>
+            </div>
+        </div>
+
+        <div class="mt-3 mb-2 pl-2">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input">
+                <label class="custom-control-label">For Renovation</label>
+            </div>
+        </div>
+
+        <div class="mt-3 mb-2 pl-2">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input">
+                <label class="custom-control-label">Flap Seal</label>
+            </div>
+        </div>
+
+        <a href="#" class="form-control btn btn-lg btn-block btn-primary mt-5">Search</a>
+    </form>
+</div>
+

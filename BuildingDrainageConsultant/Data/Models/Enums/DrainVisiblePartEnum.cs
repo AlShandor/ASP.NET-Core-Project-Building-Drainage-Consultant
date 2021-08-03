@@ -4,12 +4,12 @@
 
     public enum DrainVisiblePartEnum
     {
-        Grate,
+        Grate = 1,
 
         [Display(Name = "Leaf Catcher")]
-        LeafCatcher,
+        LeafCatcher = 2,
 
         [Display(Name = "Tilable Frame")]
-        TilableFrame
+        TilableFrame = 3
     }
 }

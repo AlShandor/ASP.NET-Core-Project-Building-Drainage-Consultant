@@ -1,30 +1,38 @@
 ﻿namespace BuildingDrainageConsultant.Controllers
 {
     using AutoMapper;
-    using BuildingDrainageConsultant.Data;
-    using BuildingDrainageConsultant.Infrastructure;
     using BuildingDrainageConsultant.Models.Drains;
     using BuildingDrainageConsultant.Services.Drains;
     using Microsoft.AspNetCore.Mvc;
-    using System.Linq;
 
     public class DrainsController : Controller
     {
-        private readonly BuildingDrainageConsultantDbContext data;
         private readonly IDrainService drains;
         private readonly IMapper mapper;
 
         public DrainsController(
             IDrainService drains, 
-            BuildingDrainageConsultantDbContext data, 
             IMapper mapper)
         {
             this.drains = drains;
-            this.data = data;
             this.mapper = mapper;
         }
 
         public IActionResult Add() => View();
+
+        public IActionResult Test([FromQuery] AllDrainsQueryModel query) 
+        {
+            var queryResult = this.drains.All(
+                query.SearchTerm,
+                query.CurrentPage,
+                AllDrainsQueryModel.DrainsPerPage);
+
+            query.TotalDrains = queryResult.TotalDrains;
+            query.Drains = queryResult.Drains;
+
+            return View(query);
+        }
+
 
         [HttpPost]
         public IActionResult Add(DrainFormModel drain)

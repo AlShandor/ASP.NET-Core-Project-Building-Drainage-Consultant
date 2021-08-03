@@ -1,0 +1,31 @@
+﻿@model IEnumerable<DrainDetailsServiceModel>
+
+<div class="row">
+    @if (!Model.Any())
+    {
+        <h2 class="text-center">No drains found by the given criteria!</h2>
+    }
+
+    @foreach (var drain in Model)
+    {
+        var drainDescriptionTruncated = drain.Description.Length > 90 ? drain.Description.ToString().Substring(0, 90) + "..." : drain.Description;
+
+        <div class="col-6 col-md-6 col-lg-4 mb-3">
+            <div class="card h-100 border-1">
+                <div class="card-img-custom">
+                    <img src="@drain.ImageUrl" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
+                    <hr />
+                </div>
+                <div class="card-body text-center">
+                    <h4 class="card-title text-center">
+                        <span class="font-weight-bold text-dark text-uppercase small">@drain.Name</span>
+                    </h4>
+                    <p class="card-text">@drainDescriptionTruncated</p>
+                    <a asp-controller="Drains" asp-action="Details" asp-route-id="@drain.Id" class="btn btn-primary">View Details</a>
+                </div>
+
+            </div>
+        </div>
+    }
+
+</div>
