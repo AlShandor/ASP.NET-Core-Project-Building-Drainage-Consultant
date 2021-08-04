@@ -20,20 +20,6 @@
 
         public IActionResult Add() => View();
 
-        public IActionResult Test([FromQuery] AllDrainsQueryModel query) 
-        {
-            var queryResult = this.drains.All(
-                query.SearchTerm,
-                query.CurrentPage,
-                AllDrainsQueryModel.DrainsPerPage);
-
-            query.TotalDrains = queryResult.TotalDrains;
-            query.Drains = queryResult.Drains;
-
-            return View(query);
-        }
-
-
         [HttpPost]
         public IActionResult Add(DrainFormModel drain)
         {
@@ -80,7 +66,9 @@
                 return NotFound();
             }
 
-            return View(drain);
+            var drainForm = this.mapper.Map<DrainFormModel>(drain);
+
+            return View(drainForm);
         }
 
         public IActionResult Edit(int id)

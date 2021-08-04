@@ -1,30 +1,42 @@
 ﻿@model DrainFormModel
 
+@{
+    var isAddView = ViewBag.Title == "Add Drains" ? true : false;
+    var isDetailsView = ViewBag.Title == "View Details" ? true : false;
+    var isEditView = ViewBag.Title == "Edit Drain" ? true : false;
+}
+
 <div class="row">
+
     <div class="offset-md-3 col-md-6">
+        @if (!isAddView)
+        {
+            <img src="@Model.ImageUrl" alt="@Model.Name" class="card-img-top">
+        }
+
         <h2 class="heading-margin text-center">@ViewBag.Title</h2>
         <form method="post">
             <div class="form-group">
                 <label asp-for="Name"></label>
-                <input class="form-control" asp-for="Name" placeholder="e.g. HL3020">
+                <input class="form-control" asp-for="Name" placeholder="e.g. HL3020" disabled="@isDetailsView" >
                 <span asp-validation-for="Name" class="small text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="FlowRate"></label>
-                <input class="form-control" asp-for="FlowRate" placeholder="l/s">
+                <input class="form-control" asp-for="FlowRate" placeholder="l/s" disabled="@isDetailsView">
                 <span asp-validation-for="FlowRate" class="small text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="DrainageArea"></label>
-                <input class="form-control" asp-for="DrainageArea" placeholder="m³">
+                <input class="form-control" asp-for="DrainageArea" placeholder="m³" disabled="@isDetailsView">
                 <span asp-validation-for="DrainageArea" class="small text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Diameter"></label>
-                <select class="form-control" asp-for="Diameter" asp-items="Html.GetEnumSelectList<DrainDiameterEnum>()">
+                <select class="form-control" asp-for="Diameter" asp-items="Html.GetEnumSelectList<DrainDiameterEnum>()" disabled="@isDetailsView">
                     <option value="">Select an option</option>
                 </select>
                 <span asp-validation-for="Diameter" class="small text-danger"></span>
@@ -32,7 +44,7 @@
 
             <div class="form-group">
                 <label asp-for="VisiblePart"></label>
-                <select class="form-control" asp-for="VisiblePart" asp-items="Html.GetEnumSelectList<DrainVisiblePartEnum>()">
+                <select class="form-control" asp-for="VisiblePart" asp-items="Html.GetEnumSelectList<DrainVisiblePartEnum>()" disabled="@isDetailsView">
                     <option value="">Select an option</option>
                 </select>
                 <span asp-validation-for="VisiblePart" class="small text-danger"></span>
@@ -40,7 +52,7 @@
 
             <div class="form-group">
                 <label asp-for="Waterproofing"></label>
-                <select class="form-control" asp-for="Waterproofing" asp-items="Html.GetEnumSelectList<DrainWaterproofingEnum>()">
+                <select class="form-control" asp-for="Waterproofing" asp-items="Html.GetEnumSelectList<DrainWaterproofingEnum>()" disabled="@isDetailsView">
                     <option value="">Select an option</option>
                 </select>
                 <span asp-validation-for="Waterproofing" class="small text-danger"></span>
@@ -79,20 +91,32 @@
                 <span asp-validation-for="HasFlapSeal" class="small text-danger"></span>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" hidden="@isDetailsView">
                 <label asp-for="ImageUrl"></label>
-                <input class="form-control" asp-for="ImageUrl">
+                <input class="form-control" asp-for="ImageUrl" disabled="@isDetailsView">
                 <span asp-validation-for="ImageUrl" class="small text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Description"></label>
-                <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                <textarea asp-for="Description" class="form-control" rows="4" disabled="@isDetailsView"></textarea>
                 <span asp-validation-for="Description" class="small text-danger"></span>
             </div>
 
-            <input class="btn btn-primary" type="submit" value="Save" />
-        </form>
+            @if (isEditView || isAddView)
+            {
+                <input class="btn btn-primary" type="submit" value="Save" />
+            }
 
+            @if (isDetailsView)
+            {
+                <input asp-controller="Drains" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary" type="submit" formmethod="get" value="Edit" />
+                <input asp-controller="Drains"
+                       asp-action="Delete"
+                       asp-route-id="@Model.Id"
+                       class="btn btn-danger" type="submit"
+                       onclick="return confirm('Are you sure you want to delete this product?')" value="Delete" />
+            }
+        </form>
     </div>
 </div>
