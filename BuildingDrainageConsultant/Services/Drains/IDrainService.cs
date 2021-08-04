@@ -1,6 +1,6 @@
 ﻿namespace BuildingDrainageConsultant.Services.Drains
 {
-    using BuildingDrainageConsultant.Data.Models.Enums;
+    using BuildingDrainageConsultant.Data.Models.Enums.Drains;
     using BuildingDrainageConsultant.Services.Drains.Models;
 
     public interface IDrainService
@@ -16,12 +16,14 @@
             string name,
             double flowRate,
             int drainageArea,
+            int depth,
+            DrainDirectionEnum direction,
             DrainDiameterEnum diameter,
             DrainVisiblePartEnum visiblePart,
             DrainWaterproofingEnum waterproofing,
-            bool hasHeating,
-            bool forRenovation,
-            bool hasFlapSeal,
+            DrainHeatingEnum heating,
+            DrainRenovationEnum renovation,
+            DrainFlapSealEnum flapSeal,
             string imageUrl,
             string description);
 
@@ -30,12 +32,14 @@
             string name,
             double flowRate,
             int drainageArea,
+            int depth,
+            DrainDirectionEnum direction,
             DrainDiameterEnum diameter,
             DrainVisiblePartEnum visiblePart,
             DrainWaterproofingEnum waterproofing,
-            bool hasHeating,
-            bool forRenovation,
-            bool hasFlapSeal,
+            DrainHeatingEnum heating,
+            DrainRenovationEnum renovation,
+            DrainFlapSealEnum flapSeal,
             string imageUrl,
             string description);
 

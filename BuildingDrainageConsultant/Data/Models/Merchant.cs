@@ -3,7 +3,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using static DataConstants.Seller;
-    public class Seller
+    public class Merchant
     {
         [Key]
         public int Id { get; init; }

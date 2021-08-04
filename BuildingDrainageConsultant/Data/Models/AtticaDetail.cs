@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using BuildingDrainageConsultant.Data.Models.Enums;
+    using BuildingDrainageConsultant.Data.Models.Enums.Attica;
 
     using static DataConstants.AtticaDetail;
     public class AtticaDetail
@@ -14,9 +14,9 @@
         public AtticaRoofTypeEnum RoofType { get; init; }
 
         [Required]
-        public bool IsWalkable { get; init; }
+        public AtticaWalkableEnum IsWalkable { get; init; }
 
-        public DrainWaterproofingEnum ScreedWaterproofing { get; init; }
+        public AtticaScreedWaterproofingEnum ScreedWaterproofing { get; init; }
 
         public AtticaVisiblePartEnum VisiblePart { get; init; }
 

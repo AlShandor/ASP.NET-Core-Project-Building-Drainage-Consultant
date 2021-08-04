@@ -1,6 +1,6 @@
 ﻿namespace BuildingDrainageConsultant.Data.Models
 {
-    using BuildingDrainageConsultant.Data.Models.Enums;
+    using BuildingDrainageConsultant.Data.Models.Enums.Attica;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     public class AtticaDrain
@@ -17,7 +17,7 @@
         [Required]
         public int DrainageArea { get; init; }
 
-        public DrainWaterproofingEnum ScreedWaterproofing { get; init; }
+        public AtticaScreedWaterproofingEnum ScreedWaterproofing { get; init; }
 
         [Required]
         public AtticaConcreteWaterproofingEnum ConcreteWaterproofing { get; init; }

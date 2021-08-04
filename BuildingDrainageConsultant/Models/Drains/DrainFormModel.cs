@@ -1,6 +1,6 @@
 ﻿namespace BuildingDrainageConsultant.Models.Drains
 {
-    using BuildingDrainageConsultant.Data.Models.Enums;
+    using BuildingDrainageConsultant.Data.Models.Enums.Drains;
     using System.ComponentModel.DataAnnotations;
 
     using static Data.DataConstants.Drain;
@@ -23,6 +23,14 @@
         public int DrainageArea { get; init; }
 
         [Required]
+        [Range(0, DepthMax)]
+        [Display(Name = "Depth (mm)")]
+        public int Depth { get; set; }
+
+        [Required]
+        public DrainDirectionEnum Direction { get; set; }
+
+        [Required]
         public DrainDiameterEnum Diameter { get; init; }
 
         [Required]
@@ -34,16 +42,15 @@
         public DrainWaterproofingEnum Waterproofing { get; init; }
 
         [Required]
-        [Display(Name = "Heating")]
-        public bool HasHeating { get; init; }
+        public DrainHeatingEnum Heating { get; init; }
 
         [Required]
         [Display(Name = "For Renovation")]
-        public bool ForRenovation { get; init; }
+        public DrainRenovationEnum Renovation { get; init; }
 
         [Required]
         [Display(Name = "Flap Seal")]
-        public bool HasFlapSeal { get; init; }
+        public DrainFlapSealEnum FlapSeal { get; init; }
 
         [Display(Name = "Image Url")]
         public string ImageUrl { get; init; }

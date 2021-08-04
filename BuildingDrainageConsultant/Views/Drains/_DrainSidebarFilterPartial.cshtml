@@ -2,6 +2,8 @@
 
 
 <div class="col-md-4 order-md-1 col-lg-3 sidebar-filter">
+    <h3 class="mt-3 mb-3 pb-4 float-md-left">Total results: <span class="text-primary">@Model.TotalDrains</span></h3>
+
     <form method="get">
         <div class="mt-2 mb-2 pl-2">
             <input class="form-control" asp-for="SearchTerm" type="text" placeholder="Search by name...">
@@ -9,20 +11,44 @@
         <hr />
 
         <div class="mt-3 mb-2 pl-2">
+            <select class="form-control" asp-for="Direction" asp-items="Html.GetEnumSelectList<DrainDirectionEnum>()">
+                <option value="">--Select Direction--</option>
+            </select>
+        </div>
+
+        <div class="mt-3 mb-2 pl-2">
             <select class="form-control" asp-for="Diameter" asp-items="Html.GetEnumSelectList<DrainDiameterEnum>()">
-                <option value="">-- Select Diameter --</option>
+                <option value="">--Select Diameter--</option>
             </select>
         </div>
 
         <div class="mt-3 mb-2 pl-2">
             <select class="form-control" asp-for="VisiblePart" asp-items="Html.GetEnumSelectList<DrainVisiblePartEnum>()">
-                <option value="">-- Select Visible Part --</option>
+                <option value="">--Select Visible Part--</option>
             </select>
         </div>
 
         <div class="mt-3 mb-2 pl-2">
             <select class="form-control" asp-for="Waterproofing" asp-items="Html.GetEnumSelectList<DrainWaterproofingEnum>()">
-                <option value="">-- Select Waterproofing --</option>
+                <option value="">--Select Waterproofing--</option>
+            </select>
+        </div>
+
+        <div class="mt-3 mb-2 pl-2">
+            <select class="form-control" asp-for="Heating" asp-items="Html.GetEnumSelectList<DrainHeatingEnum>()">
+                <option value="">--Select Heating--</option>
+            </select>
+        </div>
+
+        <div class="mt-3 mb-2 pl-2">
+            <select class="form-control" asp-for="Renovation" asp-items="Html.GetEnumSelectList<DrainRenovationEnum>()">
+                <option value="">--Select Renovation--</option>
+            </select>
+        </div>
+
+        <div class="mt-3 mb-2 pl-2">
+            <select class="form-control" asp-for="FlapSeal" asp-items="Html.GetEnumSelectList<DrainFlapSealEnum>()">
+                <option value="">--Select Flap Seal--</option>
             </select>
         </div>
 

@@ -12,7 +12,7 @@
         public DbSet<Drain> Drains { get; set; }
         public DbSet<AtticaDrain> AtticaDrains { get; set; }
         public DbSet<AtticaDetail> DrainageDetails { get; set; }
-        public DbSet<Seller> Sellers { get; set; }
+        public DbSet<Merchant> Merchants { get; set; }
         public DbSet<AtticaPart> AtticaParts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)

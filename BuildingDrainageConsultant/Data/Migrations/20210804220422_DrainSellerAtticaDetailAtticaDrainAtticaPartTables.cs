@@ -53,7 +53,7 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RoofType = table.Column<int>(type: "int", nullable: false),
-                    IsWalkable = table.Column<bool>(type: "bit", nullable: false),
+                    IsWalkable = table.Column<int>(type: "int", nullable: false),
                     ScreedWaterproofing = table.Column<int>(type: "int", nullable: false),
                     VisiblePart = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
@@ -73,12 +73,14 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     FlowRate = table.Column<double>(type: "float", maxLength: 15, nullable: false),
                     DrainageArea = table.Column<int>(type: "int", maxLength: 400, nullable: false),
+                    Depth = table.Column<int>(type: "int", maxLength: 300, nullable: false),
+                    Direction = table.Column<int>(type: "int", nullable: false),
                     Diameter = table.Column<int>(type: "int", nullable: false),
                     VisiblePart = table.Column<int>(type: "int", nullable: false),
                     Waterproofing = table.Column<int>(type: "int", nullable: false),
-                    HasHeating = table.Column<bool>(type: "bit", nullable: false),
-                    ForRenovation = table.Column<bool>(type: "bit", nullable: false),
-                    HasFlapSeal = table.Column<bool>(type: "bit", nullable: false),
+                    Heating = table.Column<int>(type: "int", nullable: false),
+                    Renovation = table.Column<int>(type: "int", nullable: false),
+                    FlapSeal = table.Column<int>(type: "int", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false)
                 },
@@ -88,7 +90,7 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sellers",
+                name: "Merchants",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -102,7 +104,7 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sellers", x => x.Id);
+                    table.PrimaryKey("PK_Merchants", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -333,7 +335,7 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 name: "Drains");
 
             migrationBuilder.DropTable(
-                name: "Sellers");
+                name: "Merchants");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -4,10 +4,11 @@
     using AutoMapper.QueryableExtensions;
     using BuildingDrainageConsultant.Data;
     using BuildingDrainageConsultant.Data.Models;
-    using BuildingDrainageConsultant.Data.Models.Enums;
+    using BuildingDrainageConsultant.Data.Models.Enums.Drains;
     using BuildingDrainageConsultant.Services.Drains.Models;
     using System.Linq;
 
+    using static Data.DataConstants.Drain;
     public class DrainService : IDrainService
     {
         private readonly BuildingDrainageConsultantDbContext data;
@@ -57,15 +58,17 @@
                 .FirstOrDefault();
 
         public int Create(
-            string name, 
-            double flowRate, 
-            int drainageArea, 
-            DrainDiameterEnum diameter, 
+            string name,
+            double flowRate,
+            int drainageArea,
+            int depth,
+            DrainDirectionEnum direction,
+            DrainDiameterEnum diameter,
             DrainVisiblePartEnum visiblePart,
-            DrainWaterproofingEnum waterproofing, 
-            bool hasHeating,
-            bool forRenovation,
-            bool hasFlapSeal,
+            DrainWaterproofingEnum waterproofing,
+            DrainHeatingEnum heating,
+            DrainRenovationEnum renovation,
+            DrainFlapSealEnum flapSeal,
             string imageUrl,
             string description)
         {
@@ -74,13 +77,15 @@
                 Name = name,
                 FlowRate = flowRate,
                 DrainageArea = drainageArea,
+                Depth = depth,
+                Direction = direction,
                 Diameter = diameter,
                 VisiblePart = visiblePart,
                 Waterproofing = waterproofing,
-                HasHeating = hasHeating,
-                ForRenovation = forRenovation,
-                HasFlapSeal = hasFlapSeal,
-                ImageUrl = imageUrl,
+                Heating = heating,
+                Renovation = renovation,
+                FlapSeal = flapSeal,
+                ImageUrl = imageUrl == null ? DefaultImageUrl : imageUrl,
                 Description = description
             };
 
@@ -91,17 +96,19 @@
         }
 
         public bool Edit(
-            int id, 
-            string name, 
-            double flowRate, 
-            int drainageArea, 
+            int id,
+            string name,
+            double flowRate,
+            int drainageArea,
+            int depth,
+            DrainDirectionEnum direction,
             DrainDiameterEnum diameter,
             DrainVisiblePartEnum visiblePart,
             DrainWaterproofingEnum waterproofing,
-            bool hasHeating,
-            bool forRenovation,
-            bool hasFlapSeal,
-            string imageUrl, 
+            DrainHeatingEnum heating,
+            DrainRenovationEnum renovation,
+            DrainFlapSealEnum flapSeal,
+            string imageUrl,
             string description)
         {
             var drainData = this.data.Drains.Find(id);
@@ -114,12 +121,14 @@
             drainData.Name = name;
             drainData.FlowRate = flowRate;
             drainData.DrainageArea = drainageArea;
+            drainData.Depth = depth;
+            drainData.Direction = direction;
             drainData.Diameter = diameter;
             drainData.VisiblePart = visiblePart;
             drainData.Waterproofing = waterproofing;
-            drainData.HasHeating = hasHeating;
-            drainData.ForRenovation = forRenovation;
-            drainData.HasFlapSeal = hasFlapSeal;
+            drainData.Heating = heating;
+            drainData.Renovation = renovation;
+            drainData.FlapSeal = flapSeal;
             drainData.ImageUrl = imageUrl;
             drainData.Description = description;
 

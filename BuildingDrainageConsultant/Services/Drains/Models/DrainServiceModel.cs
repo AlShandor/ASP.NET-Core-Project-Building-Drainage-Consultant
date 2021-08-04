@@ -1,16 +1,20 @@
 ﻿namespace BuildingDrainageConsultant.Services.Drains.Models
 {
-    using BuildingDrainageConsultant.Data.Models.Enums;
+    using BuildingDrainageConsultant.Data.Models.Enums.Drains;
 
     public class DrainServiceModel
     {
         public int Id { get; init; }
 
-        public string Name { get; set; }
+        public string Name { get; init; }
 
         public double FlowRate { get; init; }
 
         public int DrainageArea { get; init; }
+
+        public int Depth { get; init; }
+
+        public DrainDirectionEnum Direction { get; init; }
 
         public DrainDiameterEnum Diameter { get; init; }
 
@@ -18,11 +22,11 @@
 
         public DrainWaterproofingEnum Waterproofing { get; init; }
 
-        public bool HasHeating { get; init; }
+        public DrainHeatingEnum Heating { get; init; }
 
-        public bool ForRenovation { get; init; }
+        public DrainRenovationEnum Renovation { get; init; }
 
-        public bool HasFlapSeal { get; init; }
+        public DrainFlapSealEnum FlapSeal { get; init; }
 
         public string ImageUrl { get; init; }
 

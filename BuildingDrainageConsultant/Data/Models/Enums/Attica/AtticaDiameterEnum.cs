@@ -1,4 +1,4 @@
-﻿namespace BuildingDrainageConsultant.Data.Models.Enums
+﻿namespace BuildingDrainageConsultant.Data.Models.Enums.Attica
 {
     public enum AtticaDiameterEnum
     {
