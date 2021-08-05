@@ -24,6 +24,8 @@
 
         public int TotalDrains { get; set; }
 
+        public DrainSortingEnum Sorting { get; init; }
+
         public IEnumerable<DrainDetailsServiceModel> Drains { get; set; }
     }
 }

@@ -13,7 +13,7 @@
 
 <div class="row mb-5">
     <div class="col-md-6">
-        <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+        <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)" style="margin-top: 30px"
            asp-controller="Drains"
            asp-action="All"
            asp-route-currentPage="@previousPage"
@@ -26,7 +26,7 @@
     }
 
     <div class="col-md-6">
-        <a class="btn btn-primary float-sm-right @(shouldButtonBeDisabled ? "disabled" : string.Empty)" style="margin-top: 10px"
+        <a class="btn btn-primary float-sm-right @(shouldButtonBeDisabled ? "disabled" : string.Empty)" style="margin-top: 30px"
            asp-controller="Drains"
            asp-action="All"
            asp-route-currentPage="@(Model.CurrentPage + 1)"

@@ -1,9 +1,12 @@
 ﻿@model IEnumerable<DrainDetailsServiceModel>
 
 <div class="row">
+
     @if (!Model.Any())
     {
+    <div class="offset-2">
         <h2 class="text-center">No drains found by the given criteria!</h2>
+    </div>
     }
 
     @foreach (var drain in Model)
@@ -11,7 +14,7 @@
         var drainDescriptionTruncated = drain.Description.Length > 90 ? drain.Description.ToString().Substring(0, 90) + "..." : drain.Description;
 
         <div class="col-6 col-md-6 col-lg-4 mb-3">
-            <div class="card h-100 border-1">
+            <div class="shadow card h-100 border-1">
                 <div class="card-img-custom">
                     <img src="@drain.ImageUrl" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
                     <hr />

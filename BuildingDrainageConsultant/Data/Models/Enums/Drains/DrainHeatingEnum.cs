@@ -4,10 +4,10 @@
 
     public enum DrainHeatingEnum
     {
-        [Display(Name = "With Heating")]
-        WithHeating = 1,
-
         [Display(Name = "No Heating")]
-        NoHeating = 2
+        NoHeating = 1,
+
+        [Display(Name = "With Heating")]
+        WithHeating = 2
     }
 }

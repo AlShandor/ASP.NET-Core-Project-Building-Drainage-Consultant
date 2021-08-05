@@ -1,12 +1,21 @@
 ﻿namespace BuildingDrainageConsultant.Services.Drains
 {
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
+    using BuildingDrainageConsultant.Models.Drains;
     using BuildingDrainageConsultant.Services.Drains.Models;
 
     public interface IDrainService
     {
         DrainQueryServiceModel All(
             string searchTerm,
+            DrainDirectionEnum direction,
+            DrainDiameterEnum diameter,
+            DrainVisiblePartEnum visiblePart,
+            DrainWaterproofingEnum waterproofing,
+            DrainHeatingEnum heating,
+            DrainRenovationEnum renovation,
+            DrainFlapSealEnum flapSeal,
+            DrainSortingEnum sorting,
             int currentPage,
             int drainsPerPage);
 

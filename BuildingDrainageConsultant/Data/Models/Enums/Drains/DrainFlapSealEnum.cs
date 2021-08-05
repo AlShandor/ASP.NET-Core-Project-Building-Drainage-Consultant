@@ -3,11 +3,11 @@
     using System.ComponentModel.DataAnnotations;
     public enum DrainFlapSealEnum
     {
-        [Display(Name = "With Flap Seal")]
-        WithFlapSeal = 1,
-
-
         [Display(Name = "No Flap Seal")]
-        NoFlapSeal = 2
+        NoFlapSeal = 1,
+
+        [Display(Name = "With Flap Seal")]
+        WithFlapSeal = 2
+
     }
 }

@@ -50,6 +50,14 @@
         {
             var queryResult = this.drains.All(
                 query.SearchTerm,
+                query.Direction,
+                query.Diameter,
+                query.VisiblePart,
+                query.Waterproofing,
+                query.Heating,
+                query.Renovation,
+                query.FlapSeal,
+                query.Sorting,
                 query.CurrentPage,
                 AllDrainsQueryModel.DrainsPerPage);
 

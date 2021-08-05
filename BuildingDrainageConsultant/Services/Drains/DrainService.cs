@@ -5,6 +5,7 @@
     using BuildingDrainageConsultant.Data;
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
+    using BuildingDrainageConsultant.Models.Drains;
     using BuildingDrainageConsultant.Services.Drains.Models;
     using System.Linq;
 
@@ -22,6 +23,14 @@
 
         public DrainQueryServiceModel All(
             string searchTerm,
+            DrainDirectionEnum direction,
+            DrainDiameterEnum diameter,
+            DrainVisiblePartEnum visiblePart,
+            DrainWaterproofingEnum waterproofing,
+            DrainHeatingEnum heating,
+            DrainRenovationEnum renovation,
+            DrainFlapSealEnum flapSeal,
+            DrainSortingEnum sorting,
             int currentPage,
             int drainsPerPage)
         {
@@ -32,10 +41,58 @@
                 drainQuery = drainQuery.Where(d => d.Name.ToLower().Contains(searchTerm.ToLower()));
             }
 
+            if (direction != 0)
+            {
+                drainQuery = drainQuery.Where(d => d.Direction == direction);
+            }
+
+            if (diameter != 0)
+            {
+                drainQuery = drainQuery.Where(d => d.Diameter == diameter);
+            }
+
+            if (visiblePart != 0)
+            {
+                drainQuery = drainQuery.Where(d => d.VisiblePart == visiblePart);
+            }
+
+            if (waterproofing != 0)
+            {
+                drainQuery = drainQuery.Where(d => d.Waterproofing == waterproofing);
+            }
+
+            if (heating != 0)
+            {
+                drainQuery = drainQuery.Where(d => d.Heating == heating);
+            }
+
+            if (renovation != 0)
+            {
+                drainQuery = drainQuery.Where(d => d.Renovation == renovation);
+            }
+
+            if (flapSeal != 0)
+            {
+                drainQuery = drainQuery.Where(d => d.FlapSeal == flapSeal);
+            }
+
+
+            drainQuery = sorting switch
+            {
+                DrainSortingEnum.Name => drainQuery.OrderBy(d => d.Name),
+                DrainSortingEnum.DepthAscending => drainQuery.OrderBy(d => d.Depth),
+                DrainSortingEnum.Waterproofing => drainQuery.OrderBy(d => d.Waterproofing),
+                DrainSortingEnum.VisiblePart => drainQuery.OrderBy(d => d.VisiblePart),
+                DrainSortingEnum.FlowRateAscending => drainQuery.OrderBy(d => d.FlowRate),
+                DrainSortingEnum.FlowRateDescending => drainQuery.OrderByDescending(d => d.FlowRate),
+                DrainSortingEnum.DiameterAscending => drainQuery.OrderBy(d => d.Diameter),
+                DrainSortingEnum.DiameterDescending => drainQuery.OrderByDescending(d => d.Diameter),
+                _ => drainQuery.OrderByDescending(d => d.Id)
+            };
+
             var totalDrains = drainQuery.Count();
 
             var drains = drainQuery
-                .OrderByDescending(d => d.Id)
                 .Skip((currentPage - 1) * drainsPerPage)
                 .Take(drainsPerPage)
                 .ProjectTo<DrainDetailsServiceModel>(this.mapper)

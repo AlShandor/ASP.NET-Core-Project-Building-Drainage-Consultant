@@ -7,30 +7,35 @@
 <div class="container pt-5">
     <div class="row">
         <div class="col-md-8 order-md-2 col-lg-9">
-            <div class="container-fluid">
-                <div class="row   mb-5">
-                    <div class="col-12">
-
-                        <div class="dropdown text-md-left text-center float-md-right mb-3 mt-3 mt-md-0 mb-md-0">
-                            <label class="mr-2">Sort by:</label>
-                            <a class="btn btn-lg btn-light dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Product Name<span class="caret"></span></a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(71px, 48px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                <a class="dropdown-item" href="#">Depth Ascending</a>
-                                <a class="dropdown-item" href="#">Waterproofing</a>
-                                <a class="dropdown-item" href="#">Visible part</a>
-                                <a class="dropdown-item" href="#">Flow Rate Ascending</a>
-                                <a class="dropdown-item" href="#">Flow Rate Descending</a>
-                                <a class="dropdown-item" href="#">Diameter Ascending</a>
-                                <a class="dropdown-item" href="#">Diameter Descending</a>
+            <div class="row mb-5">
+                <div class="col-12">
+                    <div class="text-md-left text-center float-md-right list-group-horizontal ">
+                        <form method="get">
+                            <div class="form-group">
+                                <input type="submit" class="form-control btn btn-info" value="Sort By:">
                             </div>
-                        </div>
+
+                            <div class="form-group">
+                                <select asp-for="Sorting" class="shadow-sm form-control btn btn-lg btn-light dropdown-toggle">
+                                    <option selected>- Sort by - </option>
+                                    <option value="1">Name</option>
+                                    <option value="2">Depth Ascending</option>
+                                    <option value="3">Waterproofing</option>
+                                    <option value="4">Visible Part</option>
+                                    <option value="5">Flow Rate Ascending</option>
+                                    <option value="6">Flow Rate Descending</option>
+                                    <option value="7">Diameter Ascending</option>
+                                    <option value="8">Diameter Descending</option>
+                                </select>
+                            </div>
+                        </form>
                     </div>
                 </div>
-
-                <partial name="_DrainsPartial" model="@Model.Drains" />
-
-                <partial name="_DrainsPagesNavigationPartial" model="@Model" />
             </div>
+
+            <partial name="_DrainsPartial" model="@Model.Drains" />
+
+            <partial name="_DrainsPagesNavigationPartial" model="@Model" />
         </div>
 
         <partial name="_DrainSidebarFilterPartial" />
