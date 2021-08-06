@@ -7,6 +7,7 @@
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
     using BuildingDrainageConsultant.Models.Drains;
     using BuildingDrainageConsultant.Services.Drains.Models;
+    using System.Collections.Generic;
     using System.Linq;
 
     using static Data.DataConstants.Drain;
@@ -107,12 +108,19 @@
             };
         }
 
-        public DrainServiceModel Details(int id)
+        public IEnumerable<DrainDetailsServiceModel> ByUser(string userId)
+        => GetDrains(this.data
+                .Drains
+                .Where(d
+            => d.UserId == userId));
+
+        public DrainServiceModel Details(int drainId)
             => this.data
                 .Drains
-                .Where(c => c.Id == id)
+                .Where(d => d.Id == drainId)
                 .ProjectTo<DrainServiceModel>(this.mapper)
                 .FirstOrDefault();
+
 
         public int Create(
             string name,
@@ -208,5 +216,32 @@
 
             return true;
         }
+
+        public bool SaveToMine(string userId, int drainId)
+        {
+            var drain = this.data.Drains.Find(drainId);
+
+            if (drain == null)
+            {
+                return false;
+            }
+
+            var user = this.data.Users.Find(userId);
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            user.Drains.Add(drain);
+            data.SaveChanges();
+
+            return true;
+        }
+
+        private IEnumerable<DrainDetailsServiceModel> GetDrains(IQueryable<Drain> drainQuery)
+            => drainQuery
+                .ProjectTo<DrainDetailsServiceModel>(this.mapper)
+                .ToList();
     }
 }

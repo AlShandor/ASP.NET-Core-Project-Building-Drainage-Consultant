@@ -33,5 +33,9 @@
         public AtticaDetail DrainageDetail { get; set; }
 
         public IEnumerable<AtticaPart> Parts { get; set; } = new List<AtticaPart>();
+
+        public string UserId { get; set; }
+
+        public User User { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants.Seller;
+    using static DataConstants.Merchant;
     public class Merchant
     {
         [Key]

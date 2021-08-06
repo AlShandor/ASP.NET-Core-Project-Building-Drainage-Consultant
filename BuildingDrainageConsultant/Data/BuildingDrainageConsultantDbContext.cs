@@ -3,7 +3,7 @@
     using BuildingDrainageConsultant.Data.Models;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
-    public class BuildingDrainageConsultantDbContext : IdentityDbContext
+    public class BuildingDrainageConsultantDbContext : IdentityDbContext<User>
     {
         public BuildingDrainageConsultantDbContext(DbContextOptions<BuildingDrainageConsultantDbContext> options)
             : base(options)
@@ -23,6 +23,28 @@
                 .WithMany(a => a.AtticaDrains)
                 .HasForeignKey(a => a.DrainageDetailId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<Drain>()
+                .HasOne(d => d.User)
+                .WithMany(d => d.Drains)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<AtticaDrain>()
+                .HasOne(d => d.User)
+                .WithMany(d => d.AtticaDrains)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            //builder.Entity<User>()
+            //    .Navigation(e => e.Drains)
+            //    .AutoInclude();
+
+            //builder.Entity<User>()
+            //    .Navigation(e => e.AtticaDrains)
+            //    .AutoInclude();
 
             base.OnModelCreating(builder);
         }

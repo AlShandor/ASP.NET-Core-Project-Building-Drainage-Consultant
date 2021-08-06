@@ -3,6 +3,7 @@
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
     using BuildingDrainageConsultant.Models.Drains;
     using BuildingDrainageConsultant.Services.Drains.Models;
+    using System.Collections.Generic;
 
     public interface IDrainService
     {
@@ -18,6 +19,8 @@
             DrainSortingEnum sorting,
             int currentPage,
             int drainsPerPage);
+
+        public IEnumerable<DrainDetailsServiceModel> ByUser(string userId);
 
         public DrainServiceModel Details(int id);
 
@@ -53,5 +56,7 @@
             string description);
 
         public bool Delete(int id);
+
+        public bool SaveToMine(string userId, int drainId);
     }
 }

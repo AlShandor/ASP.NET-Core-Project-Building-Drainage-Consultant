@@ -1,11 +1,23 @@
 ﻿@model IEnumerable<DrainDetailsServiceModel>
 
+@{
+    var isAllView = ViewBag.Title == "All Drains" ? true : false;
+    var isMineView = ViewBag.Title == "My Drains" ? true : false;
+}
+
 <div class="row">
 
     @if (!Model.Any())
     {
     <div class="offset-2">
-        <h2 class="text-center">No drains found by the given criteria!</h2>
+        @if (isAllView)
+        {
+            <h2 class="text-center">No drains found by the given criteria!</h2>
+        }
+        @if (isMineView)
+        {
+            <h2 class="text-center">You have no saved drains!</h2>
+        }
     </div>
     }
 
@@ -26,7 +38,6 @@
                     <p class="card-text">@drainDescriptionTruncated</p>
                     <a asp-controller="Drains" asp-action="Details" asp-route-id="@drain.Id" class="btn btn-primary">View Details</a>
                 </div>
-
             </div>
         </div>
     }

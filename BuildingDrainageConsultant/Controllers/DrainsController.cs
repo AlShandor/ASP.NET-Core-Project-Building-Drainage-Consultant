@@ -1,8 +1,10 @@
 ﻿namespace BuildingDrainageConsultant.Controllers
 {
     using AutoMapper;
+    using BuildingDrainageConsultant.Infrastructure;
     using BuildingDrainageConsultant.Models.Drains;
     using BuildingDrainageConsultant.Services.Drains;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     public class DrainsController : Controller
@@ -11,7 +13,7 @@
         private readonly IMapper mapper;
 
         public DrainsController(
-            IDrainService drains, 
+            IDrainService drains,
             IMapper mapper)
         {
             this.drains = drains;
@@ -136,6 +138,27 @@
             }
 
             return RedirectToAction(nameof(All));
+        }
+
+        [Authorize]
+        public IActionResult Mine()
+        {
+            var myCars = this.drains.ByUser(this.User.Id());
+
+            return View(myCars);
+        }
+
+        [Authorize]
+        public IActionResult SaveToMine(int id)
+        {
+            var drain = this.drains.SaveToMine(this.User.Id(), id);
+
+            if (drain == false)
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction(nameof(Details), new { id });
         }
     }
 }

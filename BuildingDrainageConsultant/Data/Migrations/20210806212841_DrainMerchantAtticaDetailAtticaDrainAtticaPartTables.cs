@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BuildingDrainageConsultant.Data.Migrations
 {
-    public partial class DrainSellerAtticaDetailAtticaDrainAtticaPartTables : Migration
+    public partial class DrainMerchantAtticaDetailAtticaDrainAtticaPartTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -62,31 +62,6 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DrainageDetails", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Drains",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    FlowRate = table.Column<double>(type: "float", maxLength: 15, nullable: false),
-                    DrainageArea = table.Column<int>(type: "int", maxLength: 400, nullable: false),
-                    Depth = table.Column<int>(type: "int", maxLength: 300, nullable: false),
-                    Direction = table.Column<int>(type: "int", nullable: false),
-                    Diameter = table.Column<int>(type: "int", nullable: false),
-                    VisiblePart = table.Column<int>(type: "int", nullable: false),
-                    Waterproofing = table.Column<int>(type: "int", nullable: false),
-                    Heating = table.Column<int>(type: "int", nullable: false),
-                    Renovation = table.Column<int>(type: "int", nullable: false),
-                    FlapSeal = table.Column<int>(type: "int", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Drains", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -214,6 +189,38 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Drains",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    FlowRate = table.Column<double>(type: "float", maxLength: 15, nullable: false),
+                    DrainageArea = table.Column<int>(type: "int", maxLength: 400, nullable: false),
+                    Depth = table.Column<int>(type: "int", maxLength: 300, nullable: false),
+                    Direction = table.Column<int>(type: "int", nullable: false),
+                    Diameter = table.Column<int>(type: "int", nullable: false),
+                    VisiblePart = table.Column<int>(type: "int", nullable: false),
+                    Waterproofing = table.Column<int>(type: "int", nullable: false),
+                    Heating = table.Column<int>(type: "int", nullable: false),
+                    Renovation = table.Column<int>(type: "int", nullable: false),
+                    FlapSeal = table.Column<int>(type: "int", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Drains", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Drains_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AtticaDrains",
                 columns: table => new
                 {
@@ -226,11 +233,18 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     ConcreteWaterproofing = table.Column<int>(type: "int", nullable: false),
                     Diameter = table.Column<int>(type: "int", nullable: false),
                     VisiblePart = table.Column<int>(type: "int", nullable: false),
-                    DrainageDetailId = table.Column<int>(type: "int", nullable: false)
+                    DrainageDetailId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AtticaDrains", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AtticaDrains_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_AtticaDrains_DrainageDetails_DrainageDetailId",
                         column: x => x.DrainageDetailId,
@@ -306,9 +320,19 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 column: "DrainageDetailId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AtticaDrains_UserId",
+                table: "AtticaDrains",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AtticaParts_AtticaDrainId",
                 table: "AtticaParts",
                 column: "AtticaDrainId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Drains_UserId",
+                table: "Drains",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -341,10 +365,10 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "AtticaDrains");
 
             migrationBuilder.DropTable(
-                name: "AtticaDrains");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "DrainageDetails");

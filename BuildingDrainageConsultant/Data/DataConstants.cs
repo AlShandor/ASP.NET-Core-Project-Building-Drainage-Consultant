@@ -2,7 +2,7 @@
 {
     public static class DataConstants
     {
-        public class IdentityUser
+        public class User
         {
             public const int PasswordMaxLength = 100;
             public const int PasswordMinLength = 6;
@@ -39,7 +39,7 @@
             public const string DefaultImageUrl = "https://hl-bg.bg/components/com_virtuemart/assets/images/vmgeneral/noimage.gif";
         }
 
-        public class Seller
+        public class Merchant
         {
             public const int NameMaxLength = 30;
             public const int CityMaxLength = 30;

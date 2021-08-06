@@ -1,6 +1,7 @@
 namespace BuildingDrainageConsultant
 {
     using BuildingDrainageConsultant.Data;
+    using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Infrastructure;
     using BuildingDrainageConsultant.Services.Drains;
     using Microsoft.AspNetCore.Builder;
@@ -26,7 +27,7 @@ namespace BuildingDrainageConsultant
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options => 
+            services.AddDefaultIdentity<User>(options => 
             {
                 options.SignIn.RequireConfirmedAccount = false;
                 options.Password.RequireDigit = false;

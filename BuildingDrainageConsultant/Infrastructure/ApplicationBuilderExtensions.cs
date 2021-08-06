@@ -1,8 +1,10 @@
 ﻿namespace BuildingDrainageConsultant.Infrastructure
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using BuildingDrainageConsultant.Data;
+    using BuildingDrainageConsultant.Data.Models;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
@@ -33,8 +35,9 @@
 
         private static void SeedAdministrator(IServiceProvider services)
         {
-            var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+            var userManager = services.GetRequiredService<UserManager<User>>();
             var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
 
             Task
                 .Run(async () =>
@@ -51,10 +54,12 @@
                     const string adminEmail = "admin@abv.bg";
                     const string adminPassword = "123456";
 
-                    var user = new IdentityUser
+                    var user = new User
                     {
                         Email = adminEmail,
-                        UserName = adminEmail
+                        UserName = adminEmail,
+                        //Drains = new List<Drain>(),
+                        //AtticaDrains = new List<AtticaDrain>()
                     };
 
                     await userManager.CreateAsync(user, adminPassword);
