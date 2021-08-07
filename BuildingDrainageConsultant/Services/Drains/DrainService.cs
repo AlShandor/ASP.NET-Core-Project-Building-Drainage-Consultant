@@ -217,7 +217,7 @@
             return true;
         }
 
-        public bool SaveToMine(string userId, int drainId)
+        public bool AddToMine(string userId, int drainId)
         {
             var drain = this.data.Drains.Find(drainId);
 

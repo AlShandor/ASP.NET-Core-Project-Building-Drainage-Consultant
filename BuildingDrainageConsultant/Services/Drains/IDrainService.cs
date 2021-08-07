@@ -57,6 +57,6 @@
 
         public bool Delete(int id);
 
-        public bool SaveToMine(string userId, int drainId);
+        public bool AddToMine(string userId, int drainId);
     }
 }

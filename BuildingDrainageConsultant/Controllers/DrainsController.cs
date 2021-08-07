@@ -149,9 +149,9 @@
         }
 
         [Authorize]
-        public IActionResult SaveToMine(int id)
+        public IActionResult AddToMine(int id)
         {
-            var drain = this.drains.SaveToMine(this.User.Id(), id);
+            var drain = this.drains.AddToMine(this.User.Id(), id);
 
             if (drain == false)
             {

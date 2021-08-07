@@ -17,15 +17,20 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Drains" asp-action="Add">Add Drain</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Drains" asp-action="All">All Drains</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Drains" asp-action="Mine">My Drains</a>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-item btn btn-lg  dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Drains
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="Drains" asp-action="All">All Drains</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Drains" asp-action="Mine">My Drains</a>
+                                @if (User.IsAdmin())
+                                {
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Drains" asp-action="Add">Add Drain</a>
+                                }
+                            </div>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
