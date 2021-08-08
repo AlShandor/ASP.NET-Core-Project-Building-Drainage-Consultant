@@ -4,6 +4,7 @@ namespace BuildingDrainageConsultant
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Infrastructure;
     using BuildingDrainageConsultant.Services.Drains;
+    using BuildingDrainageConsultant.Services.Merchants;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -12,6 +13,7 @@ namespace BuildingDrainageConsultant
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using System.Globalization;
 
     public class Startup
     {
@@ -46,6 +48,8 @@ namespace BuildingDrainageConsultant
             });
 
             services.AddTransient<IDrainService, DrainService>();
+            services.AddTransient<IMerchantService, MerchantService>();
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -62,6 +66,9 @@ namespace BuildingDrainageConsultant
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+            app.SetCultureInfo("en-US");
+            
 
             app.UseHttpsRedirection()
                 .UseStaticFiles()

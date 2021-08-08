@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuildingDrainageConsultant.Data.Migrations
 {
     [DbContext(typeof(BuildingDrainageConsultantDbContext))]
-    [Migration("20210806212841_DrainMerchantAtticaDetailAtticaDrainAtticaPartTables")]
+    [Migration("20210808094842_DrainMerchantAtticaDetailAtticaDrainAtticaPartTables")]
     partial class DrainMerchantAtticaDetailAtticaDrainAtticaPartTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -211,6 +211,12 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -220,7 +226,7 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("WebSite")
+                    b.Property<string>("Website")
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 

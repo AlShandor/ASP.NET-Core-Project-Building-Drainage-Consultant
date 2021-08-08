@@ -101,11 +101,10 @@
                 return View(drain);
             }
 
-            // todo
-            //if (!User.IsAdmin())
-            //{
-            //    return BadRequest();
-            //}
+            if (!User.IsAdmin())
+            {
+                return BadRequest();
+            }
 
             this.drains.Edit(
                 id,

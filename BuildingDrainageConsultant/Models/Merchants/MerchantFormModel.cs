@@ -1,20 +1,19 @@
-﻿namespace BuildingDrainageConsultant.Data.Models
+﻿namespace BuildingDrainageConsultant.Models.Merchants
 {
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants.Merchant;
-    public class Merchant
+    using static Data.DataConstants.Merchant;
+    public class MerchantFormModel
     {
-        [Key]
         public int Id { get; init; }
 
         [Required]
         [MaxLength(NameMaxLength)]
-        public string Name { get; set; }
+        public string Name { get; init; }
 
         [Required]
         [MaxLength(CityMaxLength)]
-        public string City { get; set; }
+        public string City { get; init; }
 
         [Required]
         [MaxLength(AddressMaxLength)]
@@ -25,16 +24,16 @@
         public string Email { get; set; }
 
         [Required]
-        public double Latitude { get; set; }
-
-        [Required]
-        public double Longitude { get; set; }
-
-        [Required]
         [Phone]
         public string Phone { get; set; }
 
         [MaxLength(WebsiteMaxLength)]
         public string Website { get; set; }
+
+        [Required]
+        public double Latitude { get; set; }
+
+        [Required]
+        public double Longitude { get; set; }
     }
 }

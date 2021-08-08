@@ -126,7 +126,7 @@
                            onclick="return confirm('Are you sure you want to delete this product?')" value="Delete" />
                 }
 
-                <input asp-controller="Drains" asp-action="AddToMine" asp-route-id="@Model.Id" class="shadow btn btn-success float-right" type="submit" formmethod="get" value="Add to My Drains" />
+        <button asp-controller="Drains" asp-action="AddToMine" asp-route-id="@Model.Id" class="shadow btn btn-success float-right" type="submit" formmethod="get"><i class="pr-1 bi bi-bookmark-plus-fill"></i>Add</button>
             }
         </form>
     </div>

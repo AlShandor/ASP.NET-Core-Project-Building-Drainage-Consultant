@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Threading.Tasks;
     using BuildingDrainageConsultant.Data;
     using BuildingDrainageConsultant.Data.Models;
@@ -25,6 +26,15 @@
 
             return app;
         }
+        public static IApplicationBuilder SetCultureInfo(this IApplicationBuilder app, string culture)
+        {
+            var cultureInfo = new CultureInfo(culture);
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
+            return app;
+        }
+
 
         private static void MigrateDatabase(IServiceProvider services)
         {
@@ -58,8 +68,8 @@
                     {
                         Email = adminEmail,
                         UserName = adminEmail,
-                        //Drains = new List<Drain>(),
-                        //AtticaDrains = new List<AtticaDrain>()
+                        Drains = new List<Drain>(),
+                        AtticaDrains = new List<AtticaDrain>()
                     };
 
                     await userManager.CreateAsync(user, adminPassword);
