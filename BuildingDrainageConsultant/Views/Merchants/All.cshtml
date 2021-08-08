@@ -20,21 +20,27 @@
     {
         <div class="col-6 col-md-6 col-lg-4 mb-3">
             <div class="shadow-sm card h-100 border-1">
-                <div class="card-body text-center">
-                    <h4 class="card-title text-center">
-                        <span class="font-weight-bold text-dark text-uppercase small">@merchant.Name</span>
-                    </h4>
-                    <span class="font-weight-bold text-dark text-uppercase small">@merchant.Address</span>
-                    <span class="font-weight-bold text-dark text-uppercase small">@merchant.City</span>
-                    <span class="font-weight-bold text-dark text-uppercase small">@merchant.Email</span>
-                    <span class="font-weight-bold text-dark text-uppercase small">@merchant.Phone</span>
-                    <span class="font-weight-bold text-dark text-uppercase small">@merchant.Website</span>
+                <div class="card-body d-flex flex-column text-center">
+                    <h3 class="card-title text-center">
+                        <span class="font-weight-bold text-primary text-uppercase small">@merchant.Name</span>
+                    </h3>
+                    <div class="form-group">
+                        <h4 class="font-weight-bold pl-2 text-left text-dark text-uppercase small">@merchant.Address</h4>
+                        <h5 class="font-weight-bold pl-2 pb-2 text-left text-dark text-uppercase small">@merchant.City</h5>
+                        <h5 class="font-weight-bold pl-2 text-left text-dark text-uppercase small"><i class="pr-3 bi bi-telephone-fill"></i>@merchant.Phone</h5>
+                        @if (merchant.Email != null)
+                        {
+                            <h5 class="font-weight-bold pl-2 text-left text-dark small"><i class="pr-3 bi bi-envelope-fill"></i>@merchant.Email</h5>
 
+                        }
+                        @if (merchant.Email != null)
+                        {
+                            <h5 class="font-weight-bold pl-2 text-left text-dark small"><i class="pr-3 bi bi-globe"></i>@merchant.Website</h5>
+                        }
+                    </div>
                     @if (User.IsAdmin())
                     {
-                        <div class="pt-1 position-relative">
-                            <a asp-controller="Merchants" asp-action="Edit" asp-route-id="@merchant.Id" class="shadow ml-1 btn btn-primary">Edit</a>
-                        </div>
+                        <a asp-controller="Merchants" asp-action="Edit" asp-route-id="@merchant.Id" class="mt-auto shadow btn btn-primary">Edit</a>
                     }
 
                 </div>
@@ -46,7 +52,7 @@
 @section Scripts {
 
     <script type='text/javascript'
-            src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap'
+            src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&setLang=bg'
             async defer></script>
 
     <script type='text/javascript'>
@@ -59,8 +65,13 @@
             var requestData = [];
 
             @foreach (var merchant in Model){
+                if (merchant.Latitude == null || merchant.Longitude == null)
+                {
+                    continue;
+                }
+
                 @:var reqData = {lat:@merchant.Latitude, long:@merchant.Longitude, name:'@merchant.Name'};
-                @:console.log(reqData);
+
                 @:requestData.push(reqData);
              }
 

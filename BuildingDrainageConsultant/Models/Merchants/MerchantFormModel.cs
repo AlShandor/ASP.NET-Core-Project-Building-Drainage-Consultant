@@ -24,16 +24,13 @@
         public string Email { get; set; }
 
         [Required]
-        [Phone]
         public string Phone { get; set; }
 
         [MaxLength(WebsiteMaxLength)]
         public string Website { get; set; }
 
-        [Required]
-        public double Latitude { get; set; }
+        public double? Latitude { get; set; }
 
-        [Required]
-        public double Longitude { get; set; }
+        public double? Longitude { get; set; }
     }
 }

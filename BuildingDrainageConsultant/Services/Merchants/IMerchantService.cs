@@ -16,8 +16,8 @@ namespace BuildingDrainageConsultant.Services.Merchants
             string email,
             string phone,
             string website,
-            double latitude,
-            double longitude);
+            double? latitude,
+            double? longitude);
 
         public bool Edit(
             int id,
@@ -27,8 +27,8 @@ namespace BuildingDrainageConsultant.Services.Merchants
             string email,
             string phone,
             string website,
-            double latitude,
-            double longitude);
+            double? latitude,
+            double? longitude);
 
         public MerchantServiceModel Details(int id);
 

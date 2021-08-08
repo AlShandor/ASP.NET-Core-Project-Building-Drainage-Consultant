@@ -25,6 +25,7 @@
             var merchantsQuery = this.data.Merchants.AsQueryable();
 
             var merchantsResult = merchantsQuery
+                .OrderByDescending(m => m.City)
                 .ProjectTo<MerchantServiceModel>(this.mapper)
                 .ToList();
 
@@ -38,8 +39,8 @@
             string email, 
             string phone, 
             string website, 
-            double latitude, 
-            double longitude)
+            double? latitude, 
+            double? longitude)
         {
             var merchantData = new Merchant()
             {
@@ -82,8 +83,8 @@
             string email, 
             string phone, 
             string website, 
-            double latitude, 
-            double longitude)
+            double? latitude, 
+            double? longitude)
         {
             var merchantData = this.data.Merchants.Find(id);
 

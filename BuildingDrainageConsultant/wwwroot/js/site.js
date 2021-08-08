@@ -11,7 +11,7 @@ var renderRequestsMap = function (divIdForMap, requestData) {
 function createBingMap(divIdForMap) {
     return new Microsoft.Maps.Map(
         document.getElementById(divIdForMap), {
-        credentials: BingMapKey
+            credentials: BingMapKey
     });
 }
 
@@ -23,20 +23,19 @@ function addRequestPins(bingMap, requestData) {
         var location = new Microsoft.Maps.Location(data.lat, data.long);
         locations.push(location);
 
-        var order = index + 1;
-
         var pin = new Microsoft.Maps.Pushpin(location, {
             title: data.name,
-            text: order.toString()
         });
 
         bingMap.entities.push(pin);
     });
 
-    var rect = Microsoft.Maps.LocationRect.fromLocations(locations);
+    var sofiaCenter = new Microsoft.Maps.Location(42.695735341683395, 23.32238837042256);
 
     bingMap.setView({
-        bounds: rect,
-        padding: 80
+        center: sofiaCenter,
+        mapTypeId: Microsoft.Maps.MapTypeId.canvasLight,
+        padding: 80,
+        zoom: 12
     });
 }
