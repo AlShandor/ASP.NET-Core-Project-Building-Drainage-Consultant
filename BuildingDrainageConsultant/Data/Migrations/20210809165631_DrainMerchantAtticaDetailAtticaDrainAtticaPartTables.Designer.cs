@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuildingDrainageConsultant.Data.Migrations
 {
     [DbContext(typeof(BuildingDrainageConsultantDbContext))]
-    [Migration("20210808214929_DrainMerchantAtticaDetailAtticaDrainAtticaPartTables")]
+    [Migration("20210809165631_DrainMerchantAtticaDetailAtticaDrainAtticaPartTables")]
     partial class DrainMerchantAtticaDetailAtticaDrainAtticaPartTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,7 +50,7 @@ namespace BuildingDrainageConsultant.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DrainageDetails");
+                    b.ToTable("AtticaDetails");
                 });
 
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.AtticaDrain", b =>
@@ -60,6 +60,9 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("AtticaDetailId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ConcreteWaterproofing")
                         .HasColumnType("int");
 
@@ -67,9 +70,6 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("DrainageArea")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DrainageDetailId")
                         .HasColumnType("int");
 
                     b.Property<double>("FlowRate")
@@ -90,7 +90,7 @@ namespace BuildingDrainageConsultant.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DrainageDetailId");
+                    b.HasIndex("AtticaDetailId");
 
                     b.HasIndex("UserId");
 
@@ -437,9 +437,9 @@ namespace BuildingDrainageConsultant.Data.Migrations
 
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.AtticaDrain", b =>
                 {
-                    b.HasOne("BuildingDrainageConsultant.Data.Models.AtticaDetail", "DrainageDetail")
+                    b.HasOne("BuildingDrainageConsultant.Data.Models.AtticaDetail", "AtticaDetail")
                         .WithMany("AtticaDrains")
-                        .HasForeignKey("DrainageDetailId")
+                        .HasForeignKey("AtticaDetailId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -448,7 +448,7 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.Navigation("DrainageDetail");
+                    b.Navigation("AtticaDetail");
 
                     b.Navigation("User");
                 });
@@ -456,7 +456,7 @@ namespace BuildingDrainageConsultant.Data.Migrations
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.AtticaPart", b =>
                 {
                     b.HasOne("BuildingDrainageConsultant.Data.Models.AtticaDrain", null)
-                        .WithMany("Parts")
+                        .WithMany("AtticaParts")
                         .HasForeignKey("AtticaDrainId");
                 });
 
@@ -528,7 +528,7 @@ namespace BuildingDrainageConsultant.Data.Migrations
 
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.AtticaDrain", b =>
                 {
-                    b.Navigation("Parts");
+                    b.Navigation("AtticaParts");
                 });
 
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.User", b =>

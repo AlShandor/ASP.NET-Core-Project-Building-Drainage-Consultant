@@ -11,7 +11,7 @@
         }
         public DbSet<Drain> Drains { get; set; }
         public DbSet<AtticaDrain> AtticaDrains { get; set; }
-        public DbSet<AtticaDetail> DrainageDetails { get; set; }
+        public DbSet<AtticaDetail> AtticaDetails { get; set; }
         public DbSet<Merchant> Merchants { get; set; }
         public DbSet<AtticaPart> AtticaParts { get; set; }
 
@@ -19,9 +19,9 @@
         {
             builder
                 .Entity<AtticaDrain>()
-                .HasOne(a => a.DrainageDetail)
+                .HasOne(a => a.AtticaDetail)
                 .WithMany(a => a.AtticaDrains)
-                .HasForeignKey(a => a.DrainageDetailId)
+                .HasForeignKey(a => a.AtticaDetailId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
@@ -37,14 +37,6 @@
                 .WithMany(d => d.AtticaDrains)
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
-
-            //builder.Entity<User>()
-            //    .Navigation(e => e.Drains)
-            //    .AutoInclude();
-
-            //builder.Entity<User>()
-            //    .Navigation(e => e.AtticaDrains)
-            //    .AutoInclude();
 
             base.OnModelCreating(builder);
         }

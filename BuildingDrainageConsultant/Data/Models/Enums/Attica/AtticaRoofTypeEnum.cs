@@ -4,10 +4,10 @@
 
     public enum AtticaRoofTypeEnum
     {
-        [Display(Name = "Warm roof")]
-        WarmRoof,
+        [Display(Name = "Warm Roof")]
+        WarmRoof = 1,
 
-        [Display(Name = "Cold roof")]
-        ColdRoof,
+        [Display(Name = "Cold Roof")]
+        ColdRoof = 2,
     }
 }

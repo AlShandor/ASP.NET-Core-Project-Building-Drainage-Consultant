@@ -2,10 +2,10 @@
 {
     public enum AtticaConcreteWaterproofingEnum
     {
-        Bitumen,
+        Bitumen = 1,
 
-        PVC,
+        PVC = 2,
 
-        TPO,
+        TPO = 3,
     }
 }

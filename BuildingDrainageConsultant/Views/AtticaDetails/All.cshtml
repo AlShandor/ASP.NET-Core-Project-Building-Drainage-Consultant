@@ -1,0 +1,23 @@
+﻿@model AllAtticaDetailsQueryModel
+
+@{
+    ViewBag.Title = "All Attica Details";
+}
+
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-md-8 order-md-2 col-lg-9">
+
+            <partial name="_AtticaDetailsPartial" model="@Model" />
+
+        </div>
+
+        <partial name="_AtticaDetailsSidebarFilterPartial" />
+
+    </div>
+</div>
+
+
+
+
+

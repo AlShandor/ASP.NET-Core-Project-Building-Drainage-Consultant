@@ -4,15 +4,14 @@
     public enum AtticaVisiblePartEnum
     {
         [Display(Name = "Flat leaf catcher (Warm roof)")]
-        FlatLeafCatcherWarmRoof,
+        FlatLeafCatcherWarmRoof = 1,
 
         [Display(Name = "Domed leaf catcher (Warm roof)")]
-        DomedLeafCatcherWarmRoof,
+        DomedLeafCatcherWarmRoof = 2,
 
         [Display(Name = "Leaf catcher (Cold roof)")]
-        LeafCatcherColdRoof,
+        LeafCatcherColdRoof = 3,
 
-        Grate,
-
+        Grate = 4,
     }
 }

@@ -47,7 +47,7 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DrainageDetails",
+                name: "AtticaDetails",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -61,7 +61,7 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DrainageDetails", x => x.Id);
+                    table.PrimaryKey("PK_AtticaDetails", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -235,7 +235,7 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     ConcreteWaterproofing = table.Column<int>(type: "int", nullable: false),
                     Diameter = table.Column<int>(type: "int", nullable: false),
                     VisiblePart = table.Column<int>(type: "int", nullable: false),
-                    DrainageDetailId = table.Column<int>(type: "int", nullable: false),
+                    AtticaDetailId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -248,9 +248,9 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_AtticaDrains_DrainageDetails_DrainageDetailId",
-                        column: x => x.DrainageDetailId,
-                        principalTable: "DrainageDetails",
+                        name: "FK_AtticaDrains_AtticaDetails_AtticaDetailId",
+                        column: x => x.AtticaDetailId,
+                        principalTable: "AtticaDetails",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -317,9 +317,9 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AtticaDrains_DrainageDetailId",
+                name: "IX_AtticaDrains_AtticaDetailId",
                 table: "AtticaDrains",
-                column: "DrainageDetailId");
+                column: "AtticaDetailId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AtticaDrains_UserId",
@@ -373,7 +373,7 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "DrainageDetails");
+                name: "AtticaDetails");
         }
     }
 }

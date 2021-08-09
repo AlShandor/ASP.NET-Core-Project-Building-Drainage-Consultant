@@ -11,18 +11,18 @@
         public int Id { get; init; }
 
         [Required]
-        public AtticaRoofTypeEnum RoofType { get; init; }
+        public AtticaRoofTypeEnum RoofType { get; set; }
 
         [Required]
-        public AtticaWalkableEnum IsWalkable { get; init; }
+        public AtticaWalkableEnum IsWalkable { get; set; }
 
-        public AtticaScreedWaterproofingEnum ScreedWaterproofing { get; init; }
+        public AtticaScreedWaterproofingEnum ScreedWaterproofing { get; set; }
 
-        public AtticaVisiblePartEnum VisiblePart { get; init; }
+        public AtticaVisiblePartEnum VisiblePart { get; set; }
 
         [Required]
         [MaxLength(DescriptionMaxLength)]
-        public string Description { get; init; }
+        public string Description { get; set; }
 
         [Url]
         public string ImageUrl { get; set; }

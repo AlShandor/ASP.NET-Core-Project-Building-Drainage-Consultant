@@ -7,20 +7,20 @@
     using Microsoft.AspNetCore.Mvc;
     public class AtticaPartsController : Controller
     {
-        private readonly IAtticaPartService parts;
+        private readonly IAtticaPartService atticaParts;
         private readonly IMapper mapper;
 
         public AtticaPartsController(
             IAtticaPartService parts,
             IMapper mapper)
         {
-            this.parts = parts;
+            this.atticaParts = parts;
             this.mapper = mapper;
         }
 
         public IActionResult All([FromQuery] AllAtticaPartsQueryModel query)
         {
-            var queryResults = this.parts.All(query.SearchTerm);
+            var queryResults = this.atticaParts.All(query.SearchTerm);
 
             query.AtticaParts = queryResults;
 
@@ -37,7 +37,7 @@
                 return View(atticaPart);
             }
 
-            this.parts.Create(
+            this.atticaParts.Create(
                 atticaPart.Name,
                 atticaPart.ImageUrl,
                 atticaPart.Description);
@@ -47,7 +47,7 @@
 
         public IActionResult Edit(int id)
         {
-            var drain = this.parts.Details(id);
+            var drain = this.atticaParts.Details(id);
 
             var drainForm = this.mapper.Map<AtticaPartFormModel>(drain);
 
@@ -55,12 +55,12 @@
         }
 
         [HttpPost]
-        public IActionResult Edit(int id, AtticaPartFormModel part)
+        public IActionResult Edit(int id, AtticaPartFormModel atticaPart)
         {
 
             if (!ModelState.IsValid)
             {
-                return View(part);
+                return View(atticaPart);
             }
 
             if (!User.IsAdmin())
@@ -68,11 +68,11 @@
                 return BadRequest();
             }
 
-            this.parts.Edit(
+            this.atticaParts.Edit(
                 id,
-                part.Name,
-                part.ImageUrl,
-                part.Description);
+                atticaPart.Name,
+                atticaPart.ImageUrl,
+                atticaPart.Description);
 
             return RedirectToAction(nameof(All));
         }
@@ -80,7 +80,7 @@
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            var drain = this.parts.Delete(id);
+            var drain = this.atticaParts.Delete(id);
 
             if (drain == false)
             {

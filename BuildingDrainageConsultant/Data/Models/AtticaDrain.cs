@@ -28,11 +28,11 @@
         [Required]
         public AtticaVisiblePartEnum VisiblePart { get; init; }
 
-        public int DrainageDetailId { get; set; }
+        public int AtticaDetailId { get; set; }
 
-        public AtticaDetail DrainageDetail { get; set; }
+        public AtticaDetail AtticaDetail { get; set; }
 
-        public IEnumerable<AtticaPart> Parts { get; set; } = new List<AtticaPart>();
+        public IEnumerable<AtticaPart> AtticaParts { get; set; } = new List<AtticaPart>();
 
         public string UserId { get; set; }
 

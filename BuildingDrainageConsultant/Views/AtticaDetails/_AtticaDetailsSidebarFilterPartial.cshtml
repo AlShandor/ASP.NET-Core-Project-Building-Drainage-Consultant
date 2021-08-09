@@ -1,0 +1,23 @@
+﻿@model AllAtticaDetailsQueryModel
+
+<div class="shadow-sm col-md-4 order-md-1 col-lg-3 sidebar-filter">
+    <h3 class="mt-3 mb-3 pb-4 float-md-left pl-3">Total results: <span class="text-primary">@Model.TotalDrains</span></h3>
+    <form method="get">
+        <div class="form-group">
+
+            <div class="mt-3 mb-2 pl-2">
+                <select class="shadow-sm form-control" asp-for="RoofType" asp-items="Html.GetEnumSelectList<AtticaRoofTypeEnum>()">
+                    <option value="">--Select Roof Type--</option>
+                </select>
+            </div>
+
+            <div class="mt-3 mb-2 pl-2">
+                <select class="shadow-sm form-control" asp-for="IsWalkable" asp-items="Html.GetEnumSelectList<AtticaWalkableEnum>()">
+                    <option value="">--Select Walkable--</option>
+                </select>
+            </div>
+
+            <button asp-controller="AtticaDetails" asp-action="All" class="shadow form-control btn btn-lg btn-block btn-primary mt-5" type="submit"><i class="pr-2 bi bi-search"></i>Search</button>
+        </div>
+    </form>
+</div>

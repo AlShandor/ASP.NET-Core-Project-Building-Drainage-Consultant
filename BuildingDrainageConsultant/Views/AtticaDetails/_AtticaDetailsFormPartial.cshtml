@@ -1,0 +1,76 @@
+﻿@model AtticaDetailFormModel
+
+@{
+    var isEditView = ViewBag.Title == "Edit Attica Detail" ? true : false;
+}
+
+<div class="row">
+    <div class="offset-md-3 col-md-6">
+        @if (isEditView)
+        {
+            <img src="@Model.ImageUrl" class="shadow-sm card-img-top">
+        }
+
+        <h2 class="heading-margin text-center">@ViewBag.Title</h2>
+        <form method="post">
+
+            <div class="form-group">
+                <label asp-for="RoofType"></label>
+                <select class="shadow-sm form-control" asp-for="RoofType" asp-items="Html.GetEnumSelectList<AtticaRoofTypeEnum>()">
+                    <option value="">--Select an option--</option>
+                </select>
+                <span asp-validation-for="RoofType" class="small text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IsWalkable"></label>
+                <select class="shadow-sm form-control" asp-for="IsWalkable" asp-items="Html.GetEnumSelectList<AtticaWalkableEnum>()">
+                    <option value="">--Select an option--</option>
+                </select>
+                <span asp-validation-for="IsWalkable" class="small text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ScreedWaterproofing"></label>
+                <select class="shadow-sm form-control" asp-for="ScreedWaterproofing" asp-items="Html.GetEnumSelectList<AtticaScreedWaterproofingEnum>()">
+                    <option value="">--Select ScreedWaterproofing option--</option>
+                </select>
+                <span asp-validation-for="ScreedWaterproofing" class="small text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="VisiblePart"></label>
+                <select class="shadow-sm form-control" asp-for="VisiblePart" asp-items="Html.GetEnumSelectList<AtticaVisiblePartEnum>()">
+                    <option value="">--Select ScreedWaterproofing option--</option>
+                </select>
+                <span asp-validation-for="VisiblePart" class="small text-danger"></span>
+            </div>
+
+            <div class="form-group" >
+                <label asp-for="ImageUrl"></label>
+                <input class="shadow-sm form-control" asp-for="ImageUrl">
+                <span asp-validation-for="ImageUrl" class="small text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" class="shadow-sm form-control" rows="4"></textarea>
+                <span asp-validation-for="Description" class="small text-danger"></span>
+            </div>
+
+
+            <input class="btn btn-primary" type="submit" value="Save" />
+
+            @if (isEditView)
+            {
+                <input asp-controller="AtticaDetails"
+                       asp-action="Delete"
+                       asp-route-id="@Model.Id"
+                       class="shadow btn btn-danger" type="submit"
+                       onclick="return confirm('Are you sure you want to delete this Attica Detail?')" value="Delete" />
+            }
+
+        </form>
+    </div>
+</div>
+

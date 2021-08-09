@@ -4,17 +4,19 @@
 
     public enum AtticaScreedWaterproofingEnum
     {
-        Bitumen = 1,
+        None = 1,
 
-        TPO = 2,
+        Bitumen = 2,
 
-        PVC = 3,
+        TPO = 3,
+
+        PVC = 4,
 
         [Display(Name = "Flexible membranes up to 2mm")]
-        FlexibleMembrane2mm = 4,
+        FlexibleMembrane2mm = 5,
 
         [Display(Name = "Cement-based waterproofing, epoxy resins, etc.")]
 
-        LiquidWaterproofing = 5
+        LiquidWaterproofing = 6
     }
 }

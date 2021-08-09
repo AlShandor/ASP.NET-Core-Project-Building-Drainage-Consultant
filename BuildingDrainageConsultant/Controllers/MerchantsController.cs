@@ -19,10 +19,7 @@
             this.mapper = mapper;
         }
 
-        public IActionResult Add()
-        {
-            return View();
-        }
+        public IActionResult Add() => View();
 
         [HttpPost]
         public IActionResult Add(MerchantFormModel merchant)

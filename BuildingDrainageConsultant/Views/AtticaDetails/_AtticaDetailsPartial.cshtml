@@ -1,0 +1,38 @@
+﻿@model AllAtticaDetailsQueryModel
+
+<div class="row">
+
+    @if (!Model.AtticaDetails.Any())
+    {
+        <div class="offset-2">
+            <h2 class="text-center">No drains found by the given criteria!</h2>
+        </div>
+    }
+
+    @foreach (var atticaDetail in Model.AtticaDetails)
+    {
+        var atticaDetailDescriptionTruncated = atticaDetail.Description.Length > 90 ? atticaDetail.Description.ToString().Substring(0, 90) + "..." : atticaDetail.Description;
+        var roofType = atticaDetail.RoofType == AtticaRoofTypeEnum.WarmRoof ? "Warm Roof" : "Cold Roof";
+        var isWalkable = atticaDetail.IsWalkable == AtticaWalkableEnum.Walkable ? "Walkable" : "Not Walkable";
+
+        <div class="col-6 col-md-6 col-lg-4 mb-3">
+            <div class="shadow card h-100 border-1">
+                <div class="card-img-custom">
+                    <img src="@atticaDetail.ImageUrl" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
+                    <hr />
+                </div>
+                <div class="card-body text-center">
+                    <h4 class="font-weight-bold mt-2 text-left text-dark text-center text-uppercase small">@roofType</h4>
+
+                    <h4 class="font-weight-bold text-left text-dark text-center text-uppercase small">@isWalkable</h4>
+
+                    <p class="card-text">@atticaDetailDescriptionTruncated</p>
+
+
+                    <a asp-controller="AtticaDetails" asp-action="Edit" asp-route-id="@atticaDetail.Id" class="shadow btn btn-primary">Edit</a>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
