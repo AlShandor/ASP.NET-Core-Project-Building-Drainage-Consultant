@@ -57,6 +57,21 @@
                                 <a class="nav-item btn btn-lg" asp-area="" asp-controller="Merchants" asp-action="All">Merchants</a>
                             </li>
                         }
+
+                        @*Attica Parts menu*@
+                        <li class="nav-item dropdown">
+                            <a class="nav-item btn btn-lg  dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Attica Parts
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="AtticaParts" asp-action="All">All Attica Parts</a>
+                                @if (User.IsAdmin())
+                                {
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-area="" asp-controller="AtticaParts" asp-action="Add">Add Attica Part</a>
+                                }
+                            </div>
+                        </li>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

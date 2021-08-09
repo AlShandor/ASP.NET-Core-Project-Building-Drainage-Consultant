@@ -1,0 +1,55 @@
+﻿@model AllAtticaPartsQueryModel
+
+@{
+    ViewBag.Title = "All Attica Parts";
+}
+@*<div class="row">
+        <div class="form-group col-md-3">
+            <form method="get">
+                <input class="shadow-sm form-control" asp-for="SearchTerm" type="text" placeholder="Search by name...">
+                <button asp-controller="AtticaParts" asp-action="All" class="shadow form-control btn btn-lg btn-block btn-primary mt-2 mb-3" type="submit"><i class="pr-2 bi bi-search"></i>Search</button>
+            </form>
+        </div>
+    </div>*@
+
+<form method="get">
+    <div class="row col-md-4 mb-4">
+        <div class="form-outline">
+            <input asp-for="SearchTerm" class="form-control" placeholder="Search by Name..." />
+        </div>
+        <button type="submit" asp-controller="AtticaParts" asp-action="All" class="btn btn-primary ">
+            <i class="pr-1 pl-1 bi bi-search"></i>
+        </button>
+    </div>
+</form>
+
+<div class="row">
+    @if (!Model.AtticaParts.Any())
+    {
+        <div class="offset-2">
+            <h2 class="text-center">No Attica Drains found!</h2>
+        </div>
+    }
+
+    @foreach (var part in Model.AtticaParts)
+    {
+        var drainDescriptionTruncated = part.Description.Length > 90 ? part.Description.ToString().Substring(0, 90) + "..." : part.Description;
+
+        <div class="col-6 col-md-6 col-lg-4 mb-3">
+            <div class="shadow card h-100 border-1">
+                <div class="card-img-custom">
+                    <img src="@part.ImageUrl" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
+                    <hr />
+                </div>
+                <div class="card-body text-center">
+                    <h4 class="card-title text-center">
+                        <span class="font-weight-bold text-dark text-uppercase small">@part.Name</span>
+                    </h4>
+                    <p class="card-text">@drainDescriptionTruncated</p>
+                    <a asp-controller="AtticaParts" asp-action="Edit" asp-route-id="@part.Id" class="shadow btn btn-primary">Edit</a>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

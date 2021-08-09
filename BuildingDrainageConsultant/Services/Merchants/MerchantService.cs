@@ -20,7 +20,7 @@
             this.mapper = mapper.ConfigurationProvider;
         }
 
-        public IEnumerable<MerchantServiceModel> All(IEnumerable<MerchantServiceModel> merchants)
+        public IEnumerable<MerchantServiceModel> All()
         {
             var merchantsQuery = this.data.Merchants.AsQueryable();
 

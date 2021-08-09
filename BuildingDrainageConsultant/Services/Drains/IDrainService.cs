@@ -7,18 +7,18 @@
 
     public interface IDrainService
     {
-        DrainQueryServiceModel All(
-            string searchTerm,
-            DrainDirectionEnum direction,
-            DrainDiameterEnum diameter,
-            DrainVisiblePartEnum visiblePart,
-            DrainWaterproofingEnum waterproofing,
-            DrainHeatingEnum heating,
-            DrainRenovationEnum renovation,
-            DrainFlapSealEnum flapSeal,
-            DrainSortingEnum sorting,
-            int currentPage,
-            int drainsPerPage);
+        public DrainQueryServiceModel All(
+             string searchTerm,
+             DrainDirectionEnum direction,
+             DrainDiameterEnum diameter,
+             DrainVisiblePartEnum visiblePart,
+             DrainWaterproofingEnum waterproofing,
+             DrainHeatingEnum heating,
+             DrainRenovationEnum renovation,
+             DrainFlapSealEnum flapSeal,
+             DrainSortingEnum sorting,
+             int currentPage,
+             int drainsPerPage);
 
         public IEnumerable<DrainDetailsServiceModel> ByUser(string userId);
 

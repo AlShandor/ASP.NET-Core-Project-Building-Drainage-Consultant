@@ -204,14 +204,14 @@
 
         public bool Delete(int id)
         {
-            var drainToDelete = this.data.Drains.Find(id);
+            var drain = this.data.Drains.Find(id);
 
-            if (drainToDelete == null)
+            if (drain == null)
             {
                 return false;
             }
 
-            this.data.Drains.Remove(drainToDelete);
+            this.data.Drains.Remove(drain);
             data.SaveChanges();
 
             return true;

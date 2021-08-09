@@ -1,13 +1,12 @@
 ﻿
 namespace BuildingDrainageConsultant.Services.Merchants
 {
-    using BuildingDrainageConsultant.Models.Merchants;
     using BuildingDrainageConsultant.Services.Merchants.Models;
     using System.Collections.Generic;
 
     public interface IMerchantService
     {
-        public IEnumerable<MerchantServiceModel> All(IEnumerable<MerchantServiceModel> merchants);
+        public IEnumerable<MerchantServiceModel> All();
 
         public int Create(
             string name, 

@@ -4,9 +4,7 @@
     using BuildingDrainageConsultant.Infrastructure;
     using BuildingDrainageConsultant.Models.Merchants;
     using BuildingDrainageConsultant.Services.Merchants;
-    using BuildingDrainageConsultant.Services.Merchants.Models;
     using Microsoft.AspNetCore.Mvc;
-    using System.Collections.Generic;
 
     public class MerchantsController : Controller
     {
@@ -46,14 +44,12 @@
 
             return RedirectToAction(nameof(All));
         }
-
-        public IActionResult All(IEnumerable<MerchantServiceModel> merchantsQuery)
+        public IActionResult All()
         {
-            merchantsQuery = this.merchants.All(merchantsQuery);
+            var merchantsQuery = this.merchants.All();
 
             return View(merchantsQuery);
         }
-
         public IActionResult Edit(int id)
         {
             var merchant = this.merchants.Details(id);
