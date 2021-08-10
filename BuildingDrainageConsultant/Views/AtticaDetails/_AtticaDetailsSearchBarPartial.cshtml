@@ -1,0 +1,25 @@
+﻿@model AllAtticaDetailsQueryModel
+
+<form method="get">
+    <div class="row form-inline">
+
+        <div class="col-3 offset-3 form-inline mb-4">
+            <h6 class="mr-2">Roof type:</h6>
+            <select class="shadow-sm form-control" asp-for="RoofType" asp-items="Html.GetEnumSelectList<AtticaRoofTypeEnum>()">
+                <option value="">--Select--</option>
+            </select>
+        </div>
+
+        <div class="col-3 form-inline mb-4">
+            <h6 class="mr-2">Walkable:</h6>
+            <select class="shadow-sm form-control" asp-for="IsWalkable" asp-items="Html.GetEnumSelectList<AtticaWalkableEnum>()">
+                <option value="">--Select--</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2 offset-5">
+            <button asp-controller="AtticaDetails" asp-action="All" class="shadow mb-4 btn btn-lg  btn-primary" type="submit"><i class="pr-2 bi bi-search"></i>Search</button>
+        </div>
+    </div>
+</form>

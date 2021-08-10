@@ -26,13 +26,13 @@
                                 Drains
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-area="" asp-controller="Drains" asp-action="All">All Drains</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Drains" asp-action="All"><i class="pr-2 bi bi-card-list"></i>All Drains</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-area="" asp-controller="Drains" asp-action="Mine">My Drains</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Drains" asp-action="Mine"><i class="pr-2 bi bi-clipboard-check"></i>My Drains</a>
                                 @if (User.IsAdmin())
                                 {
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Drains" asp-action="Add">Add Drain</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Drains" asp-action="Add"><i class="pr-2 bi bi-plus-circle"></i>Add Drain</a>
                                 }
                             </div>
                         </li>
@@ -43,11 +43,11 @@
                                 Attica Details
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-area="" asp-controller="AtticaDetails" asp-action="All">All Attica Details</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="AtticaDetails" asp-action="All"><i class="pr-2 bi bi-card-list"></i>All Attica Details</a>
                                 @if (User.IsAdmin())
                                 {
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" asp-area="" asp-controller="AtticaDetails" asp-action="Add">Add Attica Details</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="AtticaDetails" asp-action="Add"><i class="pr-2 bi bi-plus-circle"></i>Add Attica Details</a>
                                 }
                             </div>
                         </li>
@@ -60,9 +60,9 @@
                                     Merchants
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" asp-area="" asp-controller="Merchants" asp-action="All">All Merchants</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Merchants" asp-action="All"><i class="pr-2 bi bi-card-list"></i>All Merchants</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Merchants" asp-action="Add">Add Merchant</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Merchants" asp-action="Add"><i class="pr-2 bi bi-plus-circle"></i>Add Merchant</a>
                                 </div>
                             </li>
                         }
@@ -79,11 +79,11 @@
                                 Attica Parts
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-area="" asp-controller="AtticaParts" asp-action="All">All Attica Parts</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="AtticaParts" asp-action="All"><i class="pr-2 bi bi-card-list"></i>All Attica Parts</a>
                                 @if (User.IsAdmin())
                                 {
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" asp-area="" asp-controller="AtticaParts" asp-action="Add">Add Attica Part</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="AtticaParts" asp-action="Add"><i class="pr-2 bi bi-plus-circle"></i>Add Attica Part</a>
                                 }
                             </div>
                         </li>
