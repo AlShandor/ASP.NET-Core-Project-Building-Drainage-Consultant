@@ -12,11 +12,9 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Drainage Consultant</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <a href="@Url.Action("Index", "Home")" class="navbar-brand">
+                    <img src="~/images/common/logoSmall.png" title="title" alt="additional title" />
+                </a>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav mr-auto">
 
@@ -48,6 +46,21 @@
                                 {
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" asp-area="" asp-controller="AtticaDetails" asp-action="Add"><i class="pr-2 bi bi-plus-circle"></i>Add Attica Details</a>
+                                }
+                            </div>
+                        </li>
+
+                        @*Attica Drains menu*@
+                        <li class="nav-item dropdown">
+                            <a class="nav-item btn btn-lg  dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Attica Drains
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="AtticaDrains" asp-action="All"><i class="pr-2 bi bi-card-list"></i>All Attica Drains</a>
+                                @if (User.IsAdmin())
+                                {
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-area="" asp-controller="AtticaDrains" asp-action="Add"><i class="pr-2 bi bi-plus-circle"></i>Add Attica Drains</a>
                                 }
                             </div>
                         </li>

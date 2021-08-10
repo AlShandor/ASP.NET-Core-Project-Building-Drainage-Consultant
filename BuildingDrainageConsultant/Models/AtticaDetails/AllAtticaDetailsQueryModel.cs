@@ -5,9 +5,9 @@
     using System.Collections.Generic;
     public class AllAtticaDetailsQueryModel
     {
-        public AtticaRoofTypeEnum RoofType { get; init; }
+        public AtticaRoofTypeEnum RoofType { get; set; }
 
-        public AtticaWalkableEnum IsWalkable { get; init; }
+        public AtticaWalkableEnum IsWalkable { get; set; }
 
         public IEnumerable<AtticaDetailServiceModel> AtticaDetails { get; set; }
 

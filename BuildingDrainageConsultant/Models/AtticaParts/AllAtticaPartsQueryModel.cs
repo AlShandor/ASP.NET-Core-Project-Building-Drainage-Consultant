@@ -1,4 +1,4 @@
-﻿namespace BuildingDrainageConsultant.Models.AtticaDrains
+﻿namespace BuildingDrainageConsultant.Models.AtticaParts
 {
     using BuildingDrainageConsultant.Services.AtticaParts.Models;
     using System.Collections.Generic;
@@ -7,7 +7,7 @@
     public class AllAtticaPartsQueryModel
     {
         [Display(Name = "Search by drain name")]
-        public string SearchTerm { get; init; }
+        public string SearchTerm { get; set; }
 
         public IEnumerable<AtticaPartServiceModel> AtticaParts { get; set; }
     }

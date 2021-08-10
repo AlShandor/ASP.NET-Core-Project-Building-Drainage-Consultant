@@ -5,15 +5,15 @@
     using static Data.DataConstants.Merchant;
     public class MerchantFormModel
     {
-        public int Id { get; init; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(NameMaxLength)]
-        public string Name { get; init; }
+        public string Name { get; set; }
 
         [Required]
         [MaxLength(CityMaxLength)]
-        public string City { get; init; }
+        public string City { get; set; }
 
         [Required]
         [MaxLength(AddressMaxLength)]

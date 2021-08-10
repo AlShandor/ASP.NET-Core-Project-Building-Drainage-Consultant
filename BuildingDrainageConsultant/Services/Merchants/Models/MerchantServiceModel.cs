@@ -2,11 +2,11 @@
 {
     public class MerchantServiceModel
     {
-        public int Id { get; init; }
+        public int Id { get; set; }
 
-        public string Name { get; init; }
+        public string Name { get; set; }
 
-        public string City { get; init; }
+        public string City { get; set; }
 
         public string Address { get; set; }
 

@@ -6,6 +6,6 @@
     {
         public int TotalDrains { get; set; }
 
-        public IEnumerable<AtticaDetailServiceModel> AtticaDetails { get; init; }
+        public IEnumerable<AtticaDetailServiceModel> AtticaDetails { get; set; }
     }
 }

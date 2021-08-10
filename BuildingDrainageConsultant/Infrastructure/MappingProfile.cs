@@ -4,9 +4,11 @@
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Models.AtticaDetails;
     using BuildingDrainageConsultant.Models.AtticaDrains;
+    using BuildingDrainageConsultant.Models.AtticaParts;
     using BuildingDrainageConsultant.Models.Drains;
     using BuildingDrainageConsultant.Models.Merchants;
     using BuildingDrainageConsultant.Services.AtticaDetail.Models;
+    using BuildingDrainageConsultant.Services.AtticaDrains.Models;
     using BuildingDrainageConsultant.Services.AtticaParts.Models;
     using BuildingDrainageConsultant.Services.Drains.Models;
     using BuildingDrainageConsultant.Services.Merchants.Models;
@@ -27,6 +29,9 @@
 
             this.CreateMap<AtticaDetail, AtticaDetailServiceModel>();
             this.CreateMap<AtticaDetailServiceModel, AtticaDetailFormModel>();
+
+            this.CreateMap<AtticaDrain, AtticaDrainServiceModel>();
+            this.CreateMap<AtticaDrainServiceModel, AtticaDrainFormModel>();
         }
     }
 }

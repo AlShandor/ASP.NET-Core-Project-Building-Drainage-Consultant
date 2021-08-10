@@ -1,5 +1,4 @@
-﻿
-namespace BuildingDrainageConsultant.Models.AtticaDrains
+﻿namespace BuildingDrainageConsultant.Models.AtticaParts
 {
     using System.ComponentModel.DataAnnotations;
 
@@ -10,13 +9,14 @@ namespace BuildingDrainageConsultant.Models.AtticaDrains
 
         [Required]
         [MaxLength(NameMaxLength)]
-        public string Name { get; init; }
+        public string Name { get; set; }
 
         [Url]
+        [Display(Name = "Image Url")]
         public string ImageUrl { get; set; }
 
         [Required]
         [MaxLength(DescriptionMaxLength)]
-        public string Description { get; init; }
+        public string Description { get; set; }
     }
 }

@@ -10,21 +10,21 @@
         public const int DrainsPerPage = 6;
 
         [Display(Name = "Search by drain name")]
-        public string SearchTerm { get; init; }
+        public string SearchTerm { get; set; }
 
-        public DrainDirectionEnum Direction { get; init; }
-        public DrainDiameterEnum Diameter { get; init; }
-        public DrainVisiblePartEnum VisiblePart { get; init; }
-        public DrainWaterproofingEnum Waterproofing { get; init; }
-        public DrainHeatingEnum Heating { get; init; }
-        public DrainRenovationEnum Renovation { get; init; }
-        public DrainFlapSealEnum FlapSeal { get; init; }
+        public DrainDirectionEnum Direction { get; set; }
+        public DrainDiameterEnum Diameter { get; set; }
+        public DrainVisiblePartEnum VisiblePart { get; set; }
+        public DrainWaterproofingEnum Waterproofing { get; set; }
+        public DrainHeatingEnum Heating { get; set; }
+        public DrainRenovationEnum Renovation { get; set; }
+        public DrainFlapSealEnum FlapSeal { get; set; }
 
-        public int CurrentPage { get; init; } = 1;
+        public int CurrentPage { get; set; } = 1;
 
         public int TotalDrains { get; set; }
 
-        public DrainSortingEnum Sorting { get; init; }
+        public DrainSortingEnum Sorting { get; set; }
 
         public IEnumerable<DrainDetailsServiceModel> Drains { get; set; }
     }

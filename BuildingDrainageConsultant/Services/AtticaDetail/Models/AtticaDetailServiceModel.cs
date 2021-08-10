@@ -4,7 +4,7 @@ namespace BuildingDrainageConsultant.Services.AtticaDetail.Models
 {
     public class AtticaDetailServiceModel
     {
-        public int Id { get; init; }
+        public int Id { get; set; }
 
         public AtticaRoofTypeEnum RoofType { get; set; }
 
@@ -17,8 +17,5 @@ namespace BuildingDrainageConsultant.Services.AtticaDetail.Models
         public string Description { get; set; }
 
         public string ImageUrl { get; set; }
-
-        //TODO
-        //IEnumerable<AtticaDrainServiceModel> AtticaDrains { get; set; }
     }
 }

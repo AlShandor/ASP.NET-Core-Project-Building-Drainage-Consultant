@@ -6,26 +6,29 @@
     using static Data.DataConstants.AtticaDetail;
     public class AtticaDetailFormModel
     {
-        public int Id { get; init; }
+        public int Id { get; set; }
 
         [Required]
-        public AtticaRoofTypeEnum RoofType { get; init; }
+        [Display(Name = "Roof Type")]
+        public AtticaRoofTypeEnum RoofType { get; set; }
 
         [Required]
-        public AtticaWalkableEnum IsWalkable { get; init; }
+        [Display(Name = "Walkable")]
+        public AtticaWalkableEnum IsWalkable { get; set; }
 
-        public AtticaScreedWaterproofingEnum ScreedWaterproofing { get; init; }
+        [Display(Name = "Screed Waterproofing")]
+        public AtticaScreedWaterproofingEnum ScreedWaterproofing { get; set; }
 
-        public AtticaVisiblePartEnum VisiblePart { get; init; }
+        [Display(Name = "Visible Part")]
+
+        public AtticaVisiblePartEnum VisiblePart { get; set; }
 
         [Url]
+        [Display(Name = "Image Url")]
         public string ImageUrl { get; set; }
 
         [Required]
         [MaxLength(DescriptionMaxLength)]
-        public string Description { get; init; }
-
-        //TODO
-        //public IEnumerable<AtticaDrainServiceModel> AtticaDrains { get; set; } = new List<AtticaDrain>();
+        public string Description { get; set; }
     }
 }

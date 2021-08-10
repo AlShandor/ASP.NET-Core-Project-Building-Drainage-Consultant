@@ -43,17 +43,17 @@
 
         public int Create(string name, string imageUrl, string description)
         {
-            var atticaDrainData = new AtticaPart
+            var atticaPartData = new AtticaPart
             {
                 Name = name,
                 ImageUrl = imageUrl == null ? DefaultImageUrl : imageUrl,
                 Description = description
             };
 
-            this.data.AtticaParts.Add(atticaDrainData);
+            this.data.AtticaParts.Add(atticaPartData);
             this.data.SaveChanges();
 
-            return atticaDrainData.Id;
+            return atticaPartData.Id;
         }
 
         public bool Edit(int id, string name, string imageUrl, string description)

@@ -6,7 +6,6 @@
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.Attica;
     using BuildingDrainageConsultant.Services.AtticaDetail.Models;
-    using System.Collections.Generic;
     using System.Linq;
 
     using static Data.DataConstants.AtticaDetail;

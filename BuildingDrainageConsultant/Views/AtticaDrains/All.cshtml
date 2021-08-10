@@ -1,0 +1,40 @@
+﻿@model AllAtticaDrainsQueryModel
+
+@{
+    ViewBag.Title = "All Attica Drains";
+}
+
+<form method="get">
+    <div class="row col-md-4 mb-4">
+        <div class="form-outline">
+            <input asp-for="SearchTerm" class="form-control" placeholder="Search by Name..." />
+        </div>
+        <button type="submit" asp-controller="AtticaDrains" asp-action="All" class="btn btn-primary ">
+            <i class="pr-1 pl-1 bi bi-search"></i>
+        </button>
+    </div>
+</form>
+
+<div class="row">
+    @if (!Model.AtticaDrains.Any())
+    {
+        <div class="offset-2">
+            <h2 class="text-center">No Attica Drains found!</h2>
+        </div>
+    }
+
+    @foreach (var atticaDrain in Model.AtticaDrains)
+    {
+        <div class="col-6 col-md-6 col-lg-4 mb-3">
+            <div class="shadow card h-100 border-1">
+                <div class="card-body text-center">
+                    <h4 class="card-title text-center">
+                        <span class="font-weight-bold text-dark text-uppercase small">@atticaDrain.Name</span>
+                    </h4>
+                    <a asp-controller="AtticaDrains" asp-action="Edit" asp-route-id="@atticaDrain.Id" class="shadow btn btn-primary">Edit</a>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

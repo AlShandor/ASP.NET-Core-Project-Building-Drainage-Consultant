@@ -5,8 +5,8 @@
 
     public class User : IdentityUser
     {
-        public ICollection<Drain> Drains { get; init; } = new List<Drain>();
+        public ICollection<Drain> Drains { get; set; } = new List<Drain>();
 
-        public ICollection<AtticaDrain> AtticaDrains { get; init; } = new List<AtticaDrain>();
+        public ICollection<AtticaDrain> AtticaDrains { get; set; } = new List<AtticaDrain>();
     }
 }

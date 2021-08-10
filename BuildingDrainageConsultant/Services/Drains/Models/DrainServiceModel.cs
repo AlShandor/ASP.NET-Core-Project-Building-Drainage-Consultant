@@ -4,32 +4,32 @@
 
     public class DrainServiceModel
     {
-        public int Id { get; init; }
+        public int Id { get; set; }
 
-        public string Name { get; init; }
+        public string Name { get; set; }
 
-        public double FlowRate { get; init; }
+        public double FlowRate { get; set; }
 
-        public int DrainageArea { get; init; }
+        public int DrainageArea { get; set; }
 
-        public int Depth { get; init; }
+        public int Depth { get; set; }
 
-        public DrainDirectionEnum Direction { get; init; }
+        public DrainDirectionEnum Direction { get; set; }
 
-        public DrainDiameterEnum Diameter { get; init; }
+        public DrainDiameterEnum Diameter { get; set; }
 
-        public DrainVisiblePartEnum VisiblePart { get; init; }
+        public DrainVisiblePartEnum VisiblePart { get; set; }
 
-        public DrainWaterproofingEnum Waterproofing { get; init; }
+        public DrainWaterproofingEnum Waterproofing { get; set; }
 
-        public DrainHeatingEnum Heating { get; init; }
+        public DrainHeatingEnum Heating { get; set; }
 
-        public DrainRenovationEnum Renovation { get; init; }
+        public DrainRenovationEnum Renovation { get; set; }
 
-        public DrainFlapSealEnum FlapSeal { get; init; }
+        public DrainFlapSealEnum FlapSeal { get; set; }
 
-        public string ImageUrl { get; init; }
+        public string ImageUrl { get; set; }
 
-        public string Description { get; init; }
+        public string Description { get; set; }
     }
 }

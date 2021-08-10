@@ -235,7 +235,7 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     ConcreteWaterproofing = table.Column<int>(type: "int", nullable: false),
                     Diameter = table.Column<int>(type: "int", nullable: false),
                     VisiblePart = table.Column<int>(type: "int", nullable: false),
-                    AtticaDetailId = table.Column<int>(type: "int", nullable: false),
+                    AtticaDetailId = table.Column<int>(type: "int", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>

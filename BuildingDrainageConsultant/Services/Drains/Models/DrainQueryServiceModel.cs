@@ -3,12 +3,12 @@
     using System.Collections.Generic;
     public class DrainQueryServiceModel
     {
-        public int CurrentPage { get; init; }
+        public int CurrentPage { get; set; }
 
-        public int DrainsPerPage { get; init; }
+        public int DrainsPerPage { get; set; }
 
-        public int TotalDrains { get; init; }
+        public int TotalDrains { get; set; }
 
-        public IEnumerable<DrainDetailsServiceModel> Drains { get; init; }
+        public IEnumerable<DrainDetailsServiceModel> Drains { get; set; }
     }
 }

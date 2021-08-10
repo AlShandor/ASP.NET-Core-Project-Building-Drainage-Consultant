@@ -2,7 +2,7 @@
 {
     using AutoMapper;
     using BuildingDrainageConsultant.Infrastructure;
-    using BuildingDrainageConsultant.Models.AtticaDrains;
+    using BuildingDrainageConsultant.Models.AtticaParts;
     using BuildingDrainageConsultant.Services.AtticaParts;
     using Microsoft.AspNetCore.Mvc;
     public class AtticaPartsController : Controller

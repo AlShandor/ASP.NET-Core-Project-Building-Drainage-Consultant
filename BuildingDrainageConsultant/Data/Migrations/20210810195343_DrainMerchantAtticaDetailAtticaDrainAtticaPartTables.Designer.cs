@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuildingDrainageConsultant.Data.Migrations
 {
     [DbContext(typeof(BuildingDrainageConsultantDbContext))]
-    [Migration("20210809165631_DrainMerchantAtticaDetailAtticaDrainAtticaPartTables")]
+    [Migration("20210810195343_DrainMerchantAtticaDetailAtticaDrainAtticaPartTables")]
     partial class DrainMerchantAtticaDetailAtticaDrainAtticaPartTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,7 +60,7 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AtticaDetailId")
+                    b.Property<int?>("AtticaDetailId")
                         .HasColumnType("int");
 
                     b.Property<int>("ConcreteWaterproofing")
@@ -440,8 +440,7 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     b.HasOne("BuildingDrainageConsultant.Data.Models.AtticaDetail", "AtticaDetail")
                         .WithMany("AtticaDrains")
                         .HasForeignKey("AtticaDetailId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("BuildingDrainageConsultant.Data.Models.User", "User")
                         .WithMany("AtticaDrains")
