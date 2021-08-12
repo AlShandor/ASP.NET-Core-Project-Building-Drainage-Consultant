@@ -26,10 +26,16 @@
             return View(query);
         }
 
-        public IActionResult Add() => View();
+        public IActionResult Add(AtticaDrainPartsDetailsModel atticaDrain, int id)
+        {
+            atticaDrain.AtticaDetails = this.atticaDrains.GetAtticaDetails();
+            atticaDrain.AtticaParts = this.atticaDrains.GetAtticaParts();
+
+            return View(atticaDrain);
+        }
 
         [HttpPost]
-        public IActionResult Add(AtticaDrainFormModel atticaDrain)
+        public IActionResult Add(AtticaDrainPartsDetailsModel atticaDrain)
         {
             if (!ModelState.IsValid)
             {

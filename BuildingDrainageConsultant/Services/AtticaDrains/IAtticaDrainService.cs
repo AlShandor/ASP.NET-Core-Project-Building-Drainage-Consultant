@@ -1,7 +1,9 @@
 ﻿namespace BuildingDrainageConsultant.Services.AtticaDrains
 {
     using BuildingDrainageConsultant.Data.Models.Enums.Attica;
+    using BuildingDrainageConsultant.Services.AtticaDetail.Models;
     using BuildingDrainageConsultant.Services.AtticaDrains.Models;
+    using BuildingDrainageConsultant.Services.AtticaParts.Models;
     using System.Collections.Generic;
 
     public interface IAtticaDrainService
@@ -30,5 +32,10 @@
             AtticaVisiblePartEnum visiblePart);
 
         public bool Delete(int id);
+
+        public IEnumerable<AtticaDetailServiceModel> GetAtticaDetails();
+
+        public IEnumerable<AtticaPartServiceModel> GetAtticaParts();
+
     }
 }

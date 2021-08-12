@@ -5,7 +5,9 @@
     using BuildingDrainageConsultant.Data;
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.Attica;
+    using BuildingDrainageConsultant.Services.AtticaDetail.Models;
     using BuildingDrainageConsultant.Services.AtticaDrains.Models;
+    using BuildingDrainageConsultant.Services.AtticaParts.Models;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -70,13 +72,13 @@
         }
 
         public bool Edit(
-            int id, 
-            string name, 
-            double flowRate, 
-            int drainageArea, 
-            AtticaScreedWaterproofingEnum screedWaterproofing, 
-            AtticaConcreteWaterproofingEnum concreteWaterproofing, 
-            AtticaDiameterEnum diameter, 
+            int id,
+            string name,
+            double flowRate,
+            int drainageArea,
+            AtticaScreedWaterproofingEnum screedWaterproofing,
+            AtticaConcreteWaterproofingEnum concreteWaterproofing,
+            AtticaDiameterEnum diameter,
             AtticaVisiblePartEnum visiblePart)
         {
             var atticaDrainData = this.data.AtticaDrains.Find(id);
@@ -113,5 +115,17 @@
 
             return true;
         }
+
+        public IEnumerable<AtticaDetailServiceModel> GetAtticaDetails()
+            => this.data.AtticaDetails
+                .AsQueryable()
+                .ProjectTo<AtticaDetailServiceModel>(this.mapper)
+                .ToList();
+
+        public IEnumerable<AtticaPartServiceModel> GetAtticaParts()
+            => this.data.AtticaParts
+                .AsQueryable()
+                .ProjectTo<AtticaPartServiceModel>(this.mapper)
+                .ToList();
     }
 }
