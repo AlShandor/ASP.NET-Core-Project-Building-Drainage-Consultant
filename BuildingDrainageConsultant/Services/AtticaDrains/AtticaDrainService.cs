@@ -127,5 +127,12 @@
                 .AsQueryable()
                 .ProjectTo<AtticaPartServiceModel>(this.mapper)
                 .ToList();
+
+        public AtticaDetailServiceModel GetAtticaDetailById(int id)
+            => this.data
+                .AtticaDetails
+                .Where(d => d.Id == id)
+                .ProjectTo<AtticaDetailServiceModel>(this.mapper)
+                .FirstOrDefault();
     }
 }

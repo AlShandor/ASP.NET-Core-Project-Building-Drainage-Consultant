@@ -3,8 +3,11 @@
     using AutoMapper;
     using BuildingDrainageConsultant.Infrastructure;
     using BuildingDrainageConsultant.Models.AtticaDrains;
+    using BuildingDrainageConsultant.Services.AtticaDetail.Models;
     using BuildingDrainageConsultant.Services.AtticaDrains;
     using Microsoft.AspNetCore.Mvc;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public class AtticaDrainsController : Controller
     {
@@ -101,6 +104,33 @@
             }
 
             return RedirectToAction(nameof(All));
+        }
+
+        public async Task<IActionResult> AddAtticaDetail(AtticaDrainPartsDetailsModel atticaDrainsCreateInfo)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            atticaDrainsCreateInfo.AtticaDetails = this.atticaDrains.GetAtticaDetails();
+
+
+            return View(atticaDrainsCreateInfo);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddAtticaDetail(int id, AtticaDrainPartsDetailsModel atticaDrainsCreateInfo)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddAtticaDetail", atticaDrainsCreateInfo) });
+            }
+
+            atticaDrainsCreateInfo.ChosenAtticaDetail = this.atticaDrains.GetAtticaDetailById(id);
+
+            var asd = Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "Add", atticaDrainsCreateInfo) });
+            return asd;
         }
     }
 }

@@ -37,5 +37,7 @@
 
         public IEnumerable<AtticaPartServiceModel> GetAtticaParts();
 
+        public AtticaDetailServiceModel GetAtticaDetailById(int id);
+
     }
 }

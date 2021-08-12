@@ -11,7 +11,7 @@ var renderRequestsMap = function (divIdForMap, requestData) {
 function createBingMap(divIdForMap) {
     return new Microsoft.Maps.Map(
         document.getElementById(divIdForMap), {
-            credentials: BingMapKey
+        credentials: BingMapKey
     });
 }
 
@@ -38,4 +38,55 @@ function addRequestPins(bingMap, requestData) {
         padding: 80,
         zoom: 12
     });
+}
+
+$(function () {
+    $("#loaderbody").addClass('hide');
+
+    $(document).bind('ajaxStart', function () {
+        $("#loaderbody").removeClass('hide');
+    }).bind('ajaxStop', function () {
+        $("#loaderbody").addClass('hide');
+    });
+});
+
+showInPopup = (url, title) => {
+    $.ajax({
+        type: 'GET',
+        url: url,
+        success: function (res) {
+            $('#window-modal .modal-body').html(res);
+            $('#window-modal .modal-title').html(title);
+            $('#window-modal').modal('show');
+        }
+    })
+}
+
+jQueryAjaxPost = form => {
+    try {
+        $.ajax({
+            type: 'POST',
+            url: form.action,
+            data: new FormData(form),
+            contentType: false,
+            processData: false,
+            success: function (res) {
+                if (res.isValid) {
+                    $('#view-all').html(res.html)
+                    $('#window-modal .modal-body').html('');
+                    $('#window-modal .modal-title').html('');
+                    $('#window-modal').modal('hide');
+                }
+                else
+                    $('#window-modal .modal-body').html(res.html);
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        })
+        //to prevent default form submit event
+        return false;
+    } catch (ex) {
+        console.log(ex)
+    }
 }
