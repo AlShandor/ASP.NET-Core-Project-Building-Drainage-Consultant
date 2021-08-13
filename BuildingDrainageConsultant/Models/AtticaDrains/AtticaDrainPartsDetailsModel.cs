@@ -29,6 +29,8 @@
 
         public int AtticaDetailId { get; set; }
 
+        public IEnumerable<AtticaPartServiceModel> ChosenAtticaParts { get; set; }
+
         public AtticaDetailServiceModel ChosenAtticaDetail { get; set; }
 
     }

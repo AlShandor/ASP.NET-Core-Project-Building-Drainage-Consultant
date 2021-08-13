@@ -5,9 +5,8 @@
 }
 
 <div id="view-all">
-    @await Html.PartialAsync("_AtticaDrainFormPartial", Model)
+    <partial name="_AtticaDrainFormPartial" model="Model" />
 </div>
-
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

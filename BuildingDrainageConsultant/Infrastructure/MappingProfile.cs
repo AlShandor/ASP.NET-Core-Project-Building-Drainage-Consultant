@@ -12,7 +12,6 @@
     using BuildingDrainageConsultant.Services.AtticaParts.Models;
     using BuildingDrainageConsultant.Services.Drains.Models;
     using BuildingDrainageConsultant.Services.Merchants.Models;
-
     public class MappingProfile : Profile
     {
         public MappingProfile()

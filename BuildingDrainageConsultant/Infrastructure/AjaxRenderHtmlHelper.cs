@@ -8,7 +8,6 @@
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
     using System;
     using System.IO;
-
     public class AjaxRenderHtmlHelper
     {
         public static string RenderRazorViewToString(Controller controller, string viewName, object model = null)

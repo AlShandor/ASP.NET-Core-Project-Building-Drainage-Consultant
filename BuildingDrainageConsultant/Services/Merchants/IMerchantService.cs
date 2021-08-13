@@ -1,5 +1,4 @@
-﻿
-namespace BuildingDrainageConsultant.Services.Merchants
+﻿namespace BuildingDrainageConsultant.Services.Merchants
 {
     using BuildingDrainageConsultant.Services.Merchants.Models;
     using System.Collections.Generic;

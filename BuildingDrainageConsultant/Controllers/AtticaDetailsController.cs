@@ -10,7 +10,6 @@
     {
         private readonly IAtticaDetailService atticaDetails;
         private readonly IMapper mapper;
-
         public AtticaDetailsController(
             IAtticaDetailService atticaDetails,
             IMapper mapper)

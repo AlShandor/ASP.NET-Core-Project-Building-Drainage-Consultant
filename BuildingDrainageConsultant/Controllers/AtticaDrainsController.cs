@@ -106,7 +106,7 @@
             return RedirectToAction(nameof(All));
         }
 
-        public async Task<IActionResult> AddAtticaDetail(AtticaDrainPartsDetailsModel atticaDrainsCreateInfo)
+        public IActionResult AddAtticaDetail(AtticaDrainPartsDetailsModel atticaDrainsCreateInfo)
         {
             if (!ModelState.IsValid)
             {
@@ -120,7 +120,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddAtticaDetail(int id, AtticaDrainPartsDetailsModel atticaDrainsCreateInfo)
+        public IActionResult AddAtticaDetail(int id, AtticaDrainPartsDetailsModel atticaDrainsCreateInfo)
         {
             if (!ModelState.IsValid)
             {
