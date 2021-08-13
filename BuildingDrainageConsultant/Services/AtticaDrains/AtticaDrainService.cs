@@ -122,17 +122,25 @@
                 .ProjectTo<AtticaDetailServiceModel>(this.mapper)
                 .ToList();
 
-        public IEnumerable<AtticaPartServiceModel> GetAtticaParts()
-            => this.data.AtticaParts
-                .AsQueryable()
-                .ProjectTo<AtticaPartServiceModel>(this.mapper)
-                .ToList();
 
         public AtticaDetailServiceModel GetAtticaDetailById(int id)
             => this.data
                 .AtticaDetails
                 .Where(d => d.Id == id)
                 .ProjectTo<AtticaDetailServiceModel>(this.mapper)
+                .FirstOrDefault();
+
+        public IEnumerable<AtticaPartServiceModel> GetAtticaParts()
+            => this.data.AtticaParts
+                .AsQueryable()
+                .ProjectTo<AtticaPartServiceModel>(this.mapper)
+                .ToList();
+
+        public AtticaPartServiceModel GetAtticaPartById(int id)
+            => this.data
+                .AtticaParts
+                .Where(d => d.Id == id)
+                .ProjectTo<AtticaPartServiceModel>(this.mapper)
                 .FirstOrDefault();
     }
 }

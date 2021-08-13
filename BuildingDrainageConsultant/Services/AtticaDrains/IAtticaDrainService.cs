@@ -35,9 +35,11 @@
 
         public IEnumerable<AtticaDetailServiceModel> GetAtticaDetails();
 
+        public AtticaDetailServiceModel GetAtticaDetailById(int id);
+
         public IEnumerable<AtticaPartServiceModel> GetAtticaParts();
 
-        public AtticaDetailServiceModel GetAtticaDetailById(int id);
+        public AtticaPartServiceModel GetAtticaPartById(int id);
 
     }
 }

@@ -5,6 +5,7 @@
     using BuildingDrainageConsultant.Models.AtticaDrains;
     using BuildingDrainageConsultant.Services.AtticaDetail.Models;
     using BuildingDrainageConsultant.Services.AtticaDrains;
+    using BuildingDrainageConsultant.Services.AtticaParts.Models;
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -129,8 +130,37 @@
 
             atticaDrainsCreateInfo.ChosenAtticaDetail = this.atticaDrains.GetAtticaDetailById(id);
 
-            var asd = Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "Add", atticaDrainsCreateInfo) });
-            return asd;
+            return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "Add", atticaDrainsCreateInfo) });
+        }
+
+        public IActionResult AddAtticaPart(AtticaDrainPartsDetailsModel atticaDrainsCreateInfo)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            atticaDrainsCreateInfo.AtticaParts = this.atticaDrains.GetAtticaParts();
+
+
+            return View(atticaDrainsCreateInfo);
+        }
+
+        [HttpPost]
+        public IActionResult AddAtticaPart(int id, int detailId, AtticaDrainPartsDetailsModel atticaDrainsCreateInfo)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddAtticaPart", atticaDrainsCreateInfo) });
+            }
+
+            var part = this.atticaDrains.GetAtticaPartById(id);
+
+            atticaDrainsCreateInfo.ChosenAtticaParts = new List<AtticaPartServiceModel>();
+            atticaDrainsCreateInfo.ChosenAtticaParts.Add(part);
+            atticaDrainsCreateInfo.AtticaDetailId = detailId;
+
+            return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "Add", atticaDrainsCreateInfo) });
         }
     }
 }

@@ -62,7 +62,8 @@ showInPopup = (url, title) => {
     })
 }
 
-jQueryAjaxPost = form => {
+
+AjaxPost = (form) => {
     try {
         $.ajax({
             type: 'POST',
