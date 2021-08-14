@@ -63,8 +63,20 @@
             var atticaDrainForm = this.mapper.Map<AtticaDrainPartsDetailsModel>(aticaDrain);
 
             atticaDrainForm.AtticaParts = this.atticaDrains.GetAtticaPartsForDrain(drainId);
+            atticaDrainForm.Id = aticaDrain.Id;
 
             return View(atticaDrainForm);
+        }
+
+        [HttpPost]
+        public IActionResult AddAtticaParts(int id, AtticaDrainPartsDetailsModel atticaDrain)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(atticaDrain);
+            }
+
+            return RedirectToAction(nameof(All));
         }
 
 
@@ -124,8 +136,8 @@
                 return BadRequest();
             }
 
-            atticaDrainsCreateInfo.AtticaDetails = this.atticaDrains.GetAtticaDetails();
 
+            atticaDrainsCreateInfo.AtticaDetails = this.atticaDrains.GetAtticaDetails();
 
             return View(atticaDrainsCreateInfo);
         }
@@ -144,7 +156,7 @@
             return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "Add", atticaDrainsCreateInfo) });
         }
 
-        public IActionResult AddAtticaPartModal(AtticaDrainPartsDetailsModel atticaDrainsCreateInfo)
+        public IActionResult AddAtticaPartModal(int drainId, AtticaDrainPartsDetailsModel atticaDrainsCreateInfo)
         {
             if (!ModelState.IsValid)
             {
@@ -152,20 +164,23 @@
             }
 
             atticaDrainsCreateInfo.AtticaParts = this.atticaDrains.GetAtticaParts();
-
+            atticaDrainsCreateInfo.Id = drainId;
 
             return View(atticaDrainsCreateInfo);
         }
 
         [HttpPost]
-        public IActionResult AddAtticaPartModal(int id, AtticaDrainPartsDetailsModel atticaDrainsCreateInfo)
+        public IActionResult AddAtticaPartModal(AtticaDrainPartsDetailsModel atticaDrainsCreateInfo)
         {
-            var isAdded = this.atticaDrains.AddAtticaPart(id, atticaDrainsCreateInfo.Id);
+            var isAdded = this.atticaDrains.AddAtticaPart(atticaDrainsCreateInfo.AtticaPartId, atticaDrainsCreateInfo.Id);
 
             if (!ModelState.IsValid || !isAdded)
             {
                 return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddAtticaPartModal", atticaDrainsCreateInfo) });
             }
+
+            var aticaDrain = this.atticaDrains.Details(atticaDrainsCreateInfo.Id);
+            atticaDrainsCreateInfo = this.mapper.Map<AtticaDrainPartsDetailsModel>(aticaDrain);
 
             return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddAtticaParts", atticaDrainsCreateInfo) });
         }

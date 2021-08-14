@@ -4,6 +4,7 @@
     var isAddView = ViewBag.Title == "Add Attica Drain" ? true : false;
     var isEditView = ViewBag.Title == "Edit Attica Drain" ? true : false;
     var isAddAtticaPartsView = ViewBag.Title == "Add Attica Parts" ? true : false;
+
 }
 
 <div class="row">
@@ -14,7 +15,7 @@
 
             <partial name="_ChooseAtticaDetailPartial" model="Model" />
 
-            @if (isAddAtticaPartsView)
+            @if (isAddAtticaPartsView || isEditView)
             {
                 <partial name="_ChooseAtticaPartsPartial" model="Model" />
             }
@@ -81,6 +82,13 @@
                 <div class="form-group">
                     <input class="btn btn-primary" type="submit" value="Save" />
                     <partial name="_DeleteButtonWithModalPopup" model="@Model" />
+                </div>
+            }
+
+            @if (isAddAtticaPartsView)
+            {
+                <div class="form-group">
+                    <input class="btn btn-primary" type="submit" value="Save" />
                 </div>
             }
         </form>

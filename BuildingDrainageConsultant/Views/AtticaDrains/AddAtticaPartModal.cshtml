@@ -14,12 +14,13 @@ else
 {
     <div class="modal-body">
         <div class="row col-12">
-
             @foreach (var part in Model.AtticaParts)
             {
                 <div class="col-6 col-md-6 col-lg-4 mb-3">
                     <div class="shadow card h-100 border-1">
-                        <form asp-action="AddAtticaPart" asp-route-id="@part.Id" onsubmit="return AjaxPost(this);">
+                        <form asp-action="AddAtticaPartModal" onsubmit="return AjaxPost(this);">
+                            <input asp-for="AtticaPartId" value="@part.Id" type="hidden" />
+                            <input asp-for="Id" value="@Model.Id" type="hidden" />
                             <div class="card-img-custom">
                                 <img src="@part.ImageUrl" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
                                 <hr />

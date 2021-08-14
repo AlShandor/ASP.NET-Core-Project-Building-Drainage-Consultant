@@ -28,11 +28,11 @@
         [Required]
         public AtticaVisiblePartEnum VisiblePart { get; set; }
 
+        public ICollection<AtticaPart> AtticaParts { get; set; } = new List<AtticaPart>();
+
         public int? AtticaDetailId { get; set; }
 
         public AtticaDetail AtticaDetail { get; set; }
-
-        public ICollection<AtticaPart> AtticaParts { get; set; } = new List<AtticaPart>();
 
         public string UserId { get; set; }
 

@@ -18,13 +18,6 @@
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder
-                .Entity<AtticaDrain>()
-                .HasOne(a => a.AtticaDetail)
-                .WithMany(a => a.AtticaDrains)
-                .HasForeignKey(a => a.AtticaDetailId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder
                 .Entity<Drain>()
                 .HasOne(d => d.User)
                 .WithMany(d => d.Drains)
@@ -37,6 +30,13 @@
                 .WithMany(d => d.AtticaDrains)
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<AtticaDrain>()
+                .HasOne(a => a.AtticaDetail)
+                .WithMany(a => a.AtticaDrains)
+                .HasForeignKey(a => a.AtticaDetailId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             base.OnModelCreating(builder);
         }
