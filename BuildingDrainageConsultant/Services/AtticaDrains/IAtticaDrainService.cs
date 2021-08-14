@@ -13,6 +13,7 @@
         public AtticaDrainServiceModel Details(int id);
 
         public int Create(
+            int detailId,
             string name,
             double flowRate,
             int drainageArea,
@@ -37,9 +38,12 @@
 
         public AtticaDetailServiceModel GetAtticaDetailById(int id);
 
+        public IEnumerable<AtticaPartServiceModel> GetAtticaPartsForDrain(int id);
+
         public IEnumerable<AtticaPartServiceModel> GetAtticaParts();
 
         public AtticaPartServiceModel GetAtticaPartById(int id);
 
+        public bool AddAtticaPart(int partId, int drainId);
     }
 }

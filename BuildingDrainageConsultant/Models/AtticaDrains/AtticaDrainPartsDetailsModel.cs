@@ -23,15 +23,12 @@
 
         public AtticaVisiblePartEnum VisiblePart { get; set; }
 
-        public IEnumerable<AtticaPartServiceModel> AtticaParts { get; set; }
-
         public IEnumerable<AtticaDetailServiceModel> AtticaDetails { get; set; }
+
+        public IEnumerable<AtticaPartServiceModel> AtticaParts { get; set; }
 
         public int AtticaDetailId { get; set; }
 
-        public ICollection<AtticaPartServiceModel> ChosenAtticaParts { get; set; }
-
-        public AtticaDetailServiceModel ChosenAtticaDetail { get; set; }
-
+        public AtticaDetailServiceModel AtticaDetail { get; set; }
     }
 }

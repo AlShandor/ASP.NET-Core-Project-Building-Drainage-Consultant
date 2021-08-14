@@ -1,6 +1,7 @@
 ﻿namespace BuildingDrainageConsultant.Models.AtticaDrains
 {
     using BuildingDrainageConsultant.Data.Models.Enums.Attica;
+    using BuildingDrainageConsultant.Services.AtticaDetail.Models;
     using BuildingDrainageConsultant.Services.AtticaParts.Models;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -36,6 +37,8 @@
 
         [Display(Name = "AtticaDetail")]
         public int AtticaDetailId { get; set; }
+
+        public AtticaDetailServiceModel AtticaDetail { get; set; }
 
         [Display(Name = "Attica Parts")]
         public IEnumerable<AtticaPartServiceModel> AtticaParts { get; set; } = new List<AtticaPartServiceModel>();

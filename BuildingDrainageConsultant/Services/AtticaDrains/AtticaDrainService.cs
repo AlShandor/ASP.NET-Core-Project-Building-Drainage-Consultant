@@ -45,6 +45,7 @@
                 .FirstOrDefault();
 
         public int Create(
+            int detailId,
             string name,
             double flowRate,
             int drainageArea,
@@ -64,6 +65,9 @@
                 VisiblePart = visiblePart,
                 AtticaParts = new List<AtticaPart>()
             };
+
+            var atticaDetail = this.data.AtticaDetails.Find(detailId);
+            atticaDetail.AtticaDrains.Add(atticaDrainData);
 
             this.data.AtticaDrains.Add(atticaDrainData);
             this.data.SaveChanges();
@@ -130,8 +134,10 @@
                 .ProjectTo<AtticaDetailServiceModel>(this.mapper)
                 .FirstOrDefault();
 
-        public IEnumerable<AtticaPartServiceModel> GetAtticaParts()
-            => this.data.AtticaParts
+        public IEnumerable<AtticaPartServiceModel> GetAtticaPartsForDrain(int id)
+        => this.data.AtticaDrains
+                .Find(id)
+                .AtticaParts
                 .AsQueryable()
                 .ProjectTo<AtticaPartServiceModel>(this.mapper)
                 .ToList();
@@ -142,5 +148,27 @@
                 .Where(d => d.Id == id)
                 .ProjectTo<AtticaPartServiceModel>(this.mapper)
                 .FirstOrDefault();
+
+        public bool AddAtticaPart(int partId, int drainId)
+        {
+            var atticaPart = this.data.AtticaParts.Find(partId);
+            var drain = this.data.AtticaDrains.Find(drainId);
+
+            if (atticaPart == null || drain == null)
+            {
+                return false;
+            }
+
+            drain.AtticaParts.Add(atticaPart);
+            data.SaveChanges();
+
+            return true;
+        }
+
+        public IEnumerable<AtticaPartServiceModel> GetAtticaParts()
+            => this.data.AtticaParts
+                .AsQueryable()
+                .ProjectTo<AtticaPartServiceModel>(this.mapper)
+                .ToList();
     }
 }

@@ -1,11 +1,12 @@
 ﻿@model AtticaDrainPartsDetailsModel
 
 <div class="form-group mb-3">
-    @if (Model.ChosenAtticaParts != null)
+    @if (Model.AtticaParts != null)
     {
-        foreach (var part in Model.ChosenAtticaParts)
+        foreach (var part in Model.AtticaParts)
         {
             <div class="shadow card h-100 border-1 mb-4">
+                <input asp-for="AtticaParts"  value="@part.Id" type="hidden"/>
                 <div class="card-img-custom">
                     <img src="@part.ImageUrl" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
                     <hr />

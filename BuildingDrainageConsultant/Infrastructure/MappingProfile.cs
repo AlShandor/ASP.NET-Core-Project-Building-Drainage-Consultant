@@ -30,7 +30,8 @@
             this.CreateMap<AtticaDetailServiceModel, AtticaDetailFormModel>();
 
             this.CreateMap<AtticaDrain, AtticaDrainServiceModel>();
-            this.CreateMap<AtticaDrainServiceModel, AtticaDrainFormModel>();
+            this.CreateMap<AtticaDrainServiceModel, AtticaDrainFormModel>(); 
+            this.CreateMap<AtticaDrainServiceModel, AtticaDrainPartsDetailsModel>();
         }
     }
 }

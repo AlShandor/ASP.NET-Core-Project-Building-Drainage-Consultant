@@ -32,7 +32,7 @@
 
         public AtticaDetail AtticaDetail { get; set; }
 
-        public IEnumerable<AtticaPart> AtticaParts { get; set; } = new List<AtticaPart>();
+        public ICollection<AtticaPart> AtticaParts { get; set; } = new List<AtticaPart>();
 
         public string UserId { get; set; }
 

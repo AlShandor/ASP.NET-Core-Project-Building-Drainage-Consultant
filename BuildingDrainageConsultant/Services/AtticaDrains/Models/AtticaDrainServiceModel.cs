@@ -1,6 +1,7 @@
 ﻿namespace BuildingDrainageConsultant.Services.AtticaDrains.Models
 {
     using BuildingDrainageConsultant.Data.Models.Enums.Attica;
+    using BuildingDrainageConsultant.Services.AtticaDetail.Models;
 
     public class AtticaDrainServiceModel
     {
@@ -20,5 +21,8 @@
 
         public AtticaVisiblePartEnum VisiblePart { get; set; }
 
+        public int AtticaDetailId { get; set; }
+
+        public AtticaDetailServiceModel AtticaDetail { get; set; }
     }
 }

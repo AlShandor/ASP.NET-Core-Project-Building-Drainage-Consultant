@@ -27,6 +27,6 @@
         [Url]
         public string ImageUrl { get; set; }
 
-        public IEnumerable<AtticaDrain> AtticaDrains { get; set; } = new List<AtticaDrain>();
+        public ICollection<AtticaDrain> AtticaDrains { get; set; } = new List<AtticaDrain>();
     }
 }
