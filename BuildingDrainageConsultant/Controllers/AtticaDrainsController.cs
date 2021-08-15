@@ -24,7 +24,7 @@
         {
             var queryResults = this.atticaDrains.All(query.SearchTerm);
 
-            query.AtticaDrains = queryResults;
+            query.Drains = queryResults;
 
             return View(query);
         }
@@ -183,6 +183,25 @@
             atticaDrainsCreateInfo = this.mapper.Map<AtticaDrainPartsDetailsModel>(aticaDrain);
 
             return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddAtticaParts", atticaDrainsCreateInfo) });
+        }
+
+        public IActionResult SearchAtticaDrain(AllAtticaDrainsQueryModel allDrainsQuery)
+        {
+            var queryResult = this.atticaDrains.SearchAtticaDrains(
+                allDrainsQuery.AtticaDetailId,
+                allDrainsQuery.SearchTerm,
+                allDrainsQuery.ScreedWaterproofing,
+                allDrainsQuery.ConcreteWaterproofing,
+                allDrainsQuery.Diameter,
+                allDrainsQuery.Sorting,
+                allDrainsQuery.CurrentPage,
+                AllAtticaDrainsQueryModel.DrainsPerPage);
+
+            allDrainsQuery.AtticaDetail = this.atticaDrains.GetAtticaDetailById(allDrainsQuery.AtticaDetailId);
+            allDrainsQuery.TotalDrains = queryResult.TotalDrains;
+            allDrainsQuery.Drains = queryResult.AtticaDrains;
+
+            return View(allDrainsQuery);
         }
     }
 }

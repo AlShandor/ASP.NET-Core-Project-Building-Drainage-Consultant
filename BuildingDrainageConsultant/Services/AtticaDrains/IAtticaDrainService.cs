@@ -1,6 +1,7 @@
 ﻿namespace BuildingDrainageConsultant.Services.AtticaDrains
 {
     using BuildingDrainageConsultant.Data.Models.Enums.Attica;
+    using BuildingDrainageConsultant.Models.AtticaDrains;
     using BuildingDrainageConsultant.Services.AtticaDetail.Models;
     using BuildingDrainageConsultant.Services.AtticaDrains.Models;
     using BuildingDrainageConsultant.Services.AtticaParts.Models;
@@ -10,6 +11,15 @@
     {
         public IEnumerable<AtticaDrainServiceModel> All(string searchTerm);
 
+        public AtticaDrainQueryServiceModel SearchAtticaDrains(
+            int atticaDetailId,
+            string searchTerm,
+            AtticaScreedWaterproofingEnum screedWaterproofing,
+            AtticaConcreteWaterproofingEnum concreteWaterproofing,
+            AtticaDiameterEnum diameter,
+            AtticaDrainSortingEnum sorting,
+            int currentPage,
+            int drainsPerPage);
         public AtticaDrainServiceModel Details(int id);
 
         public int Create(

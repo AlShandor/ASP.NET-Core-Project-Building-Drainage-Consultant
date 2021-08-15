@@ -28,8 +28,12 @@
 
                     <p class="card-text">@atticaDetailDescriptionTruncated</p>
 
+                    <a asp-controller="AtticaDrains" asp-action="SearchAtticaDrain" asp-route-atticaDetailId ="@atticaDetail.Id" class="shadow btn btn-primary mr-1">Choose</a>
 
-                    <a asp-controller="AtticaDetails" asp-action="Edit" asp-route-id="@atticaDetail.Id" class="shadow btn btn-primary">Edit</a>
+                    @if (User.IsAdmin())
+                    {
+                        <a asp-controller="AtticaDetails" asp-action="Edit" asp-route-id="@atticaDetail.Id" class="shadow btn btn-success">Edit</a>
+                    }
                 </div>
             </div>
         </div>

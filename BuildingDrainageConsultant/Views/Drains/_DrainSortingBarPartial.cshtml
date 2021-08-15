@@ -1,0 +1,23 @@
+﻿@model AllDrainsQueryModel
+
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="text-md-left text-center float-md-right list-group-horizontal ">
+            <form method="get">
+                <div class="form-inline">
+                    <h6 class="mr-3 pt-2">Sort By:</h6>
+                    <select asp-for="Sorting" class="shadow-sm form-control btn btn-lg btn-light dropdown-toggle sort-dropdown" id="sort-dropdown">
+                        <option selected value="1">Name</option>
+                        <option value="2">Depth Ascending</option>
+                        <option value="3">Waterproofing</option>
+                        <option value="4">Visible Part</option>
+                        <option value="5">Flow Rate Ascending</option>
+                        <option value="6">Flow Rate Descending</option>
+                        <option value="7">Diameter Ascending</option>
+                        <option value="8">Diameter Descending</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
