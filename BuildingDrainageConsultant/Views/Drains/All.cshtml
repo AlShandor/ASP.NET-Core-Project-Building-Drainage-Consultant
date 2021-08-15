@@ -5,16 +5,18 @@
 }
 
 <div class="container pt-5">
-    <div class="row">
-        <div class="col-md-8 order-md-2 col-lg-9">
-            <partial name="_DrainSortingBarPartial" model="@Model" />
+    <form asp-controller="Drains" asp-action="All" method="get">
+        <div class="row">
+            <div class="col-md-8 order-md-2 col-lg-9">
+                <partial name="_DrainSortingBarPartial" model="@Model" />
 
-            <partial name="_DrainAllPartial" model="@Model.Drains" />
+                <partial name="_DrainAllPartial" model="@Model.Drains" />
 
-            <partial name="_DrainPagesNavigationPartial" model="@Model" />
+                <partial name="_DrainPagesNavigationPartial" model="@Model" />
+            </div>
+
+            <partial name="_DrainSidebarFilterPartial" />
+
         </div>
-
-        <partial name="_DrainSidebarFilterPartial" />
-
-    </div>
+    </form>
 </div>
