@@ -4,19 +4,26 @@
     using BuildingDrainageConsultant.Infrastructure;
     using BuildingDrainageConsultant.Models.Merchants;
     using BuildingDrainageConsultant.Services.Merchants;
+    using BuildingDrainageConsultant.Services.Merchants.Models;
     using Microsoft.AspNetCore.Mvc;
-
+    using Microsoft.Extensions.Caching.Memory;
+    using System;
+    using System.Collections.Generic;
+    using static WebConstants.Cache;
     public class MerchantsController : Controller
     {
         private readonly IMerchantService merchants;
         private readonly IMapper mapper;
+        private readonly IMemoryCache cache;
 
         public MerchantsController(
             IMerchantService merchants,
-            IMapper mapper)
+            IMapper mapper,
+            IMemoryCache cache)
         {
             this.merchants = merchants;
             this.mapper = mapper;
+            this.cache = cache;
         }
 
         public IActionResult Add() => View();
@@ -43,9 +50,19 @@
         }
         public IActionResult All()
         {
-            var merchantsQuery = this.merchants.All();
+            var allMerchants = this.cache.Get<IEnumerable<MerchantServiceModel>>(nameof(AllMerchantsCacheKey));
 
-            return View(merchantsQuery);
+            if (allMerchants == null)
+            {
+                allMerchants = this.merchants.All();
+
+                var cacheOptions = new MemoryCacheEntryOptions()
+                    .SetAbsoluteExpiration(TimeSpan.FromMinutes(1));
+
+                this.cache.Set(AllMerchantsCacheKey, allMerchants, cacheOptions);
+            }
+
+            return View(allMerchants);
         }
         public IActionResult Edit(int id)
         {

@@ -141,7 +141,7 @@
                 .AsQueryable()
                 .ProjectTo<AtticaPartServiceModel>(this.mapper)
                 .ToList();
- 
+
         public AtticaPartServiceModel GetAtticaPartById(int id)
             => this.data
                 .AtticaParts
