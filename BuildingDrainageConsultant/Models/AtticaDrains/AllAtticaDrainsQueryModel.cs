@@ -24,6 +24,7 @@
         public IEnumerable<AtticaDrainServiceModel> Drains { get; set; }
 
         public int AtticaDetailId { get; set; }
+
         public AtticaDetailServiceModel AtticaDetail { get; set; }
     }
 }
