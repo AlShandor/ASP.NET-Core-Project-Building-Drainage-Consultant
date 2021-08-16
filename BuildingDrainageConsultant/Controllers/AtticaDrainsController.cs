@@ -4,10 +4,10 @@
     using BuildingDrainageConsultant.Infrastructure;
     using BuildingDrainageConsultant.Models.AtticaDrains;
     using BuildingDrainageConsultant.Services.AtticaDrains;
-    using BuildingDrainageConsultant.Services.AtticaParts.Models;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+
+    using static Areas.Admin.AdminConstants;
 
     public class AtticaDrainsController : Controller
     {
@@ -20,6 +20,7 @@
             this.mapper = mapper;
         }
 
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult All([FromQuery] AllAtticaDrainsQueryModel query)
         {
             var queryResults = this.atticaDrains.All(query.SearchTerm);
@@ -48,6 +49,7 @@
             return View(allDrainsQuery);
         }
 
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Add(AtticaDrainPartsDetailsModel atticaDrain, int id)
         {
             atticaDrain.AtticaDetails = this.atticaDrains.GetAtticaDetails();
@@ -55,6 +57,7 @@
             return View(atticaDrain);
         }
 
+        [Authorize(Roles = AdministratorRoleName)]
         [HttpPost]
         public IActionResult Add(AtticaDrainPartsDetailsModel atticaDrain)
         {
@@ -76,6 +79,7 @@
             return RedirectToAction(nameof(AddAtticaParts), new { drainId = drainId });
         }
 
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult AddAtticaParts(int drainId)
         {
             var aticaDrain = this.atticaDrains.Details(drainId);
@@ -87,6 +91,7 @@
             return View(atticaDrainForm);
         }
 
+        [Authorize(Roles = AdministratorRoleName)]
         [HttpPost]
         public IActionResult AddAtticaParts(int id, AtticaDrainPartsDetailsModel atticaDrain)
         {
@@ -98,7 +103,7 @@
             return RedirectToAction(nameof(All));
         }
 
-
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Edit(int id)
         {
             var aticaDrain = this.atticaDrains.Details(id);
@@ -108,6 +113,7 @@
             return View(atticaDrainForm);
         }
 
+        [Authorize(Roles = AdministratorRoleName)]
         [HttpPost]
         public IActionResult Edit(int id, AtticaDrainPartsDetailsModel atticaDrain)
         {
@@ -135,6 +141,7 @@
             return RedirectToAction(nameof(All));
         }
 
+        [Authorize(Roles = AdministratorRoleName)]
         [HttpPost]
         public IActionResult Delete(int id)
         {
@@ -148,6 +155,7 @@
             return RedirectToAction(nameof(All));
         }
 
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult AddAtticaDetail(AtticaDrainPartsDetailsModel atticaDrainsCreateInfo)
         {
             if (!ModelState.IsValid)
@@ -161,6 +169,7 @@
             return View(atticaDrainsCreateInfo);
         }
 
+        [Authorize(Roles = AdministratorRoleName)]
         [HttpPost]
         public IActionResult AddAtticaDetail(int id, AtticaDrainPartsDetailsModel atticaDrainsCreateInfo)
         {
@@ -175,6 +184,7 @@
             return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "Add", atticaDrainsCreateInfo) });
         }
 
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult AddAtticaPartModal(int drainId, AtticaDrainPartsDetailsModel atticaDrainsCreateInfo)
         {
             if (!ModelState.IsValid)
@@ -188,6 +198,7 @@
             return View(atticaDrainsCreateInfo);
         }
 
+        [Authorize(Roles = AdministratorRoleName)]
         [HttpPost]
         public IActionResult AddAtticaPartModal(AtticaDrainPartsDetailsModel atticaDrainsCreateInfo)
         {
@@ -203,6 +214,5 @@
 
             return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddAtticaParts", atticaDrainsCreateInfo) });
         }
-
     }
 }

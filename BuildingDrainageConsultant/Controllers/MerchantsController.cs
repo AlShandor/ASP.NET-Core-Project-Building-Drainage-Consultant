@@ -9,7 +9,11 @@
     using Microsoft.Extensions.Caching.Memory;
     using System;
     using System.Collections.Generic;
+
     using static WebConstants.Cache;
+    using static Areas.Admin.AdminConstants;
+    using Microsoft.AspNetCore.Authorization;
+
     public class MerchantsController : Controller
     {
         private readonly IMerchantService merchants;
@@ -26,8 +30,10 @@
             this.cache = cache;
         }
 
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Add() => View();
 
+        [Authorize(Roles = AdministratorRoleName)]
         [HttpPost]
         public IActionResult Add(MerchantFormModel merchant)
         {
@@ -64,6 +70,8 @@
 
             return View(allMerchants);
         }
+
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Edit(int id)
         {
             var merchant = this.merchants.Details(id);
@@ -73,6 +81,7 @@
             return View(merchantForm);
         }
 
+        [Authorize(Roles = AdministratorRoleName)]
         [HttpPost]
         public IActionResult Edit(int id, MerchantFormModel merchant)
         {
@@ -102,6 +111,7 @@
         }
 
         [HttpPost]
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Delete(int id)
         {
             var merchant = this.merchants.Delete(id);

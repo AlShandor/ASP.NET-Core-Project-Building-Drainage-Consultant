@@ -4,8 +4,10 @@
     using BuildingDrainageConsultant.Infrastructure;
     using BuildingDrainageConsultant.Models.AtticaDetails;
     using BuildingDrainageConsultant.Services.AtticaDetail;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
+    using static Areas.Admin.AdminConstants;
     public class AtticaDetailsController : Controller
     {
         private readonly IAtticaDetailService atticaDetails;
@@ -30,8 +32,10 @@
             return View(query);
         }
 
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Add() => View();
 
+        [Authorize(Roles = AdministratorRoleName)]
         [HttpPost]
         public IActionResult Add(AtticaDetailFormModel atticaDetail)
         {
@@ -51,6 +55,7 @@
             return RedirectToAction(nameof(All));
         }
 
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Edit(int id)
         {
             var atticaDetail = this.atticaDetails.Details(id);
@@ -61,6 +66,7 @@
         }
 
         [HttpPost]
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Edit(int id, AtticaDetailFormModel atticaDetail)
         {
 
@@ -87,6 +93,7 @@
         }
 
         [HttpPost]
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Delete(int id)
         {
             var drain = this.atticaDetails.Delete(id);

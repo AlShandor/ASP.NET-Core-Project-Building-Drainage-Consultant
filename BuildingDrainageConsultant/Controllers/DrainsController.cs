@@ -7,6 +7,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
+    using static Areas.Admin.AdminConstants;
     public class DrainsController : Controller
     {
         private readonly IDrainService drains;
@@ -20,9 +21,11 @@
             this.mapper = mapper;
         }
 
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Add() => View();
 
         [HttpPost]
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Add(DrainFormModel drain)
         {
             if (!ModelState.IsValid)
@@ -83,6 +86,7 @@
             return View(drainForm);
         }
 
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Edit(int id)
         {
             var drain = this.drains.Details(id);
@@ -93,6 +97,7 @@
         }
 
         [HttpPost]
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Edit(int id, DrainFormModel drain)
         {
 
@@ -127,6 +132,7 @@
 
 
         [HttpPost]
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Delete(int id)
         {
             var drain = this.drains.Delete(id);

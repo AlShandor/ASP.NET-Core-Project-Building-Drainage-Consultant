@@ -4,7 +4,12 @@
     using BuildingDrainageConsultant.Infrastructure;
     using BuildingDrainageConsultant.Models.AtticaParts;
     using BuildingDrainageConsultant.Services.AtticaParts;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+
+    using static Areas.Admin.AdminConstants;
+
+    [Authorize(Roles = AdministratorRoleName)]
     public class AtticaPartsController : Controller
     {
         private readonly IAtticaPartService atticaParts;

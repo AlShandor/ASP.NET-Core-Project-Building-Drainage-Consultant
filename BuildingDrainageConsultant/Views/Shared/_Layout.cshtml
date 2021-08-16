@@ -51,19 +51,20 @@
                         </li>
 
                         @*Attica Drains menu*@
-                        <li class="nav-item dropdown">
-                            <a class="nav-item btn btn-lg  dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Attica Drains
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-area="" asp-controller="AtticaDrains" asp-action="All"><i class="pr-2 bi bi-card-list"></i>All Attica Drains</a>
-                                @if (User.IsAdmin())
-                                {
+                        @if (User.IsAdmin())
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-item btn btn-lg  dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Attica Drains
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-area="" asp-controller="AtticaDrains" asp-action="All"><i class="pr-2 bi bi-card-list"></i>All Attica Drains</a>
+
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" asp-area="" asp-controller="AtticaDrains" asp-action="Add"><i class="pr-2 bi bi-plus-circle"></i>Add Attica Drains</a>
-                                }
-                            </div>
-                        </li>
+                                </div>
+                            </li>
+                        }
 
                         @*Merhchants*@
                         @if (User.IsAdmin())
@@ -87,19 +88,20 @@
                         }
 
                         @*Attica Parts menu*@
-                        <li class="nav-item dropdown">
-                            <a class="nav-item btn btn-lg  dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Attica Parts
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-area="" asp-controller="AtticaParts" asp-action="All"><i class="pr-2 bi bi-card-list"></i>All Attica Parts</a>
-                                @if (User.IsAdmin())
-                                {
+                        @if (User.IsAdmin())
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-item btn btn-lg  dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Attica Parts
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-area="" asp-controller="AtticaParts" asp-action="All"><i class="pr-2 bi bi-card-list"></i>All Attica Parts</a>
+
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" asp-area="" asp-controller="AtticaParts" asp-action="Add"><i class="pr-2 bi bi-plus-circle"></i>Add Attica Part</a>
-                                }
-                            </div>
-                        </li>
+                                </div>
+                            </li>
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -139,9 +141,9 @@
 
 
     @*Loader*@
-    @*<div class="loaderbody" id="loaderbody">
+    <div class="loaderbody" id="loaderbody">
             <div class="loader"></div>
-        </div>*@
+        </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">

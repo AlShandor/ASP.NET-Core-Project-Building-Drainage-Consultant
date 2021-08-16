@@ -84,6 +84,10 @@ namespace BuildingDrainageConsultant
                 .UseAuthorization()
                 .UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                        name: "Admin",
+                        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapRazorPages();
             });
