@@ -1,5 +1,7 @@
 ﻿namespace BuildingDrainageConsultant.Controllers
 {
+    using System;
+    using System.Collections.Generic;
     using AutoMapper;
     using BuildingDrainageConsultant.Infrastructure;
     using BuildingDrainageConsultant.Models.Merchants;
@@ -7,9 +9,7 @@
     using BuildingDrainageConsultant.Services.Merchants.Models;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Caching.Memory;
-    using System;
-    using System.Collections.Generic;
-
+    
     using static WebConstants.Cache;
     using static Areas.Admin.AdminConstants;
     using Microsoft.AspNetCore.Authorization;

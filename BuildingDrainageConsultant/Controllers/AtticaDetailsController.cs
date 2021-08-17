@@ -20,18 +20,6 @@
             this.mapper = mapper;
         }
 
-        public IActionResult All([FromQuery] AllAtticaDetailsQueryModel query)
-        {
-            var queryResults = this.atticaDetails.All(
-                query.RoofType,
-                query.IsWalkable);
-
-            query.TotalDrains = queryResults.TotalDrains;
-            query.AtticaDetails = queryResults.AtticaDetails;
-
-            return View(query);
-        }
-
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Add() => View();
 
@@ -53,6 +41,18 @@
                 atticaDetail.ImageUrl);
 
             return RedirectToAction(nameof(All));
+        }
+
+        public IActionResult All([FromQuery] AllAtticaDetailsQueryModel query)
+        {
+            var queryResults = this.atticaDetails.All(
+                query.RoofType,
+                query.IsWalkable);
+
+            query.TotalDrains = queryResults.TotalDrains;
+            query.AtticaDetails = queryResults.AtticaDetails;
+
+            return View(query);
         }
 
         [Authorize(Roles = AdministratorRoleName)]
