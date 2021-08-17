@@ -23,18 +23,11 @@
             this.mapper = mapper;
         }
 
-        public IActionResult All([FromQuery] AllAtticaPartsQueryModel query)
-        {
-            var queryResults = this.atticaParts.All(query.SearchTerm);
-
-            query.AtticaParts = queryResults;
-
-            return View(query);
-        }
-
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Add() => View();
 
         [HttpPost]
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Add(AtticaPartFormModel atticaPart)
         {
             if (!ModelState.IsValid)
@@ -50,6 +43,16 @@
             return RedirectToAction(nameof(All));
         }
 
+        public IActionResult All([FromQuery] AllAtticaPartsQueryModel query)
+        {
+            var queryResults = this.atticaParts.All(query.SearchTerm);
+
+            query.AtticaParts = queryResults;
+
+            return View(query);
+        }
+
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Edit(int id)
         {
             var drain = this.atticaParts.Details(id);
@@ -60,6 +63,7 @@
         }
 
         [HttpPost]
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Edit(int id, AtticaPartFormModel atticaPart)
         {
 
@@ -83,6 +87,7 @@
         }
 
         [HttpPost]
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Delete(int id)
         {
             var drain = this.atticaParts.Delete(id);

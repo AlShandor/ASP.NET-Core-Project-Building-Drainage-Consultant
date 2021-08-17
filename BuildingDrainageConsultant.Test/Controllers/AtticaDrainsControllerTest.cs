@@ -5,7 +5,6 @@
     using BuildingDrainageConsultant.Data.Models.Enums.Attica;
     using BuildingDrainageConsultant.Models.AtticaDrains;
     using MyTested.AspNetCore.Mvc;
-    using System.Collections.Generic;
     using System.Linq;
     using Xunit;
 
@@ -47,8 +46,8 @@
             AtticaVisiblePartEnum visiblePart)
         => MyController<AtticaDrainsController>
             .Instance(controller => controller
-                .WithData(new AtticaDetail 
-                { 
+                .WithData(new AtticaDetail
+                {
                     Id = atticaDetailId,
                     RoofType = AtticaRoofTypeEnum.ColdRoof,
                     IsWalkable = AtticaWalkableEnum.NotWalkable,

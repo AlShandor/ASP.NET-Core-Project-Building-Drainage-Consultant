@@ -2,73 +2,73 @@
 {
     using Xunit;
     using BuildingDrainageConsultant.Controllers;
-    using BuildingDrainageConsultant.Models.AtticaDetails;
+    using BuildingDrainageConsultant.Models.Merchants;
     using MyTested.AspNetCore.Mvc;
 
-    public class AtticaDetailsControllerTest
+    public class MerchantsControllerTest
     {
         [Fact]
         public void AddRouteShouldBeMapped()
             => MyRouting
                 .Configuration()
                 .ShouldMap(request => request
-                    .WithLocation("/AtticaDetails/Add")
+                    .WithLocation("/Merchants/Add")
                     .WithUser(user => user
                         .WithClaim("AdministratorRoleName", "Administrator"))
                 )
-                .To<AtticaDetailsController>(c => c.Add());
+                .To<MerchantsController>(c => c.Add());
 
         [Fact]
         public void PostAddShouldBeMapped()
             => MyRouting
                 .Configuration()
                 .ShouldMap(request => request
-                    .WithPath("/AtticaDetails/Add")
+                    .WithPath("/Merchants/Add")
                     .WithMethod(HttpMethod.Post)
                     .WithUser(user => user
                         .WithClaim("AdministratorRoleName", "Administrator")))
-                .To<AtticaDetailsController>(c => c.Add(With.Any<AtticaDetailFormModel>()));
+                .To<MerchantsController>(c => c.Add(With.Any<MerchantFormModel>()));
 
         [Fact]
         public void AllRouteShouldBeMapped()
             => MyRouting
                 .Configuration()
                 .ShouldMap(request => request
-                    .WithLocation("/AtticaDetails/All")
+                    .WithLocation("/Merchants/All")
                     .WithUser(user => user
                         .WithClaim("AdministratorRoleName", "Administrator")))
-                .To<AtticaDetailsController>(c => c.All(With.Any<AllAtticaDetailsQueryModel>()));
+                .To<MerchantsController>(c => c.All());
 
         [Fact]
         public void EditRouteShouldBeMapped()
             => MyRouting
                 .Configuration()
                 .ShouldMap(request => request
-                    .WithLocation("/AtticaDetails/Edit/1")
+                    .WithLocation("/Merchants/Edit/1")
                     .WithUser(user => user
                         .WithClaim("AdministratorRoleName", "Administrator")))
-                .To<AtticaDetailsController>(c => c.Edit(1));
+                .To<MerchantsController>(c => c.Edit(1));
 
         [Fact]
         public void PostEditRouteShouldBeMapped()
             => MyRouting
                 .Configuration()
                 .ShouldMap(request => request
-                    .WithPath("/AtticaDetails/Edit/1")
+                    .WithPath("/Merchants/Edit/1")
                     .WithMethod(HttpMethod.Post)
                     .WithUser(user => user
                         .WithClaim("AdministratorRoleName", "Administrator")))
-                .To<AtticaDetailsController>(c => c.Edit(1, With.Any<AtticaDetailFormModel>()));
+                .To<MerchantsController>(c => c.Edit(1, With.Any<MerchantFormModel>()));
 
         [Fact]
         public void PostDeleteRouteShouldBeMapped()
             => MyRouting
                 .Configuration()
                 .ShouldMap(request => request
-                    .WithPath("/AtticaDetails/Delete/1")
+                    .WithPath("/Merchants/Delete/1")
                     .WithMethod(HttpMethod.Post)
                     .WithUser(user => user
                         .WithClaim("AdministratorRoleName", "Administrator")))
-                .To<AtticaDetailsController>(c => c.Delete(1));
+                .To<MerchantsController>(c => c.Delete(1));
     }
 }
