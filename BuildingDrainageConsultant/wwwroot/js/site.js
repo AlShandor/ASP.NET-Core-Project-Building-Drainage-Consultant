@@ -91,3 +91,23 @@ AjaxPost = form => {
         console.log(ex)
     }
 }
+
+$("#reset-drains-button").click(function () {
+    document.getElementById("searchTerm-input").value = "";
+    document.getElementById("direction-select").value = "";
+    document.getElementById("diameter-select").value = "";
+    document.getElementById("visiblePart-select").value = "";
+    document.getElementById("waterproofing-select").value = "";
+    document.getElementById("heating-select").value = "";
+    document.getElementById("renovation-select").value = "";
+    document.getElementById("flapSeal-select").value = "";
+    
+});
+
+$("#reset-atticaDrains-button").click(function () {
+    document.getElementById("searchTerm-input").value = "";
+    document.getElementById("screedWaterproofing-select").value = "";
+    document.getElementById("concreteWaterproofing-select").value = "";
+    document.getElementById("diameter-select").value = "";
+});
+

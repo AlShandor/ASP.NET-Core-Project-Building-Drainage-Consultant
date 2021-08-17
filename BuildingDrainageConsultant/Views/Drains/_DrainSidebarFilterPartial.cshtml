@@ -1,56 +1,58 @@
 ﻿@model AllDrainsQueryModel
 
 <div class="shadow-sm col-md-4 order-md-1 col-lg-3 sidebar-filter">
-    <h3 class="mt-3 mb-3 pb-4 float-md-left pl-3">Total results: <span class="text-primary">@Model.TotalDrains</span></h3>
-        <div class="form-group">
+    <h3 class="mt-3 mb-3 pb-4 float-md-left pl-3">Total results: <span class="text-primary" >@Model.TotalDrains</span></h3>
+    <div class="form-group">
 
-            <div class="mt-2 mb-2 pl-2">
-                <input class="shadow-sm form-control" asp-for="SearchTerm" type="text" placeholder="Search by name...">
-            </div>
-            <hr />
-
-            <div class="mt-3 mb-2 pl-2">
-                <select class="shadow-sm form-control" asp-for="Direction" asp-items="Html.GetEnumSelectList<DrainDirectionEnum>()">
-                    <option value="">--Select Direction--</option>
-                </select>
-            </div>
-
-            <div class="mt-3 mb-2 pl-2">
-                <select class="shadow-sm form-control" asp-for="Diameter" asp-items="Html.GetEnumSelectList<DrainDiameterEnum>()">
-                    <option value="">--Select Diameter--</option>
-                </select>
-            </div>
-
-            <div class="mt-3 mb-2 pl-2">
-                <select class="shadow-sm form-control" asp-for="VisiblePart" asp-items="Html.GetEnumSelectList<DrainVisiblePartEnum>()">
-                    <option value="">--Select Visible Part--</option>
-                </select>
-            </div>
-
-            <div class="mt-3 mb-2 pl-2">
-                <select class="shadow-sm form-control" asp-for="Waterproofing" asp-items="Html.GetEnumSelectList<DrainWaterproofingEnum>()">
-                    <option value="">--Select Waterproofing--</option>
-                </select>
-            </div>
-
-            <div class="mt-3 mb-2 pl-2">
-                <select class="shadow-sm form-control" asp-for="Heating" asp-items="Html.GetEnumSelectList<DrainHeatingEnum>()">
-                    <option value="">--Select Heating--</option>
-                </select>
-            </div>
-
-            <div class="mt-3 mb-2 pl-2">
-                <select class="shadow-sm form-control" asp-for="Renovation" asp-items="Html.GetEnumSelectList<DrainRenovationEnum>()">
-                    <option value="">--Select Renovation--</option>
-                </select>
-            </div>
-
-            <div class="mt-3 mb-2 pl-2">
-                <select class="shadow-sm form-control" asp-for="FlapSeal" asp-items="Html.GetEnumSelectList<DrainFlapSealEnum>()">
-                    <option value="">--Select Flap Seal--</option>
-                </select>
-            </div>
-
-            <button class="shadow form-control btn btn-lg btn-block btn-primary mt-5" type="submit"><i class="pr-2 bi bi-search"></i>Search</button>
+        <div class="mt-2 mb-2 pl-2">
+            <input class="shadow-sm form-control" asp-for="SearchTerm" type="text" placeholder="Search by name..." id="searchTerm-input">
         </div>
+        <hr />
+
+        <div class="mt-3 mb-2 pl-2">
+            <select class="shadow-sm form-control" asp-for="Direction" asp-items="Html.GetEnumSelectList<DrainDirectionEnum>()" id="direction-select">
+                <option value="">--Select Direction--</option>
+            </select>
+        </div>
+
+        <div class="mt-3 mb-2 pl-2">
+            <select class="shadow-sm form-control" asp-for="Diameter" asp-items="Html.GetEnumSelectList<DrainDiameterEnum>()" id="diameter-select">
+                <option value="">--Select Diameter--</option>
+            </select>
+        </div>
+
+        <div class="mt-3 mb-2 pl-2">
+            <select class="shadow-sm form-control" asp-for="VisiblePart" asp-items="Html.GetEnumSelectList<DrainVisiblePartEnum>()" id="visiblePart-select">
+                <option value="">--Select Visible Part--</option>
+            </select>
+        </div>
+
+        <div class="mt-3 mb-2 pl-2">
+            <select class="shadow-sm form-control" asp-for="Waterproofing" asp-items="Html.GetEnumSelectList<DrainWaterproofingEnum>()" id="waterproofing-select">
+                <option value="">--Select Waterproofing--</option>
+            </select>
+        </div>
+
+        <div class="mt-3 mb-2 pl-2">
+            <select class="shadow-sm form-control" asp-for="Heating" asp-items="Html.GetEnumSelectList<DrainHeatingEnum>()" id="heating-select">
+                <option value="">--Select Heating--</option>
+            </select>
+        </div>
+
+        <div class="mt-3 mb-2 pl-2">
+            <select class="shadow-sm form-control" asp-for="Renovation" asp-items="Html.GetEnumSelectList<DrainRenovationEnum>()" id="renovation-select">
+                <option value="">--Select Renovation--</option>
+            </select>
+        </div>
+
+        <div class="mt-3 mb-2 pl-2">
+            <select class="shadow-sm form-control" asp-for="FlapSeal" asp-items="Html.GetEnumSelectList<DrainFlapSealEnum>()" id="flapSeal-select">
+                <option value="">--Select Flap Seal--</option>
+            </select>
+        </div>
+
+        <button class="shadow form-control btn btn-lg btn-block btn-primary mt-5" type="submit"><i class="pr-2 bi bi-search"></i>Search</button>
+        <button class="shadow form-control btn btn-lg btn-block btn-danger mt-2" id="reset-drains-button" >Reset Filters</button>
+
+    </div>
 </div>
