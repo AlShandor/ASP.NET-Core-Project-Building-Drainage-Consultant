@@ -20,16 +20,6 @@
             this.mapper = mapper;
         }
 
-        [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult All([FromQuery] AllAtticaDrainsQueryModel query)
-        {
-            var queryResults = this.atticaDrains.All(query.SearchTerm);
-
-            query.Drains = queryResults;
-
-            return View(query);
-        }
-
         public IActionResult SearchAtticaDrain(AllAtticaDrainsQueryModel allDrainsQuery)
         {
             var queryResult = this.atticaDrains.SearchAtticaDrains(
@@ -77,6 +67,16 @@
                   atticaDrain.VisiblePart);
 
             return RedirectToAction(nameof(AddAtticaParts), new { drainId = drainId });
+        }
+
+        [Authorize(Roles = AdministratorRoleName)]
+        public IActionResult All([FromQuery] AllAtticaDrainsQueryModel query)
+        {
+            var queryResults = this.atticaDrains.All(query.SearchTerm);
+
+            query.Drains = queryResults;
+
+            return View(query);
         }
 
         [Authorize(Roles = AdministratorRoleName)]
