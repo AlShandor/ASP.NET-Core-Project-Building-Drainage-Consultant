@@ -58,5 +58,7 @@
         [Required]
         [StringLength(DescriptionMaxLength)]
         public string Description { get; set; }
+
+        public bool IsMyDrain { get; set; }
     }
 }

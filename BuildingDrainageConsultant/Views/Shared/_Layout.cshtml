@@ -25,12 +25,15 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" asp-area="" asp-controller="Drains" asp-action="All"><i class="pr-2 bi bi-card-list"></i>All Drains</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-area="" asp-controller="Drains" asp-action="Mine"><i class="pr-2 bi bi-clipboard-check"></i>My Drains</a>
-                                @if (User.IsAdmin())
+                                @if (User.Identity.IsAuthenticated)
                                 {
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Drains" asp-action="Add"><i class="pr-2 bi bi-plus-circle"></i>Add Drain</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Drains" asp-action="Mine"><i class="pr-2 bi bi-clipboard-check"></i>My Drains</a>
+                                    @if (User.IsAdmin())
+                                    {
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Drains" asp-action="Add"><i class="pr-2 bi bi-plus-circle"></i>Add Drain</a>
+                                    }
                                 }
                             </div>
                         </li>
@@ -142,8 +145,8 @@
 
     @*Loader*@
     <div class="loaderbody" id="loaderbody">
-            <div class="loader"></div>
-        </div>
+        <div class="loader"></div>
+    </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">

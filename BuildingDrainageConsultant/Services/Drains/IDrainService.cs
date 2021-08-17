@@ -58,5 +58,7 @@
         public bool Delete(int id);
 
         public bool AddToMine(string userId, int drainId);
+
+        public bool IsMyDrain(int drainId, string userId);
     }
 }

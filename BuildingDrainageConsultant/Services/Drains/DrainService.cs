@@ -239,6 +239,18 @@
             return true;
         }
 
+        public bool IsMyDrain(int drainId, string userId)
+        {
+            var drains = this.ByUser(userId);
+            var isMydrain = drains.FirstOrDefault(d => d.Id == drainId);
+
+            if (isMydrain == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
         private IEnumerable<DrainDetailsServiceModel> GetDrains(IQueryable<Drain> drainQuery)
             => drainQuery
                 .ProjectTo<DrainDetailsServiceModel>(this.mapper)

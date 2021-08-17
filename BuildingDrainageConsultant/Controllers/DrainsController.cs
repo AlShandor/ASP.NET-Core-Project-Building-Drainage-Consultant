@@ -83,6 +83,12 @@
 
             var drainForm = this.mapper.Map<DrainFormModel>(drain);
 
+            if (User.Identity.IsAuthenticated)
+            {
+                var isMyDrain = this.drains.IsMyDrain(id, this.User.Id());
+                drainForm.IsMyDrain = isMyDrain;
+            }
+
             return View(drainForm);
         }
 

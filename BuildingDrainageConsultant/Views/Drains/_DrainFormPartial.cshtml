@@ -116,14 +116,25 @@
 
             @if (isDetailsView)
             {
-                if (User.IsAdmin())
+                if (User.Identity.IsAuthenticated)
                 {
-                    <input asp-controller="Drains" asp-action="Edit" asp-route-id="@Model.Id" class="shadow btn btn-primary" type="submit" formmethod="get" value="Edit" />
+                    if (User.IsAdmin())
+                    {
+                        <input asp-controller="Drains" asp-action="Edit" asp-route-id="@Model.Id" class="shadow btn btn-primary" type="submit" formmethod="get" value="Edit" />
 
-                    <partial name="_DeleteButtonWithModalPopup" model="@Model" />
+                        <partial name="_DeleteButtonWithModalPopup" model="@Model" />
+                    }
+
+                    if (Model.IsMyDrain)
+                    {
+                        <button asp-controller="Drains" asp-action="AddToMine" asp-route-id="@Model.Id" class="shadow btn btn-secondary float-right" type="submit" formmethod="get" disabled><i class="pr-1 bi bi-bookmark-plus-fill"></i>Added To My Drains</button>
+                    }
+                    else
+                    {
+                        <button asp-controller="Drains" asp-action="AddToMine" asp-route-id="@Model.Id" class="shadow btn btn-success float-right" type="submit" formmethod="get"><i class="pr-1 bi bi-bookmark-plus-fill"></i>Add To My Drains</button>
+                    }
                 }
 
-                <button asp-controller="Drains" asp-action="AddToMine" asp-route-id="@Model.Id" class="shadow btn btn-success float-right" type="submit" formmethod="get"><i class="pr-1 bi bi-bookmark-plus-fill"></i>Add To My Drains</button>
             }
         </form>
     </div>
