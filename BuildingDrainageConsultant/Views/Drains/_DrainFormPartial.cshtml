@@ -120,7 +120,7 @@
                 {
                     if (User.IsAdmin())
                     {
-                        <input asp-controller="Drains" asp-action="Edit" asp-route-id="@Model.Id" class="shadow btn btn-primary" type="submit" formmethod="get" value="Edit" />
+                        <input asp-controller="Drains" asp-action="Edit" asp-route-id="@Model.Id" class="shadow btn btn-warning" type="submit" formmethod="get" value="Edit" />
 
                         <partial name="_DeleteButtonWithModalPopup" model="@Model" />
                     }

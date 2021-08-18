@@ -1,5 +1,9 @@
 ﻿@model AllAtticaDrainsQueryModel
 
+@{
+    var isMineView = ViewBag.Title == "My Attica Drains" ? true : false;
+}
+
 <div class="row">
     @if (!Model.Drains.Any())
     {
@@ -13,10 +17,26 @@
         <div class="col-6 col-md-6 col-lg-4 mb-3">
             <div class="shadow card h-100 border-1">
                 <div class="card-body text-center">
+                    <img src="@atticaDrain.AtticaParts.First().ImageUrl" alt="Alternate Text" class="card-img-top" />
                     <h4 class="card-title text-center">
                         <span class="font-weight-bold text-dark text-uppercase small">@atticaDrain.Name</span>
                     </h4>
-                    <a asp-controller="AtticaDrains" asp-action="Edit" asp-route-id="@atticaDrain.Id" class="shadow btn btn-primary">Edit</a>
+
+                    <div class="form-group">
+                        @if (User.IsAdmin())
+                        {
+                            <a asp-controller="AtticaDrains" asp-action="Edit" asp-route-id="@atticaDrain.Id" class="shadow btn btn-warning ">Edit</a>
+                        }
+                        <a asp-controller="AtticaDrains" asp-action="Details" asp-route-id="@atticaDrain.Id" class="shadow btn btn-primary">View Details</a>
+
+                        @if (isMineView)
+                        {
+                            <a asp-controller="AtticaDrains" asp-action="RemoveFromMine" asp-route-id="@atticaDrain.Id" class="shadow btn btn-danger mt-2">Remove</a>
+                        }
+                    </div>
+
+
+
                 </div>
             </div>
         </div>

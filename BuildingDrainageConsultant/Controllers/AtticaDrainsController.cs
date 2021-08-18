@@ -103,6 +103,26 @@
             return RedirectToAction(nameof(All));
         }
 
+        public IActionResult Details(int id)
+        {
+            var atticaDrain = this.atticaDrains.Details(id);
+
+            if (atticaDrain == null)
+            {
+                return NotFound();
+            }
+
+            var atticaDrainForm = this.mapper.Map<AtticaDrainPartsDetailsModel>(atticaDrain);
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var isMyDrain = this.atticaDrains.IsMyAtticaDrain(id, this.User.Id());
+                atticaDrainForm.IsMyAtticaDrain = isMyDrain;
+            }
+
+            return View(atticaDrainForm);
+        }
+
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Edit(int id)
         {
@@ -213,6 +233,44 @@
             atticaDrainsCreateInfo = this.mapper.Map<AtticaDrainPartsDetailsModel>(aticaDrain);
 
             return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddAtticaParts", atticaDrainsCreateInfo) });
+        }
+
+        [Authorize]
+        public IActionResult Mine()
+        {
+            var myAtticaDrains = this.atticaDrains.ByUser(this.User.Id());
+
+            var myAtticaDrainsForm = new AllAtticaDrainsQueryModel();
+            myAtticaDrainsForm.Drains = myAtticaDrains;
+
+            return View(myAtticaDrainsForm);
+        }
+
+        [Authorize]
+        public IActionResult AddToMine(int id)
+        {
+            var drain = this.atticaDrains.AddToMine(this.User.Id(), id);
+
+            if (drain == false)
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction(nameof(Details), new { id });
+        }
+
+        [Authorize]
+        public IActionResult RemoveFromMine(int id)
+        {
+            var drain = this.atticaDrains.RemoveFromMine(this.User.Id(), id);
+
+            if (drain == false)
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction(nameof(Mine));
+
         }
     }
 }

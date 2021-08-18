@@ -98,6 +98,12 @@
             };
         }
 
+        public IEnumerable<AtticaDrainServiceModel> ByUser(string userId)
+        => GetAtticaDrains(this.data
+                .AtticaDrains
+                .Where(d
+            => d.UserId == userId));
+
         public AtticaDrainServiceModel Details(int id)
         => this.data
                 .AtticaDrains
@@ -230,6 +236,61 @@
             => this.data.AtticaParts
                 .AsQueryable()
                 .ProjectTo<AtticaPartServiceModel>(this.mapper)
+                .ToList();
+
+        public bool AddToMine(string userId, int atticaDrainId)
+        {
+            var atticaDrain = this.data.AtticaDrains.Find(atticaDrainId);
+
+            if (atticaDrain == null)
+            {
+                return false;
+            }
+
+            var user = this.data.Users.Find(userId);
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            user.AtticaDrains.Add(atticaDrain);
+            data.SaveChanges();
+
+            return true;
+        }
+
+        public bool RemoveFromMine(string userId, int atticaDrainId)
+        {
+            //var user = this.data.Users.Find(userId);
+
+            //var drains = user.AtticaDrains.ToList();
+
+            //if (atticaDrain == null)
+            //{
+            //    return false;
+            //}
+
+            //data.SaveChanges();
+
+            return true;
+        }
+
+        public bool IsMyAtticaDrain(int atticaDrainId, string userId)
+        {
+            var atticaDrains = this.ByUser(userId);
+            var isMyAtticaDrain = atticaDrains.FirstOrDefault(d => d.Id == atticaDrainId);
+
+            if (isMyAtticaDrain == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private IEnumerable<AtticaDrainServiceModel> GetAtticaDrains(IQueryable<AtticaDrain> drainQuery)
+            => drainQuery
+                .ProjectTo<AtticaDrainServiceModel>(this.mapper)
                 .ToList();
     }
 }

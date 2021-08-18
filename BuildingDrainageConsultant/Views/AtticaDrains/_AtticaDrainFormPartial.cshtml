@@ -3,8 +3,8 @@
 @{
     var isAddView = ViewBag.Title == "Add Attica Drain" ? true : false;
     var isEditView = ViewBag.Title == "Edit Attica Drain" ? true : false;
+    var isDetailsView = ViewBag.Title == "View Details" ? true : false;
     var isAddAtticaPartsView = ViewBag.Title == "Add Attica Parts" ? true : false;
-
 }
 
 <div class="row">
@@ -15,32 +15,32 @@
 
             <partial name="_ChooseAtticaDetailPartial" model="Model" />
 
-            @if (isAddAtticaPartsView || isEditView)
+            @if (isAddAtticaPartsView || isEditView || isDetailsView)
             {
                 <partial name="_ChooseAtticaPartPartial" model="Model" />
             }
 
             <div class="form-group">
                 <label asp-for="Name"></label>
-                <input class="shadow-sm form-control" asp-for="Name">
+                <input class="shadow-sm form-control" asp-for="Name" disabled="@isDetailsView">
                 <span asp-validation-for="Name" class="small text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="FlowRate"></label>
-                <input class="shadow-sm form-control" asp-for="FlowRate">
+                <input class="shadow-sm form-control" asp-for="FlowRate" disabled="@isDetailsView">
                 <span asp-validation-for="FlowRate" class="small text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="DrainageArea"></label>
-                <input class="shadow-sm form-control" asp-for="DrainageArea">
+                <input class="shadow-sm form-control" asp-for="DrainageArea" disabled="@isDetailsView">
                 <span asp-validation-for="DrainageArea" class="small text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="ScreedWaterproofing"></label>
-                <select class="shadow-sm form-control" asp-for="ScreedWaterproofing" asp-items="Html.GetEnumSelectList<AtticaScreedWaterproofingEnum>()">
+                <select class="shadow-sm form-control" asp-for="ScreedWaterproofing" asp-items="Html.GetEnumSelectList<AtticaScreedWaterproofingEnum>()" disabled="@isDetailsView">
                     <option value="">--Select an option--</option>
                 </select>
                 <span asp-validation-for="ScreedWaterproofing" class="small text-danger"></span>
@@ -48,7 +48,7 @@
 
             <div class="form-group">
                 <label asp-for="ConcreteWaterproofing"></label>
-                <select class="shadow-sm form-control" asp-for="ConcreteWaterproofing" asp-items="Html.GetEnumSelectList<AtticaConcreteWaterproofingEnum>()">
+                <select class="shadow-sm form-control" asp-for="ConcreteWaterproofing" asp-items="Html.GetEnumSelectList<AtticaConcreteWaterproofingEnum>()" disabled="@isDetailsView">
                     <option value="">--Select an option--</option>
                 </select>
                 <span asp-validation-for="ConcreteWaterproofing" class="small text-danger"></span>
@@ -56,7 +56,7 @@
 
             <div class="form-group">
                 <label asp-for="Diameter"></label>
-                <select class="shadow-sm form-control" asp-for="Diameter" asp-items="Html.GetEnumSelectList<AtticaDiameterEnum>()">
+                <select class="shadow-sm form-control" asp-for="Diameter" asp-items="Html.GetEnumSelectList<AtticaDiameterEnum>()" disabled="@isDetailsView">
                     <option value="">--Select an option--</option>
                 </select>
                 <span asp-validation-for="Diameter" class="small text-danger"></span>
@@ -64,16 +64,37 @@
 
             <div class="form-group">
                 <label asp-for="VisiblePart"></label>
-                <select class="shadow-sm form-control" asp-for="VisiblePart" asp-items="Html.GetEnumSelectList<AtticaVisiblePartEnum>()">
+                <select class="shadow-sm form-control" asp-for="VisiblePart" asp-items="Html.GetEnumSelectList<AtticaVisiblePartEnum>()" disabled="@isDetailsView">
                     <option value="">--Select an option--</option>
                 </select>
                 <span asp-validation-for="VisiblePart" class="small text-danger"></span>
             </div>
 
+            @if (isDetailsView)
+            {
+                if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsAdmin())
+                    {
+                        <input asp-controller="AtticaDrains" asp-action="Edit" asp-route-id="@Model.Id" class="shadow btn btn-warning" type="submit" formmethod="get" value="Edit" />
+
+                        <partial name="_DeleteButtonWithModalPopup" model="@Model" />
+                    }
+
+                    if (Model.IsMyAtticaDrain)
+                    {
+                        <button asp-controller="AtticaDrains" asp-action="AddToMine" asp-route-id="@Model.Id" class="shadow btn btn-secondary float-right" type="submit" formmethod="get" disabled><i class="pr-1 bi bi-bookmark-plus-fill"></i>Added To My Attica Drains</button>
+                    }
+                    else
+                    {
+                        <button asp-controller="AtticaDrains" asp-action="AddToMine" asp-route-id="@Model.Id" class="shadow btn btn-success float-right" type="submit" formmethod="get"><i class="pr-1 bi bi-bookmark-plus-fill"></i>Add To My Attica Drains</button>
+                    }
+                }
+            }
             @if (isAddView)
             {
                 <div class="form-group">
-                    <input class="btn btn-primary" type="submit" value="Choose Parts" />
+                    <input class="btn btn-info" type="submit" value="Choose Parts" />
                 </div>
             }
 

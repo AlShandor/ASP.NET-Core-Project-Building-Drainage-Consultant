@@ -1,10 +1,17 @@
 ﻿@model AtticaDrainPartsDetailsModel
 
+@{
+    var isDetailsView = ViewBag.Title == "View Details" ? true : false;
+}
+
 <div class="form-group mb-3">
-    <input asp-for="Id" value="@Model.Id" type="hidden" />
-    <div class="form-group">
-        <a onclick="showInPopup('@Url.Action("AddAtticaPartModal","AtticaDrains", new { drainId = Model.Id } ,Context.Request.Scheme)','Choose Attica Part')" class="btn btn-success text-white">Add Attica Part</a>
-    </div>
+    @if (!isDetailsView)
+    {
+        <input asp-for="Id" value="@Model.Id" type="hidden" />
+        <div class="form-group">
+            <a onclick="showInPopup('@Url.Action("AddAtticaPartModal","AtticaDrains", new { drainId = Model.Id } ,Context.Request.Scheme)','Choose Attica Part')" class="btn btn-success text-white">Add Attica Part</a>
+        </div>
+    }
 
     <div class="row d-inline-flex">
         @if (Model.AtticaParts != null)
@@ -14,10 +21,10 @@
                 <div class="shadow col-4 p-2 mb-4">
                     <div class="card h-100">
                         <input value="@part.Id" type="hidden" />
-                        
-                            <img src="@part.ImageUrl" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
-                            <hr />
-                        
+
+                        <img src="@part.ImageUrl" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
+                        <hr />
+
                         <div class="card-body text-center">
                             <h4 class="font-weight-bold mt-2 text-left text-dark text-center text-uppercase small">@part.Name</h4>
 

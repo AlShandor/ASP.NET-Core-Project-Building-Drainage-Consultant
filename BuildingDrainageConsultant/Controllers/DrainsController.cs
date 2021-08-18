@@ -154,9 +154,9 @@
         [Authorize]
         public IActionResult Mine()
         {
-            var myCars = this.drains.ByUser(this.User.Id());
+            var myDrains = this.drains.ByUser(this.User.Id());
 
-            return View(myCars);
+            return View(myDrains);
         }
 
         [Authorize]

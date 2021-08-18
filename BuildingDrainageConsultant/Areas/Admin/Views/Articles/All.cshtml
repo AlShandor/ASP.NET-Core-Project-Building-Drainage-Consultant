@@ -21,7 +21,7 @@
                 <p class="card-text">@article.Content</p>
                 @if (User.IsAdmin())
                 {
-                    <a asp-area="Admin" asp-controller="Articles" asp-action="Edit" asp-route-id="@article.Id" class="d-block shadow btn btn-primary">Edit</a>
+                    <a asp-area="Admin" asp-controller="Articles" asp-action="Edit" asp-route-id="@article.Id" class="d-block shadow btn btn-warning">Edit</a>
                 }
             </div>
         </div>

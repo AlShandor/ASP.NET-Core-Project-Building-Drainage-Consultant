@@ -32,5 +32,8 @@
         public int AtticaDetailId { get; set; }
 
         public AtticaDetailServiceModel AtticaDetail { get; set; }
+
+        public bool IsMyAtticaDrain { get; set; }
+
     }
 }

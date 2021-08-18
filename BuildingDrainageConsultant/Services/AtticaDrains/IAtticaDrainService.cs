@@ -55,5 +55,13 @@
         public AtticaPartServiceModel GetAtticaPartById(int id);
 
         public bool AddAtticaPart(int partId, int drainId);
+
+        public IEnumerable<AtticaDrainServiceModel> ByUser(string userId);
+
+        public bool AddToMine(string userId, int atticaDrainId);
+
+        public bool RemoveFromMine(string userId, int atticaDrainId);
+
+        public bool IsMyAtticaDrain(int atticaDrainId, string userId);
     }
 }
