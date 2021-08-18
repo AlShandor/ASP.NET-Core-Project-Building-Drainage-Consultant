@@ -13,5 +13,7 @@
         public bool Edit(int id, string title, string content, string imageUrl);
 
         public bool Delete(int id);
+
+        public IEnumerable<ArticleServiceModel> Latest();
     }
 }

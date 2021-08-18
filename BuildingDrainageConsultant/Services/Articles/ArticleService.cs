@@ -85,5 +85,13 @@
 
             return true;
         }
+
+        public IEnumerable<ArticleServiceModel> Latest()
+            => this.data
+                .Articles
+                .OrderByDescending(c => c.Id)
+                .ProjectTo<ArticleServiceModel>(this.mapper)
+                .Take(3)
+                .ToList();
     }
 }
