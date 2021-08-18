@@ -113,5 +113,25 @@
 
             return true;
         }
+
+        public void CreateAll(AtticaDetail[] atticaDetails)
+        {
+            foreach (var a in atticaDetails)
+            {
+                var atticaDetail = new AtticaDetail
+                {
+                    RoofType = a.RoofType,
+                    IsWalkable = a.IsWalkable,
+                    ScreedWaterproofing = a.ScreedWaterproofing,
+                    VisiblePart = a.VisiblePart,
+                    Description = a.Description,
+                    ImageUrl = a.ImageUrl
+                };
+
+                this.data.AtticaDetails.Add(atticaDetail);
+            }
+
+            this.data.SaveChanges();
+        }
     }
 }

@@ -258,19 +258,5 @@
 
             return RedirectToAction(nameof(Details), new { id });
         }
-
-        [Authorize]
-        public IActionResult RemoveFromMine(int id)
-        {
-            var drain = this.atticaDrains.RemoveFromMine(this.User.Id(), id);
-
-            if (drain == false)
-            {
-                return NotFound();
-            }
-
-            return RedirectToAction(nameof(Mine));
-
-        }
     }
 }

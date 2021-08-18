@@ -17,7 +17,11 @@
         <div class="col-6 col-md-6 col-lg-4 mb-3">
             <div class="shadow card h-100 border-1">
                 <div class="card-body text-center">
-                    <img src="@atticaDrain.AtticaParts.First().ImageUrl" alt="Alternate Text" class="card-img-top" />
+                    @if (atticaDrain.AtticaParts.Any())
+                    {
+                        <img src="@atticaDrain.AtticaParts.First().ImageUrl" alt="Alternate Text" class="card-img-top" />
+
+                    }
                     <h4 class="card-title text-center">
                         <span class="font-weight-bold text-dark text-uppercase small">@atticaDrain.Name</span>
                     </h4>

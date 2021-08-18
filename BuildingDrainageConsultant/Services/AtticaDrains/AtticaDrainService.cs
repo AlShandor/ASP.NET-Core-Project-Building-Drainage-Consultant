@@ -260,22 +260,6 @@
             return true;
         }
 
-        public bool RemoveFromMine(string userId, int atticaDrainId)
-        {
-            //var user = this.data.Users.Find(userId);
-
-            //var drains = user.AtticaDrains.ToList();
-
-            //if (atticaDrain == null)
-            //{
-            //    return false;
-            //}
-
-            //data.SaveChanges();
-
-            return true;
-        }
-
         public bool IsMyAtticaDrain(int atticaDrainId, string userId)
         {
             var atticaDrains = this.ByUser(userId);
@@ -292,5 +276,28 @@
             => drainQuery
                 .ProjectTo<AtticaDrainServiceModel>(this.mapper)
                 .ToList();
+
+        public void CreateAll(AtticaDrain[] atticaDrains)
+        {
+            foreach (var a in atticaDrains)
+            {
+                var atticaDrain = new AtticaDrain
+                {
+                    Name = a.Name,
+                    FlowRate = a.FlowRate,
+                    DrainageArea = a.DrainageArea,
+                    ScreedWaterproofing = a.ScreedWaterproofing,
+                    ConcreteWaterproofing = a.ConcreteWaterproofing,
+                    Diameter = a.Diameter,
+                    VisiblePart = a.VisiblePart,
+                    AtticaDetailId = a.AtticaDetailId,
+                    AtticaParts = a.AtticaParts
+                };
+
+                this.data.AtticaDrains.Add(atticaDrain);
+            }
+
+            this.data.SaveChanges();
+        }
     }
 }

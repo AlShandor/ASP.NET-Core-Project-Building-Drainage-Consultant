@@ -1,5 +1,6 @@
 ﻿namespace BuildingDrainageConsultant.Services.Articles
 {
+    using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Services.Articles.Models;
     using System.Collections.Generic;
     public interface IArticleService
@@ -15,5 +16,7 @@
         public bool Delete(int id);
 
         public IEnumerable<ArticleServiceModel> Latest();
+
+        public void CreateAll(Article[] articles);
     }
 }

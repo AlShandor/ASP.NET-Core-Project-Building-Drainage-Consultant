@@ -1,5 +1,6 @@
 ﻿namespace BuildingDrainageConsultant.Services.Merchants
 {
+    using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Services.Merchants.Models;
     using System.Collections.Generic;
 
@@ -31,5 +32,7 @@
         public MerchantServiceModel Details(int id);
 
         public bool Delete(int id);
+
+        public void CreateAll(Merchant[] merchants);
     }
 }

@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using BuildingDrainageConsultant.Data;
     using BuildingDrainageConsultant.Data.Models;
+    using BuildingDrainageConsultant.Data.Seeding;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
@@ -17,12 +18,16 @@
         public static IApplicationBuilder PrepareDatabase(
             this IApplicationBuilder app)
         {
-            using var serviceScope = app.ApplicationServices.CreateScope();
-            var services = serviceScope.ServiceProvider;
+            using (var serviceScope = app.ApplicationServices.CreateScope())
+            {
+                var dbContext = serviceScope.ServiceProvider.GetRequiredService<BuildingDrainageConsultantDbContext>();
 
-            MigrateDatabase(services);
+                dbContext.Database.Migrate();
 
-            SeedAdministrator(services);
+                SeedAdministrator(serviceScope.ServiceProvider);
+
+                SeedData(dbContext, serviceScope.ServiceProvider);
+            }
 
             return app;
         }
@@ -33,14 +38,6 @@
             CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
             return app;
-        }
-
-
-        private static void MigrateDatabase(IServiceProvider services)
-        {
-            var data = services.GetRequiredService<BuildingDrainageConsultantDbContext>();
-
-            data.Database.Migrate();
         }
 
         private static void SeedAdministrator(IServiceProvider services)
@@ -75,6 +72,17 @@
                     await userManager.CreateAsync(user, adminPassword);
 
                     await userManager.AddToRoleAsync(user, role.Name);
+                })
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        private static void SeedData(BuildingDrainageConsultantDbContext dbContext, IServiceProvider serviceProvider)
+        {
+            Task
+                .Run(async () =>
+                {
+                    new ApplicationDbContextSeeder().Seed(dbContext, serviceProvider);
                 })
                 .GetAwaiter()
                 .GetResult();

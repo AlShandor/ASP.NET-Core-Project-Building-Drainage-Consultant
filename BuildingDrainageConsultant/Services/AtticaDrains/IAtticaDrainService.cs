@@ -1,5 +1,6 @@
 ﻿namespace BuildingDrainageConsultant.Services.AtticaDrains
 {
+    using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.Attica;
     using BuildingDrainageConsultant.Models.AtticaDrains;
     using BuildingDrainageConsultant.Services.AtticaDetail.Models;
@@ -60,8 +61,8 @@
 
         public bool AddToMine(string userId, int atticaDrainId);
 
-        public bool RemoveFromMine(string userId, int atticaDrainId);
-
         public bool IsMyAtticaDrain(int atticaDrainId, string userId);
+
+        public void CreateAll(AtticaDrain[] atticaDrain);
     }
 }

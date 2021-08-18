@@ -113,5 +113,28 @@
                 .Where(m => m.Id == id)
                 .ProjectTo<MerchantServiceModel>(this.mapper)
                 .FirstOrDefault();
+
+
+        public void CreateAll(Merchant[] merchants)
+        {
+            foreach (var m in merchants)
+            {
+                var merchant = new Merchant
+                {
+                    Name = m.Name,
+                    City = m.City,
+                    Address = m.Address,
+                    Email = m.Email,
+                    Latitude = m.Latitude,
+                    Longitude = m.Longitude,
+                    Phone = m.Phone,
+                    Website = m.Website
+                };
+
+                this.data.Merchants.Add(merchant);
+            }
+
+            this.data.SaveChanges();
+        }
     }
 }

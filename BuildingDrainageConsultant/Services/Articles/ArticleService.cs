@@ -93,5 +93,22 @@
                 .ProjectTo<ArticleServiceModel>(this.mapper)
                 .Take(3)
                 .ToList();
+
+        public void CreateAll(Article[] articles)
+        {
+            foreach (var a in articles)
+            {
+                var article = new Article
+                {
+                    Title = a.Title,
+                    Content = a.Content,
+                    ImageUrl = a.ImageUrl
+                };
+
+                this.data.Articles.Add(article);
+            }
+
+            this.data.SaveChanges();
+        }
     }
 }

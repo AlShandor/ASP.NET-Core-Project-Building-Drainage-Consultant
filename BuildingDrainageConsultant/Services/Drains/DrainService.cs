@@ -255,5 +255,32 @@
             => drainQuery
                 .ProjectTo<DrainDetailsServiceModel>(this.mapper)
                 .ToList();
+
+        public void CreateAll(Drain[] drains)
+        {
+            foreach (var d in drains)
+            {
+                var drain = new Drain
+                {
+                    Name = d.Name,
+                    FlowRate = d.FlowRate,
+                    DrainageArea = d.DrainageArea,
+                    Depth = d.Depth,
+                    Direction = d.Direction,
+                    Diameter = d.Diameter,
+                    VisiblePart = d.VisiblePart,
+                    Waterproofing = d.Waterproofing,
+                    Heating = d.Heating,
+                    Renovation = d.Renovation,
+                    FlapSeal = d.FlapSeal,
+                    ImageUrl = d.ImageUrl,
+                    Description = d.Description
+                };
+
+                this.data.Drains.Add(drain);
+            }
+
+            this.data.SaveChanges();
+        }
     }
 }

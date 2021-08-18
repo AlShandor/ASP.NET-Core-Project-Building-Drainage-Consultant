@@ -87,5 +87,22 @@
 
             return true;
         }
+
+        public void CreateAll(AtticaPart[] atticaParts)
+        {
+            foreach (var a in atticaParts)
+            {
+                var atticaPart = new AtticaPart
+                {
+                    Name = a.Name,
+                    ImageUrl = a.ImageUrl,
+                    Description = a.Description
+                };
+
+                this.data.AtticaParts.Add(atticaPart);
+            }
+
+            this.data.SaveChanges();
+        }
     }
 }

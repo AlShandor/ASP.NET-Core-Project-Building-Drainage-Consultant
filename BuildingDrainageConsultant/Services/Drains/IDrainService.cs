@@ -1,5 +1,6 @@
 ﻿namespace BuildingDrainageConsultant.Services.Drains
 {
+    using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
     using BuildingDrainageConsultant.Models.Drains;
     using BuildingDrainageConsultant.Services.Drains.Models;
@@ -60,5 +61,7 @@
         public bool AddToMine(string userId, int drainId);
 
         public bool IsMyDrain(int drainId, string userId);
+
+        public void CreateAll(Drain[] drains);
     }
 }

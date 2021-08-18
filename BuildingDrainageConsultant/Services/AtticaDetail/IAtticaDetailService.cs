@@ -1,5 +1,6 @@
 ﻿namespace BuildingDrainageConsultant.Services.AtticaDetail
 {
+    using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.Attica;
     using BuildingDrainageConsultant.Services.AtticaDetail.Models;
 
@@ -27,5 +28,7 @@
             string imageUrl);
 
         public bool Delete(int id);
+
+        public void CreateAll(AtticaDetail[] atticaDetails);
     }
 }
