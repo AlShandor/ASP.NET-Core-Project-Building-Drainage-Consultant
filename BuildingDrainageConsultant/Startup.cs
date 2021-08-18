@@ -3,6 +3,7 @@ namespace BuildingDrainageConsultant
     using BuildingDrainageConsultant.Data;
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Infrastructure;
+    using BuildingDrainageConsultant.Services.Articles;
     using BuildingDrainageConsultant.Services.AtticaDetail;
     using BuildingDrainageConsultant.Services.AtticaDrains;
     using BuildingDrainageConsultant.Services.AtticaParts;
@@ -57,6 +58,7 @@ namespace BuildingDrainageConsultant
             services.AddTransient<IAtticaPartService, AtticaPartService>();
             services.AddTransient<IAtticaDetailService, AtticaDetailService>();
             services.AddTransient<IAtticaDrainService, AtticaDrainService>();
+            services.AddTransient<IArticleService, ArticleService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

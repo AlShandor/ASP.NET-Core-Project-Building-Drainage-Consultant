@@ -2,11 +2,13 @@
 {
     using AutoMapper;
     using BuildingDrainageConsultant.Data.Models;
+    using BuildingDrainageConsultant.Models.Articles;
     using BuildingDrainageConsultant.Models.AtticaDetails;
     using BuildingDrainageConsultant.Models.AtticaDrains;
     using BuildingDrainageConsultant.Models.AtticaParts;
     using BuildingDrainageConsultant.Models.Drains;
     using BuildingDrainageConsultant.Models.Merchants;
+    using BuildingDrainageConsultant.Services.Articles.Models;
     using BuildingDrainageConsultant.Services.AtticaDetail.Models;
     using BuildingDrainageConsultant.Services.AtticaDrains.Models;
     using BuildingDrainageConsultant.Services.AtticaParts.Models;
@@ -30,8 +32,11 @@
             this.CreateMap<AtticaDetailServiceModel, AtticaDetailFormModel>();
 
             this.CreateMap<AtticaDrain, AtticaDrainServiceModel>();
-            this.CreateMap<AtticaDrainServiceModel, AtticaDrainFormModel>(); 
+            this.CreateMap<AtticaDrainServiceModel, AtticaDrainFormModel>();
             this.CreateMap<AtticaDrainServiceModel, AtticaDrainPartsDetailsModel>();
+
+            this.CreateMap<Article, ArticleServiceModel>();
+            this.CreateMap<ArticleServiceModel, ArticleFormModel>();
         }
     }
 }

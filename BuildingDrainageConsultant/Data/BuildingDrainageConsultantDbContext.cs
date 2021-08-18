@@ -14,6 +14,7 @@
         public DbSet<AtticaDetail> AtticaDetails { get; set; }
         public DbSet<Merchant> Merchants { get; set; }
         public DbSet<AtticaPart> AtticaParts { get; set; }
+        public DbSet<Article> Articles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

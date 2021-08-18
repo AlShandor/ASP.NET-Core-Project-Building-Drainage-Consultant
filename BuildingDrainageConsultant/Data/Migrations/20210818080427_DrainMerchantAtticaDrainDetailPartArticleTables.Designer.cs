@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuildingDrainageConsultant.Data.Migrations
 {
     [DbContext(typeof(BuildingDrainageConsultantDbContext))]
-    [Migration("20210814150249_DrainMerchantAtticaDetailAtticaDrainAtticaPartTables")]
-    partial class DrainMerchantAtticaDetailAtticaDrainAtticaPartTables
+    [Migration("20210818080427_DrainMerchantAtticaDrainDetailPartArticleTables")]
+    partial class DrainMerchantAtticaDrainDetailPartArticleTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,6 +34,31 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     b.HasIndex("AtticaPartsId");
 
                     b.ToTable("AtticaDrainAtticaPart");
+                });
+
+            modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.Article", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Articles");
                 });
 
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.AtticaDetail", b =>
