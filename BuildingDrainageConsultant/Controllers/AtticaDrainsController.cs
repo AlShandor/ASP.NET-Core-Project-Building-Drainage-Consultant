@@ -66,7 +66,7 @@
                   atticaDrain.Diameter,
                   atticaDrain.VisiblePart);
 
-            return RedirectToAction(nameof(AddAtticaParts), new { drainId = drainId });
+            return RedirectToAction(nameof(Edit), new { id = drainId });
         }
 
         [Authorize(Roles = AdministratorRoleName)]
@@ -77,30 +77,6 @@
             query.Drains = queryResults;
 
             return View(query);
-        }
-
-        [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult AddAtticaParts(int drainId)
-        {
-            var aticaDrain = this.atticaDrains.Details(drainId);
-            var atticaDrainForm = this.mapper.Map<AtticaDrainPartsDetailsModel>(aticaDrain);
-
-            atticaDrainForm.AtticaParts = this.atticaDrains.GetAtticaPartsForDrain(drainId);
-            atticaDrainForm.Id = aticaDrain.Id;
-
-            return View(atticaDrainForm);
-        }
-
-        [Authorize(Roles = AdministratorRoleName)]
-        [HttpPost]
-        public IActionResult AddAtticaParts(int id, AtticaDrainPartsDetailsModel atticaDrain)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(atticaDrain);
-            }
-
-            return RedirectToAction(nameof(All));
         }
 
         public IActionResult Details(int id)
@@ -126,9 +102,10 @@
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Edit(int id)
         {
-            var aticaDrain = this.atticaDrains.Details(id);
+            var atticaDrain = this.atticaDrains.Details(id);
+            var atticaDrainForm = this.mapper.Map<AtticaDrainPartsDetailsModel>(atticaDrain);
 
-            var atticaDrainForm = this.mapper.Map<AtticaDrainPartsDetailsModel>(aticaDrain);
+            atticaDrainForm.Id = atticaDrain.Id;
 
             return View(atticaDrainForm);
         }
@@ -233,7 +210,7 @@
             atticaDrainsCreateInfo = this.mapper.Map<AtticaDrainPartsDetailsModel>(aticaDrain);
 
 
-            return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddAtticaParts", atticaDrainsCreateInfo) });
+            return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "Edit", atticaDrainsCreateInfo) });
         }
 
         [Authorize]

@@ -85,7 +85,7 @@
             .AndAlso()
             .ShouldReturn()
             .Redirect(redirect => redirect
-                .To<AtticaDrainsController>(c => c.AddAtticaParts(atticaDetailId)));
+                .To<AtticaDrainsController>(c => c.Edit(atticaDetailId)));
 
         [Fact]
         public void AllShouldReturnCorrectViewWithModel()
