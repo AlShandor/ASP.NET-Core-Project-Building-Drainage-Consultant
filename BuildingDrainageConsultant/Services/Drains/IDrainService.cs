@@ -60,6 +60,8 @@
 
         public bool AddToMine(string userId, int drainId);
 
+        //public bool RemoveFromMine(string userId, int drainId);
+
         public bool IsMyDrain(int drainId, string userId);
 
         public void CreateAll(Drain[] drains);

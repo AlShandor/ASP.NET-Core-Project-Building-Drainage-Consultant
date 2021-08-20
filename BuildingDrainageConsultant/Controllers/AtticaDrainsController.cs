@@ -232,6 +232,7 @@
             var aticaDrain = this.atticaDrains.Details(atticaDrainsCreateInfo.Id);
             atticaDrainsCreateInfo = this.mapper.Map<AtticaDrainPartsDetailsModel>(aticaDrain);
 
+
             return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddAtticaParts", atticaDrainsCreateInfo) });
         }
 

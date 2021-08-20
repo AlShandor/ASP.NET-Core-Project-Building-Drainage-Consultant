@@ -171,5 +171,19 @@
 
             return RedirectToAction(nameof(Details), new { id });
         }
+
+        //public IActionResult RemoveFromMine(int id)
+        //{
+        //    var userId = this.User.Id();
+
+        //    var drain = this.drains.RemoveFromMine(userId, id);
+
+        //    if (drain == false)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return RedirectToAction(nameof(Mine));
+        //}
     }
 }

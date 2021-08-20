@@ -226,6 +226,13 @@
                 return false;
             }
 
+            var drainDetails = this.Details(drainId);
+            var partAlreadyAdded = drainDetails.AtticaParts.FirstOrDefault(d => d.Id == partId);
+            if (partAlreadyAdded != null)
+            {
+                return true;
+            }
+
             drain.AtticaParts.Add(atticaPart);
             data.SaveChanges();
 
