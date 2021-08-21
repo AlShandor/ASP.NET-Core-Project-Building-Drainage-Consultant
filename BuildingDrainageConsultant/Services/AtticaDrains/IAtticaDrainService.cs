@@ -64,5 +64,7 @@
         public bool IsMyAtticaDrain(int atticaDrainId, string userId);
 
         public void CreateAll(AtticaDrain[] atticaDrain);
+
+        public bool RemovePart(int partId, int atticaDrainId);
     }
 }

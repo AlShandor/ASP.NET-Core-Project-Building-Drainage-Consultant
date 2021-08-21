@@ -236,5 +236,18 @@
 
             return RedirectToAction(nameof(Details), new { id });
         }
+
+        [Authorize]
+        public IActionResult RemovePart(int partId, int atticaDrainId)
+        {
+            var atticaPart = this.atticaDrains.RemovePart(partId, atticaDrainId);
+
+            if (atticaPart == false)
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction(nameof(Edit), new { id = atticaDrainId });
+        }
     }
 }

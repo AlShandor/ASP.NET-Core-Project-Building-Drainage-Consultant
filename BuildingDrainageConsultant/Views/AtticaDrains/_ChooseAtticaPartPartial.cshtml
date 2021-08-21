@@ -2,12 +2,13 @@
 
 @{
     var isDetailsView = ViewBag.Title == "View Details" ? true : false;
+    var isEditView = ViewBag.Title == "Edit Attica Drain" ? true : false;
 }
 
 <div class="form-group mb-3">
+    <input asp-for="Id" value="@Model.Id" type="hidden" />
     @if (!isDetailsView)
     {
-        <input asp-for="Id" value="@Model.Id" type="hidden" />
         <div class="form-group">
             <a onclick="showInPopup('@Url.Action("AddAtticaPartModal","AtticaDrains", new { drainId = Model.Id } ,Context.Request.Scheme)','Choose Attica Part')" class="btn btn-success text-white">Add Attica Part</a>
         </div>
@@ -30,6 +31,13 @@
 
                             <p class="card-text">@part.Description</p>
                         </div>
+
+                        @if (isEditView)
+                        {
+                            <div class="form-group text-center">
+                                <button asp-controller="AtticaDrains" asp-action="RemovePart" asp-route-partId="@part.Id" asp-route-atticaDrainId="@Model.Id" class="shadow btn btn-danger">Remove</button>
+                            </div>
+                        }
                     </div>
                 </div>
             }

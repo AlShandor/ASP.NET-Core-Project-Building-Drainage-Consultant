@@ -9,6 +9,7 @@
     using BuildingDrainageConsultant.Services.AtticaDetail.Models;
     using BuildingDrainageConsultant.Services.AtticaDrains.Models;
     using BuildingDrainageConsultant.Services.AtticaParts.Models;
+    using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -219,16 +220,16 @@
         public bool AddAtticaPart(int partId, int drainId)
         {
             var atticaPart = this.data.AtticaParts.Find(partId);
-            var drain = this.data.AtticaDrains.Find(drainId);
+            var drain = this.data.AtticaDrains
+                                 .Include(a => a.AtticaParts)
+                                 .SingleOrDefault(a => a.Id == drainId);
 
             if (atticaPart == null || drain == null)
             {
                 return false;
             }
 
-            var drainDetails = this.Details(drainId);
-            var partAlreadyAdded = drainDetails.AtticaParts.FirstOrDefault(d => d.Id == partId);
-            if (partAlreadyAdded != null)
+            if (drain.AtticaParts.Contains(atticaPart))
             {
                 return true;
             }
@@ -245,9 +246,9 @@
                 .ProjectTo<AtticaPartServiceModel>(this.mapper)
                 .ToList();
 
-        public bool AddToMine(string userId, int atticaDrainId)
+        public bool AddToMine(string userId, int drainId)
         {
-            var atticaDrain = this.data.AtticaDrains.Find(atticaDrainId);
+            var atticaDrain = this.data.AtticaDrains.Find(drainId);
 
             if (atticaDrain == null)
             {
@@ -267,10 +268,10 @@
             return true;
         }
 
-        public bool IsMyAtticaDrain(int atticaDrainId, string userId)
+        public bool IsMyAtticaDrain(int drainId, string userId)
         {
             var atticaDrains = this.ByUser(userId);
-            var isMyAtticaDrain = atticaDrains.FirstOrDefault(d => d.Id == atticaDrainId);
+            var isMyAtticaDrain = atticaDrains.FirstOrDefault(d => d.Id == drainId);
 
             if (isMyAtticaDrain == null)
             {
@@ -279,11 +280,7 @@
             return true;
         }
 
-        private IEnumerable<AtticaDrainServiceModel> GetAtticaDrains(IQueryable<AtticaDrain> drainQuery)
-            => drainQuery
-                .ProjectTo<AtticaDrainServiceModel>(this.mapper)
-                .ToList();
-
+        // Seed method
         public void CreateAll(AtticaDrain[] atticaDrains)
         {
             foreach (var a in atticaDrains)
@@ -306,5 +303,30 @@
 
             this.data.SaveChanges();
         }
+
+        public bool RemovePart(int partId, int drainId)
+        {
+            var drain = this.data.AtticaDrains
+                                 .Include(a => a.AtticaParts)
+                                 .SingleOrDefault(a => a.Id == drainId);
+
+            var part = drain.AtticaParts.Where(at => at.Id == partId).FirstOrDefault();
+
+            if (drain == null || part == null)
+            {
+                return false;
+            }
+
+            drain.AtticaParts.Remove(part);
+            this.data.SaveChanges();
+
+
+            return true;
+        }
+
+        private IEnumerable<AtticaDrainServiceModel> GetAtticaDrains(IQueryable<AtticaDrain> drainQuery)
+            => drainQuery
+                .ProjectTo<AtticaDrainServiceModel>(this.mapper)
+                .ToList();
     }
 }
