@@ -9,7 +9,6 @@
 
     using static Areas.Admin.AdminConstants;
 
-    [Authorize(Roles = AdministratorRoleName)]
     public class AtticaPartsController : Controller
     {
         private readonly IAtticaPartService atticaParts;
@@ -43,6 +42,7 @@
             return RedirectToAction(nameof(All));
         }
 
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult All([FromQuery] AllAtticaPartsQueryModel query)
         {
             var queryResults = this.atticaParts.All(query.SearchTerm);
@@ -55,11 +55,11 @@
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Edit(int id)
         {
-            var drain = this.atticaParts.Details(id);
+            var atticaPart = this.atticaParts.Details(id);
 
-            var drainForm = this.mapper.Map<AtticaPartFormModel>(drain);
+            var atticaPartForm = this.mapper.Map<AtticaPartFormModel>(atticaPart);
 
-            return View(drainForm);
+            return View(atticaPartForm);
         }
 
         [HttpPost]
@@ -84,6 +84,15 @@
                 atticaPart.Description);
 
             return RedirectToAction(nameof(All));
+        }
+
+        public IActionResult Details(int id)
+        {
+            var atticaPart = this.atticaParts.Details(id);
+
+            var atticaPartForm = this.mapper.Map<AtticaPartFormModel>(atticaPart);
+
+            return View(atticaPartForm);
         }
 
         [HttpPost]

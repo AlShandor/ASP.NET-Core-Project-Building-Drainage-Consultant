@@ -27,17 +27,19 @@
                         <hr />
 
                         <div class="card-body text-center">
-                            <h4 class="font-weight-bold mt-2 text-left text-dark text-center text-uppercase small">@part.Name</h4>
-
-                            <p class="card-text">@part.Description</p>
+                            <h5 class="font-weight-bold mt-2 text-left text-dark text-center text-uppercase ">@part.Name</h5>
                         </div>
 
-                        @if (isEditView)
-                        {
-                            <div class="form-group text-center">
+
+                        <div class="form-group text-center">
+                            <a asp-controller="AtticaParts" asp-action="Details" asp-route-id="@part.Id" class="shadow btn btn-primary mb-2">View Details</a>
+
+                            @if (isEditView)
+                            {
                                 <button asp-controller="AtticaDrains" asp-action="RemovePart" asp-route-partId="@part.Id" asp-route-atticaDrainId="@Model.Id" class="shadow btn btn-danger">Remove</button>
-                            </div>
-                        }
+                            }
+                        </div>
+
                     </div>
                 </div>
             }
