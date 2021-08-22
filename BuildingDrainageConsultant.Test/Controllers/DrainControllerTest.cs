@@ -198,27 +198,6 @@
 
         [Theory]
         [InlineData(1)]
-        public void MineShouldBeForAuthorizedUsersAndReturnCorrectViewWithValidModel(int drainId)
-            => MyController<DrainsController>
-                .Instance(controller => controller
-                    .WithUser("Author Id 1", "Author 1")
-                    .WithData(GetUserDrains(drainId, sameUser: true)))
-                .Calling(c => c.Mine())
-                .ShouldHave()
-                .ActionAttributes(att => att
-                    .RestrictingForAuthorizedRequests())
-                .AndAlso()
-                .ShouldHave()
-                .Data(data => data
-                    .WithSet<User>(users => users
-                        .Any(u => u.Drains.Any(d => d.Id == drainId))))
-                .AndAlso()
-                .ShouldReturn()
-                .View(view => view
-                    .WithModelOfType<IEnumerable<DrainDetailsServiceModel>>());
-
-        [Theory]
-        [InlineData(1)]
         public void AddToMineShouldBeForAuthorizedUsersAndReturnCorrectViewWithValidModel(int drainId)
             => MyController<DrainsController>
                 .Instance(controller => controller

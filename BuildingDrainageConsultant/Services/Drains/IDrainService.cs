@@ -21,8 +21,6 @@
              int currentPage,
              int drainsPerPage);
 
-        public IEnumerable<DrainDetailsServiceModel> ByUser(string userId);
-
         public DrainServiceModel Details(int id);
 
         public int Create(
@@ -58,9 +56,11 @@
 
         public bool Delete(int id);
 
+        public IEnumerable<DrainDetailsServiceModel> ByUser(string userId);
+
         public bool AddToMine(string userId, int drainId);
 
-        //public bool RemoveFromMine(string userId, int drainId);
+        public bool RemoveFromMine(string userId, int drainId);
 
         public bool IsMyDrain(int drainId, string userId);
 

@@ -80,22 +80,22 @@
                         .WithClaim("AdministratorRoleName", "Administrator")))
                 .To<DrainsController>(c => c.Delete(1));
 
-        [Fact]
-        public void MineRouteShouldBeMapped()
-            => MyRouting
-                .Configuration()
-                .ShouldMap(request => request
-                    .WithLocation("/Drains/Mine/")
-                    .WithUser())
-                .To<DrainsController>(c => c.Mine());
+        //[Fact]
+        //public void MineRouteShouldBeMapped()
+        //    => MyRouting
+        //        .Configuration()
+        //        .ShouldMap(request => request
+        //            .WithLocation("/Drains/Mine/")
+        //            .WithUser())
+        //        .To<DrainsController>(c => c.Mine());
 
-        [Fact]
-        public void AddToMineRouteShouldBeMapped()
-            => MyRouting
-                .Configuration()
-                .ShouldMap(request => request
-                    .WithLocation("/Drains/AddToMine/1")
-                    .WithUser())
-                .To<DrainsController>(c => c.AddToMine(1));
+        //[Fact]
+        //public void AddToMineRouteShouldBeMapped()
+        //    => MyRouting
+        //        .Configuration()
+        //        .ShouldMap(request => request
+        //            .WithLocation("/Drains/AddToMine/1")
+        //            .WithUser())
+        //        .To<DrainsController>(c => c.AddToMine(1));
     }
 }

@@ -7,6 +7,7 @@
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
     using BuildingDrainageConsultant.Models.Drains;
     using BuildingDrainageConsultant.Services.Drains.Models;
+    using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -109,10 +110,16 @@
         }
 
         public IEnumerable<DrainDetailsServiceModel> ByUser(string userId)
-        => GetDrains(this.data
-                .Drains
-                .Where(d
-            => d.UserId == userId));
+        {
+            var user = this.data.Users
+                .Include(d => d.Drains)
+                .Where(user => user.Id == userId)
+                .FirstOrDefault();
+
+            var drains = this.GetDrains(user.Drains.AsQueryable());
+
+            return drains;
+        }
 
         public DrainServiceModel Details(int drainId)
             => this.data
@@ -251,11 +258,6 @@
             return true;
         }
 
-        private IEnumerable<DrainDetailsServiceModel> GetDrains(IQueryable<Drain> drainQuery)
-            => drainQuery
-                .ProjectTo<DrainDetailsServiceModel>(this.mapper)
-                .ToList();
-
         public void CreateAll(Drain[] drains)
         {
             foreach (var d in drains)
@@ -282,5 +284,29 @@
 
             this.data.SaveChanges();
         }
+
+        public bool RemoveFromMine(string userId, int drainId)
+        {
+            var user = this.data.Users
+                .Include(u => u.Drains)
+                .FirstOrDefault(u => u.Id == userId);
+
+            var drain = user.Drains.FirstOrDefault(d => d.Id == drainId);
+
+            if (user == null || drain == null)
+            {
+                return false;
+            }
+
+            user.Drains.Remove(drain);
+            this.data.SaveChanges();
+
+            return true;
+        }
+
+        private IEnumerable<DrainDetailsServiceModel> GetDrains(IQueryable<Drain> drainQuery)
+            => drainQuery
+                .ProjectTo<DrainDetailsServiceModel>(this.mapper)
+                .ToList();
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace BuildingDrainageConsultant.Data.Models
 {
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using static DataConstants.Drain;
@@ -53,8 +54,6 @@
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
 
-        public string UserId { get; set; }
-
-        public User User { get; set; }
+        public virtual ICollection<User> Users { get; set; } = new List<User>();
     }
 }

@@ -16,7 +16,7 @@ namespace BuildingDrainageConsultant.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.8")
+                .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("AtticaDrainAtticaPart", b =>
@@ -207,9 +207,6 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     b.Property<int>("Renovation")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("VisiblePart")
                         .HasColumnType("int");
 
@@ -217,8 +214,6 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Drains");
                 });
@@ -331,6 +326,21 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("DrainUser", b =>
+                {
+                    b.Property<int>("DrainsId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UsersId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("DrainsId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("DrainUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -500,14 +510,19 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.Drain", b =>
+            modelBuilder.Entity("DrainUser", b =>
                 {
-                    b.HasOne("BuildingDrainageConsultant.Data.Models.User", "User")
-                        .WithMany("Drains")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                    b.HasOne("BuildingDrainageConsultant.Data.Models.Drain", null)
+                        .WithMany()
+                        .HasForeignKey("DrainsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("User");
+                    b.HasOne("BuildingDrainageConsultant.Data.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -569,8 +584,6 @@ namespace BuildingDrainageConsultant.Data.Migrations
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.User", b =>
                 {
                     b.Navigation("AtticaDrains");
-
-                    b.Navigation("Drains");
                 });
 #pragma warning restore 612, 618
         }

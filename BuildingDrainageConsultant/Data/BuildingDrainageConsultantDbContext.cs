@@ -18,12 +18,6 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder
-                .Entity<Drain>()
-                .HasOne(d => d.User)
-                .WithMany(d => d.Drains)
-                .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
 
             builder
                 .Entity<AtticaDrain>()

@@ -40,6 +40,15 @@
                 UserName = TestUser.Username
             };
 
+            var userData = sameUser ? user : new User
+            {
+                Id = $"Author Id {1}",
+                UserName = $"Author {1}"
+            };
+
+            var listUsers = new List<User>();
+            listUsers.Add(userData);
+
             var drains = Enumerable
                 .Range(1, 1)
                 .Select(i => new Drain
@@ -58,11 +67,7 @@
                     FlapSeal = DrainFlapSealEnum.NoFlapSeal,
                     ImageUrl = "Test ImageUrl",
                     Description = "Test Description",
-                    User = sameUser ? user : new User
-                    {
-                        Id = $"Author Id {i}",
-                        UserName = $"Author {i}"
-                    }
+                    Users = listUsers
                 })
                 .ToList();
 
