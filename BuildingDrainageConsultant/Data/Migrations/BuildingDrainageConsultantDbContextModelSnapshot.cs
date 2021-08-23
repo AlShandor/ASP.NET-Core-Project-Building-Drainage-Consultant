@@ -34,6 +34,21 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     b.ToTable("AtticaDrainAtticaPart");
                 });
 
+            modelBuilder.Entity("AtticaDrainUser", b =>
+                {
+                    b.Property<int>("AtticaDrainsId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UsersId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("AtticaDrainsId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("AtticaDrainUser");
+                });
+
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.Article", b =>
                 {
                     b.Property<int>("Id")
@@ -120,17 +135,12 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     b.Property<int>("ScreedWaterproofing")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("VisiblePart")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AtticaDetailId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("AtticaDrains");
                 });
@@ -493,6 +503,21 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("AtticaDrainUser", b =>
+                {
+                    b.HasOne("BuildingDrainageConsultant.Data.Models.AtticaDrain", null)
+                        .WithMany()
+                        .HasForeignKey("AtticaDrainsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BuildingDrainageConsultant.Data.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.AtticaDrain", b =>
                 {
                     b.HasOne("BuildingDrainageConsultant.Data.Models.AtticaDetail", "AtticaDetail")
@@ -500,14 +525,7 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .HasForeignKey("AtticaDetailId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("BuildingDrainageConsultant.Data.Models.User", "User")
-                        .WithMany("AtticaDrains")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.Navigation("AtticaDetail");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DrainUser", b =>
@@ -577,11 +595,6 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 });
 
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.AtticaDetail", b =>
-                {
-                    b.Navigation("AtticaDrains");
-                });
-
-            modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.User", b =>
                 {
                     b.Navigation("AtticaDrains");
                 });

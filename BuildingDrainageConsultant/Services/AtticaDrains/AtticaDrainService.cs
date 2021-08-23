@@ -100,10 +100,17 @@
         }
 
         public IEnumerable<AtticaDrainServiceModel> ByUser(string userId)
-        => GetAtticaDrains(this.data
-                .AtticaDrains
-                .Where(d
-            => d.UserId == userId));
+        {
+            var user = this.data.Users
+                .Include(d => d.AtticaDrains)
+                .ThenInclude(ad => ad.AtticaParts)
+                .Where(user => user.Id == userId)
+                .FirstOrDefault();
+
+            var atticaDrains = this.GetAtticaDrains(user.AtticaDrains.AsQueryable());
+
+            return atticaDrains;
+        }
 
         public AtticaDrainServiceModel Details(int id)
         => this.data
@@ -264,6 +271,25 @@
 
             user.AtticaDrains.Add(atticaDrain);
             data.SaveChanges();
+
+            return true;
+        }
+
+        public bool RemoveFromMine(string userId, int atticaDrainId)
+        {
+            var user = this.data.Users
+                .Include(u => u.AtticaDrains)
+                .FirstOrDefault(u => u.Id == userId);
+
+            var atticaDrain = user.AtticaDrains.FirstOrDefault(d => d.Id == atticaDrainId);
+
+            if (user == null || atticaDrain == null)
+            {
+                return false;
+            }
+
+            user.AtticaDrains.Remove(atticaDrain);
+            this.data.SaveChanges();
 
             return true;
         }

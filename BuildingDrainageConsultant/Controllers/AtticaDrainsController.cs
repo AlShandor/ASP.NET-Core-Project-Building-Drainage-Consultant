@@ -238,6 +238,21 @@
         }
 
         [Authorize]
+        public IActionResult RemoveFromMine(int id)
+        {
+            var userId = this.User.Id();
+
+            var atticaDrain = this.atticaDrains.RemoveFromMine(userId, id);
+
+            if (atticaDrain == false)
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction(nameof(Mine));
+        }
+
+        [Authorize]
         public IActionResult RemovePart(int partId, int atticaDrainId)
         {
             var atticaPart = this.atticaDrains.RemovePart(partId, atticaDrainId);

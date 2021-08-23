@@ -7,6 +7,6 @@
     {
         public ICollection<Drain> Drains { get; set; } = new List<Drain>();
 
-        public virtual ICollection<AtticaDrain> AtticaDrains { get; set; } = new List<AtticaDrain>();
+        public ICollection<AtticaDrain> AtticaDrains { get; set; } = new List<AtticaDrain>();
     }
 }

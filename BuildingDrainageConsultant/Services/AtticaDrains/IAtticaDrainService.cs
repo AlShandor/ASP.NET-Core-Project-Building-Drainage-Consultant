@@ -66,5 +66,7 @@
         public void CreateAll(AtticaDrain[] atticaDrain);
 
         public bool RemovePart(int partId, int atticaDrainId);
+
+        public bool RemoveFromMine(string userId, int drainId);
     }
 }

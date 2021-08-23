@@ -258,18 +258,11 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     ConcreteWaterproofing = table.Column<int>(type: "int", nullable: false),
                     Diameter = table.Column<int>(type: "int", nullable: false),
                     VisiblePart = table.Column<int>(type: "int", nullable: false),
-                    AtticaDetailId = table.Column<int>(type: "int", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    AtticaDetailId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AtticaDrains", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AtticaDrains_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_AtticaDrains_AtticaDetails_AtticaDetailId",
                         column: x => x.AtticaDetailId,
@@ -326,6 +319,30 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "AtticaDrainUser",
+                columns: table => new
+                {
+                    AtticaDrainsId = table.Column<int>(type: "int", nullable: false),
+                    UsersId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AtticaDrainUser", x => new { x.AtticaDrainsId, x.UsersId });
+                    table.ForeignKey(
+                        name: "FK_AtticaDrainUser_AspNetUsers_UsersId",
+                        column: x => x.UsersId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AtticaDrainUser_AtticaDrains_AtticaDrainsId",
+                        column: x => x.AtticaDrainsId,
+                        principalTable: "AtticaDrains",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -376,9 +393,9 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 column: "AtticaDetailId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AtticaDrains_UserId",
-                table: "AtticaDrains",
-                column: "UserId");
+                name: "IX_AtticaDrainUser_UsersId",
+                table: "AtticaDrainUser",
+                column: "UsersId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DrainUser_UsersId",
@@ -410,6 +427,9 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 name: "AtticaDrainAtticaPart");
 
             migrationBuilder.DropTable(
+                name: "AtticaDrainUser");
+
+            migrationBuilder.DropTable(
                 name: "DrainUser");
 
             migrationBuilder.DropTable(
@@ -419,16 +439,16 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AtticaDrains");
-
-            migrationBuilder.DropTable(
                 name: "AtticaParts");
 
             migrationBuilder.DropTable(
-                name: "Drains");
+                name: "AtticaDrains");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Drains");
 
             migrationBuilder.DropTable(
                 name: "AtticaDetails");

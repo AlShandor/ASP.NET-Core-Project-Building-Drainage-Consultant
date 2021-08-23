@@ -34,8 +34,6 @@
 
         public AtticaDetail AtticaDetail { get; set; }
 
-        public string UserId { get; set; }
-
-        public User User { get; set; }
+        public virtual ICollection<User> Users { get; set; } = new List<User>();
     }
 }
