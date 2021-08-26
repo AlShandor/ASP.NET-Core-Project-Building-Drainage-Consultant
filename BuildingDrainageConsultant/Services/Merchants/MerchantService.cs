@@ -26,6 +26,7 @@
 
             var merchantsResult = merchantsQuery
                 .OrderByDescending(m => m.City)
+                .ThenBy(m => m.Id)
                 .ProjectTo<MerchantServiceModel>(this.mapper)
                 .ToList();
 

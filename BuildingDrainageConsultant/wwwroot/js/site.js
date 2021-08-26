@@ -92,6 +92,11 @@ AjaxPost = form => {
     }
 }
 
+document.getElementById("sort-dropdown").addEventListener("change", () => {
+    document.forms["form"].submit();
+});
+
+
 $("#reset-drains-button").click(function () {
     document.getElementById("searchTerm-input").value = "";
     document.getElementById("direction-select").value = "";
@@ -101,7 +106,7 @@ $("#reset-drains-button").click(function () {
     document.getElementById("heating-select").value = "";
     document.getElementById("renovation-select").value = "";
     document.getElementById("flapSeal-select").value = "";
-    
+
 });
 
 $("#reset-atticaDrains-button").click(function () {
