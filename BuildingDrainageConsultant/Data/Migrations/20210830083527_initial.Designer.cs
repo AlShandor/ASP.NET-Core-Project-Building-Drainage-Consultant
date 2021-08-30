@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuildingDrainageConsultant.Data.Migrations
 {
     [DbContext(typeof(BuildingDrainageConsultantDbContext))]
-    [Migration("20210823143857_DrainMerchantAtticaDrainDetailPartArticleTables")]
-    partial class DrainMerchantAtticaDrainDetailPartArticleTables
+    [Migration("20210830083527_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -100,9 +100,6 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     b.Property<int>("ScreedWaterproofing")
                         .HasColumnType("int");
 
-                    b.Property<int>("VisiblePart")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("AtticaDetails");
@@ -131,7 +128,6 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ScreedWaterproofing")

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BuildingDrainageConsultant.Data.Migrations
 {
-    public partial class DrainMerchantAtticaDrainDetailPartArticleTables : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -70,7 +70,6 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     RoofType = table.Column<int>(type: "int", nullable: false),
                     IsWalkable = table.Column<int>(type: "int", nullable: false),
                     ScreedWaterproofing = table.Column<int>(type: "int", nullable: false),
-                    VisiblePart = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -251,7 +250,7 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FlowRate = table.Column<double>(type: "float", nullable: false),
                     DrainageArea = table.Column<int>(type: "int", nullable: false),
                     ScreedWaterproofing = table.Column<int>(type: "int", nullable: false),

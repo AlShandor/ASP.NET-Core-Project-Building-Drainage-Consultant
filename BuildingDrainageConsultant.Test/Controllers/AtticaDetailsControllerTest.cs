@@ -49,7 +49,6 @@
                     RoofType = roofType,
                     IsWalkable = isWalkable,
                     ScreedWaterproofing = screedWaterproofing,
-                    VisiblePart = visiblePart,
                     Description = Description,
                     ImageUrl = ImageUrl
                 }))
@@ -64,9 +63,7 @@
                             d.RoofType == roofType &&
                             d.IsWalkable == isWalkable &&
                             d.ScreedWaterproofing == screedWaterproofing &&
-                            d.VisiblePart == visiblePart &&
                             d.Description == Description &&
-                            d.VisiblePart == visiblePart &&
                             d.ImageUrl == ImageUrl)))
                 .AndAlso()
                 .ShouldReturn()

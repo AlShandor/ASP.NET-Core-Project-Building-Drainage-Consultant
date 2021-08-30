@@ -98,9 +98,6 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     b.Property<int>("ScreedWaterproofing")
                         .HasColumnType("int");
 
-                    b.Property<int>("VisiblePart")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("AtticaDetails");
@@ -129,7 +126,6 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ScreedWaterproofing")

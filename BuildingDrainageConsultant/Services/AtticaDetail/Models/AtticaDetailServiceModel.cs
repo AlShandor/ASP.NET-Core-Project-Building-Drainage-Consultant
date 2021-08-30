@@ -12,8 +12,6 @@ namespace BuildingDrainageConsultant.Services.AtticaDetail.Models
 
         public AtticaScreedWaterproofingEnum ScreedWaterproofing { get; set; }
 
-        public AtticaVisiblePartEnum VisiblePart { get; set; }
-
         public string Description { get; set; }
 
         public string ImageUrl { get; set; }

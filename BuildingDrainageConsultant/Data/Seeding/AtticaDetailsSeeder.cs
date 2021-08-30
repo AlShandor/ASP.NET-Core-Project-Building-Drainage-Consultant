@@ -25,7 +25,6 @@
                     RoofType = AtticaRoofTypeEnum.WarmRoof,
                     IsWalkable = AtticaWalkableEnum.Walkable,
                     ScreedWaterproofing = AtticaScreedWaterproofingEnum.Bitumen,
-                    VisiblePart = AtticaVisiblePartEnum.Grate,
                     Description = "Detail for Warm Roof. Walkable. With Bitumen Waterpoofing for the screed.",
                     ImageUrl = "https://hl-bg.bg/images/stories/virtuemart/product/HL68H_0_110_B.jpg"
                 },
@@ -34,7 +33,6 @@
                     RoofType = AtticaRoofTypeEnum.ColdRoof,
                     IsWalkable = AtticaWalkableEnum.Walkable,
                     ScreedWaterproofing = AtticaScreedWaterproofingEnum.PVC,
-                    VisiblePart = AtticaVisiblePartEnum.FlatLeafCatcherWarmRoof,
                     Description = "Detail for Warm Roof. Walkable. With Bitumen Waterpoofing for the screed.",
                     ImageUrl = "https://hl-bg.bg/images/stories/virtuemart/product/HL68F_0_75_B.jpg"
                 },
@@ -43,7 +41,6 @@
                     RoofType = AtticaRoofTypeEnum.WarmRoof,
                     IsWalkable = AtticaWalkableEnum.NotWalkable,
                     ScreedWaterproofing = AtticaScreedWaterproofingEnum.TPO,
-                    VisiblePart = AtticaVisiblePartEnum.FlatLeafCatcherWarmRoof,
                     Description = "Detail for Warm Roof. Walkable. With Bitumen Waterpoofing for the screed.",
                     ImageUrl = "https://hl-bg.bg/images/stories/virtuemart/product/HL68H_0_110_B.jpg"
                 },
@@ -52,7 +49,6 @@
                     RoofType = AtticaRoofTypeEnum.ColdRoof,
                     IsWalkable = AtticaWalkableEnum.NotWalkable,
                     ScreedWaterproofing = AtticaScreedWaterproofingEnum.FlexibleMembrane2mm,
-                    VisiblePart = AtticaVisiblePartEnum.FlatLeafCatcherWarmRoof,
                     Description = "Detail for Warm Roof. Walkable. With Bitumen Waterpoofing for the screed.",
                     ImageUrl = "https://hl-bg.bg/images/stories/virtuemart/product/HL68P_0_50_B.jpg"
                 },

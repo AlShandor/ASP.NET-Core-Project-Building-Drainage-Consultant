@@ -18,8 +18,6 @@
 
         public AtticaScreedWaterproofingEnum ScreedWaterproofing { get; set; }
 
-        public AtticaVisiblePartEnum VisiblePart { get; set; }
-
         [Required]
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }

@@ -241,7 +241,11 @@
                 return true;
             }
 
+            
             drain.AtticaParts.Add(atticaPart);
+            var atticaPartsNames = drain.AtticaParts.Select(p => p.Name).ToArray();
+            drain.Name = string.Join(" + ", atticaPartsNames);
+
             data.SaveChanges();
 
             return true;
@@ -306,6 +310,28 @@
             return true;
         }
 
+        public bool RemovePart(int partId, int drainId)
+        {
+            var drain = this.data.AtticaDrains
+                                 .Include(a => a.AtticaParts)
+                                 .SingleOrDefault(a => a.Id == drainId);
+
+            var part = drain.AtticaParts.Where(at => at.Id == partId).FirstOrDefault();
+
+            if (drain == null || part == null)
+            {
+                return false;
+            }
+
+            drain.AtticaParts.Remove(part);
+            var atticaPartsNames = drain.AtticaParts.Select(p => p.Name).ToArray();
+            drain.Name = string.Join(" + ", atticaPartsNames);
+
+            this.data.SaveChanges();
+
+            return true;
+        }
+
         // Seed method
         public void CreateAll(AtticaDrain[] atticaDrains)
         {
@@ -328,26 +354,6 @@
             }
 
             this.data.SaveChanges();
-        }
-
-        public bool RemovePart(int partId, int drainId)
-        {
-            var drain = this.data.AtticaDrains
-                                 .Include(a => a.AtticaParts)
-                                 .SingleOrDefault(a => a.Id == drainId);
-
-            var part = drain.AtticaParts.Where(at => at.Id == partId).FirstOrDefault();
-
-            if (drain == null || part == null)
-            {
-                return false;
-            }
-
-            drain.AtticaParts.Remove(part);
-            this.data.SaveChanges();
-
-
-            return true;
         }
 
         private IEnumerable<AtticaDrainServiceModel> GetAtticaDrains(IQueryable<AtticaDrain> drainQuery)

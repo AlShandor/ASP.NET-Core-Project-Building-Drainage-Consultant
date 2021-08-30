@@ -64,6 +64,7 @@ namespace BuildingDrainageConsultant
         {
             app.PrepareDatabase();
 
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

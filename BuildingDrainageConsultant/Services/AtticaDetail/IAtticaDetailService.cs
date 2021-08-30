@@ -14,7 +14,6 @@
                 AtticaRoofTypeEnum roofType,
                 AtticaWalkableEnum isWalkable,
                 AtticaScreedWaterproofingEnum screedWaterproofing,
-                AtticaVisiblePartEnum visiblePart,
                 string description,
                 string imageUrl);
 
@@ -23,7 +22,6 @@
             AtticaRoofTypeEnum roofType,
             AtticaWalkableEnum isWalkable,
             AtticaScreedWaterproofingEnum screedWaterproofing,
-            AtticaVisiblePartEnum visiblePart,
             string description,
             string imageUrl);
 

@@ -19,10 +19,6 @@
         [Display(Name = "Screed Waterproofing")]
         public AtticaScreedWaterproofingEnum ScreedWaterproofing { get; set; }
 
-        [Display(Name = "Visible Part")]
-
-        public AtticaVisiblePartEnum VisiblePart { get; set; }
-
         [Url]
         [Display(Name = "Image Url")]
         public string ImageUrl { get; set; }

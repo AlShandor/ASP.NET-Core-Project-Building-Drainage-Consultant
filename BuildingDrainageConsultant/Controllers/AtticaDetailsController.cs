@@ -36,7 +36,6 @@
                 atticaDetail.RoofType,
                 atticaDetail.IsWalkable,
                 atticaDetail.ScreedWaterproofing,
-                atticaDetail.VisiblePart,
                 atticaDetail.Description,
                 atticaDetail.ImageUrl);
 
@@ -85,7 +84,6 @@
                 atticaDetail.RoofType,
                 atticaDetail.IsWalkable,
                 atticaDetail.ScreedWaterproofing,
-                atticaDetail.VisiblePart,
                 atticaDetail.Description,
                 atticaDetail.ImageUrl);
 

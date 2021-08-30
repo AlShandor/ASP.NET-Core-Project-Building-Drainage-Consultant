@@ -49,8 +49,7 @@
         public int Create(
             AtticaRoofTypeEnum roofType, 
             AtticaWalkableEnum isWalkable, 
-            AtticaScreedWaterproofingEnum screedWaterproofing, 
-            AtticaVisiblePartEnum visiblePart, 
+            AtticaScreedWaterproofingEnum screedWaterproofing,
             string description, 
             string imageUrl)
         {
@@ -59,7 +58,6 @@
                 RoofType = roofType,
                 IsWalkable = isWalkable,
                 ScreedWaterproofing = screedWaterproofing,
-                VisiblePart = visiblePart,
                 Description = description,
                 ImageUrl = imageUrl == null ? DefaultImageUrl : imageUrl
             };
@@ -71,7 +69,13 @@
             return atticaDetailData.Id;
         }
 
-        public bool Edit(int id, AtticaRoofTypeEnum roofType, AtticaWalkableEnum isWalkable, AtticaScreedWaterproofingEnum screedWaterproofing, AtticaVisiblePartEnum visiblePart, string description, string imageUrl)
+        public bool Edit(
+            int id, 
+            AtticaRoofTypeEnum roofType, 
+            AtticaWalkableEnum isWalkable, 
+            AtticaScreedWaterproofingEnum screedWaterproofing,
+            string description, 
+            string imageUrl)
         {
             var atticaDetailData = this.data.AtticaDetails.Find(id);
 
@@ -83,7 +87,6 @@
             atticaDetailData.RoofType = roofType;
             atticaDetailData.IsWalkable = isWalkable;
             atticaDetailData.ScreedWaterproofing = screedWaterproofing;
-            atticaDetailData.VisiblePart = visiblePart;
             atticaDetailData.Description = description;
             atticaDetailData.ImageUrl = imageUrl;
 
@@ -123,7 +126,6 @@
                     RoofType = a.RoofType,
                     IsWalkable = a.IsWalkable,
                     ScreedWaterproofing = a.ScreedWaterproofing,
-                    VisiblePart = a.VisiblePart,
                     Description = a.Description,
                     ImageUrl = a.ImageUrl
                 };
