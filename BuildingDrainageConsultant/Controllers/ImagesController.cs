@@ -1,60 +1,66 @@
 ﻿namespace BuildingDrainageConsultant.Controllers
 {
-    using BuildingDrainageConsultant.Data;
+    using AutoMapper;
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Models.Images;
+    using BuildingDrainageConsultant.Services.Images;
     using Microsoft.AspNetCore.Mvc;
     using System;
     using System.Linq;
 
     public class ImagesController : Controller
     {
-        BuildingDrainageConsultantDbContext data;
-        public ImagesController(BuildingDrainageConsultantDbContext data)
+        private readonly IImageHLService images;
+        private readonly IMapper mapper;
+        public ImagesController(IImageHLService images, IMapper mapper)
         {
-            this.data = data;
-
-        }
-        public IActionResult Index()
-        {
-            ImageViewModel viewModel = new ImageViewModel();
-            viewModel.Images = data.Images.ToList();
-            viewModel.Image = new ImageProduct();
-            return View(viewModel);
+            this.images = images;
+            this.mapper = mapper;
         }
 
         [HttpPost]
-        public IActionResult AddImages(ImageViewModel model)
+        public IActionResult AddImages(ImageHLViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            var Files = model.Image.ImageFiles;
+            var galleryName = this.images.AddImagesToGallery(model);
 
-            if (Files.Count > 0)
-            {
-                foreach (var img in Files)
-                {
-                    ImageProduct image = new ImageProduct();
-                    var guid = Guid.NewGuid().ToString();
-                    var filePath = "wwwroot/images/" + img.FileName;
-                    var fileName = img.FileName;
-                    using (var stream = System.IO.File.Create(filePath))
-                    {
-                        img.CopyTo(stream);
-                        image.Name = fileName;
-                        image.Path = filePath;
-                        data.Images.Add(image);
-                        data.SaveChanges();
-                    }
-                }
-                return RedirectToAction("Index");
-            }
+            return RedirectToAction(galleryName);
+        }
 
+        public IActionResult DrainsGallery(ImageHLViewModel model)
+        {
+            var drainImages = this.images.GetDrainImages();
 
-            return RedirectToAction("Index");
+            model.DisplayImages = drainImages;
+            return View(model);
+        }
+
+        public IActionResult AtticaDetailsGallery(ImageHLViewModel model)
+        {
+            var drainImages = this.images.GetAtticaDetailsImages();
+
+            model.DisplayImages = drainImages;
+            return View(model);
+        }
+
+        public IActionResult AtticaPartsGallery(ImageHLViewModel model)
+        {
+            var drainImages = this.images.GetAtticaPartsImages();
+
+            model.DisplayImages = drainImages;
+            return View(model);
+        }
+
+        public IActionResult ArticlesGallery(ImageHLViewModel model)
+        {
+            var drainImages = this.images.GetArticlesImages();
+
+            model.DisplayImages = drainImages;
+            return View(model);
         }
     }
 }

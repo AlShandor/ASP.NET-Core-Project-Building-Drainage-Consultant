@@ -1,33 +1,30 @@
-﻿@model ImageViewModel
-
-@{
-    ViewBag.Title = "All Images";
-}
+﻿@model ImageHLViewModel
 
 <form asp-action="AddImages" asp-controller="Images" method="post" enctype="multipart/form-data">
     <div class="form-group">
+        <input type="hidden"  asp-for="@Model.ImageCategory" value="@ViewBag.ImageCategory" />
         <div class="col-sm-3 row mb-3">
-            <input asp-for="@Model.Image.ImageFiles" type="file" multiple="multiple">
-            <span asp-validation-for="@Model.Image.ImageFiles" class="text-danger"></span>
+            <input asp-for="@Model.UploadImageFiles" type="file" multiple="multiple">
+            <span asp-validation-for="@Model.UploadImageFiles" class="text-danger"></span>
         </div>
         <button type="submit" class="btn btn-danger">Upload All</button>
     </div>
 </form>
 
 <div class="row">
-    @if (!Model.Images.Any())
+    @if (!Model.DisplayImages.Any())
     {
         <div class="offset-3 col-6">
             <h2 class="text-center">No Images found!</h2>
         </div>
     }
 
-    @foreach (var img in Model.Images)
+    @foreach (var img in Model.DisplayImages)
     {
         <div class="col-4 col-md-4 col-lg-3 mb-3">
             <div class="shadow card h-100 border-1">
                 <div class="card-body text-center">
-                    <img src="~/images/@img.Name" alt="Alternate Text" class="card-img-top" />
+                    <img src="~/images/@ViewBag.ImageCategory/@img.Name" alt="Alternate Text" class="card-img-top" />
                     <h4 class="card-title text-center">
                         <span class="font-weight-bold text-dark text-uppercase small">@img.Name</span>
                     </h4>
@@ -36,4 +33,3 @@
         </div>
     }
 </div>
-

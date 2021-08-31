@@ -13,6 +13,7 @@
     using BuildingDrainageConsultant.Services.AtticaDrains.Models;
     using BuildingDrainageConsultant.Services.AtticaParts.Models;
     using BuildingDrainageConsultant.Services.Drains.Models;
+    using BuildingDrainageConsultant.Services.Images.Models;
     using BuildingDrainageConsultant.Services.Merchants.Models;
     public class MappingProfile : Profile
     {
@@ -37,6 +38,8 @@
 
             this.CreateMap<Article, ArticleServiceModel>();
             this.CreateMap<ArticleServiceModel, ArticleFormModel>();
+
+            this.CreateMap<ImageHL, ImageHLServiceModel>();
         }
     }
 }

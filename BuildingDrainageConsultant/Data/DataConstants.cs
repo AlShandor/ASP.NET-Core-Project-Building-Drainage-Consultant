@@ -55,5 +55,11 @@
             public const int ContentMaxLength = 1000;
             public const string DefaultImageUrl = "https://hl-bg.bg/components/com_virtuemart/assets/images/vmgeneral/noimage.gif";
         }
+
+        public class Image
+        {
+            public const int NameMaxLength = 100;
+            public const int PathMaxLength = 255;
+        }
     }
 }

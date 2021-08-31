@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuildingDrainageConsultant.Data.Migrations
 {
     [DbContext(typeof(BuildingDrainageConsultantDbContext))]
-    [Migration("20210831093438_initial")]
+    [Migration("20210831134219_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -226,12 +226,15 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     b.ToTable("Drains");
                 });
 
-            modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.ImageProduct", b =>
+            modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.ImageHL", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ImageCategory")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasMaxLength(100)

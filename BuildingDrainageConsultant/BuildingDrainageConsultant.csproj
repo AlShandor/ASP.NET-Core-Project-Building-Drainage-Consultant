@@ -32,7 +32,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\" />
+    <Folder Include="Data\Migrations\" />
+    <Folder Include="wwwroot\images\atticadetails\" />
+    <Folder Include="wwwroot\images\atticaparts\" />
+    <Folder Include="wwwroot\images\articles\" />
   </ItemGroup>
 
 </Project>
