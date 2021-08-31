@@ -34,7 +34,6 @@
                 foreach (var img in files)
                 {
                     ImageHL image = new ImageHL();
-                    var guid = Guid.NewGuid().ToString();
                     var filePath = $"wwwroot/images/{model.ImageCategory.ToLower()}/{img.FileName}";
                     var fileName = img.FileName;
                     using (var stream = System.IO.File.Create(filePath))
@@ -77,5 +76,36 @@
                 .Where(i => i.ImageCategory == ImageHLCategoriesEnum.Articles)
                 .ProjectTo<ImageHLServiceModel>(this.mapper)
                 .ToList();
+
+        public bool Delete(int id)
+        {
+            var image = this.data.Images.Find(id);
+
+            if (image == null)
+            {
+                return false;
+            }
+
+            this.data.Images.Remove(image);
+            data.SaveChanges();
+
+            if (System.IO.File.Exists(image.Path))
+            {
+                System.IO.File.Delete(image.Path);
+            }
+
+            return true;
+        }
+        public string GetImageGallery(int id)
+        {
+            var image = this.data.Images.Find(id);
+
+            if (image == null)
+            {
+                return string.Empty;
+            }
+
+            return image.ImageCategory.ToString() + "Gallery";
+        }
     }
 }

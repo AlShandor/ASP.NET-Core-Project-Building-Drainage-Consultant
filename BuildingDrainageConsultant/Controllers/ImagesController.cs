@@ -1,13 +1,14 @@
 ﻿namespace BuildingDrainageConsultant.Controllers
 {
     using AutoMapper;
-    using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Models.Images;
     using BuildingDrainageConsultant.Services.Images;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using System;
-    using System.Linq;
 
+    using static Areas.Admin.AdminConstants;
+
+    [Authorize(Roles = AdministratorRoleName)]
     public class ImagesController : Controller
     {
         private readonly IImageHLService images;
@@ -61,6 +62,21 @@
 
             model.DisplayImages = drainImages;
             return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var imageGallery = this.images.GetImageGallery(id);
+
+            if (imageGallery == string.Empty)
+            {
+                return NotFound();
+            }
+
+            var image = this.images.Delete(id);
+
+            return RedirectToAction(imageGallery);
         }
     }
 }

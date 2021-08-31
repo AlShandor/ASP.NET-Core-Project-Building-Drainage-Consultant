@@ -15,5 +15,9 @@
         public IEnumerable<ImageHLServiceModel> GetAtticaPartsImages();
 
         public IEnumerable<ImageHLServiceModel> GetArticlesImages();
+
+        public bool Delete(int id);
+
+        public string GetImageGallery(int id);
     }
 }

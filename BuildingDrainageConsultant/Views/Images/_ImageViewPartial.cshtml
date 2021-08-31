@@ -1,0 +1,15 @@
+﻿@model ImageHLServiceModel
+
+<div class="col-4 col-md-4 col-lg-3 mb-3">
+    <div class="shadow card h-100 border-1">
+        <div class="card-body text-center">
+            <img src="~/images/@ViewBag.ImageCategory/@Model.Name" alt="Alternate Text" class="card-img-top" />
+            <h4 class="card-title text-center">
+                <span class="font-weight-bold text-dark text-uppercase small">@Model.Name</span>
+            </h4>
+
+            <partial name="_DeleteButtonWithModalPopup" model="@Model" />
+
+        </div>
+    </div>
+</div>
