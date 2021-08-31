@@ -29,14 +29,12 @@
             AtticaRoofTypeEnum.ColdRoof,
             AtticaWalkableEnum.NotWalkable,
             AtticaScreedWaterproofingEnum.Bitumen,
-            AtticaVisiblePartEnum.DomedLeafCatcherWarmRoof,
             "AtticaDrain Description",
             "https://hl-bg.bg/images/stories/virtuemart/product/HL62.1F_2_502e4143486ae.jpg")]
         public void PostAddShouldBeForAuthorizedUsersAndReturnRedirectWithValidModel(
             AtticaRoofTypeEnum roofType,
             AtticaWalkableEnum isWalkable,
             AtticaScreedWaterproofingEnum screedWaterproofing,
-            AtticaVisiblePartEnum visiblePart,
             string Description,
             string ImageUrl
             )

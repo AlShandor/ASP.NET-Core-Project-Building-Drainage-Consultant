@@ -1,0 +1,39 @@
+﻿@model ImageViewModel
+
+@{
+    ViewBag.Title = "All Images";
+}
+
+<form asp-action="AddImages" asp-controller="Images" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <div class="col-sm-3 row mb-3">
+            <input asp-for="@Model.Image.ImageFiles" type="file" multiple="multiple">
+            <span asp-validation-for="@Model.Image.ImageFiles" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-danger">Upload All</button>
+    </div>
+</form>
+
+<div class="row">
+    @if (!Model.Images.Any())
+    {
+        <div class="offset-3 col-6">
+            <h2 class="text-center">No Images found!</h2>
+        </div>
+    }
+
+    @foreach (var img in Model.Images)
+    {
+        <div class="col-4 col-md-4 col-lg-3 mb-3">
+            <div class="shadow card h-100 border-1">
+                <div class="card-body text-center">
+                    <img src="~/images/@img.Name" alt="Alternate Text" class="card-img-top" />
+                    <h4 class="card-title text-center">
+                        <span class="font-weight-bold text-dark text-uppercase small">@img.Name</span>
+                    </h4>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
