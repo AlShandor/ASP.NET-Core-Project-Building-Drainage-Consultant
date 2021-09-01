@@ -19,7 +19,7 @@
         =>
             MyController<DrainsController>
                 .Instance()
-                .Calling(c => c.Add())
+                .Calling(c => c.Add(new DrainFormModel()))
                 .ShouldHave()
                 .ActionAttributes(att => att
                     .RestrictingForAuthorizedRequests())
@@ -41,7 +41,7 @@
             DrainHeatingEnum.NoHeating,
             DrainRenovationEnum.ForRenovation,
             DrainFlapSealEnum.NoFlapSeal,
-            "imageUrl",
+            1,
             "drain1 Description")]
         public void PostAddShouldBeForAuthorizedUsersAndReturnRedirectWithValidModel(
             string name,
@@ -55,7 +55,7 @@
             DrainHeatingEnum heating,
             DrainRenovationEnum renovation,
             DrainFlapSealEnum flapSeal,
-            string imageUrl,
+            int imageId,
             string description)
         => MyController<DrainsController>
             .Instance(controller => controller
@@ -74,7 +74,7 @@
                 Heating = heating,
                 Renovation = renovation,
                 FlapSeal = flapSeal,
-                ImageUrl = imageUrl,
+                ImageId = imageId,
                 Description = description
             }))
             .ShouldHave()
@@ -96,7 +96,7 @@
                         d.Heating == heating &&
                         d.Renovation == renovation &&
                         d.FlapSeal == flapSeal &&
-                        d.ImageUrl == imageUrl &&
+                        d.ImageId == imageId &&
                         d.Description == description)))
             .AndAlso()
             .ShouldReturn()

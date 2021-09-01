@@ -62,7 +62,7 @@ showInPopup = (url, title) => {
     })
 }
 
-
+// add id="view-all" to the div displaying the result
 AjaxPost = form => {
     try {
         $.ajax({

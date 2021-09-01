@@ -160,7 +160,6 @@
                 return BadRequest();
             }
 
-
             atticaDrainsCreateInfo.AtticaDetails = this.atticaDrains.GetAtticaDetails();
 
             return View(atticaDrainsCreateInfo);
@@ -170,12 +169,14 @@
         [HttpPost]
         public IActionResult AddAtticaDetail(int id, AtticaDrainPartsDetailsModel atticaDrainsCreateInfo)
         {
-            if (!ModelState.IsValid)
+             var atticaDetail = this.atticaDrains.GetAtticaDetailById(id);
+
+            if (!ModelState.IsValid || atticaDetail == null)
             {
                 return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddAtticaDetail", atticaDrainsCreateInfo) });
             }
 
-            atticaDrainsCreateInfo.AtticaDetail = this.atticaDrains.GetAtticaDetailById(id);
+            atticaDrainsCreateInfo.AtticaDetail = atticaDetail;
             atticaDrainsCreateInfo.AtticaDetailId = id;
 
             return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "Add", atticaDrainsCreateInfo) });

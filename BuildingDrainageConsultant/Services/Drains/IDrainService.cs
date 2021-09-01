@@ -4,6 +4,7 @@
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
     using BuildingDrainageConsultant.Models.Drains;
     using BuildingDrainageConsultant.Services.Drains.Models;
+    using BuildingDrainageConsultant.Services.Images.Models;
     using System.Collections.Generic;
 
     public interface IDrainService
@@ -35,7 +36,7 @@
             DrainHeatingEnum heating,
             DrainRenovationEnum renovation,
             DrainFlapSealEnum flapSeal,
-            string imageUrl,
+            int? imageId,
             string description);
 
         public bool Edit(
@@ -51,7 +52,7 @@
             DrainHeatingEnum heating,
             DrainRenovationEnum renovation,
             DrainFlapSealEnum flapSeal,
-            string imageUrl,
+            int? imageId,
             string description);
 
         public bool Delete(int id);
@@ -63,6 +64,10 @@
         public bool RemoveFromMine(string userId, int drainId);
 
         public bool IsMyDrain(int drainId, string userId);
+
+        public IEnumerable<ImageHLServiceModel> GetDrainImages();
+
+        public ImageHLServiceModel GetImageById(int id);
 
         public void CreateAll(Drain[] drains);
     }

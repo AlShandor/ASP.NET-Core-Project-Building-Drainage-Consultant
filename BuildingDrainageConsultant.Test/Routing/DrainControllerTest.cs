@@ -16,7 +16,7 @@
                     .WithUser(user => user
                         .WithClaim("AdministratorRoleName", "Administrator"))
                 )
-                .To<DrainsController>(c => c.Add());
+                .To<DrainsController>(c => c.Add(new DrainFormModel()));
 
         [Fact]
         public void PostAddShouldBeMapped()

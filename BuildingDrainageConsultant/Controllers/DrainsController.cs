@@ -22,7 +22,7 @@
         }
 
         [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult Add() => View();
+        public IActionResult Add(DrainFormModel drain, int id) => View(drain);
 
         [HttpPost]
         [Authorize(Roles = AdministratorRoleName)]
@@ -45,7 +45,7 @@
                 drain.Heating,
                 drain.Renovation,
                 drain.FlapSeal,
-                drain.ImageUrl,
+                drain.ImageId,
                 drain.Description);
 
             return RedirectToAction(nameof(All));
@@ -130,7 +130,7 @@
                 drain.Heating,
                 drain.Renovation,
                 drain.FlapSeal,
-                drain.ImageUrl,
+                drain.ImageId,
                 drain.Description);
 
             return RedirectToAction(nameof(All));
@@ -172,6 +172,7 @@
             return RedirectToAction(nameof(Details), new { id });
         }
 
+        [Authorize]
         public IActionResult RemoveFromMine(int id)
         {
             var userId = this.User.Id();
@@ -184,6 +185,31 @@
             }
 
             return RedirectToAction(nameof(Mine));
+        }
+
+        [Authorize(Roles = AdministratorRoleName)]
+        public IActionResult AddDrainImage(DrainFormModel drainCreateInfo)
+        {
+            drainCreateInfo.Images = this.drains.GetDrainImages();
+
+            return View(drainCreateInfo);
+        }
+
+        [Authorize(Roles = AdministratorRoleName)]
+        [HttpPost]
+        public IActionResult AddDrainImage(int id, DrainFormModel drainCreateInfo)
+        {
+            var drainImage = this.drains.GetImageById(id);
+
+            if (drainImage == null) // || !ModelState.IsValid)
+            {
+                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddDrainImage", drainCreateInfo) });
+            }
+
+            drainCreateInfo.Image = drainImage;
+            drainCreateInfo.ImageId = id;
+
+            return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "Add", drainCreateInfo) });
         }
     }
 }

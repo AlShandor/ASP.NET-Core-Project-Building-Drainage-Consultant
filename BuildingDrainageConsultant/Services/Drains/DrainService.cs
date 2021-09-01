@@ -5,8 +5,10 @@
     using BuildingDrainageConsultant.Data;
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
+    using BuildingDrainageConsultant.Data.Models.Enums.ImagesHL;
     using BuildingDrainageConsultant.Models.Drains;
     using BuildingDrainageConsultant.Services.Drains.Models;
+    using BuildingDrainageConsultant.Services.Images.Models;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Linq;
@@ -141,7 +143,7 @@
             DrainHeatingEnum heating,
             DrainRenovationEnum renovation,
             DrainFlapSealEnum flapSeal,
-            string imageUrl,
+            int? imageId,
             string description)
         {
             var drainData = new Drain
@@ -157,7 +159,7 @@
                 Heating = heating,
                 Renovation = renovation,
                 FlapSeal = flapSeal,
-                ImageUrl = imageUrl == null ? DefaultImageUrl : imageUrl,
+                ImageId = imageId == null ? DefaultImageId : imageId,
                 Description = description
             };
 
@@ -180,7 +182,7 @@
             DrainHeatingEnum heating,
             DrainRenovationEnum renovation,
             DrainFlapSealEnum flapSeal,
-            string imageUrl,
+            int? imageId,
             string description)
         {
             var drainData = this.data.Drains.Find(id);
@@ -201,7 +203,7 @@
             drainData.Heating = heating;
             drainData.Renovation = renovation;
             drainData.FlapSeal = flapSeal;
-            drainData.ImageUrl = imageUrl;
+            drainData.ImageId = imageId == null ? DefaultImageId : imageId;
             drainData.Description = description;
 
             this.data.SaveChanges();
@@ -258,33 +260,6 @@
             return true;
         }
 
-        public void CreateAll(Drain[] drains)
-        {
-            foreach (var d in drains)
-            {
-                var drain = new Drain
-                {
-                    Name = d.Name,
-                    FlowRate = d.FlowRate,
-                    DrainageArea = d.DrainageArea,
-                    Depth = d.Depth,
-                    Direction = d.Direction,
-                    Diameter = d.Diameter,
-                    VisiblePart = d.VisiblePart,
-                    Waterproofing = d.Waterproofing,
-                    Heating = d.Heating,
-                    Renovation = d.Renovation,
-                    FlapSeal = d.FlapSeal,
-                    ImageUrl = d.ImageUrl,
-                    Description = d.Description
-                };
-
-                this.data.Drains.Add(drain);
-            }
-
-            this.data.SaveChanges();
-        }
-
         public bool RemoveFromMine(string userId, int drainId)
         {
             var user = this.data.Users
@@ -302,6 +277,45 @@
             this.data.SaveChanges();
 
             return true;
+        }
+
+        public IEnumerable<ImageHLServiceModel> GetDrainImages()
+         => this.data.Images
+                .Where(i => i.ImageCategory == ImageHLCategoriesEnum.Drains)
+                .ProjectTo<ImageHLServiceModel>(this.mapper)
+                .ToList();
+
+        public ImageHLServiceModel GetImageById(int id)
+         => this.data.Images
+                .Where(i => i.Id == id)
+                .ProjectTo<ImageHLServiceModel>(this.mapper)
+                .FirstOrDefault();
+
+        public void CreateAll(Drain[] drains)
+        {
+            foreach (var d in drains)
+            {
+                var drain = new Drain
+                {
+                    Name = d.Name,
+                    FlowRate = d.FlowRate,
+                    DrainageArea = d.DrainageArea,
+                    Depth = d.Depth,
+                    Direction = d.Direction,
+                    Diameter = d.Diameter,
+                    VisiblePart = d.VisiblePart,
+                    Waterproofing = d.Waterproofing,
+                    Heating = d.Heating,
+                    Renovation = d.Renovation,
+                    FlapSeal = d.FlapSeal,
+                    ImageId = d.ImageId,
+                    Description = d.Description
+                };
+
+                this.data.Drains.Add(drain);
+            }
+
+            this.data.SaveChanges();
         }
 
         private IEnumerable<DrainDetailsServiceModel> GetDrains(IQueryable<Drain> drainQuery)

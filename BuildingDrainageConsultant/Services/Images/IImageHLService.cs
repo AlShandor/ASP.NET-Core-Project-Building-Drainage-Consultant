@@ -1,5 +1,6 @@
 ﻿namespace BuildingDrainageConsultant.Services.Images
 {
+    using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Models.Images;
     using BuildingDrainageConsultant.Services.Images.Models;
     using System.Collections.Generic;
@@ -19,5 +20,7 @@
         public bool Delete(int id);
 
         public string GetImageGallery(int id);
+
+        public void CreateAll(ImageHL[] drains);
     }
 }

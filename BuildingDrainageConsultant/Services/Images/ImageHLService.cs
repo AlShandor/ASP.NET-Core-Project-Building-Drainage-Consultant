@@ -107,5 +107,22 @@
 
             return image.ImageCategory.ToString() + "Gallery";
         }
+
+        public void CreateAll(ImageHL[] images)
+        {
+            foreach (var i in images)
+            {
+                var image = new ImageHL
+                {
+                    Name = i.Name,
+                    Path = i.Path,
+                    ImageCategory = i.ImageCategory
+                };
+
+                this.data.Images.Add(image);
+            }
+
+            this.data.SaveChanges();
+        }
     }
 }

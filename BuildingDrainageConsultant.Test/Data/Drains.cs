@@ -26,7 +26,7 @@
                 Heating = DrainHeatingEnum.NoHeating,
                 Renovation = DrainRenovationEnum.ForRenovation,
                 FlapSeal = DrainFlapSealEnum.NoFlapSeal,
-                ImageUrl = "Test ImageUrl",
+                ImageId = 1,
                 Description = "Test Description"
             });
 
@@ -65,7 +65,7 @@
                     Heating = DrainHeatingEnum.NoHeating,
                     Renovation = DrainRenovationEnum.ForRenovation,
                     FlapSeal = DrainFlapSealEnum.NoFlapSeal,
-                    ImageUrl = "Test ImageUrl",
+                    ImageId = 1,
                     Description = "Test Description",
                     Users = listUsers
                 })

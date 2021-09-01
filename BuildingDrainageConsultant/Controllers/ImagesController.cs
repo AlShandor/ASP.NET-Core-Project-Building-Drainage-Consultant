@@ -12,11 +12,9 @@
     public class ImagesController : Controller
     {
         private readonly IImageHLService images;
-        private readonly IMapper mapper;
         public ImagesController(IImageHLService images, IMapper mapper)
         {
             this.images = images;
-            this.mapper = mapper;
         }
 
         [HttpPost]

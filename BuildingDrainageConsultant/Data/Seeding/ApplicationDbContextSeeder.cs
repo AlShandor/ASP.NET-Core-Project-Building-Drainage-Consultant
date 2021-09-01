@@ -19,6 +19,7 @@
 
             var seeders = new List<ISeeder>
                           {
+                              new ImageSeeder(),
                               new ArticlesSeeder(),
                               new AtticaDetailsSeeder(),
                               new AtticaPartsSeeder(),

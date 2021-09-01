@@ -33,7 +33,7 @@
                     Heating = DrainHeatingEnum.NoHeating,
                     Renovation = DrainRenovationEnum.NoRenovation,
                     FlapSeal = DrainFlapSealEnum.NoFlapSeal,
-                    ImageUrl = "https://hl-bg.bg/images/stories/virtuemart/product/HL64BF_7_502e50b6574de.jpg",
+                    ImageId = 1,
                     Description = "Воронка за използваем покрив/тераса, странично оттичане DN75, с топлоизолирано тяло, фланец за заваряване специално към мембрани от TPO/FPO на основа РР,"
                 },
                 new Drain
@@ -49,7 +49,7 @@
                     Heating = DrainHeatingEnum.NoHeating,
                     Renovation = DrainRenovationEnum.ForRenovation,
                     FlapSeal = DrainFlapSealEnum.NoFlapSeal,
-                    ImageUrl = "https://hl-bg.bg/images/stories/virtuemart/product/HL62.1F_2_502e4143486ae.jpg",
+                    ImageId = 1,
                     Description = "Воронка за неизпозваем покрив/тераса с долно оттичане DN125, с топлоизолирано тяло, вграден нагревател саморегулиращ се, за директно включване към мрежа 220V "
                 },
                 new Drain
@@ -65,7 +65,7 @@
                     Heating = DrainHeatingEnum.WithHeating,
                     Renovation = DrainRenovationEnum.ForRenovation,
                     FlapSeal = DrainFlapSealEnum.WithFlapSeal,
-                    ImageUrl = "https://hl-bg.bg/images/stories/virtuemart/product/HL541_B.jpg",
+                    ImageId = 1,
                     Description = "Сифон за душ - PRIMUS-BLUE с хидроизолационна гарнитура и скоби за закрепване."
                 },
                 new Drain
@@ -81,7 +81,7 @@
                     Heating = DrainHeatingEnum.WithHeating,
                     Renovation = DrainRenovationEnum.ForRenovation,
                     FlapSeal = DrainFlapSealEnum.WithFlapSeal,
-                    ImageUrl = "https://hl-bg.bg/images/stories/virtuemart/product/HL90_548b173d3ac74.jpg",
+                    ImageId = 1,
                     Description = "Подов сифон за тераси и балкони DN40/50, странично оттичане, фланец за хидроизолацията(но без гарнитура), наставка с променяема височина 12-70 мм и рамка 123 х 123 мм,"
                 },
                 new Drain
@@ -97,7 +97,7 @@
                     Heating = DrainHeatingEnum.WithHeating,
                     Renovation = DrainRenovationEnum.ForRenovation,
                     FlapSeal = DrainFlapSealEnum.WithFlapSeal,
-                    ImageUrl = "https://hl-bg.bg/images/stories/virtuemart/product/HL62.1F_2_502e4143486ae.jpg",
+                    ImageId = 1,
                     Description = "Воронка за неизпозваем покрив/тераса с долно оттичане DN125, с топлоизолирано тяло, вграден нагревател саморегулиращ се, за директно включване към мрежа 220V (10-30 Wat), фланец за"
                 },
                 new Drain
@@ -113,7 +113,7 @@
                     Heating = DrainHeatingEnum.WithHeating,
                     Renovation = DrainRenovationEnum.NoRenovation,
                     FlapSeal = DrainFlapSealEnum.WithFlapSeal,
-                    ImageUrl = "https://hl-bg.bg/images/stories/virtuemart/product/HL62x1_B1.jpg",
+                    ImageId = 1,
                     Description = "Воронка за неизпозваем покрив/тераса с долно оттичане DN125, с топлоизолирано тяло, вграден нагревател саморегулиращ се, за директно включване към мрежа 220V (10-30 Wat), фланец за"
                 },
                 new Drain
@@ -129,7 +129,7 @@
                     Heating = DrainHeatingEnum.WithHeating,
                     Renovation = DrainRenovationEnum.NoRenovation,
                     FlapSeal = DrainFlapSealEnum.WithFlapSeal,
-                    ImageUrl = "https://hl-bg.bg/images/stories/virtuemart/product/HL62x1H_B5.jpg",
+                    ImageId = 1,
                     Description = "Воронка за неизпозваем покрив/тераса с долно оттичане DN125, с топлоизолирано тяло, вграден нагревател саморегулиращ се, за директно включване към мрежа 220V (10-30 Wat), фланец за"
                 },
                 new Drain
@@ -145,7 +145,7 @@
                     Heating = DrainHeatingEnum.NoHeating,
                     Renovation = DrainRenovationEnum.NoRenovation,
                     FlapSeal = DrainFlapSealEnum.WithFlapSeal,
-                    ImageUrl = "https://hl-bg.bg/images/stories/virtuemart/product/HL615_B1.jpg",
+                    ImageId = 1,
                     Description = "Воронка за неизпозваем покрив/тераса с долно оттичане DN125, с топлоизолирано тяло, вграден нагревател саморегулиращ се, за директно включване към мрежа 220V (10-30 Wat), фланец за"
                 },
             };

@@ -1,4 +1,6 @@
-﻿namespace BuildingDrainageConsultant.Services.Drains.Models
+﻿using BuildingDrainageConsultant.Data.Models;
+
+namespace BuildingDrainageConsultant.Services.Drains.Models
 {
     public class DrainDetailsServiceModel
     {
@@ -8,6 +10,8 @@
 
         public string Description { get; set; }
 
-        public string ImageUrl { get; set; }
+        public int? ImageId { get; set; }
+
+        public ImageHL Image { get; set; }
     }
 }

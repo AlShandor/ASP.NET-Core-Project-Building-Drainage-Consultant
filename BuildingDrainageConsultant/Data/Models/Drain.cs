@@ -47,12 +47,13 @@
         [Required]
         public DrainFlapSealEnum FlapSeal { get; set; }
 
-        [Url]
-        public string ImageUrl { get; set; }
-
         [Required]
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
+
+        public int? ImageId { get; set; }
+
+        public ImageHL Image { get; set; }
 
         public virtual ICollection<User> Users { get; set; } = new List<User>();
     }

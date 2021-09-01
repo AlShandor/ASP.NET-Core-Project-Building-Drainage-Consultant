@@ -2,9 +2,10 @@
 {
     public enum ImageHLCategoriesEnum
     {
-        Drains = 1,
-        AtticaDetails = 2,
-        AtticaParts = 3,
-        Articles = 4,
+        Common = 1,
+        Drains = 2,
+        AtticaDetails = 3,
+        AtticaParts = 4,
+        Articles = 5,
     }
 }

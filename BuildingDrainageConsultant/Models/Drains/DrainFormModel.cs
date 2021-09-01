@@ -1,6 +1,8 @@
 ﻿namespace BuildingDrainageConsultant.Models.Drains
 {
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
+    using BuildingDrainageConsultant.Services.Images.Models;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using static Data.DataConstants.Drain;
@@ -52,13 +54,16 @@
         [Display(Name = "Flap Seal")]
         public DrainFlapSealEnum FlapSeal { get; set; }
 
-        [Display(Name = "Image Url")]
-        public string ImageUrl { get; set; }
-
         [Required]
         [StringLength(DescriptionMaxLength)]
         public string Description { get; set; }
 
         public bool IsMyDrain { get; set; }
+
+        public int? ImageId { get; set; }
+
+        public ImageHLServiceModel Image { get; set; }
+
+        public IEnumerable<ImageHLServiceModel> Images { get; set; }
     }
 }

@@ -5,7 +5,7 @@
     using static Data.DataConstants.Image;
     public class ImageHLServiceModel
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         [MaxLength(NameMaxLength)]
         public string Name { get; set; }

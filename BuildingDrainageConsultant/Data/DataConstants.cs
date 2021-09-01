@@ -15,7 +15,7 @@
             public const int FlowRateMax = 15;
             public const int DraingeAreaMax = 400;
             public const int DepthMax = 300;
-            public const string DefaultImageUrl = "https://hl-bg.bg/components/com_virtuemart/assets/images/vmgeneral/noimage.gif";
+            public const int DefaultImageId = 1;
         }
 
         public class AtticaDetail

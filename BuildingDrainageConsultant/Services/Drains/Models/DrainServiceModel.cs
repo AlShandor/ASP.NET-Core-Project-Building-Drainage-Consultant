@@ -1,5 +1,6 @@
 ﻿namespace BuildingDrainageConsultant.Services.Drains.Models
 {
+    using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
 
     public class DrainServiceModel
@@ -28,8 +29,10 @@
 
         public DrainFlapSealEnum FlapSeal { get; set; }
 
-        public string ImageUrl { get; set; }
-
         public string Description { get; set; }
+
+        public int? ImageId { get; set; }
+
+        public ImageHL Image { get; set; }
     }
 }
