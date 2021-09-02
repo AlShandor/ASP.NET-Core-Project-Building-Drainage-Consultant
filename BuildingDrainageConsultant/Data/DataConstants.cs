@@ -21,7 +21,7 @@
         public class AtticaDetail
         {
             public const int DescriptionMaxLength = 1000;
-            public const string DefaultImageUrl = "https://hl-bg.bg/components/com_virtuemart/assets/images/vmgeneral/noimage.gif";
+            public const int DefaultImageId = 1;
         }
 
         public class AtticaDrain

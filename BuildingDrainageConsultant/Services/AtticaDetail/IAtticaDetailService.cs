@@ -3,6 +3,8 @@
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.Attica;
     using BuildingDrainageConsultant.Services.AtticaDetail.Models;
+    using BuildingDrainageConsultant.Services.Images.Models;
+    using System.Collections.Generic;
 
     public interface IAtticaDetailService
     {
@@ -15,7 +17,7 @@
                 AtticaWalkableEnum isWalkable,
                 AtticaScreedWaterproofingEnum screedWaterproofing,
                 string description,
-                string imageUrl);
+                int? imageId);
 
         public bool Edit(
             int id,
@@ -23,7 +25,7 @@
             AtticaWalkableEnum isWalkable,
             AtticaScreedWaterproofingEnum screedWaterproofing,
             string description,
-            string imageUrl);
+            int? imageId);
 
         public bool Delete(int id);
 

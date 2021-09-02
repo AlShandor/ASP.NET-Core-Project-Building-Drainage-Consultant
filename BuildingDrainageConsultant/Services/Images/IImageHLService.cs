@@ -9,6 +9,8 @@
     {
         public string AddImagesToGallery(ImageHLViewModel model);
 
+        public ImageHLServiceModel GetImageById(int id);
+
         public IEnumerable<ImageHLServiceModel> GetDrainImages();
 
         public IEnumerable<ImageHLServiceModel> GetAtticaDetailsImages();

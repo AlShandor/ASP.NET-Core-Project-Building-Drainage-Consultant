@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuildingDrainageConsultant.Data.Migrations
 {
     [DbContext(typeof(BuildingDrainageConsultantDbContext))]
-    [Migration("20210902094441_initial")]
-    partial class initial
+    [Migration("20210902132226_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -88,8 +88,8 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("ImageId")
+                        .HasColumnType("int");
 
                     b.Property<int>("IsWalkable")
                         .HasColumnType("int");
@@ -101,6 +101,8 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ImageId");
 
                     b.ToTable("AtticaDetails");
                 });
@@ -541,6 +543,16 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.AtticaDetail", b =>
+                {
+                    b.HasOne("BuildingDrainageConsultant.Data.Models.ImageHL", "Image")
+                        .WithMany("AtticaDetails")
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Image");
+                });
+
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.AtticaDrain", b =>
                 {
                     b.HasOne("BuildingDrainageConsultant.Data.Models.AtticaDetail", "AtticaDetail")
@@ -634,6 +646,8 @@ namespace BuildingDrainageConsultant.Data.Migrations
 
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.ImageHL", b =>
                 {
+                    b.Navigation("AtticaDetails");
+
                     b.Navigation("Drains");
                 });
 #pragma warning restore 612, 618

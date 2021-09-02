@@ -18,7 +18,7 @@
                 IsWalkable = AtticaWalkableEnum.NotWalkable,
                 ScreedWaterproofing = AtticaScreedWaterproofingEnum.Bitumen,
                 Description = "AtticaDrain Description",
-                ImageUrl = "https://hl-bg.bg/images/stories/virtuemart/product/HL62.1F_2_502e4143486ae.jpg"
+                ImageId = 1
             });
     }
 }

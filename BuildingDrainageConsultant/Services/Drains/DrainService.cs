@@ -279,18 +279,6 @@
             return true;
         }
 
-        public IEnumerable<ImageHLServiceModel> GetDrainImages()
-         => this.data.Images
-                .Where(i => i.ImageCategory == ImageHLCategoriesEnum.Drains)
-                .ProjectTo<ImageHLServiceModel>(this.mapper)
-                .ToList();
-
-        public ImageHLServiceModel GetImageById(int id)
-         => this.data.Images
-                .Where(i => i.Id == id)
-                .ProjectTo<ImageHLServiceModel>(this.mapper)
-                .FirstOrDefault();
-
         public void CreateAll(Drain[] drains)
         {
             foreach (var d in drains)

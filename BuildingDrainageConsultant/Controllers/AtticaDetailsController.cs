@@ -4,6 +4,7 @@
     using BuildingDrainageConsultant.Infrastructure;
     using BuildingDrainageConsultant.Models.AtticaDetails;
     using BuildingDrainageConsultant.Services.AtticaDetail;
+    using BuildingDrainageConsultant.Services.Images;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
@@ -11,21 +12,24 @@
     public class AtticaDetailsController : Controller
     {
         private readonly IAtticaDetailService atticaDetails;
+        private readonly IImageHLService images;
         private readonly IMapper mapper;
         public AtticaDetailsController(
             IAtticaDetailService atticaDetails,
+            IImageHLService images,
             IMapper mapper)
         {
             this.atticaDetails = atticaDetails;
+            this.images = images;
             this.mapper = mapper;
         }
 
         [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult Add() => View();
+        public IActionResult Add(AtticaDetailFormModel atticaDetail) => View(atticaDetail);
 
         [Authorize(Roles = AdministratorRoleName)]
         [HttpPost]
-        public IActionResult Add(AtticaDetailFormModel atticaDetail)
+        public IActionResult Add(AtticaDetailFormModel atticaDetail, int id)
         {
             if (!ModelState.IsValid)
             {
@@ -37,7 +41,7 @@
                 atticaDetail.IsWalkable,
                 atticaDetail.ScreedWaterproofing,
                 atticaDetail.Description,
-                atticaDetail.ImageUrl);
+                atticaDetail.ImageId);
 
             return RedirectToAction(nameof(All));
         }
@@ -85,7 +89,7 @@
                 atticaDetail.IsWalkable,
                 atticaDetail.ScreedWaterproofing,
                 atticaDetail.Description,
-                atticaDetail.ImageUrl);
+                atticaDetail.ImageId);
 
             return RedirectToAction(nameof(All));
         }
@@ -102,6 +106,59 @@
             }
 
             return RedirectToAction(nameof(All));
+        }
+
+        [Authorize(Roles = AdministratorRoleName)]
+        public IActionResult AddAtticaDetailImage(AtticaDetailFormModel drainCreateInfo)
+        {
+            drainCreateInfo.Images = this.images.GetAtticaDetailsImages();
+
+            return View(drainCreateInfo);
+        }
+
+        [Authorize(Roles = AdministratorRoleName)]
+        [HttpPost]
+        public IActionResult AddAtticaDetailImage(int id, AtticaDetailFormModel atticaDetailCreateInfo)
+        {
+            var atticaDetailImage = this.images.GetImageById(id);
+
+            if (atticaDetailImage == null)
+            {
+                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddAtticaDetailImage", atticaDetailCreateInfo) });
+            }
+
+            atticaDetailCreateInfo.Image = atticaDetailImage;
+            atticaDetailCreateInfo.ImageId = id;
+
+            return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "Add", atticaDetailCreateInfo) });
+        }
+
+        [Authorize(Roles = AdministratorRoleName)]
+        public IActionResult EditAtticaDetailImage(int atticaDetailId, AtticaDetailFormModel atticaDetailCreateInfo)
+        {
+            atticaDetailCreateInfo.Images = this.images.GetAtticaDetailsImages();
+            atticaDetailCreateInfo.Id = atticaDetailId;
+
+            return View(atticaDetailCreateInfo);
+        }
+
+        [Authorize(Roles = AdministratorRoleName)]
+        [HttpPost]
+        public IActionResult EditAtticaDetailImage(int id, int atticaDetailId, AtticaDetailFormModel atticaDetailCreateInfo)
+        {
+            var atticaDetail = this.atticaDetails.Details(atticaDetailId);
+            atticaDetailCreateInfo = this.mapper.Map<AtticaDetailFormModel>(atticaDetail);
+
+            var atticaDetailImage = this.images.GetImageById(id);
+            atticaDetailCreateInfo.Image = atticaDetailImage;
+            atticaDetailCreateInfo.ImageId = id;
+
+            if (atticaDetailImage == null)
+            {
+                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "EditAtticaDetailImage", atticaDetailCreateInfo) });
+            }
+
+            return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "Edit", atticaDetailCreateInfo) });
         }
     }
 }

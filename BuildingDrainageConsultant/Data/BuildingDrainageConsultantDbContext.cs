@@ -27,6 +27,13 @@
                 .OnDelete(DeleteBehavior.SetNull);
 
             builder
+                .Entity<ImageHL>()
+                .HasMany(i => i.AtticaDetails)
+                .WithOne(d => d.Image)
+                .HasForeignKey(d => d.ImageId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            builder
                 .Entity<AtticaDrain>()
                 .HasOne(a => a.AtticaDetail)
                 .WithMany(a => a.AtticaDrains)

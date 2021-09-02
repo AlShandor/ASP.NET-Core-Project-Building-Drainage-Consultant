@@ -8,10 +8,15 @@
         }
 
         <div class="card h-100 border-1">
-            <div class="card-img-custom">
-                <img src="@Model.AtticaDetail.ImageUrl" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
-                <hr />
-            </div>
+            @if (Model.AtticaDetail.Image != null)
+            {
+                var imgSource = Model.AtticaDetail.Image.Id == 1 ? "common/defaultImage.gif" : $"atticadetails/{Model.AtticaDetail.Image.Name}";
+
+                <div class="card-img-custom">
+                    <img src="~/images/@imgSource" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
+                    <hr />
+                </div>
+            }
             <div class="card-body text-center">
                 <h4 class="font-weight-bold mt-2 text-left text-dark text-center text-uppercase small">@roofType</h4>
 

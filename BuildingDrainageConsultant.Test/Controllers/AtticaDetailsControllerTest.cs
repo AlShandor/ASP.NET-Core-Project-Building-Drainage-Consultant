@@ -30,13 +30,13 @@
             AtticaWalkableEnum.NotWalkable,
             AtticaScreedWaterproofingEnum.Bitumen,
             "AtticaDrain Description",
-            "https://hl-bg.bg/images/stories/virtuemart/product/HL62.1F_2_502e4143486ae.jpg")]
+            1)]
         public void PostAddShouldBeForAuthorizedUsersAndReturnRedirectWithValidModel(
             AtticaRoofTypeEnum roofType,
             AtticaWalkableEnum isWalkable,
             AtticaScreedWaterproofingEnum screedWaterproofing,
             string Description,
-            string ImageUrl
+            int ImageId
             )
             => MyController<AtticaDetailsController>
                 .Instance(controller => controller
@@ -48,7 +48,7 @@
                     IsWalkable = isWalkable,
                     ScreedWaterproofing = screedWaterproofing,
                     Description = Description,
-                    ImageUrl = ImageUrl
+                    ImageId = ImageId
                 }))
                 .ShouldHave()
                 .ActionAttributes(att => att
@@ -62,7 +62,7 @@
                             d.IsWalkable == isWalkable &&
                             d.ScreedWaterproofing == screedWaterproofing &&
                             d.Description == Description &&
-                            d.ImageUrl == ImageUrl)))
+                            d.ImageId == ImageId)))
                 .AndAlso()
                 .ShouldReturn()
                 .Redirect(redirect => redirect

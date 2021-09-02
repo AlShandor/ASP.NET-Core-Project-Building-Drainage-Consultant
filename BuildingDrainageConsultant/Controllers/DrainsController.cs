@@ -4,6 +4,7 @@
     using BuildingDrainageConsultant.Infrastructure;
     using BuildingDrainageConsultant.Models.Drains;
     using BuildingDrainageConsultant.Services.Drains;
+    using BuildingDrainageConsultant.Services.Images;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
@@ -11,13 +12,16 @@
     public class DrainsController : Controller
     {
         private readonly IDrainService drains;
+        private readonly IImageHLService images;
         private readonly IMapper mapper;
 
         public DrainsController(
             IDrainService drains,
+            IImageHLService images,
             IMapper mapper)
         {
             this.drains = drains;
+            this.images = images;
             this.mapper = mapper;
         }
 
@@ -190,7 +194,7 @@
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult AddDrainImage(DrainFormModel drainCreateInfo)
         {
-            drainCreateInfo.Images = this.drains.GetDrainImages();
+            drainCreateInfo.Images = this.images.GetDrainImages();
 
             return View(drainCreateInfo);
         }
@@ -199,9 +203,9 @@
         [HttpPost]
         public IActionResult AddDrainImage(int id, DrainFormModel drainCreateInfo)
         {
-            var drainImage = this.drains.GetImageById(id);
+            var drainImage = this.images.GetImageById(id);
 
-            if (drainImage == null) // || !ModelState.IsValid)
+            if (drainImage == null)
             {
                 return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddDrainImage", drainCreateInfo) });
             }
@@ -215,19 +219,20 @@
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult EditDrainImage(int drainId, DrainFormModel drainCreateInfo)
         {
-            drainCreateInfo.Images = this.drains.GetDrainImages();
+            drainCreateInfo.Images = this.images.GetDrainImages();
             drainCreateInfo.Id = drainId;
 
             return View(drainCreateInfo);
         }
 
+        [Authorize(Roles = AdministratorRoleName)]
         [HttpPost]
         public IActionResult EditDrainImage(int id, int drainId, DrainFormModel drainCreateInfo)
         {
             var drain = this.drains.Details(drainId);
             drainCreateInfo = this.mapper.Map<DrainFormModel>(drain);
 
-            var drainImage = this.drains.GetImageById(id);
+            var drainImage = this.images.GetImageById(id);
             drainCreateInfo.Image = drainImage;
             drainCreateInfo.ImageId = id;
 

@@ -5,7 +5,10 @@
     using BuildingDrainageConsultant.Data;
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.Attica;
+    using BuildingDrainageConsultant.Data.Models.Enums.ImagesHL;
     using BuildingDrainageConsultant.Services.AtticaDetail.Models;
+    using BuildingDrainageConsultant.Services.Images.Models;
+    using System.Collections.Generic;
     using System.Linq;
 
     using static Data.DataConstants.AtticaDetail;
@@ -51,7 +54,7 @@
             AtticaWalkableEnum isWalkable, 
             AtticaScreedWaterproofingEnum screedWaterproofing,
             string description, 
-            string imageUrl)
+            int? imageId)
         {
             var atticaDetailData = new AtticaDetail
             {
@@ -59,7 +62,7 @@
                 IsWalkable = isWalkable,
                 ScreedWaterproofing = screedWaterproofing,
                 Description = description,
-                ImageUrl = imageUrl == null ? DefaultImageUrl : imageUrl
+                ImageId = imageId == null ? DefaultImageId : imageId
             };
 
 
@@ -75,7 +78,7 @@
             AtticaWalkableEnum isWalkable, 
             AtticaScreedWaterproofingEnum screedWaterproofing,
             string description, 
-            string imageUrl)
+            int? imageId)
         {
             var atticaDetailData = this.data.AtticaDetails.Find(id);
 
@@ -88,7 +91,7 @@
             atticaDetailData.IsWalkable = isWalkable;
             atticaDetailData.ScreedWaterproofing = screedWaterproofing;
             atticaDetailData.Description = description;
-            atticaDetailData.ImageUrl = imageUrl;
+            atticaDetailData.ImageId = imageId == null ? DefaultImageId : imageId;
 
             this.data.SaveChanges();
 
@@ -127,7 +130,7 @@
                     IsWalkable = a.IsWalkable,
                     ScreedWaterproofing = a.ScreedWaterproofing,
                     Description = a.Description,
-                    ImageUrl = a.ImageUrl
+                    ImageId = a.ImageId
                 };
 
                 this.data.AtticaDetails.Add(atticaDetail);

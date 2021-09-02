@@ -26,7 +26,7 @@
                     IsWalkable = AtticaWalkableEnum.Walkable,
                     ScreedWaterproofing = AtticaScreedWaterproofingEnum.Bitumen,
                     Description = "Detail for Warm Roof. Walkable. With Bitumen Waterpoofing for the screed.",
-                    ImageUrl = "https://hl-bg.bg/images/stories/virtuemart/product/HL68H_0_110_B.jpg"
+                    ImageId = 1,
                 },
                 new AtticaDetail
                 {
@@ -34,7 +34,7 @@
                     IsWalkable = AtticaWalkableEnum.Walkable,
                     ScreedWaterproofing = AtticaScreedWaterproofingEnum.PVC,
                     Description = "Detail for Warm Roof. Walkable. With Bitumen Waterpoofing for the screed.",
-                    ImageUrl = "https://hl-bg.bg/images/stories/virtuemart/product/HL68F_0_75_B.jpg"
+                    ImageId = 1,
                 },
                 new AtticaDetail
                 {
@@ -42,7 +42,7 @@
                     IsWalkable = AtticaWalkableEnum.NotWalkable,
                     ScreedWaterproofing = AtticaScreedWaterproofingEnum.TPO,
                     Description = "Detail for Warm Roof. Walkable. With Bitumen Waterpoofing for the screed.",
-                    ImageUrl = "https://hl-bg.bg/images/stories/virtuemart/product/HL68H_0_110_B.jpg"
+                    ImageId = 1,
                 },
                 new AtticaDetail
                 {
@@ -50,7 +50,7 @@
                     IsWalkable = AtticaWalkableEnum.NotWalkable,
                     ScreedWaterproofing = AtticaScreedWaterproofingEnum.FlexibleMembrane2mm,
                     Description = "Detail for Warm Roof. Walkable. With Bitumen Waterpoofing for the screed.",
-                    ImageUrl = "https://hl-bg.bg/images/stories/virtuemart/product/HL68P_0_50_B.jpg"
+                    ImageId = 1,
                 },
             };
 

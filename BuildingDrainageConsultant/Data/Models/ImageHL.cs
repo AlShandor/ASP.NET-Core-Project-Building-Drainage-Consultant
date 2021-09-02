@@ -18,6 +18,9 @@
 
         public ImageHLCategoriesEnum ImageCategory { get; set; }
 
-        public IEnumerable<Drain> Drains { get; set; }
+        public ICollection<Drain> Drains { get; set; }
+
+        public ICollection<AtticaDetail> AtticaDetails { get; set; }
+
     }
 }

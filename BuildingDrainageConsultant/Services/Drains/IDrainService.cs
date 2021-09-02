@@ -65,10 +65,6 @@
 
         public bool IsMyDrain(int drainId, string userId);
 
-        public IEnumerable<ImageHLServiceModel> GetDrainImages();
-
-        public ImageHLServiceModel GetImageById(int id);
-
         public void CreateAll(Drain[] drains);
     }
 }

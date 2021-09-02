@@ -1,4 +1,5 @@
-﻿using BuildingDrainageConsultant.Data.Models.Enums.Attica;
+﻿using BuildingDrainageConsultant.Data.Models;
+using BuildingDrainageConsultant.Data.Models.Enums.Attica;
 
 namespace BuildingDrainageConsultant.Services.AtticaDetail.Models
 {
@@ -14,6 +15,8 @@ namespace BuildingDrainageConsultant.Services.AtticaDetail.Models
 
         public string Description { get; set; }
 
-        public string ImageUrl { get; set; }
+        public int? ImageId { get; set; }
+
+        public ImageHL Image { get; set; }
     }
 }

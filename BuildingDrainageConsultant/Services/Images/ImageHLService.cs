@@ -53,6 +53,12 @@
             return gallery;
         }
 
+        public ImageHLServiceModel GetImageById(int id)
+         => this.data.Images
+                .Where(i => i.Id == id)
+                .ProjectTo<ImageHLServiceModel>(this.mapper)
+                .FirstOrDefault();
+
         public IEnumerable<ImageHLServiceModel> GetDrainImages()
         => this.data.Images
                 .Where(i => i.ImageCategory == ImageHLCategoriesEnum.Drains)

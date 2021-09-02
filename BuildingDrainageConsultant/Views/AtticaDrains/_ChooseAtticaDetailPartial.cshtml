@@ -11,20 +11,25 @@
         var roofType = Model.AtticaDetail.RoofType == AtticaRoofTypeEnum.WarmRoof ? "Warm Roof" : "Cold Roof";
         var isWalkable = Model.AtticaDetail.IsWalkable == AtticaWalkableEnum.Walkable ? "Walkable" : "Not Walkable";
 
-        <div class="shadow card h-100 border-1 mb-4">
-            <input asp-for="AtticaDetailId" value="@Model.AtticaDetail.Id" type="hidden" />
+    <div class="shadow card h-100 border-1 mb-4">
+        <input asp-for="AtticaDetailId" value="@Model.AtticaDetail.Id" type="hidden" />
+        @if (Model.AtticaDetail.Image != null)
+        {
+            var imgSource = Model.AtticaDetail.Image.Id == 1 ? "common/defaultImage.gif" : $"atticadetails/{Model.AtticaDetail.Image.Name}";
+
             <div class="card-img-custom">
-                <img src="@Model.AtticaDetail.ImageUrl" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
+                <img src="~/images/@imgSource" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
                 <hr />
             </div>
-            <div class="card-body text-center">
-                <h4 class="font-weight-bold mt-2 text-left text-dark text-center text-uppercase small">@roofType</h4>
+        }
+        <div class="card-body text-center">
+            <h4 class="font-weight-bold mt-2 text-left text-dark text-center text-uppercase small">@roofType</h4>
 
-                <h4 class="font-weight-bold text-left text-dark text-center text-uppercase small">@isWalkable</h4>
+            <h4 class="font-weight-bold text-left text-dark text-center text-uppercase small">@isWalkable</h4>
 
-                <p class="card-text">@Model.AtticaDetail.Description</p>
-            </div>
+            <p class="card-text">@Model.AtticaDetail.Description</p>
         </div>
+    </div>
     }
 
     @if (isAddView)

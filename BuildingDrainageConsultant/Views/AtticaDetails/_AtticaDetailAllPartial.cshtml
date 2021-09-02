@@ -17,10 +17,16 @@
 
         <div class="col-6 col-md-6 col-lg-4 mb-3">
             <div class="shadow card h-100 border-1">
-                <div class="card-img-custom">
-                    <img src="@atticaDetail.ImageUrl" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
-                    <hr />
-                </div>
+                @if (atticaDetail.Image != null)
+                {
+                    var imgSource = atticaDetail.Image.Id == 1 ? "common/defaultImage.gif" : $"atticadetails/{atticaDetail.Image.Name}";
+
+                    <div class="card-img-custom">
+                        <img src="~/images/@imgSource" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
+                        <hr />
+                    </div>
+                }
+
                 <div class="card-body text-center">
                     <h4 class="font-weight-bold mt-2 text-left text-dark text-center text-uppercase small">@roofType</h4>
 
@@ -28,7 +34,7 @@
 
                     <p class="card-text">@atticaDetailDescriptionTruncated</p>
 
-                    <a asp-controller="AtticaDrains" asp-action="SearchAtticaDrain" asp-route-atticaDetailId ="@atticaDetail.Id" class="shadow btn btn-primary mr-1">Choose</a>
+                    <a asp-controller="AtticaDrains" asp-action="SearchAtticaDrain" asp-route-atticaDetailId="@atticaDetail.Id" class="shadow btn btn-primary mr-1">Choose</a>
 
                     @if (User.IsAdmin())
                     {
