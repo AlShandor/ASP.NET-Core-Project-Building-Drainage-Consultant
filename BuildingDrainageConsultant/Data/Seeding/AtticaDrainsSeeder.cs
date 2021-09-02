@@ -20,12 +20,12 @@
             var atticaDrainService = serviceProvider.GetRequiredService<IAtticaDrainService>();
 
             var atticaParts = dbContext.AtticaParts.Take(3).ToList();
+            var atticaPartsNames = atticaParts.Select(p => p.Name).ToArray();
 
             var atticaDrains = new AtticaDrain[]
             {
                 new AtticaDrain
                 {
-                    Name = "HL68P.0/110",
                     FlowRate = 3.6,
                     DrainageArea = 120,
                     ScreedWaterproofing = AtticaScreedWaterproofingEnum.Bitumen,
@@ -33,11 +33,11 @@
                     Diameter = AtticaDiameterEnum.DN110,
                     VisiblePart = AtticaVisiblePartEnum.Grate,
                     AtticaDetailId = 1,
-                    AtticaParts = atticaParts
+                    AtticaParts = atticaParts,
+                    Name = string.Join(" + ", atticaPartsNames)
                 },
                 new AtticaDrain
                 {
-                    Name = "HL68P.HR",
                     FlowRate = 3.6,
                     DrainageArea = 120,
                     ScreedWaterproofing = AtticaScreedWaterproofingEnum.PVC,
@@ -45,11 +45,11 @@
                     Diameter = AtticaDiameterEnum.DN75,
                     VisiblePart = AtticaVisiblePartEnum.Grate,
                     AtticaDetailId = 1,
-                    AtticaParts = atticaParts
+                    AtticaParts = atticaParts,
+                    Name = string.Join(" + ", atticaPartsNames)
                 },
                 new AtticaDrain
                 {
-                    Name = "HL690TH",
                     FlowRate = 3.6,
                     DrainageArea = 120,
                     ScreedWaterproofing = AtticaScreedWaterproofingEnum.PVC,
@@ -57,11 +57,11 @@
                     Diameter = AtticaDiameterEnum.DN50,
                     VisiblePart = AtticaVisiblePartEnum.Grate,
                     AtticaDetailId = 2,
-                    AtticaParts = atticaParts
+                    AtticaParts = atticaParts,
+                    Name = string.Join(" + ", atticaPartsNames)
                 },
                 new AtticaDrain
                 {
-                    Name = "HL609HB",
                     FlowRate = 3.6,
                     DrainageArea = 120,
                     ScreedWaterproofing = AtticaScreedWaterproofingEnum.PVC,
@@ -69,7 +69,8 @@
                     Diameter = AtticaDiameterEnum.DN110,
                     VisiblePart = AtticaVisiblePartEnum.FlatLeafCatcherWarmRoof,
                     AtticaDetailId = 2,
-                    AtticaParts = atticaParts
+                    AtticaParts = atticaParts,
+                    Name = string.Join(" + ", atticaPartsNames)
                 },
             };
 
