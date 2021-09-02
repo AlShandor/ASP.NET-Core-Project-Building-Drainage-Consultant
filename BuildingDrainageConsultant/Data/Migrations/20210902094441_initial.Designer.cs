@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuildingDrainageConsultant.Data.Migrations
 {
     [DbContext(typeof(BuildingDrainageConsultantDbContext))]
-    [Migration("20210901092010_initial")]
+    [Migration("20210902094441_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -555,7 +555,8 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 {
                     b.HasOne("BuildingDrainageConsultant.Data.Models.ImageHL", "Image")
                         .WithMany("Drains")
-                        .HasForeignKey("ImageId");
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Image");
                 });

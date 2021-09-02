@@ -19,7 +19,7 @@ else
             {
                 <div class="col-6 col-md-6 col-lg-4 mb-3">
                     <div class="shadow card h-100 border-1">
-                        <form asp-action="AddDrainImage" asp-route-id="@img.Id" onsubmit="return AjaxPost(this);">
+                        <form asp-action="EditDrainImage" asp-route-id="@img.Id" asp-route-drainId="@Model.Id" onsubmit="return AjaxPost(this);">
                             <div class="card-img-custom">
                                 <img src="~/images/drains/@img.Name" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
                             </div>

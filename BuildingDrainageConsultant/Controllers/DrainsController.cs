@@ -211,5 +211,32 @@
 
             return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "Add", drainCreateInfo) });
         }
+
+        [Authorize(Roles = AdministratorRoleName)]
+        public IActionResult EditDrainImage(int drainId, DrainFormModel drainCreateInfo)
+        {
+            drainCreateInfo.Images = this.drains.GetDrainImages();
+            drainCreateInfo.Id = drainId;
+
+            return View(drainCreateInfo);
+        }
+
+        [HttpPost]
+        public IActionResult EditDrainImage(int id, int drainId, DrainFormModel drainCreateInfo)
+        {
+            var drain = this.drains.Details(drainId);
+            drainCreateInfo = this.mapper.Map<DrainFormModel>(drain);
+
+            var drainImage = this.drains.GetImageById(id);
+            drainCreateInfo.Image = drainImage;
+            drainCreateInfo.ImageId = id;
+
+            if (drainImage == null)
+            {
+                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "EditDrainImage", drainCreateInfo) });
+            }
+
+            return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "Edit", drainCreateInfo) });
+        }
     }
 }

@@ -553,7 +553,8 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 {
                     b.HasOne("BuildingDrainageConsultant.Data.Models.ImageHL", "Image")
                         .WithMany("Drains")
-                        .HasForeignKey("ImageId");
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Image");
                 });

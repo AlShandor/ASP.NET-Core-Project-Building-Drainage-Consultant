@@ -20,6 +20,13 @@
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder
+                .Entity<ImageHL>()
+                .HasMany(i => i.Drains)
+                .WithOne(d => d.Image)
+                .HasForeignKey(d => d.ImageId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            builder
                 .Entity<AtticaDrain>()
                 .HasOne(a => a.AtticaDetail)
                 .WithMany(a => a.AtticaDrains)
