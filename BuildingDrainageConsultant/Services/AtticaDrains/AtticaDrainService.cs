@@ -160,14 +160,21 @@
             AtticaDiameterEnum diameter,
             AtticaVisiblePartEnum visiblePart)
         {
-            var atticaDrainData = this.data.AtticaDrains.Find(id);
+            var atticaDrainData = this.data.AtticaDrains
+                .Where(a => a.Id == id)
+                .Include(a => a.AtticaParts)
+                .FirstOrDefault();
 
             if (atticaDrainData == null)
             {
                 return false;
             }
 
-            atticaDrainData.Name = name;
+            var atticaPartsNames = atticaDrainData.AtticaParts
+                .Select(p => p.Name)
+                .ToArray();
+
+            atticaDrainData.Name = string.Join(" + ", atticaPartsNames);
             atticaDrainData.FlowRate = flowRate;
             atticaDrainData.DrainageArea = drainageArea;
             atticaDrainData.ScreedWaterproofing = screedWaterproofing;
