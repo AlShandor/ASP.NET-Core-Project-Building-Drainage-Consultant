@@ -20,12 +20,12 @@
         [HttpPost]
         public IActionResult AddImages(ImageHLViewModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
             var galleryName = this.images.AddImagesToGallery(model);
+
+            if (!ModelState.IsValid || model.UploadImageFiles == null)
+            {
+                return RedirectToAction(galleryName);
+            }
 
             return RedirectToAction(galleryName);
         }

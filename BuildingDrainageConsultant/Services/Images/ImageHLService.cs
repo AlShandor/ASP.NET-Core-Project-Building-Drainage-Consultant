@@ -24,10 +24,15 @@
 
         public string AddImagesToGallery(ImageHLViewModel model)
         {
-            var files = model.UploadImageFiles;
-
             ImageHLCategoriesEnum imageCategory;
             Enum.TryParse(model.ImageCategory, out imageCategory);
+            var gallery = model.ImageCategory + "Gallery";
+
+            var files = model.UploadImageFiles;
+            if (files == null)
+            {
+                return gallery;
+            }
 
             if (files.Count > 0)
             {
@@ -48,7 +53,6 @@
             }
 
             data.SaveChanges();
-            var gallery = model.ImageCategory + "Gallery";
 
             return gallery;
         }
