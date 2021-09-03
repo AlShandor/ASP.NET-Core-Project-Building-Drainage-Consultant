@@ -41,6 +41,11 @@
                     ImageHL image = new ImageHL();
                     var filePath = $"wwwroot/images/{model.ImageCategory.ToLower()}/{img.FileName}";
                     var fileName = img.FileName;
+                    if (GalleryContainsImage(fileName, model.ImageCategory))
+                    {
+                        continue;
+                    }
+
                     using (var stream = System.IO.File.Create(filePath))
                     {
                         img.CopyTo(stream);
@@ -133,6 +138,24 @@
             }
 
             this.data.SaveChanges();
+        }
+
+        private bool GalleryContainsImage(string fileName, string imageCategory)
+        {
+            ImageHLCategoriesEnum category;
+            Enum.TryParse(imageCategory, out category);
+
+            var imageNames = this.data.Images
+                .Where(i => i.ImageCategory == category)
+                .Select(i => i.Name)
+                .ToList();
+
+            if (!imageNames.Contains(fileName))
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

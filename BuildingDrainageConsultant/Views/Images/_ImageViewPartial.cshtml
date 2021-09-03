@@ -8,7 +8,7 @@
                 <span class="font-weight-bold text-dark text-uppercase small">@Model.Name</span>
             </h4>
 
-            <partial name="_DeleteButtonWithModalPopup" model="@Model" />
+            <button asp-controller="Images" asp-action="Delete" asp-route-id="@Model.Id" class="shadow btn btn-danger">Delete</button>
 
         </div>
     </div>
