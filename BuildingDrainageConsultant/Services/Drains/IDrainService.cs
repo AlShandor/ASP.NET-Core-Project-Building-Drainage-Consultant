@@ -4,7 +4,6 @@
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
     using BuildingDrainageConsultant.Models.Drains;
     using BuildingDrainageConsultant.Services.Drains.Models;
-    using BuildingDrainageConsultant.Services.Images.Models;
     using System.Collections.Generic;
 
     public interface IDrainService

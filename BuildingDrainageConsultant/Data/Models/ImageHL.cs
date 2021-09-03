@@ -22,5 +22,6 @@
 
         public ICollection<AtticaDetail> AtticaDetails { get; set; }
 
+        public ICollection<AtticaPart> AtticaParts { get; set; }
     }
 }

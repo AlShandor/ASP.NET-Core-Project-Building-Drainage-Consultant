@@ -13,7 +13,7 @@
             => Enumerable.Range(1, 1).Select(i => new AtticaPart
             {
                 Name = "ValidAtticaDrain",
-                ImageUrl = "https://hl-bg.bg/images/stories/virtuemart/product/HL62.1F_2_502e4143486ae.jpg",
+                ImageId = 1,
                 Description = "Description"
             });
     }

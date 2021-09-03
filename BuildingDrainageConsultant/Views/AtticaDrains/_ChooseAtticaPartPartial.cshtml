@@ -14,17 +14,23 @@
         </div>
     }
 
-    <div class="row d-inline-flex">
+    <div class="row col-12">
         @if (Model.AtticaParts != null)
         {
             foreach (var part in Model.AtticaParts)
             {
-                <div class="shadow col-4 p-2 mb-4">
+                <div class="shadow col-4 p-2 mb-2">
                     <div class="card h-100">
                         <input value="@part.Id" type="hidden" />
 
-                        <img src="@part.ImageUrl" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
-                        <hr />
+                        @if (part.Image != null)
+                        {
+                            var imgSource = part.Image.Id == 1 ? "common/defaultImage.gif" : $"atticaparts/{part.Image.Name}";
+                            <div class="card-img-custom">
+                                <img src="~/images/@imgSource" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
+                                <hr />
+                            </div>
+                        }
 
                         <div class="card-body text-center">
                             <h5 class="font-weight-bold mt-2 text-left text-dark text-center text-uppercase ">@part.Name</h5>

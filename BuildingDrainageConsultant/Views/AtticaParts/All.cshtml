@@ -29,10 +29,15 @@
 
         <div class="col-6 col-md-6 col-lg-4 mb-3">
             <div class="shadow card h-100 border-1">
-                <div class="card-img-custom">
-                    <img src="@part.ImageUrl" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
-                    <hr />
-                </div>
+                @if (part.Image != null)
+                {
+                    var imgSource = part.Image.Id == 1 ? "common/defaultImage.gif" : $"atticaparts/{part.Image.Name}";
+
+                    <div class="card-img-custom">
+                        <img src="~/images/@imgSource" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
+                        <hr />
+                    </div>
+                }
                 <div class="card-body text-center">
                     <h4 class="card-title text-center">
                         <span class="font-weight-bold text-dark text-uppercase small">@part.Name</span>

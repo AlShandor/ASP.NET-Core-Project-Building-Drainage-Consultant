@@ -16,7 +16,7 @@
         =>
             MyController<AtticaPartsController>
                 .Instance()
-                .Calling(c => c.Add())
+                .Calling(c => c.Add(new AtticaPartFormModel()))
                 .ShouldHave()
                 .ActionAttributes(att => att
                     .RestrictingForAuthorizedRequests())
@@ -27,13 +27,13 @@
         [Theory]
         [InlineData(
             "AtticaPart",
-            "https://hl-bg.bg/images/stories/virtuemart/product/HL62.1F_2_502e4143486ae.jpg",
-            "Description")]
+            1,
+            "Description",1)]
         public void PostAddShouldBeForAuthorizedUsersAndReturnRedirectWithValidModel(
             string name,
-            string imageUrl,
-            string description
-            )
+            int imageId,
+            string description,
+            int id)
             => MyController<AtticaPartsController>
                 .Instance(controller => controller
                     .WithUser(user => user
@@ -41,9 +41,9 @@
                 .Calling(c => c.Add(new AtticaPartFormModel
                 {
                     Name = name,
-                    ImageUrl = imageUrl,
+                    ImageId = imageId,
                     Description = description
-                }))
+                },id))
                 .ShouldHave()
                 .ActionAttributes(att => att
                     .RestrictingForHttpMethod(HttpMethod.Post)
@@ -53,7 +53,7 @@
                     .WithSet<AtticaPart>(parts => parts
                         .Any(d =>
                             d.Name == name &&
-                            d.ImageUrl == imageUrl &&
+                            d.ImageId == imageId &&
                             d.Description == description)))
                 .AndAlso()
                 .ShouldReturn()

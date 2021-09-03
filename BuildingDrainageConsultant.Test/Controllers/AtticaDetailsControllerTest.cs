@@ -16,7 +16,7 @@
         =>
             MyController<AtticaDetailsController>
                 .Instance()
-                .Calling(c => c.Add())
+                .Calling(c => c.Add(new AtticaDetailFormModel()))
                 .ShouldHave()
                 .ActionAttributes(att => att
                     .RestrictingForAuthorizedRequests())
@@ -30,14 +30,15 @@
             AtticaWalkableEnum.NotWalkable,
             AtticaScreedWaterproofingEnum.Bitumen,
             "AtticaDrain Description",
+            1,
             1)]
         public void PostAddShouldBeForAuthorizedUsersAndReturnRedirectWithValidModel(
             AtticaRoofTypeEnum roofType,
             AtticaWalkableEnum isWalkable,
             AtticaScreedWaterproofingEnum screedWaterproofing,
             string Description,
-            int ImageId
-            )
+            int ImageId,
+            int id)
             => MyController<AtticaDetailsController>
                 .Instance(controller => controller
                     .WithUser(user => user
@@ -49,7 +50,7 @@
                     ScreedWaterproofing = screedWaterproofing,
                     Description = Description,
                     ImageId = ImageId
-                }))
+                }, id))
                 .ShouldHave()
                 .ActionAttributes(att => att
                     .RestrictingForHttpMethod(HttpMethod.Post)

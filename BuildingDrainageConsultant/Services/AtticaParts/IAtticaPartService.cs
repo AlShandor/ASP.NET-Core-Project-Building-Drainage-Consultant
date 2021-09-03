@@ -10,13 +10,13 @@
         public AtticaPartServiceModel Details(int id);
         public int Create(
                 string name,
-                string imageUrl,
+                int? imageId,
                 string description);
 
         public bool Edit(
             int id,
             string name,
-            string imageUrl,
+            int? imageId,
             string description);
 
         public bool Delete(int id);

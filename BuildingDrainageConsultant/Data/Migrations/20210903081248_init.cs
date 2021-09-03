@@ -62,21 +62,6 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AtticaParts",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AtticaParts", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Images",
                 columns: table => new
                 {
@@ -234,6 +219,27 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     table.PrimaryKey("PK_AtticaDetails", x => x.Id);
                     table.ForeignKey(
                         name: "FK_AtticaDetails_Images_ImageId",
+                        column: x => x.ImageId,
+                        principalTable: "Images",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AtticaParts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    ImageId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AtticaParts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AtticaParts_Images_ImageId",
                         column: x => x.ImageId,
                         principalTable: "Images",
                         principalColumn: "Id",
@@ -427,6 +433,11 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 name: "IX_AtticaDrainUser_UsersId",
                 table: "AtticaDrainUser",
                 column: "UsersId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AtticaParts_ImageId",
+                table: "AtticaParts",
+                column: "ImageId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Drains_ImageId",

@@ -13,12 +13,13 @@
         [MaxLength(NameMaxLength)]
         public string Name { get; set; }
 
-        [Url]
-        public string ImageUrl { get; set; }
-
         [Required]
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
+
+        public int? ImageId { get; set; }
+
+        public ImageHL Image { get; set; }
 
         public ICollection<AtticaDrain> AtticaDrains { get; set; } = new List<AtticaDrain>();
     }

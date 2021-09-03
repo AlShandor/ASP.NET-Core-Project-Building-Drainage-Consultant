@@ -5,10 +5,8 @@
     using BuildingDrainageConsultant.Data;
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
-    using BuildingDrainageConsultant.Data.Models.Enums.ImagesHL;
     using BuildingDrainageConsultant.Models.Drains;
     using BuildingDrainageConsultant.Services.Drains.Models;
-    using BuildingDrainageConsultant.Services.Images.Models;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Linq;

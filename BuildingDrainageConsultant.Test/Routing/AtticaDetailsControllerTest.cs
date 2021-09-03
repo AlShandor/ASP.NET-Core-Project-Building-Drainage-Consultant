@@ -16,7 +16,7 @@
                     .WithUser(user => user
                         .WithClaim("AdministratorRoleName", "Administrator"))
                 )
-                .To<AtticaDetailsController>(c => c.Add());
+                .To<AtticaDetailsController>(c => c.Add(new AtticaDetailFormModel()));
 
         [Fact]
         public void PostAddShouldBeMapped()

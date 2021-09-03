@@ -1,5 +1,7 @@
 ﻿namespace BuildingDrainageConsultant.Models.AtticaParts
 {
+    using BuildingDrainageConsultant.Services.Images.Models;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using static Data.DataConstants.AtticaPart;
@@ -11,12 +13,14 @@
         [MaxLength(NameMaxLength)]
         public string Name { get; set; }
 
-        [Url]
-        [Display(Name = "Image Url")]
-        public string ImageUrl { get; set; }
-
         [Required]
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
+
+        public int? ImageId { get; set; }
+
+        public ImageHLServiceModel Image { get; set; }
+
+        public IEnumerable<ImageHLServiceModel> Images { get; set; }
     }
 }

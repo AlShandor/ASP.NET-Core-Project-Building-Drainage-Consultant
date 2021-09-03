@@ -5,10 +5,7 @@
     using BuildingDrainageConsultant.Data;
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.Attica;
-    using BuildingDrainageConsultant.Data.Models.Enums.ImagesHL;
     using BuildingDrainageConsultant.Services.AtticaDetail.Models;
-    using BuildingDrainageConsultant.Services.Images.Models;
-    using System.Collections.Generic;
     using System.Linq;
 
     using static Data.DataConstants.AtticaDetail;

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuildingDrainageConsultant.Data.Migrations
 {
     [DbContext(typeof(BuildingDrainageConsultantDbContext))]
-    [Migration("20210902132226_init")]
+    [Migration("20210903081248_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -157,8 +157,8 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("ImageId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -166,6 +166,8 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .HasColumnType("nvarchar(30)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ImageId");
 
                     b.ToTable("AtticaParts");
                 });
@@ -563,6 +565,16 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     b.Navigation("AtticaDetail");
                 });
 
+            modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.AtticaPart", b =>
+                {
+                    b.HasOne("BuildingDrainageConsultant.Data.Models.ImageHL", "Image")
+                        .WithMany("AtticaParts")
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Image");
+                });
+
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.Drain", b =>
                 {
                     b.HasOne("BuildingDrainageConsultant.Data.Models.ImageHL", "Image")
@@ -647,6 +659,8 @@ namespace BuildingDrainageConsultant.Data.Migrations
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.ImageHL", b =>
                 {
                     b.Navigation("AtticaDetails");
+
+                    b.Navigation("AtticaParts");
 
                     b.Navigation("Drains");
                 });

@@ -1,0 +1,35 @@
+﻿@model AtticaPartFormModel
+
+@{
+    var isAddView = ViewBag.Title == "Add Attica Part" ? true : false;
+    var isEditView = ViewBag.Title == "Edit Attica Part" ? true : false;
+}
+
+<div class="form-group mb-3">
+
+    @if (Model.Image != null)
+    {
+        var imgSource = Model.Image.Id == 1 ? "common/defaultImage.gif" : $"atticaparts/{Model.Image.Name}";
+
+
+        <div class="shadow card h-100 border-1 mb-4">
+            <input asp-for="ImageId" value="@Model.ImageId" type="hidden" />
+            <div class="card-img-custom">
+                <img src="~/images/@imgSource" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
+            </div>
+        </div>
+    }
+
+    @if (isAddView)
+    {
+        <div class="form-group">
+            <a onclick="showInPopup('@Url.Action("AddAtticaPartImage","AtticaParts",null,Context.Request.Scheme)','Choose Attica Part Image')" class="btn btn-success text-white">Choose Image</a>
+        </div>
+    }
+    @if (isEditView)
+    {
+        <div class="form-group">
+            <a onclick="showInPopup('@Url.Action("EditAtticaPartImage","AtticaParts",new { atticaPartId = Model.Id },Context.Request.Scheme)','Choose Attica Part Image')" class="btn btn-success text-white">Choose Image</a>
+        </div>
+    }
+</div>

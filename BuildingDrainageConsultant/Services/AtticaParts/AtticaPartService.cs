@@ -41,12 +41,12 @@
                 .ProjectTo<AtticaPartServiceModel>(this.mapper)
                 .FirstOrDefault();
 
-        public int Create(string name, string imageUrl, string description)
+        public int Create(string name, int? imageId, string description)
         {
             var atticaPartData = new AtticaPart
             {
                 Name = name,
-                ImageUrl = imageUrl == null ? DefaultImageUrl : imageUrl,
+                ImageId = imageId == null ? DefaultImageId : imageId,
                 Description = description
             };
 
@@ -56,7 +56,7 @@
             return atticaPartData.Id;
         }
 
-        public bool Edit(int id, string name, string imageUrl, string description)
+        public bool Edit(int id, string name, int? imageId, string description)
         {
             var atticaPartData = this.data.AtticaParts.Find(id);
 
@@ -66,7 +66,7 @@
             }
 
             atticaPartData.Name = name;
-            atticaPartData.ImageUrl = imageUrl;
+            atticaPartData.ImageId = imageId == null ? DefaultImageId : imageId;
             atticaPartData.Description = description;
 
             this.data.SaveChanges();
@@ -95,7 +95,7 @@
                 var atticaPart = new AtticaPart
                 {
                     Name = a.Name,
-                    ImageUrl = a.ImageUrl,
+                    ImageId = a.ImageId,
                     Description = a.Description
                 };
 
