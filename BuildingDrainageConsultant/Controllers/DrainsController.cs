@@ -192,7 +192,7 @@
         }
 
         [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult AddDrainImage(DrainFormModel drainCreateInfo)
+        public IActionResult AddImage(DrainFormModel drainCreateInfo)
         {
             drainCreateInfo.Images = this.images.GetDrainImages();
 
@@ -201,13 +201,13 @@
 
         [Authorize(Roles = AdministratorRoleName)]
         [HttpPost]
-        public IActionResult AddDrainImage(int id, DrainFormModel drainCreateInfo)
+        public IActionResult AddImage(int id, DrainFormModel drainCreateInfo)
         {
             var drainImage = this.images.GetImageById(id);
 
             if (drainImage == null)
             {
-                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddDrainImage", drainCreateInfo) });
+                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddImage", drainCreateInfo) });
             }
 
             drainCreateInfo.Image = drainImage;
@@ -217,19 +217,19 @@
         }
 
         [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult EditDrainImage(int drainId, DrainFormModel drainCreateInfo)
+        public IActionResult EditImage(int modelId, DrainFormModel drainCreateInfo)
         {
             drainCreateInfo.Images = this.images.GetDrainImages();
-            drainCreateInfo.Id = drainId;
+            drainCreateInfo.Id = modelId;
 
             return View(drainCreateInfo);
         }
 
         [Authorize(Roles = AdministratorRoleName)]
         [HttpPost]
-        public IActionResult EditDrainImage(int id, int drainId, DrainFormModel drainCreateInfo)
+        public IActionResult EditImage(int id, int modelId, DrainFormModel drainCreateInfo)
         {
-            var drain = this.drains.Details(drainId);
+            var drain = this.drains.Details(modelId);
             drainCreateInfo = this.mapper.Map<DrainFormModel>(drain);
 
             var drainImage = this.images.GetImageById(id);
@@ -238,7 +238,7 @@
 
             if (drainImage == null)
             {
-                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "EditDrainImage", drainCreateInfo) });
+                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "EditImage", drainCreateInfo) });
             }
 
             return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "Edit", drainCreateInfo) });
