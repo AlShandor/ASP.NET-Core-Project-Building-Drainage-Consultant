@@ -114,7 +114,7 @@
         }
 
         [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult AddAtticaPartImage(AtticaPartFormModel partCreateInfo)
+        public IActionResult AddImage(AtticaPartFormModel partCreateInfo)
         {
             partCreateInfo.Images = this.images.GetAtticaPartsImages();
 
@@ -123,13 +123,13 @@
 
         [Authorize(Roles = AdministratorRoleName)]
         [HttpPost]
-        public IActionResult AddAtticaPartImage(int id, AtticaPartFormModel partCreateInfo)
+        public IActionResult AddImage(int id, AtticaPartFormModel partCreateInfo)
         {
             var atticaPartImage = this.images.GetImageById(id);
 
             if (atticaPartImage == null)
             {
-                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddAtticaPartImage", partCreateInfo) });
+                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddImage", partCreateInfo) });
             }
 
             partCreateInfo.Image = atticaPartImage;
@@ -139,19 +139,19 @@
         }
 
         [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult EditAtticaPartImage(int atticaPartId, AtticaPartFormModel partCreateInfo)
+        public IActionResult EditImage(int modelId, AtticaPartFormModel partCreateInfo)
         {
             partCreateInfo.Images = this.images.GetAtticaPartsImages();
-            partCreateInfo.Id = atticaPartId;
+            partCreateInfo.Id = modelId;
 
             return View(partCreateInfo);
         }
 
         [Authorize(Roles = AdministratorRoleName)]
         [HttpPost]
-        public IActionResult EditAtticaPartImage(int id, int atticaPartId, AtticaPartFormModel partCreateInfo)
+        public IActionResult EditImage(int id, int modelId, AtticaPartFormModel partCreateInfo)
         {
-            var atticaPart = this.atticaParts.Details(atticaPartId);
+            var atticaPart = this.atticaParts.Details(modelId);
             partCreateInfo = this.mapper.Map<AtticaPartFormModel>(atticaPart);
 
             var drainImage = this.images.GetImageById(id);
@@ -160,7 +160,7 @@
 
             if (drainImage == null)
             {
-                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "EditAtticaPartImage", partCreateInfo) });
+                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "EditImage", partCreateInfo) });
             }
 
             return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "Edit", partCreateInfo) });

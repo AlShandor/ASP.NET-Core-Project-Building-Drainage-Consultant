@@ -1,17 +1,21 @@
 ﻿@model AtticaPartFormModel
 
 @{
-    var isAddView = ViewBag.Title == "Add Attica Part" ? true : false;
-    var isEditView = ViewBag.Title == "Edit Attica Part" ? true : false;
-    var isDetailsView = ViewBag.Title == "View Details" ? true : false;
+    var isAddView = ViewBag.View == "Add" ? true : false;
+    var isEditView = ViewBag.View == "Edit" ? true : false;
+    var isDetailsView = ViewBag.View == "Details" ? true : false;
 }
 
 <div class="row">
     <div class="offset-md-3 col-md-6">
         <h2 class="heading-margin text-center">@ViewBag.Title</h2>
         <form method="post">
+            @if (Model.Image != null)
+            {
+                <input asp-for="ImageId" value="@Model.ImageId" type="hidden" />
+            }
 
-            <partial name="_ChooseAtticaPartImagePartial" model="Model" />
+            <partial name="_ChooseImagePartial" model="Model" />
 
             <div class="form-group">
                 <label asp-for="Name"></label>
