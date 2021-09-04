@@ -19,6 +19,20 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            ImageHLModelCreating(builder);
+
+            builder
+                .Entity<AtticaDrain>()
+                .HasOne(a => a.AtticaDetail)
+                .WithMany(a => a.AtticaDrains)
+                .HasForeignKey(a => a.AtticaDetailId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            base.OnModelCreating(builder);
+        }
+
+        private static void ImageHLModelCreating(ModelBuilder builder)
+        {
             builder
                 .Entity<ImageHL>()
                 .HasMany(i => i.Articles)
@@ -46,15 +60,6 @@
                 .WithOne(d => d.Image)
                 .HasForeignKey(d => d.ImageId)
                 .OnDelete(DeleteBehavior.SetNull);
-
-            builder
-                .Entity<AtticaDrain>()
-                .HasOne(a => a.AtticaDetail)
-                .WithMany(a => a.AtticaDrains)
-                .HasForeignKey(a => a.AtticaDetailId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            base.OnModelCreating(builder);
         }
     }
 }

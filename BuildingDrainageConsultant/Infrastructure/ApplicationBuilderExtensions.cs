@@ -80,7 +80,7 @@
         private static void SeedData(BuildingDrainageConsultantDbContext dbContext, IServiceProvider serviceProvider)
         {
             Task
-                .Run(async () =>
+                .Run(() =>
                 {
                     new ApplicationDbContextSeeder().Seed(dbContext, serviceProvider);
                 })

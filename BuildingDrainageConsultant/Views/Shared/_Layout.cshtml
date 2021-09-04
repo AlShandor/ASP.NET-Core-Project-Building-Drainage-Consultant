@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-default navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
             <div class="container">
                 <a href="@Url.Action("Index", "Home", new { Area = "" })" class="navbar-brand">
                     <img src="~/images/common/logoSmall.png" title="title" alt="additional title" />
@@ -20,7 +20,7 @@
 
                         @*Drains menu*@
                         <li class="nav-item dropdown">
-                            <a class="nav-item btn btn-lg  dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-item btn btn-lg text-white  dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Drains
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -40,7 +40,7 @@
 
                         @*Attica Details menu*@
                         <li class="nav-item dropdown">
-                            <a class="nav-item btn btn-lg  dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-item btn btn-lg text-white  dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Attica Details
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -57,7 +57,7 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item dropdown">
-                                <a class="nav-item btn btn-lg  dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-item btn btn-lg text-white  dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Attica Drains
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -83,7 +83,7 @@
                         @if (User.IsAdmin())
                         {
                             <li class="nav-item dropdown">
-                                <a class="nav-item btn btn-lg  dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-item btn btn-lg text-white dropdown-toggle sort-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Merchants
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -96,7 +96,7 @@
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-item btn btn-lg" asp-area="" asp-controller="Merchants" asp-action="All">Merchants</a>
+                                <a class="nav-item text-white btn btn-lg" asp-area="" asp-controller="Merchants" asp-action="All">Merchants</a>
                             </li>
                         }
 
@@ -104,7 +104,7 @@
                         @if (User.IsAdmin())
                         {
                             <li class="nav-item dropdown">
-                                <a class="nav-item btn btn-lg  dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-item btn btn-lg text-white  dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Articles
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -119,7 +119,7 @@
                         @if (User.IsAdmin())
                         {
                             <li class="nav-item dropdown">
-                                <a class="nav-item btn btn-lg  dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-item btn btn-lg text-white dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Images
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">

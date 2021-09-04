@@ -130,3 +130,7 @@ body {
     display: none;
 }
 
+.navbar-default {
+    background-color: #193c6c;
+}
+
