@@ -8,8 +8,12 @@
     <div class="offset-md-3 col-md-6">
         <h2 class="heading-margin text-center">@ViewBag.Title</h2>
         <form method="post">
+            @if (Model.Image != null)
+            {
+                <input asp-for="ImageId" value="@Model.ImageId" type="hidden" />
+            }
 
-            <partial name="_ChooseAtticaDetailImagePartial" model="Model" />
+            <partial name="_ChooseImagePartial" model="Model" />
 
             <div class="form-group">
                 <label asp-for="RoofType"></label>

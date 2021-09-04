@@ -109,7 +109,7 @@
         }
 
         [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult AddAtticaDetailImage(AtticaDetailFormModel drainCreateInfo)
+        public IActionResult AddImage(AtticaDetailFormModel drainCreateInfo)
         {
             drainCreateInfo.Images = this.images.GetAtticaDetailsImages();
 
@@ -118,13 +118,13 @@
 
         [Authorize(Roles = AdministratorRoleName)]
         [HttpPost]
-        public IActionResult AddAtticaDetailImage(int id, AtticaDetailFormModel atticaDetailCreateInfo)
+        public IActionResult AddImage(int id, AtticaDetailFormModel atticaDetailCreateInfo)
         {
             var atticaDetailImage = this.images.GetImageById(id);
 
             if (atticaDetailImage == null)
             {
-                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddAtticaDetailImage", atticaDetailCreateInfo) });
+                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddImage", atticaDetailCreateInfo) });
             }
 
             atticaDetailCreateInfo.Image = atticaDetailImage;
@@ -134,19 +134,19 @@
         }
 
         [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult EditAtticaDetailImage(int atticaDetailId, AtticaDetailFormModel atticaDetailCreateInfo)
+        public IActionResult EditImage(int modelId, AtticaDetailFormModel atticaDetailCreateInfo)
         {
             atticaDetailCreateInfo.Images = this.images.GetAtticaDetailsImages();
-            atticaDetailCreateInfo.Id = atticaDetailId;
+            atticaDetailCreateInfo.Id = modelId;
 
             return View(atticaDetailCreateInfo);
         }
 
         [Authorize(Roles = AdministratorRoleName)]
         [HttpPost]
-        public IActionResult EditAtticaDetailImage(int id, int atticaDetailId, AtticaDetailFormModel atticaDetailCreateInfo)
+        public IActionResult EditImage(int id, int modelId, AtticaDetailFormModel atticaDetailCreateInfo)
         {
-            var atticaDetail = this.atticaDetails.Details(atticaDetailId);
+            var atticaDetail = this.atticaDetails.Details(modelId);
             atticaDetailCreateInfo = this.mapper.Map<AtticaDetailFormModel>(atticaDetail);
 
             var atticaDetailImage = this.images.GetImageById(id);
@@ -155,7 +155,7 @@
 
             if (atticaDetailImage == null)
             {
-                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "EditAtticaDetailImage", atticaDetailCreateInfo) });
+                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "EditImage", atticaDetailCreateInfo) });
             }
 
             return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "Edit", atticaDetailCreateInfo) });
