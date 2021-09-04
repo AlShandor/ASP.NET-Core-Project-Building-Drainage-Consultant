@@ -14,8 +14,10 @@
 
     @foreach (var article in Model)
     {
+        var imgSource = article.Image.Id == 1 ? "common/defaultImage.gif" : $"articles/{article.Image.Name}";
+
         <div class="card mb-3">
-            <img class="card-img-top" src="@article.ImageUrl" alt="@article.Title">
+            <img class="card-img-top" src="~/images/@imgSource" alt="@article.Title">
             <div class="card-body">
                 <h5 class="card-title">@article.Title</h5>
                 <p class="card-text">@article.Content</p>

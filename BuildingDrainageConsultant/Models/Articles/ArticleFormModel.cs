@@ -1,5 +1,7 @@
 ﻿namespace BuildingDrainageConsultant.Models.Articles
 {
+    using BuildingDrainageConsultant.Services.Images.Models;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using static Data.DataConstants.Article;
@@ -15,7 +17,10 @@
         [StringLength(ContentMaxLength)]
         public string Content { get; set; }
 
-        [Display(Name = "Image Url")]
-        public string ImageUrl { get; set; }
+        public int? ImageId { get; set; }
+
+        public ImageHLServiceModel Image { get; set; }
+
+        public IEnumerable<ImageHLServiceModel> Images { get; set; }
     }
 }

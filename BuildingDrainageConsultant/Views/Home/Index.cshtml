@@ -22,10 +22,10 @@ else
             {
                 var article = Model[i];
                 var articleContentTruncated = article.Content.Length > 90 ? article.Content.ToString().Substring(0, 90) + "..." : article.Content;
-
+                var imgSource = article.Image.Id == 1 ? "common/defaultImage.gif" : $"articles/{article.Image.Name}";
 
                 <div class="carousel-item @(i == 0 ? "active" : string.Empty)">
-                    <a asp-route-id="@article.Id" asp-controller="Articles" asp-action="Details"><img class="d-block w-100" src="@article.ImageUrl" alt="@article.Title"></a>
+                    <a asp-route-id="@article.Id" asp-controller="Articles" asp-action="Details"><img class="d-block w-100" src="~/images/@imgSource" alt="@article.Title"></a>
                 </div>
             }
         </div>

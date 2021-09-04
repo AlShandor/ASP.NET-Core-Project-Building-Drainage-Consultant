@@ -3,8 +3,6 @@
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.Attica;
     using BuildingDrainageConsultant.Services.AtticaDetail.Models;
-    using BuildingDrainageConsultant.Services.Images.Models;
-    using System.Collections.Generic;
 
     public interface IAtticaDetailService
     {

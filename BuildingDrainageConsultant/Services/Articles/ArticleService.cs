@@ -21,13 +21,13 @@
             this.mapper = mapper.ConfigurationProvider;
         }
 
-        public int Create(string title, string content, string imageUrl)
+        public int Create(string title, string content, int? imageId)
         {
             var articleData = new Article
             {
                 Title = title,
                 Content = content,
-                ImageUrl = imageUrl == null ? DefaultImageUrl : imageUrl
+                ImageId = imageId == null ? DefaultImageId : imageId
             };
 
             this.data.Articles.Add(articleData);
@@ -54,7 +54,7 @@
                 .ProjectTo<ArticleServiceModel>(this.mapper)
                 .FirstOrDefault();
 
-        public bool Edit(int id, string title, string content, string imageUrl)
+        public bool Edit(int id, string title, string content, int? imageId)
         {
             var articleData = this.data.Articles.Find(id);
 
@@ -65,7 +65,7 @@
 
             articleData.Title = title;
             articleData.Content = content;
-            articleData.ImageUrl = imageUrl;
+            articleData.ImageId = imageId == null ? DefaultImageId : imageId;
 
             this.data.SaveChanges();
 
@@ -103,7 +103,7 @@
                 {
                     Title = a.Title,
                     Content = a.Content,
-                    ImageUrl = a.ImageUrl
+                    ImageId = a.ImageId
                 };
 
                 this.data.Articles.Add(article);

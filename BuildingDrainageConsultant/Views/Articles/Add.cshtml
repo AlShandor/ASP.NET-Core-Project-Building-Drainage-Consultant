@@ -2,8 +2,11 @@
 
 @{
     ViewBag.Title = "Add Article";
+    ViewBag.View = "Add";
+    ViewBag.ImageGallery = "articles";
 }
 
-<partial name="_ArticleFormPartial" model="@Model" />
-
+<div id="view-all">
+    <partial name="_ArticleFormPartial" model="@Model" />
+</div>
 

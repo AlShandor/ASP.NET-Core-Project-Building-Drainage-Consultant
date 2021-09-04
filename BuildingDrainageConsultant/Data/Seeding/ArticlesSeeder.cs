@@ -23,19 +23,19 @@
                 {
                     Title = "New HL541 Product",
                     Content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has",
-                    ImageUrl = "https://hl-bg.bg/images/slider/HLs-4ss.png"
+                    ImageId = 2
                 },
                 new Article
                 {
                     Title = "Best Drainge Systems",
                     Content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has",
-                    ImageUrl = "https://hl-bg.bg/images/slider/HLs-1s.png"
+                    ImageId = 3
                 },
                 new Article
                 {
                     Title = "Renovate your bathroom!",
                     Content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has",
-                    ImageUrl = "https://hl-bg.bg/images/slider/HLs-1_2s.png"
+                    ImageId = 4
                 }
             };
 

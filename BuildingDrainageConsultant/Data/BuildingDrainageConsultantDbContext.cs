@@ -21,6 +21,13 @@
         {
             builder
                 .Entity<ImageHL>()
+                .HasMany(i => i.Articles)
+                .WithOne(d => d.Image)
+                .HasForeignKey(d => d.ImageId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            builder
+                .Entity<ImageHL>()
                 .HasMany(i => i.AtticaParts)
                 .WithOne(d => d.Image)
                 .HasForeignKey(d => d.ImageId)

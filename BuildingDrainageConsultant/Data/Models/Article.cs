@@ -16,7 +16,8 @@
         [MaxLength(ContentMaxLength)]
         public string Content { get; set; }
 
-        [Url]
-        public string ImageUrl { get; set; }
+        public int? ImageId { get; set; }
+
+        public ImageHL Image { get; set; }
     }
 }

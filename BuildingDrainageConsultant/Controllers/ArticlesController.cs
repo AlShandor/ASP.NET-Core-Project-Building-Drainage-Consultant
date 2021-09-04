@@ -5,6 +5,7 @@
     using BuildingDrainageConsultant.Models.Articles;
     using BuildingDrainageConsultant.Services.Articles;
     using BuildingDrainageConsultant.Services.Articles.Models;
+    using BuildingDrainageConsultant.Services.Images;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
@@ -15,20 +16,23 @@
     public class ArticlesController : Controller
     {
         private readonly IArticleService articles;
+        private readonly IImageHLService images;
         private readonly IMapper mapper;
 
         public ArticlesController(
             IArticleService articles,
+            IImageHLService images,
             IMapper mapper)
         {
             this.articles = articles;
+            this.images = images;
             this.mapper = mapper;
         }
 
-        public IActionResult Add() => View();
+        public IActionResult Add(ArticleFormModel article) => View(article);
 
         [HttpPost]
-        public IActionResult Add(ArticleFormModel article)
+        public IActionResult Add(ArticleFormModel article, int id)
         {
             if (!ModelState.IsValid)
             {
@@ -38,7 +42,7 @@
             this.articles.Create(
                 article.Title,
                 article.Content,
-                article.ImageUrl);
+                article.ImageId);
 
             return RedirectToAction(nameof(All));
         }
@@ -77,7 +81,7 @@
                 id,
                 article.Title,
                 article.Content,
-                article.ImageUrl);
+                article.ImageId);
 
             return RedirectToAction(nameof(All));
         }
@@ -108,6 +112,55 @@
             var drainForm = this.mapper.Map<ArticleFormModel>(drain);
 
             return View(drainForm);
+        }
+
+        public IActionResult AddImage(ArticleFormModel articleCreateInfo)
+        {
+            articleCreateInfo.Images = this.images.GetArticlesImages();
+
+            return View(articleCreateInfo);
+        }
+
+        [HttpPost]
+        public IActionResult AddImage(int id, ArticleFormModel articleCreateInfo)
+        {
+            var drainImage = this.images.GetImageById(id);
+
+            if (drainImage == null)
+            {
+                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddImage", articleCreateInfo) });
+            }
+
+            articleCreateInfo.Image = drainImage;
+            articleCreateInfo.ImageId = id;
+
+            return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "Add", articleCreateInfo) });
+        }
+
+        public IActionResult EditImage(int modelId, ArticleFormModel articleCreateInfo)
+        {
+            articleCreateInfo.Images = this.images.GetArticlesImages();
+            articleCreateInfo.Id = modelId;
+
+            return View(articleCreateInfo);
+        }
+
+        [HttpPost]
+        public IActionResult EditImage(int id, int modelId, ArticleFormModel articleCreateInfo)
+        {
+            var drain = this.articles.Details(modelId);
+            articleCreateInfo = this.mapper.Map<ArticleFormModel>(drain);
+
+            var drainImage = this.images.GetImageById(id);
+            articleCreateInfo.Image = drainImage;
+            articleCreateInfo.ImageId = id;
+
+            if (drainImage == null)
+            {
+                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "EditImage", articleCreateInfo) });
+            }
+
+            return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "Edit", articleCreateInfo) });
         }
     }
 }

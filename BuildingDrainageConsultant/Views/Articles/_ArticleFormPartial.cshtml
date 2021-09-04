@@ -1,19 +1,21 @@
 ﻿@model ArticleFormModel
 
 @{
-    var isEditView = ViewBag.Title == "Edit Article" ? true : false;
+    var isEditView = ViewBag.View == "Edit" ? true : false;
 }
 
 <div class="row">
 
     <div class="offset-md-3 col-md-6">
-        @if (isEditView)
-        {
-            <img src="@Model.ImageUrl" class="shadow-sm card-img-top">
-        }
-
         <h2 class="heading-margin text-center">@ViewBag.Title</h2>
         <form method="post">
+            @if (Model.Image != null)
+            {
+                <input asp-for="ImageId" value="@Model.ImageId" type="hidden" />
+            }
+
+            <partial name="_ChooseImagePartial" model="Model" />
+
             <div class="form-group">
                 <label asp-for="Title"></label>
                 <input class="shadow-sm form-control" asp-for="Title">
@@ -22,17 +24,9 @@
 
             <div class="form-group">
                 <label asp-for="Content"></label>
-                <input class="shadow-sm form-control" asp-for="Content">
+                <textarea class="shadow-sm form-control" rows="4" asp-for="Content"></textarea>
                 <span asp-validation-for="Content" class="small text-danger"></span>
             </div>
-
-
-            <div class="form-group">
-                <label asp-for="ImageUrl"></label>
-                <input class="shadow-sm form-control" asp-for="ImageUrl">
-                <span asp-validation-for="ImageUrl" class="small text-danger"></span>
-            </div>
-
 
             <input class="btn btn-primary" type="submit" value="Save" />
 

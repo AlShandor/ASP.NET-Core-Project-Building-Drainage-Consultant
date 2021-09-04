@@ -26,6 +26,24 @@
                     Path = "wwwroot/images/common/defaultImage.gif",
                     ImageCategory = ImageHLCategoriesEnum.Common
                 },
+                new ImageHL
+                {
+                    Name = "article1.png",
+                    Path = "wwwroot/images/articles/article1.png",
+                    ImageCategory = ImageHLCategoriesEnum.Articles
+                },
+                new ImageHL
+                {
+                    Name = "article2.png",
+                    Path = "wwwroot/images/articles/article2.png",
+                    ImageCategory = ImageHLCategoriesEnum.Articles
+                },
+                new ImageHL
+                {
+                    Name = "article3.png",
+                    Path = "wwwroot/images/articles/article3.png",
+                    ImageCategory = ImageHLCategoriesEnum.Articles
+                },
             };
 
             articleService.CreateAll(articles);
