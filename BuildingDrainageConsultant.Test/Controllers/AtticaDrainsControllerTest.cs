@@ -16,7 +16,7 @@
         =>
             MyController<AtticaDrainsController>
                 .Instance()
-                .Calling(c => c.Add(With.Empty<AtticaDrainPartsDetailsModel>(),
+                .Calling(c => c.Add(With.Empty<AtticaDrainFormModel>(),
                                     With.Empty<int>()))
                 .ShouldHave()
                 .ActionAttributes(att => att
@@ -55,7 +55,7 @@
                 })
                 .WithUser(user => user
                     .WithClaim("AdministratorRoleName", "Administrator")))
-            .Calling(c => c.Add(new AtticaDrainPartsDetailsModel
+            .Calling(c => c.Add(new AtticaDrainFormModel
             {
                 AtticaDetailId = atticaDetailId,
                 Name = name,
@@ -115,14 +115,14 @@
                 .AndAlso()
                 .ShouldReturn()
                 .View(view => view
-                    .WithModelOfType<AtticaDrainPartsDetailsModel>());
+                    .WithModelOfType<AtticaDrainFormModel>());
 
         [Fact]
         public void EditPostShouldHaveRestrictionsForHttpPostOnlyAndAuthorizedUsers()
             => MyController<AtticaDrainsController>
                 .Calling(c => c.Edit(
                     With.Empty<int>(),
-                    With.Empty<AtticaDrainPartsDetailsModel>()))
+                    With.Empty<AtticaDrainFormModel>()))
                 .ShouldHave()
                 .ActionAttributes(attrs => attrs
                     .RestrictingForHttpMethod(HttpMethod.Post)

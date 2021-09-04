@@ -15,7 +15,7 @@
                     .WithUser(user => user
                         .WithClaim("AdministratorRoleName", "Administrator"))
                 )
-                .To<AtticaDrainsController>(c => c.Add(With.Any<AtticaDrainPartsDetailsModel>(), With.Any<int>()));
+                .To<AtticaDrainsController>(c => c.Add(With.Any<AtticaDrainFormModel>(), With.Any<int>()));
 
         [Fact]
         public void PostAddShouldBeMapped()
@@ -26,7 +26,7 @@
                     .WithMethod(HttpMethod.Post)
                     .WithUser(user => user
                         .WithClaim("AdministratorRoleName", "Administrator")))
-                .To<AtticaDrainsController>(c => c.Add(With.Any<AtticaDrainPartsDetailsModel>(), With.Any<int>()));
+                .To<AtticaDrainsController>(c => c.Add(With.Any<AtticaDrainFormModel>(), With.Any<int>()));
 
         [Fact]
         public void AllRouteShouldBeMapped()
@@ -57,7 +57,7 @@
                     .WithMethod(HttpMethod.Post)
                     .WithUser(user => user
                         .WithClaim("AdministratorRoleName", "Administrator")))
-                .To<AtticaDrainsController>(c => c.Edit(1, With.Any<AtticaDrainPartsDetailsModel>()));
+                .To<AtticaDrainsController>(c => c.Edit(1, With.Any<AtticaDrainFormModel>()));
 
         [Fact]
         public void PostDeleteRouteShouldBeMapped()

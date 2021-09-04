@@ -34,7 +34,7 @@
 
             this.CreateMap<AtticaDrain, AtticaDrainServiceModel>();
             this.CreateMap<AtticaDrainServiceModel, AtticaDrainFormModel>();
-            this.CreateMap<AtticaDrainServiceModel, AtticaDrainPartsDetailsModel>();
+            this.CreateMap<AtticaDrainServiceModel, AtticaDrainFormModel>();
 
             this.CreateMap<Article, ArticleServiceModel>();
             this.CreateMap<ArticleServiceModel, ArticleFormModel>();

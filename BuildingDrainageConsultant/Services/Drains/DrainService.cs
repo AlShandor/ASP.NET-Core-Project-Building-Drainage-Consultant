@@ -113,6 +113,7 @@
         {
             var user = this.data.Users
                 .Include(d => d.Drains)
+                .ThenInclude(d => d.Image)
                 .Where(user => user.Id == userId)
                 .FirstOrDefault();
 

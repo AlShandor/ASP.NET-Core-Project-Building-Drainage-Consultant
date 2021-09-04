@@ -104,6 +104,7 @@
             var user = this.data.Users
                 .Include(d => d.AtticaDrains)
                 .ThenInclude(ad => ad.AtticaParts)
+                .ThenInclude(p => p.Image)
                 .Where(user => user.Id == userId)
                 .FirstOrDefault();
 
