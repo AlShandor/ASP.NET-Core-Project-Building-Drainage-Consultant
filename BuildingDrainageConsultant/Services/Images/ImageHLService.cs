@@ -71,30 +71,42 @@
         public IEnumerable<ImageHLServiceModel> GetDrainImages()
         => this.data.Images
                 .Where(i => i.ImageCategory == ImageHLCategoriesEnum.Drains)
+                .OrderByDescending(i => i.Id)
                 .ProjectTo<ImageHLServiceModel>(this.mapper)
                 .ToList();
 
         public IEnumerable<ImageHLServiceModel> GetAtticaDetailsImages()
         => this.data.Images
                 .Where(i => i.ImageCategory == ImageHLCategoriesEnum.AtticaDetails)
+                .OrderByDescending(i => i.Id)
                 .ProjectTo<ImageHLServiceModel>(this.mapper)
                 .ToList();
 
         public IEnumerable<ImageHLServiceModel> GetAtticaPartsImages()
         => this.data.Images
                 .Where(i => i.ImageCategory == ImageHLCategoriesEnum.AtticaParts)
+                .OrderByDescending(i => i.Id)
                 .ProjectTo<ImageHLServiceModel>(this.mapper)
                 .ToList();
 
         public IEnumerable<ImageHLServiceModel> GetArticlesImages()
         => this.data.Images
                 .Where(i => i.ImageCategory == ImageHLCategoriesEnum.Articles)
+                .OrderByDescending(i => i.Id)
                 .ProjectTo<ImageHLServiceModel>(this.mapper)
                 .ToList();
 
         public IEnumerable<ImageHLServiceModel> GetWaterproofingKitsImages()
             => this.data.Images
                 .Where(i => i.ImageCategory == ImageHLCategoriesEnum.WaterproofingKits)
+                .OrderByDescending(i => i.Id)
+                .ProjectTo<ImageHLServiceModel>(this.mapper)
+                .ToList();
+
+        public IEnumerable<ImageHLServiceModel> GetAccessoriesImages()
+            => this.data.Images
+                .Where(i => i.ImageCategory == ImageHLCategoriesEnum.Accessories)
+                .OrderByDescending(i => i.Id)
                 .ProjectTo<ImageHLServiceModel>(this.mapper)
                 .ToList();
 

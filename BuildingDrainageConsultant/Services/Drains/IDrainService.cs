@@ -21,7 +21,6 @@
              int currentPage,
              int drainsPerPage);
 
-        public DrainServiceModel Details(int id);
 
         public int Create(
             string name,
@@ -53,6 +52,8 @@
             DrainFlapSealEnum flapSeal,
             int? imageId,
             string description);
+
+        public DrainServiceModel Details(int id);
 
         public bool Delete(int id);
 

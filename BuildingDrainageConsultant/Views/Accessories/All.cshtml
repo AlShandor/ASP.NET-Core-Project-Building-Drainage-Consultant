@@ -1,0 +1,52 @@
+﻿@model AllAccessoriesQueryModel
+
+@{
+    ViewBag.Title = "All Accessoires";
+}
+
+<form method="get">
+    <div class="row col-md-4 mb-4">
+        <div class="form-outline">
+            <input asp-for="SearchTerm" class="form-control" placeholder="Search by Name..." />
+        </div>
+        <button type="submit" asp-controller="Accessories" asp-action="All" class="btn btn-primary ">
+            <i class="pr-1 pl-1 bi bi-search"></i>
+        </button>
+    </div>
+</form>
+
+<div class="row">
+    @if (!Model.Accessories.Any())
+    {
+        <div class="offset-4 offset-4">
+            <h2 class="text-center">No Accessories found!</h2>
+        </div>
+    }
+
+    @foreach (var accessory in Model.Accessories)
+    {
+        var drainDescriptionTruncated = accessory.Description.Length > 90 ? accessory.Description.ToString().Substring(0, 90) + "..." : accessory.Description;
+
+        <div class="col-6 col-md-6 col-lg-4 mb-3">
+            <div class="shadow card h-100 border-1">
+                @if (accessory.Image != null)
+                {
+                    var imgSource = accessory.Image.Id == 1 ? "common/defaultImage.gif" : $"accessories/{accessory.Image.Name}";
+
+                    <div class="card-img-custom">
+                        <img src="~/images/@imgSource" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
+                        <hr />
+                    </div>
+                }
+                <div class="card-body text-center">
+                    <h4 class="card-title text-center">
+                        <span class="font-weight-bold text-dark text-uppercase small">@accessory.Name</span>
+                    </h4>
+                    <p class="card-text">@drainDescriptionTruncated</p>
+                    <a asp-controller="Accessories" asp-action="Edit" asp-route-id="@accessory.Id" class="shadow btn btn-warning">Edit</a>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

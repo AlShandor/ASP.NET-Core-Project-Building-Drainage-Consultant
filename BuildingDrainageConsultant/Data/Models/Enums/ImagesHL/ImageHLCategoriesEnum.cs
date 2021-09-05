@@ -7,6 +7,7 @@
         AtticaDetails = 3,
         AtticaParts = 4,
         Articles = 5,
-        WaterproofingKits = 6
+        WaterproofingKits = 6,
+        Accessories = 7
     }
 }

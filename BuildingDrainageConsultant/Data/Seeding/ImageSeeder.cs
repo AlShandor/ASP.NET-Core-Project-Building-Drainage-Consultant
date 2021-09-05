@@ -16,9 +16,9 @@
                 return;
             }
 
-            var articleService = serviceProvider.GetRequiredService<IImageHLService>();
+            var imageService = serviceProvider.GetRequiredService<IImageHLService>();
 
-            var articles = new ImageHL[]
+            var images = new ImageHL[]
             {
                 new ImageHL
                 {
@@ -46,7 +46,7 @@
                 },
             };
 
-            articleService.CreateAll(articles);
+            imageService.CreateAll(images);
         }
     }
 }

@@ -109,27 +109,6 @@
             };
         }
 
-        public IEnumerable<DrainDetailsServiceModel> ByUser(string userId)
-        {
-            var user = this.data.Users
-                .Include(d => d.Drains)
-                .ThenInclude(d => d.Image)
-                .Where(user => user.Id == userId)
-                .FirstOrDefault();
-
-            var drains = this.GetDrains(user.Drains.AsQueryable());
-
-            return drains;
-        }
-
-        public DrainServiceModel Details(int drainId)
-            => this.data
-                .Drains
-                .Where(d => d.Id == drainId)
-                .ProjectTo<DrainServiceModel>(this.mapper)
-                .FirstOrDefault();
-
-
         public int Create(
             string name,
             double flowRate,
@@ -209,6 +188,12 @@
 
             return true;
         }
+        public DrainServiceModel Details(int drainId)
+            => this.data
+                .Drains
+                .Where(d => d.Id == drainId)
+                .ProjectTo<DrainServiceModel>(this.mapper)
+                .FirstOrDefault();
 
         public bool Delete(int id)
         {
@@ -223,6 +208,19 @@
             data.SaveChanges();
 
             return true;
+        }
+
+        public IEnumerable<DrainDetailsServiceModel> ByUser(string userId)
+        {
+            var user = this.data.Users
+                .Include(d => d.Drains)
+                .ThenInclude(d => d.Image)
+                .Where(user => user.Id == userId)
+                .FirstOrDefault();
+
+            var drains = this.GetDrains(user.Drains.AsQueryable());
+
+            return drains;
         }
 
         public bool AddToMine(string userId, int drainId)

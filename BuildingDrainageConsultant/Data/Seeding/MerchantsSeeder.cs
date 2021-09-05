@@ -15,9 +15,9 @@
                 return;
             }
 
-            var articleService = serviceProvider.GetRequiredService<IMerchantService>();
+            var merchantService = serviceProvider.GetRequiredService<IMerchantService>();
 
-            var articles = new Merchant[]
+            var merchants = new Merchant[]
             {
                 new Merchant
                 {
@@ -54,7 +54,7 @@
                 },
             };
 
-            articleService.CreateAll(articles);
+            merchantService.CreateAll(merchants);
         }
 
     }

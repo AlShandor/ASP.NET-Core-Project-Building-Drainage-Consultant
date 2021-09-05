@@ -20,6 +20,17 @@
             this.data = data;
             this.mapper = mapper.ConfigurationProvider;
         }
+        public IEnumerable<ArticleServiceModel> All()
+        {
+            var articlesQuery = this.data.Articles.AsQueryable();
+
+            var articles = articlesQuery
+                .OrderByDescending(a => a.Id)
+                .ProjectTo<ArticleServiceModel>(this.mapper)
+                .ToList();
+
+            return articles;
+        }
 
         public int Create(string title, string content, int? imageId)
         {
@@ -35,24 +46,6 @@
 
             return articleData.Id;
         }
-
-        public IEnumerable<ArticleServiceModel> All()
-        {
-            var articlesQuery = this.data.Articles.AsQueryable();
-
-            var articles = articlesQuery
-                .ProjectTo<ArticleServiceModel>(this.mapper)
-                .ToList();
-
-            return articles;
-        }
-
-        public ArticleServiceModel Details(int id)
-        => this.data
-                .Articles
-                .Where(d => d.Id == id)
-                .ProjectTo<ArticleServiceModel>(this.mapper)
-                .FirstOrDefault();
 
         public bool Edit(int id, string title, string content, int? imageId)
         {
@@ -71,6 +64,12 @@
 
             return true;
         }
+        public ArticleServiceModel Details(int id)
+        => this.data
+                .Articles
+                .Where(d => d.Id == id)
+                .ProjectTo<ArticleServiceModel>(this.mapper)
+                .FirstOrDefault();
 
         public bool Delete(int id)
         {

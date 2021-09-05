@@ -36,6 +36,7 @@
             var totalAtticaDetails = atticaDetailQuery.Count();
 
             var atticaDetails = atticaDetailQuery
+                .OrderByDescending(d => d.Id)
                 .ProjectTo<AtticaDetailServiceModel>(this.mapper)
                 .ToList();
 

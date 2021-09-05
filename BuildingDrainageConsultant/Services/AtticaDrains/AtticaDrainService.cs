@@ -33,6 +33,7 @@
             }
 
             var atticaDrains = atticaDrainQuery
+                .OrderByDescending(d => d.Id)
                 .ProjectTo<AtticaDrainServiceModel>(this.mapper)
                 .ToList();
 
@@ -98,27 +99,6 @@
                 AtticaDrains = atticaDrains
             };
         }
-
-        public IEnumerable<AtticaDrainServiceModel> ByUser(string userId)
-        {
-            var user = this.data.Users
-                .Include(d => d.AtticaDrains)
-                .ThenInclude(ad => ad.AtticaParts)
-                .ThenInclude(p => p.Image)
-                .Where(user => user.Id == userId)
-                .FirstOrDefault();
-
-            var atticaDrains = this.GetAtticaDrains(user.AtticaDrains.AsQueryable());
-
-            return atticaDrains;
-        }
-
-        public AtticaDrainServiceModel Details(int id)
-        => this.data
-                .AtticaDrains
-                .Where(d => d.Id == id)
-                .ProjectTo<AtticaDrainServiceModel>(this.mapper)
-                .FirstOrDefault();
 
         public int Create(
             int detailId,
@@ -187,6 +167,12 @@
 
             return true;
         }
+        public AtticaDrainServiceModel Details(int id)
+        => this.data
+                .AtticaDrains
+                .Where(d => d.Id == id)
+                .ProjectTo<AtticaDrainServiceModel>(this.mapper)
+                .FirstOrDefault();
 
         public bool Delete(int id)
         {
@@ -201,6 +187,20 @@
             data.SaveChanges();
 
             return true;
+        }
+
+        public IEnumerable<AtticaDrainServiceModel> ByUser(string userId)
+        {
+            var user = this.data.Users
+                .Include(d => d.AtticaDrains)
+                .ThenInclude(ad => ad.AtticaParts)
+                .ThenInclude(p => p.Image)
+                .Where(user => user.Id == userId)
+                .FirstOrDefault();
+
+            var atticaDrains = this.GetAtticaDrains(user.AtticaDrains.AsQueryable());
+
+            return atticaDrains;
         }
 
         public IEnumerable<AtticaDetailServiceModel> GetAtticaDetails()

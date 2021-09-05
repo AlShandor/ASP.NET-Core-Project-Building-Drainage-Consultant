@@ -21,7 +21,6 @@
             AtticaDrainSortingEnum sorting,
             int currentPage,
             int drainsPerPage);
-        public AtticaDrainServiceModel Details(int id);
 
         public int Create(
             int detailId,
@@ -42,6 +41,8 @@
             AtticaConcreteWaterproofingEnum concreteWaterproofing,
             AtticaDiameterEnum diameter,
             AtticaVisiblePartEnum visiblePart);
+
+        public AtticaDrainServiceModel Details(int id);
 
         public bool Delete(int id);
 

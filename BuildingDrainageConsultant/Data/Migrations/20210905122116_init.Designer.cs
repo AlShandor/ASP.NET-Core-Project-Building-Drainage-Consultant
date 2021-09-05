@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuildingDrainageConsultant.Data.Migrations
 {
     [DbContext(typeof(BuildingDrainageConsultantDbContext))]
-    [Migration("20210905094950_init")]
+    [Migration("20210905122116_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,21 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("AccessoryDrain", b =>
+                {
+                    b.Property<int>("AccessoriesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DrainsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AccessoriesId", "DrainsId");
+
+                    b.HasIndex("DrainsId");
+
+                    b.ToTable("AccessoryDrain");
+                });
 
             modelBuilder.Entity("AtticaDrainAtticaPart", b =>
                 {
@@ -49,6 +64,33 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     b.HasIndex("UsersId");
 
                     b.ToTable("AtticaDrainUser");
+                });
+
+            modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.Accessory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int?>("ImageId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ImageId");
+
+                    b.ToTable("Accessories");
                 });
 
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.Article", b =>
@@ -549,6 +591,21 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("AccessoryDrain", b =>
+                {
+                    b.HasOne("BuildingDrainageConsultant.Data.Models.Accessory", null)
+                        .WithMany()
+                        .HasForeignKey("AccessoriesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BuildingDrainageConsultant.Data.Models.Drain", null)
+                        .WithMany()
+                        .HasForeignKey("DrainsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("AtticaDrainAtticaPart", b =>
                 {
                     b.HasOne("BuildingDrainageConsultant.Data.Models.AtticaDrain", null)
@@ -577,6 +634,16 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.Accessory", b =>
+                {
+                    b.HasOne("BuildingDrainageConsultant.Data.Models.ImageHL", "Image")
+                        .WithMany("Accessories")
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Image");
                 });
 
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.Article", b =>
@@ -639,8 +706,9 @@ namespace BuildingDrainageConsultant.Data.Migrations
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.WaterproofingKit", b =>
                 {
                     b.HasOne("BuildingDrainageConsultant.Data.Models.ImageHL", "Image")
-                        .WithMany()
-                        .HasForeignKey("ImageId");
+                        .WithMany("WaterproofingKits")
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Image");
                 });
@@ -718,6 +786,8 @@ namespace BuildingDrainageConsultant.Data.Migrations
 
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.ImageHL", b =>
                 {
+                    b.Navigation("Accessories");
+
                     b.Navigation("Articles");
 
                     b.Navigation("AtticaDetails");
@@ -725,6 +795,8 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     b.Navigation("AtticaParts");
 
                     b.Navigation("Drains");
+
+                    b.Navigation("WaterproofingKits");
                 });
 
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.WaterproofingKit", b =>

@@ -16,9 +16,9 @@
                 return;
             }
 
-            var articleService = serviceProvider.GetRequiredService<IAtticaDetailService>();
+            var atticaDetailService = serviceProvider.GetRequiredService<IAtticaDetailService>();
 
-            var articles = new AtticaDetail[]
+            var atticaDetails = new AtticaDetail[]
             {
                 new AtticaDetail
                 {
@@ -54,7 +54,7 @@
                 },
             };
 
-            articleService.CreateAll(articles);
+            atticaDetailService.CreateAll(atticaDetails);
         }
     }
 }

@@ -15,9 +15,9 @@
                 return;
             }
 
-            var atticaPartService = serviceProvider.GetRequiredService<IWaterproofingKitService>();
+            var waterproofingKitService = serviceProvider.GetRequiredService<IWaterproofingKitService>();
 
-            var atticaParts = new WaterproofingKit[]
+            var waterproofingKits = new WaterproofingKit[]
             {
                 new WaterproofingKit
                 {
@@ -39,7 +39,7 @@
                 },
             };
 
-            atticaPartService.CreateAll(atticaParts);
+            waterproofingKitService.CreateAll(waterproofingKits);
         }
     }
 }

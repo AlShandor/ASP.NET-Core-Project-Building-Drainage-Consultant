@@ -31,6 +31,7 @@
             }
 
             var waterproofingKits = waterproofingKitsQuery
+                .OrderByDescending(w => w.Id)
                 .ProjectTo<WaterproofingKitServiceModel>(this.mapper)
                 .ToList();
 

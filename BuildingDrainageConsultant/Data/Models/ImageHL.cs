@@ -25,5 +25,10 @@
         public ICollection<AtticaPart> AtticaParts { get; set; }
 
         public ICollection<Article> Articles { get; set; }
+
+        public ICollection<WaterproofingKit> WaterproofingKits { get; set; }
+
+        public ICollection<Accessory> Accessories { get; set; }
+
     }
 }

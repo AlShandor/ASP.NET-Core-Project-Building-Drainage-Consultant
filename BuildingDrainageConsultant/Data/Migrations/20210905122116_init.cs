@@ -188,6 +188,27 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Accessories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    ImageId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Accessories", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Accessories_Images_ImageId",
+                        column: x => x.ImageId,
+                        principalTable: "Images",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Articles",
                 columns: table => new
                 {
@@ -270,7 +291,7 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         column: x => x.ImageId,
                         principalTable: "Images",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -386,6 +407,30 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AccessoryDrain",
+                columns: table => new
+                {
+                    AccessoriesId = table.Column<int>(type: "int", nullable: false),
+                    DrainsId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AccessoryDrain", x => new { x.AccessoriesId, x.DrainsId });
+                    table.ForeignKey(
+                        name: "FK_AccessoryDrain_Accessories_AccessoriesId",
+                        column: x => x.AccessoriesId,
+                        principalTable: "Accessories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AccessoryDrain_Drains_DrainsId",
+                        column: x => x.DrainsId,
+                        principalTable: "Drains",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "DrainUser",
                 columns: table => new
                 {
@@ -408,6 +453,16 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Accessories_ImageId",
+                table: "Accessories",
+                column: "ImageId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AccessoryDrain_DrainsId",
+                table: "AccessoryDrain",
+                column: "DrainsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Articles_ImageId",
@@ -502,6 +557,9 @@ namespace BuildingDrainageConsultant.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AccessoryDrain");
+
+            migrationBuilder.DropTable(
                 name: "Articles");
 
             migrationBuilder.DropTable(
@@ -530,6 +588,9 @@ namespace BuildingDrainageConsultant.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Merchants");
+
+            migrationBuilder.DropTable(
+                name: "Accessories");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

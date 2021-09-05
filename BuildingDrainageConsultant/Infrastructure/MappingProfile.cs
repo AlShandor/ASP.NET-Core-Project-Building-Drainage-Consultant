@@ -2,6 +2,7 @@
 {
     using AutoMapper;
     using BuildingDrainageConsultant.Data.Models;
+    using BuildingDrainageConsultant.Models.Accessories;
     using BuildingDrainageConsultant.Models.Articles;
     using BuildingDrainageConsultant.Models.AtticaDetails;
     using BuildingDrainageConsultant.Models.AtticaDrains;
@@ -9,6 +10,7 @@
     using BuildingDrainageConsultant.Models.Drains;
     using BuildingDrainageConsultant.Models.Merchants;
     using BuildingDrainageConsultant.Models.WaterproofingKits;
+    using BuildingDrainageConsultant.Services.Accessories.Models;
     using BuildingDrainageConsultant.Services.Articles.Models;
     using BuildingDrainageConsultant.Services.AtticaDetail.Models;
     using BuildingDrainageConsultant.Services.AtticaDrains.Models;
@@ -45,6 +47,9 @@
 
             this.CreateMap<WaterproofingKit, WaterproofingKitServiceModel>();
             this.CreateMap<WaterproofingKitServiceModel, WaterproofingKitFormModel>();
+
+            this.CreateMap<Accessory, AccessoryServiceModel>();
+            this.CreateMap<AccessoryServiceModel, AccessoryFormModel>();
         }
     }
 }

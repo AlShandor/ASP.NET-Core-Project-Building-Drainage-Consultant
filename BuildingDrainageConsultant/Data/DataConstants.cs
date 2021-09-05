@@ -68,5 +68,12 @@
             public const int DescriptionMaxLength = 1000;
             public const int DefaultImageId = 1;
         }
+
+        public class Accessory
+        {
+            public const int NameMaxLength = 30;
+            public const int DescriptionMaxLength = 1000;
+            public const int DefaultImageId = 1;
+        }
     }
 }

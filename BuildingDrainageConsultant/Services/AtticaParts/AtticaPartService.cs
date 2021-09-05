@@ -28,6 +28,7 @@
             }
 
             var atticaParts = atticaPartsQuery
+                .OrderByDescending(p => p.Id)
                 .ProjectTo<AtticaPartServiceModel>(this.mapper)
                 .ToList();
 

@@ -70,6 +70,14 @@
             return View(model);
         }
 
+        public IActionResult AccessoriesGallery(ImageHLViewModel model)
+        {
+            var accesoriesImages = this.images.GetAccessoriesImages();
+
+            model.DisplayImages = accesoriesImages;
+            return View(model);
+        }
+
         [HttpPost]
         public IActionResult Delete(int id)
         {

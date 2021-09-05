@@ -1,0 +1,15 @@
+﻿@model AccessoryFormModel
+
+@{
+    ViewBag.Title = "Edit Accessory";
+    ViewBag.View = "Edit";
+    ViewBag.ImageGallery = "accessories";
+}
+
+<div id="view-all">
+    <partial name="_AccessoryFormPartial" model="@Model" />
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

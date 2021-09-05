@@ -21,6 +21,8 @@
 
         public IEnumerable<ImageHLServiceModel> GetWaterproofingKitsImages();
 
+        public IEnumerable<ImageHLServiceModel> GetAccessoriesImages();
+
         public bool Delete(int id);
 
         public string GetImageGallery(int id);

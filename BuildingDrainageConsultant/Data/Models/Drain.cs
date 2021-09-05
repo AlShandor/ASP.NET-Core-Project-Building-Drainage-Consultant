@@ -60,5 +60,8 @@
         public WaterproofingKit WaterproofingKit { get; set; }
 
         public virtual ICollection<User> Users { get; set; } = new List<User>();
+
+        public virtual ICollection<Accessory> Accessories { get; set; } = new List<Accessory>();
+
     }
 }

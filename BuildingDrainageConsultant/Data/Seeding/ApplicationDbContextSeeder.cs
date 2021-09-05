@@ -25,7 +25,9 @@
                               new AtticaPartsSeeder(),
                               new AtticaDrainsSeeder(),
                               new DrainsSeeder(),
-                              new MerchantsSeeder()
+                              new MerchantsSeeder(),
+                              new WaterproofingKitsSeeder(),
+                              new AccessoriesSeeder()
                           };
 
             foreach (var seeder in seeders)

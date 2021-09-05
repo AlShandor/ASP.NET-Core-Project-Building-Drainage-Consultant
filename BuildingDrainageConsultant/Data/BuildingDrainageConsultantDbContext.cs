@@ -17,6 +17,7 @@
         public DbSet<Article> Articles { get; set; }
         public DbSet<ImageHL> Images { get; set; }
         public DbSet<WaterproofingKit> WaterproofingKits { get; set; }
+        public DbSet<Accessory> Accessories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -65,6 +66,20 @@
             builder
                 .Entity<ImageHL>()
                 .HasMany(i => i.AtticaDetails)
+                .WithOne(d => d.Image)
+                .HasForeignKey(d => d.ImageId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            builder
+                .Entity<ImageHL>()
+                .HasMany(i => i.WaterproofingKits)
+                .WithOne(d => d.Image)
+                .HasForeignKey(d => d.ImageId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            builder
+                .Entity<ImageHL>()
+                .HasMany(i => i.Accessories)
                 .WithOne(d => d.Image)
                 .HasForeignKey(d => d.ImageId)
                 .OnDelete(DeleteBehavior.SetNull);
