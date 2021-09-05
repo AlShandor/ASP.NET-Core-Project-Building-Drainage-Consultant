@@ -1,11 +1,12 @@
-﻿namespace BuildingDrainageConsultant.Services.AtticaParts
+﻿namespace BuildingDrainageConsultant.Services.Extensions
 {
     using BuildingDrainageConsultant.Data.Models;
-    using BuildingDrainageConsultant.Services.AtticaParts.Models;
+    using BuildingDrainageConsultant.Services.Extensions.Models;
     using System.Collections.Generic;
-    public interface IAtticaPartService
+
+    public interface IExtensionService
     {
-        public IEnumerable<AtticaPartServiceModel> All(string searchTerm);
+        public IEnumerable<ExtensionServiceModel> All(string searchTerm);
 
         public int Create(
                 string name,
@@ -18,10 +19,10 @@
             int? imageId,
             string description);
 
-        public AtticaPartServiceModel Details(int id);
+        public ExtensionServiceModel Details(int id);
 
         public bool Delete(int id);
 
-        public void CreateAll(AtticaPart[] atticaParts);
+        public void CreateAll(Extension[] extensions);
     }
 }

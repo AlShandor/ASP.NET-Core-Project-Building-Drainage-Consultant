@@ -30,5 +30,6 @@
 
         public ICollection<Accessory> Accessories { get; set; }
 
+        public ICollection<Extension> Extensions { get; set; }
     }
 }

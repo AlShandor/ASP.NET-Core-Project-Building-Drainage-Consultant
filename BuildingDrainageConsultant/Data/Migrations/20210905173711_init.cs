@@ -274,6 +274,27 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Extensions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    ImageId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Extensions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Extensions_Images_ImageId",
+                        column: x => x.ImageId,
+                        principalTable: "Images",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "WaterproofingKits",
                 columns: table => new
                 {
@@ -431,6 +452,30 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "DrainExtension",
+                columns: table => new
+                {
+                    DrainsId = table.Column<int>(type: "int", nullable: false),
+                    ExtensionsId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DrainExtension", x => new { x.DrainsId, x.ExtensionsId });
+                    table.ForeignKey(
+                        name: "FK_DrainExtension_Drains_DrainsId",
+                        column: x => x.DrainsId,
+                        principalTable: "Drains",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DrainExtension_Extensions_ExtensionsId",
+                        column: x => x.ExtensionsId,
+                        principalTable: "Extensions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "DrainUser",
                 columns: table => new
                 {
@@ -534,6 +579,11 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 column: "ImageId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_DrainExtension_ExtensionsId",
+                table: "DrainExtension",
+                column: "ExtensionsId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Drains_ImageId",
                 table: "Drains",
                 column: "ImageId");
@@ -547,6 +597,11 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 name: "IX_DrainUser_UsersId",
                 table: "DrainUser",
                 column: "UsersId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Extensions_ImageId",
+                table: "Extensions",
+                column: "ImageId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_WaterproofingKits_ImageId",
@@ -584,6 +639,9 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 name: "AtticaDrainUser");
 
             migrationBuilder.DropTable(
+                name: "DrainExtension");
+
+            migrationBuilder.DropTable(
                 name: "DrainUser");
 
             migrationBuilder.DropTable(
@@ -600,6 +658,9 @@ namespace BuildingDrainageConsultant.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AtticaDrains");
+
+            migrationBuilder.DropTable(
+                name: "Extensions");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

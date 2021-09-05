@@ -12,7 +12,7 @@
 
     public class AtticaPartsController : Controller
     {
-        private readonly IAtticaPartService atticaParts;
+        private readonly IAtticaPartService parts;
         private readonly IImageHLService images;
         private readonly IMapper mapper;
 
@@ -21,7 +21,7 @@
             IImageHLService images,
             IMapper mapper)
         {
-            this.atticaParts = parts;
+            this.parts = parts;
             this.images = images;
             this.mapper = mapper;
         }
@@ -38,7 +38,7 @@
                 return View(atticaPart);
             }
 
-            this.atticaParts.Create(
+            this.parts.Create(
                 atticaPart.Name,
                 atticaPart.ImageId,
                 atticaPart.Description);
@@ -49,7 +49,7 @@
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult All([FromQuery] AllAtticaPartsQueryModel query)
         {
-            var queryResults = this.atticaParts.All(query.SearchTerm);
+            var queryResults = this.parts.All(query.SearchTerm);
 
             query.AtticaParts = queryResults;
 
@@ -59,7 +59,7 @@
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Edit(int id)
         {
-            var atticaPart = this.atticaParts.Details(id);
+            var atticaPart = this.parts.Details(id);
 
             var atticaPartForm = this.mapper.Map<AtticaPartFormModel>(atticaPart);
 
@@ -81,7 +81,7 @@
                 return BadRequest();
             }
 
-            this.atticaParts.Edit(
+            this.parts.Edit(
                 id,
                 atticaPart.Name,
                 atticaPart.ImageId,
@@ -92,7 +92,7 @@
 
         public IActionResult Details(int id)
         {
-            var atticaPart = this.atticaParts.Details(id);
+            var atticaPart = this.parts.Details(id);
 
             var atticaPartForm = this.mapper.Map<AtticaPartFormModel>(atticaPart);
 
@@ -103,7 +103,7 @@
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Delete(int id)
         {
-            var drain = this.atticaParts.Delete(id);
+            var drain = this.parts.Delete(id);
 
             if (drain == false)
             {
@@ -151,7 +151,7 @@
         [HttpPost]
         public IActionResult EditImage(int id, int modelId, AtticaPartFormModel partCreateInfo)
         {
-            var atticaPart = this.atticaParts.Details(modelId);
+            var atticaPart = this.parts.Details(modelId);
             partCreateInfo = this.mapper.Map<AtticaPartFormModel>(atticaPart);
 
             var drainImage = this.images.GetImageById(id);

@@ -8,6 +8,7 @@
     using BuildingDrainageConsultant.Models.AtticaDrains;
     using BuildingDrainageConsultant.Models.AtticaParts;
     using BuildingDrainageConsultant.Models.Drains;
+    using BuildingDrainageConsultant.Models.Extensions;
     using BuildingDrainageConsultant.Models.Merchants;
     using BuildingDrainageConsultant.Models.WaterproofingKits;
     using BuildingDrainageConsultant.Services.Accessories.Models;
@@ -16,6 +17,7 @@
     using BuildingDrainageConsultant.Services.AtticaDrains.Models;
     using BuildingDrainageConsultant.Services.AtticaParts.Models;
     using BuildingDrainageConsultant.Services.Drains.Models;
+    using BuildingDrainageConsultant.Services.Extensions.Models;
     using BuildingDrainageConsultant.Services.Images.Models;
     using BuildingDrainageConsultant.Services.Merchants.Models;
     using BuildingDrainageConsultant.Services.WaterproofingKits.Models;
@@ -50,6 +52,9 @@
 
             this.CreateMap<Accessory, AccessoryServiceModel>();
             this.CreateMap<AccessoryServiceModel, AccessoryFormModel>();
+
+            this.CreateMap<Extension, ExtensionServiceModel>();
+            this.CreateMap<ExtensionServiceModel, ExtensionFormModel>();
         }
     }
 }

@@ -27,7 +27,8 @@
                               new DrainsSeeder(),
                               new MerchantsSeeder(),
                               new WaterproofingKitsSeeder(),
-                              new AccessoriesSeeder()
+                              new AccessoriesSeeder(),
+                              new ExtensionsSeeder()
                           };
 
             foreach (var seeder in seeders)

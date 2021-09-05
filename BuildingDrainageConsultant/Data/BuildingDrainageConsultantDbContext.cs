@@ -18,6 +18,7 @@
         public DbSet<ImageHL> Images { get; set; }
         public DbSet<WaterproofingKit> WaterproofingKits { get; set; }
         public DbSet<Accessory> Accessories { get; set; }
+        public DbSet<Extension> Extensions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -80,6 +81,13 @@
             builder
                 .Entity<ImageHL>()
                 .HasMany(i => i.Accessories)
+                .WithOne(d => d.Image)
+                .HasForeignKey(d => d.ImageId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            builder
+                .Entity<ImageHL>()
+                .HasMany(i => i.Extensions)
                 .WithOne(d => d.Image)
                 .HasForeignKey(d => d.ImageId)
                 .OnDelete(DeleteBehavior.SetNull);

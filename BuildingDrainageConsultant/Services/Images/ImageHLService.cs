@@ -110,6 +110,13 @@
                 .ProjectTo<ImageHLServiceModel>(this.mapper)
                 .ToList();
 
+        public IEnumerable<ImageHLServiceModel> GetExtensionsImages()
+            => this.data.Images
+                .Where(i => i.ImageCategory == ImageHLCategoriesEnum.Extensions)
+                .OrderByDescending(i => i.Id)
+                .ProjectTo<ImageHLServiceModel>(this.mapper)
+                .ToList();
+
         public bool Delete(int id)
         {
             var image = this.data.Images.Find(id);

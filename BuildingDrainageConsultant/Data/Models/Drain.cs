@@ -63,5 +63,6 @@
 
         public virtual ICollection<Accessory> Accessories { get; set; } = new List<Accessory>();
 
+        public virtual ICollection<Extension> Extensions { get; set; } = new List<Extension>();
     }
 }

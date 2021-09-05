@@ -77,6 +77,13 @@
             model.DisplayImages = accesoriesImages;
             return View(model);
         }
+        public IActionResult ExtensionsGallery(ImageHLViewModel model)
+        {
+            var extensionsImages = this.images.GetExtensionsImages();
+
+            model.DisplayImages = extensionsImages;
+            return View(model);
+        }
 
         [HttpPost]
         public IActionResult Delete(int id)

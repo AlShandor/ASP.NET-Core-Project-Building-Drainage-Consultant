@@ -75,5 +75,12 @@
             public const int DescriptionMaxLength = 1000;
             public const int DefaultImageId = 1;
         }
+
+        public class Extension
+        {
+            public const int NameMaxLength = 30;
+            public const int DescriptionMaxLength = 1000;
+            public const int DefaultImageId = 1;
+        }
     }
 }

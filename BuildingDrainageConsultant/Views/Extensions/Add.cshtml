@@ -1,0 +1,15 @@
+﻿@model ExtensionFormModel
+
+@{
+    ViewBag.Title = "Add Extension";
+    ViewBag.View = "Add";
+    ViewBag.ImageGallery = "extensions";
+}
+
+<div id="view-all">
+    <partial name="_ExtensionFormPartial" model="@Model" />
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

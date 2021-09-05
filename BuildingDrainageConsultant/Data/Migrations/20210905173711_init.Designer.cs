@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuildingDrainageConsultant.Data.Migrations
 {
     [DbContext(typeof(BuildingDrainageConsultantDbContext))]
-    [Migration("20210905122116_init")]
+    [Migration("20210905173711_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -281,6 +281,33 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     b.ToTable("Drains");
                 });
 
+            modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.Extension", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int?>("ImageId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ImageId");
+
+                    b.ToTable("Extensions");
+                });
+
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.ImageHL", b =>
                 {
                     b.Property<int>("Id")
@@ -439,6 +466,21 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     b.HasIndex("ImageId");
 
                     b.ToTable("WaterproofingKits");
+                });
+
+            modelBuilder.Entity("DrainExtension", b =>
+                {
+                    b.Property<int>("DrainsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ExtensionsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("DrainsId", "ExtensionsId");
+
+                    b.HasIndex("ExtensionsId");
+
+                    b.ToTable("DrainExtension");
                 });
 
             modelBuilder.Entity("DrainUser", b =>
@@ -703,6 +745,16 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     b.Navigation("WaterproofingKit");
                 });
 
+            modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.Extension", b =>
+                {
+                    b.HasOne("BuildingDrainageConsultant.Data.Models.ImageHL", "Image")
+                        .WithMany("Extensions")
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Image");
+                });
+
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.WaterproofingKit", b =>
                 {
                     b.HasOne("BuildingDrainageConsultant.Data.Models.ImageHL", "Image")
@@ -711,6 +763,21 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Image");
+                });
+
+            modelBuilder.Entity("DrainExtension", b =>
+                {
+                    b.HasOne("BuildingDrainageConsultant.Data.Models.Drain", null)
+                        .WithMany()
+                        .HasForeignKey("DrainsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BuildingDrainageConsultant.Data.Models.Extension", null)
+                        .WithMany()
+                        .HasForeignKey("ExtensionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DrainUser", b =>
@@ -795,6 +862,8 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     b.Navigation("AtticaParts");
 
                     b.Navigation("Drains");
+
+                    b.Navigation("Extensions");
 
                     b.Navigation("WaterproofingKits");
                 });

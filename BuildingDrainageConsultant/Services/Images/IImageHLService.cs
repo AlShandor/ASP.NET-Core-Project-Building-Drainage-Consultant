@@ -23,6 +23,8 @@
 
         public IEnumerable<ImageHLServiceModel> GetAccessoriesImages();
 
+        public IEnumerable<ImageHLServiceModel> GetExtensionsImages();
+
         public bool Delete(int id);
 
         public string GetImageGallery(int id);
