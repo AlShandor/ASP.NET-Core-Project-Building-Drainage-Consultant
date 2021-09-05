@@ -16,10 +16,18 @@
         public DbSet<AtticaPart> AtticaParts { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<ImageHL> Images { get; set; }
+        public DbSet<WaterproofingKit> WaterproofingKits { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             ImageHLModelCreating(builder);
+
+            builder
+                .Entity<WaterproofingKit>()
+                .HasMany(i => i.Drains)
+                .WithOne(d => d.WaterproofingKit)
+                .HasForeignKey(d => d.WaterproofingKitId)
+                .OnDelete(DeleteBehavior.SetNull);
 
             builder
                 .Entity<AtticaDrain>()

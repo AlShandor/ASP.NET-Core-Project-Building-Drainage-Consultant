@@ -55,6 +55,10 @@
 
         public ImageHL Image { get; set; }
 
+        public int? WaterproofingKitId { get; set; }
+
+        public WaterproofingKit WaterproofingKit { get; set; }
+
         public virtual ICollection<User> Users { get; set; } = new List<User>();
     }
 }

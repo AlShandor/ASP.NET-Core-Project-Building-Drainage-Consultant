@@ -1,0 +1,15 @@
+﻿@model WaterproofingKitFormModel
+
+@{
+    ViewBag.Title = "Edit Waterproofing Kit";
+    ViewBag.View = "Edit";
+    ViewBag.ImageGallery = "waterproofingkits";
+}
+
+<div id="view-all">
+    <partial name="_WaterproofingKitFormPartial" model="@Model" />
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

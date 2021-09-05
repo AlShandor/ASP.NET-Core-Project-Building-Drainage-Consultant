@@ -1,0 +1,47 @@
+﻿@model WaterproofingKitFormModel
+
+@{
+    var isAddView = ViewBag.View == "Add" ? true : false;
+    var isEditView = ViewBag.View == "Edit" ? true : false;
+    var isDetailsView = ViewBag.View == "Details" ? true : false;
+}
+
+<div class="row">
+    <div class="offset-md-3 col-md-6">
+        <h2 class="heading-margin text-center">@ViewBag.Title</h2>
+        <form method="post">
+            @if (Model.Image != null)
+            {
+                <input asp-for="ImageId" value="@Model.ImageId" type="hidden" />
+            }
+
+            <partial name="_ChooseImagePartial" model="Model" />
+
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input class="shadow-sm form-control" asp-for="Name" disabled="@isDetailsView">
+                <span asp-validation-for="Name" class="small text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" class="shadow-sm form-control" rows="4" disabled="@isDetailsView"></textarea>
+                <span asp-validation-for="Description" class="small text-danger"></span>
+            </div>
+
+            @if (isAddView)
+            {
+                <input class="btn btn-primary" type="submit" value="Save" />
+            }
+
+            @if (isEditView)
+            {
+                <input class="btn btn-primary" type="submit" value="Save" />
+
+                <partial name="_DeleteButtonWithModalPopup" model="@Model" />
+            }
+
+        </form>
+
+    </div>
+</div>

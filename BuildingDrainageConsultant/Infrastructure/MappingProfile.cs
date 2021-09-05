@@ -8,6 +8,7 @@
     using BuildingDrainageConsultant.Models.AtticaParts;
     using BuildingDrainageConsultant.Models.Drains;
     using BuildingDrainageConsultant.Models.Merchants;
+    using BuildingDrainageConsultant.Models.WaterproofingKits;
     using BuildingDrainageConsultant.Services.Articles.Models;
     using BuildingDrainageConsultant.Services.AtticaDetail.Models;
     using BuildingDrainageConsultant.Services.AtticaDrains.Models;
@@ -15,6 +16,8 @@
     using BuildingDrainageConsultant.Services.Drains.Models;
     using BuildingDrainageConsultant.Services.Images.Models;
     using BuildingDrainageConsultant.Services.Merchants.Models;
+    using BuildingDrainageConsultant.Services.WaterproofingKits.Models;
+
     public class MappingProfile : Profile
     {
         public MappingProfile()
@@ -34,12 +37,14 @@
 
             this.CreateMap<AtticaDrain, AtticaDrainServiceModel>();
             this.CreateMap<AtticaDrainServiceModel, AtticaDrainFormModel>();
-            this.CreateMap<AtticaDrainServiceModel, AtticaDrainFormModel>();
 
             this.CreateMap<Article, ArticleServiceModel>();
             this.CreateMap<ArticleServiceModel, ArticleFormModel>();
 
             this.CreateMap<ImageHL, ImageHLServiceModel>();
+
+            this.CreateMap<WaterproofingKit, WaterproofingKitServiceModel>();
+            this.CreateMap<WaterproofingKitServiceModel, WaterproofingKitFormModel>();
         }
     }
 }

@@ -92,6 +92,12 @@
                 .ProjectTo<ImageHLServiceModel>(this.mapper)
                 .ToList();
 
+        public IEnumerable<ImageHLServiceModel> GetWaterproofingKitsImages()
+            => this.data.Images
+                .Where(i => i.ImageCategory == ImageHLCategoriesEnum.WaterproofingKits)
+                .ProjectTo<ImageHLServiceModel>(this.mapper)
+                .ToList();
+
         public bool Delete(int id)
         {
             var image = this.data.Images.Find(id);

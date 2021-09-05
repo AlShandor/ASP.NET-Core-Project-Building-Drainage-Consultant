@@ -40,25 +40,33 @@
 
         public IActionResult AtticaDetailsGallery(ImageHLViewModel model)
         {
-            var drainImages = this.images.GetAtticaDetailsImages();
+            var atticaDetailsImages = this.images.GetAtticaDetailsImages();
 
-            model.DisplayImages = drainImages;
+            model.DisplayImages = atticaDetailsImages;
             return View(model);
         }
 
         public IActionResult AtticaPartsGallery(ImageHLViewModel model)
         {
-            var drainImages = this.images.GetAtticaPartsImages();
+            var atticaPartsImages = this.images.GetAtticaPartsImages();
 
-            model.DisplayImages = drainImages;
+            model.DisplayImages = atticaPartsImages;
             return View(model);
         }
 
         public IActionResult ArticlesGallery(ImageHLViewModel model)
         {
-            var drainImages = this.images.GetArticlesImages();
+            var articlesImages = this.images.GetArticlesImages();
 
-            model.DisplayImages = drainImages;
+            model.DisplayImages = articlesImages;
+            return View(model);
+        }
+
+        public IActionResult WaterproofingKitsGallery(ImageHLViewModel model)
+        {
+            var waterproofingKitsImages = this.images.GetWaterproofingKitsImages();
+
+            model.DisplayImages = waterproofingKitsImages;
             return View(model);
         }
 

@@ -20,26 +20,19 @@
         }
         public IEnumerable<AtticaPartServiceModel> All(string searchTerm)
         {
-            var atticaPartQuery = this.data.AtticaParts.AsQueryable();
+            var atticaPartsQuery = this.data.AtticaParts.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(searchTerm))
             {
-                atticaPartQuery = atticaPartQuery.Where(d => d.Name.ToLower().Contains(searchTerm.ToLower()));
+                atticaPartsQuery = atticaPartsQuery.Where(d => d.Name.ToLower().Contains(searchTerm.ToLower()));
             }
 
-            var atticaParts = atticaPartQuery
+            var atticaParts = atticaPartsQuery
                 .ProjectTo<AtticaPartServiceModel>(this.mapper)
                 .ToList();
 
             return atticaParts;
         }
-
-        public AtticaPartServiceModel Details(int id)
-        => this.data
-                .AtticaParts
-                .Where(d => d.Id == id)
-                .ProjectTo<AtticaPartServiceModel>(this.mapper)
-                .FirstOrDefault();
 
         public int Create(string name, int? imageId, string description)
         {
@@ -73,6 +66,14 @@
 
             return true;
         }
+
+        public AtticaPartServiceModel Details(int id)
+        => this.data
+                .AtticaParts
+                .Where(d => d.Id == id)
+                .ProjectTo<AtticaPartServiceModel>(this.mapper)
+                .FirstOrDefault();
+
         public bool Delete(int id)
         {
             var atticaPart = this.data.AtticaParts.Find(id);

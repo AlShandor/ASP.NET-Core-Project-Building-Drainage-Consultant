@@ -225,9 +225,14 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     b.Property<int>("Waterproofing")
                         .HasColumnType("int");
 
+                    b.Property<int?>("WaterproofingKitId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ImageId");
+
+                    b.HasIndex("WaterproofingKitId");
 
                     b.ToTable("Drains");
                 });
@@ -363,6 +368,33 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.WaterproofingKit", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int?>("ImageId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ImageId");
+
+                    b.ToTable("WaterproofingKits");
                 });
 
             modelBuilder.Entity("DrainUser", b =>
@@ -592,6 +624,22 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .HasForeignKey("ImageId")
                         .OnDelete(DeleteBehavior.SetNull);
 
+                    b.HasOne("BuildingDrainageConsultant.Data.Models.WaterproofingKit", "WaterproofingKit")
+                        .WithMany("Drains")
+                        .HasForeignKey("WaterproofingKitId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Image");
+
+                    b.Navigation("WaterproofingKit");
+                });
+
+            modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.WaterproofingKit", b =>
+                {
+                    b.HasOne("BuildingDrainageConsultant.Data.Models.ImageHL", "Image")
+                        .WithMany()
+                        .HasForeignKey("ImageId");
+
                     b.Navigation("Image");
                 });
 
@@ -674,6 +722,11 @@ namespace BuildingDrainageConsultant.Data.Migrations
 
                     b.Navigation("AtticaParts");
 
+                    b.Navigation("Drains");
+                });
+
+            modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.WaterproofingKit", b =>
+                {
                     b.Navigation("Drains");
                 });
 #pragma warning restore 612, 618

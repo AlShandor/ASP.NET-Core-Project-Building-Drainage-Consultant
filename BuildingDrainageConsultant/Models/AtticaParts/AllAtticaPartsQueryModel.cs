@@ -6,7 +6,7 @@
 
     public class AllAtticaPartsQueryModel
     {
-        [Display(Name = "Search by drain name")]
+        [Display(Name = "Search by name")]
         public string SearchTerm { get; set; }
 
         public IEnumerable<AtticaPartServiceModel> AtticaParts { get; set; }

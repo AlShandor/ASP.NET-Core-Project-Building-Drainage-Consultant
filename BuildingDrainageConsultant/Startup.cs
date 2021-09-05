@@ -10,6 +10,7 @@ namespace BuildingDrainageConsultant
     using BuildingDrainageConsultant.Services.Drains;
     using BuildingDrainageConsultant.Services.Images;
     using BuildingDrainageConsultant.Services.Merchants;
+    using BuildingDrainageConsultant.Services.WaterproofingKits;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -60,6 +61,7 @@ namespace BuildingDrainageConsultant
             services.AddTransient<IAtticaDrainService, AtticaDrainService>();
             services.AddTransient<IArticleService, ArticleService>();
             services.AddTransient<IImageHLService, ImageHLService>();
+            services.AddTransient<IWaterproofingKitService, WaterproofingKitService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

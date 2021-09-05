@@ -1,7 +1,7 @@
-﻿@model AllAtticaPartsQueryModel
+﻿@model AllWaterproofingKitsQueryModel
 
 @{
-    ViewBag.Title = "All Attica Parts";
+    ViewBag.Title = "All Waterproofing Kits";
 }
 
 <form method="get">
@@ -9,29 +9,29 @@
         <div class="form-outline">
             <input asp-for="SearchTerm" class="form-control" placeholder="Search by Name..." />
         </div>
-        <button type="submit" asp-controller="AtticaParts" asp-action="All" class="btn btn-primary ">
+        <button type="submit" asp-controller="WaterproofingKits" asp-action="All" class="btn btn-primary ">
             <i class="pr-1 pl-1 bi bi-search"></i>
         </button>
     </div>
 </form>
 
 <div class="row">
-    @if (!Model.AtticaParts.Any())
+    @if (!Model.WaterproofingKits.Any())
     {
         <div class="offset-4 offset-4">
-            <h2 class="text-center">No Attica Parts found!</h2>
+            <h2 class="text-center">No Waterproofing Kits found!</h2>
         </div>
     }
 
-    @foreach (var part in Model.AtticaParts)
+    @foreach (var kit in Model.WaterproofingKits)
     {
-        var drainDescriptionTruncated = part.Description.Length > 90 ? part.Description.ToString().Substring(0, 90) + "..." : part.Description;
+        var kitDescriptionTruncated = kit.Description.Length > 90 ? kit.Description.ToString().Substring(0, 90) + "..." : kit.Description;
 
         <div class="col-6 col-md-6 col-lg-4 mb-3">
             <div class="shadow card h-100 border-1">
-                @if (part.Image != null)
+                @if (kit.Image != null)
                 {
-                    var imgSource = part.Image.Id == 1 ? "common/defaultImage.gif" : $"atticaparts/{part.Image.Name}";
+                    var imgSource = kit.Image.Id == 1 ? "common/defaultImage.gif" : $"waterproofingkits/{kit.Image.Name}";
 
                     <div class="card-img-custom">
                         <img src="~/images/@imgSource" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
@@ -40,10 +40,10 @@
                 }
                 <div class="card-body text-center">
                     <h4 class="card-title text-center">
-                        <span class="font-weight-bold text-dark text-uppercase small">@part.Name</span>
+                        <span class="font-weight-bold text-dark text-uppercase small">@kit.Name</span>
                     </h4>
-                    <p class="card-text">@drainDescriptionTruncated</p>
-                    <a asp-controller="AtticaParts" asp-action="Edit" asp-route-id="@part.Id" class="shadow btn btn-warning">Edit</a>
+                    <p class="card-text">@kitDescriptionTruncated</p>
+                    <a asp-controller="WaterproofingKits" asp-action="Edit" asp-route-id="@kit.Id" class="shadow btn btn-warning">Edit</a>
                 </div>
             </div>
         </div>
