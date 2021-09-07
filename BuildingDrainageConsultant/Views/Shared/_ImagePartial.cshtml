@@ -1,6 +1,7 @@
 ﻿@{
     var isAddView = ViewBag.View == "Add" ? true : false;
     var isEditView = ViewBag.View == "Edit" ? true : false;
+    var isDetailsView = ViewBag.View == "Details" ? true : false;
     var controller = ViewContext.RouteData.Values["controller"];
 }
 
@@ -31,3 +32,8 @@
         </div>
     }
 </div>
+
+@if (!isDetailsView)
+{
+    <hr />
+}

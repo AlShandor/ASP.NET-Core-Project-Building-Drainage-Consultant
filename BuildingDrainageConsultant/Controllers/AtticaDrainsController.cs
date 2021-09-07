@@ -183,7 +183,7 @@
         }
 
         [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult AddAtticaPartModal(int drainId, AtticaDrainFormModel atticaDrainsCreateInfo)
+        public IActionResult AddAtticaPart(int drainId, AtticaDrainFormModel atticaDrainsCreateInfo)
         {
             if (!ModelState.IsValid)
             {
@@ -198,13 +198,13 @@
 
         [Authorize(Roles = AdministratorRoleName)]
         [HttpPost]
-        public IActionResult AddAtticaPartModal(AtticaDrainFormModel atticaDrainsCreateInfo)
+        public IActionResult AddAtticaPart(AtticaDrainFormModel atticaDrainsCreateInfo)
         {
             var isAdded = this.atticaDrains.AddAtticaPart(atticaDrainsCreateInfo.AtticaPartId, atticaDrainsCreateInfo.Id);
 
             if (!ModelState.IsValid || !isAdded)
             {
-                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddAtticaPartModal", atticaDrainsCreateInfo) });
+                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddAtticaPart", atticaDrainsCreateInfo) });
             }
 
             var aticaDrain = this.atticaDrains.Details(atticaDrainsCreateInfo.Id);
@@ -253,7 +253,7 @@
             return RedirectToAction(nameof(Mine));
         }
 
-        [Authorize]
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult RemovePart(int partId, int atticaDrainId)
         {
             var atticaPart = this.atticaDrains.RemovePart(partId, atticaDrainId);

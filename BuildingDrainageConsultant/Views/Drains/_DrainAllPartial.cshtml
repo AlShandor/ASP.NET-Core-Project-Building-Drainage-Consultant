@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<DrainDetailsServiceModel>
 
 @{
-    var isAllView = ViewBag.Title == "All Drains" ? true : false;
-    var isMineView = ViewBag.Title == "My Drains" ? true : false;
+    var isAllView = ViewBag.View == "All" ? true : false;
+    var isMineView = ViewBag.View == "Mine" ? true : false;
 }
 
 <div class="row">

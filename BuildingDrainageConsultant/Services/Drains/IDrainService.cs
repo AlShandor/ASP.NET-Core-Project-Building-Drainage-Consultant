@@ -4,6 +4,7 @@
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
     using BuildingDrainageConsultant.Models.Drains;
     using BuildingDrainageConsultant.Services.Drains.Models;
+    using BuildingDrainageConsultant.Services.WaterproofingKits.Models;
     using System.Collections.Generic;
 
     public interface IDrainService
@@ -58,6 +59,12 @@
         public bool Delete(int id);
 
         public IEnumerable<DrainDetailsServiceModel> ByUser(string userId);
+
+        public IEnumerable<WaterproofingKitServiceModel> GetWaterproofingKits();
+
+        public bool AddWaterproofingKit(int waterproofingKitId, int drainId);
+
+        public bool RemoveWaterproofingKit(int kitId, int drainId);
 
         public bool AddToMine(string userId, int drainId);
 

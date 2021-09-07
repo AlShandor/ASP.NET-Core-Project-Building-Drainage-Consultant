@@ -1,7 +1,7 @@
 ﻿@model AllAtticaDrainsQueryModel
 
 @{
-    var isMineView = ViewBag.Title == "My Attica Drains" ? true : false;
+    var isMineView = ViewBag.View == "Mine" ? true : false;
 }
 
 <div class="row">
@@ -39,7 +39,7 @@
 
                         @if (isMineView)
                         {
-                            <a asp-controller="AtticaDrains" asp-action="RemoveFromMine" asp-route-id="@atticaDrain.Id" class="shadow btn btn-danger mt-2">Remove</a>
+                            <a asp-controller="AtticaDrains" asp-action="RemoveFromMine" asp-route-id="@atticaDrain.Id" class="shadow btn btn-danger">Remove</a>
                         }
                     </div>
 

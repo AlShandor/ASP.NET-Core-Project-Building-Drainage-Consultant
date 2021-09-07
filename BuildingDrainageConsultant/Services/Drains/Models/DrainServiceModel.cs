@@ -2,6 +2,7 @@
 {
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
+    using BuildingDrainageConsultant.Services.WaterproofingKits.Models;
 
     public class DrainServiceModel
     {
@@ -34,5 +35,9 @@
         public int? ImageId { get; set; }
 
         public ImageHL Image { get; set; }
+
+        public int? WaterproofingKitId { get; set; }
+
+        public WaterproofingKitServiceModel WaterproofingKit { get; set; }
     }
 }

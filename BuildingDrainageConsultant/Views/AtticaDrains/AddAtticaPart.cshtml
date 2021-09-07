@@ -18,7 +18,7 @@ else
             {
                 <div class="col-6 col-md-6 col-lg-4 mb-3">
                     <div class="shadow card h-100 border-1">
-                        <form asp-action="AddAtticaPartModal" onsubmit="return AjaxPost(this);">
+                        <form asp-action="AddAtticaPart" onsubmit="return AjaxPost(this);">
                             <input asp-for="AtticaPartId" value="@part.Id" type="hidden" />
                             <input asp-for="Id" value="@Model.Id" type="hidden" />
                             @if (part.Image != null)

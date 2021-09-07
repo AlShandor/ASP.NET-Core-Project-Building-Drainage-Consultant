@@ -34,10 +34,6 @@
         [Display(Name = "Visible Part")]
         public AtticaVisiblePartEnum VisiblePart { get; set; }
 
-        public IEnumerable<AtticaDetailServiceModel> AtticaDetails { get; set; }
-
-        public IEnumerable<AtticaPartServiceModel> AtticaParts { get; set; }
-
         public int AtticaPartId { get; set; }
 
         public int AtticaDetailId { get; set; }
@@ -45,6 +41,10 @@
         public AtticaDetailServiceModel AtticaDetail { get; set; }
 
         public bool IsMyAtticaDrain { get; set; }
+
+        public IEnumerable<AtticaDetailServiceModel> AtticaDetails { get; set; }
+
+        public IEnumerable<AtticaPartServiceModel> AtticaParts { get; set; }
 
     }
 }

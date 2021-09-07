@@ -7,6 +7,7 @@
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
     using BuildingDrainageConsultant.Models.Drains;
     using BuildingDrainageConsultant.Services.Drains.Models;
+    using BuildingDrainageConsultant.Services.WaterproofingKits.Models;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Linq;
@@ -221,6 +222,54 @@
             var drains = this.GetDrains(user.Drains.AsQueryable());
 
             return drains;
+        }
+
+        public IEnumerable<WaterproofingKitServiceModel> GetWaterproofingKits()
+            => this.data.WaterproofingKits
+                .AsQueryable()
+                .ProjectTo<WaterproofingKitServiceModel>(this.mapper)
+                .ToList();
+
+        public bool AddWaterproofingKit(int waterproofingKitId, int drainId)
+        {
+            var waterproofingKit = this.data.WaterproofingKits.Find(waterproofingKitId);
+            var drain = this.data.Drains
+                                 .Include(a => a.WaterproofingKit)
+                                 .SingleOrDefault(a => a.Id == drainId);
+
+            if (waterproofingKit == null || drain == null)
+            {
+                return false;
+            }
+
+            if (drain.WaterproofingKitId == waterproofingKitId)
+            {
+                return true;
+            }
+
+            drain.WaterproofingKit = waterproofingKit;
+            data.SaveChanges();
+
+            return true;
+        }
+
+        public bool RemoveWaterproofingKit(int kitId, int drainId)
+        {
+            var drain = this.data.Drains
+                                 .Include(a => a.WaterproofingKit)
+                                 .SingleOrDefault(a => a.Id == drainId);
+
+            var kit = drain.WaterproofingKit;
+
+            if (drain == null || kit == null)
+            {
+                return false;
+            }
+
+            drain.WaterproofingKit = null;
+            this.data.SaveChanges();
+
+            return true;
         }
 
         public bool AddToMine(string userId, int drainId)

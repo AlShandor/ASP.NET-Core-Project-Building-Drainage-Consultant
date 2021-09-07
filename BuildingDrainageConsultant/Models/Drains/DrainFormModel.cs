@@ -2,6 +2,7 @@
 {
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
     using BuildingDrainageConsultant.Services.Images.Models;
+    using BuildingDrainageConsultant.Services.WaterproofingKits.Models;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -58,6 +59,10 @@
         [StringLength(DescriptionMaxLength)]
         public string Description { get; set; }
 
+        public int WaterproofingKitId { get; set; }
+
+        public WaterproofingKitServiceModel WaterproofingKit { get; set; }
+
         public bool IsMyDrain { get; set; }
 
         public int? ImageId { get; set; }
@@ -65,5 +70,7 @@
         public ImageHLServiceModel Image { get; set; }
 
         public IEnumerable<ImageHLServiceModel> Images { get; set; }
+
+        public IEnumerable<WaterproofingKitServiceModel> WaterproofingKits { get; set; }
     }
 }

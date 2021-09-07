@@ -37,22 +37,22 @@
                 return View(drain);
             }
 
-            this.drains.Create(
-                drain.Name,
-                drain.FlowRate,
-                drain.DrainageArea,
-                drain.Depth,
-                drain.Direction,
-                drain.Diameter,
-                drain.VisiblePart,
-                drain.Waterproofing,
-                drain.Heating,
-                drain.Renovation,
-                drain.FlapSeal,
-                drain.ImageId,
-                drain.Description);
+            var drainId = this.drains.Create(
+                  drain.Name,
+                  drain.FlowRate,
+                  drain.DrainageArea,
+                  drain.Depth,
+                  drain.Direction,
+                  drain.Diameter,
+                  drain.VisiblePart,
+                  drain.Waterproofing,
+                  drain.Heating,
+                  drain.Renovation,
+                  drain.FlapSeal,
+                  drain.ImageId,
+                  drain.Description);
 
-            return RedirectToAction(nameof(All));
+            return RedirectToAction(nameof(Edit), new { id = drainId });
         }
 
         public IActionResult All([FromQuery] AllDrainsQueryModel query)
@@ -242,6 +242,45 @@
             }
 
             return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "Edit", drainCreateInfo) });
+        }
+
+        [Authorize(Roles = AdministratorRoleName)]
+        public IActionResult AddWaterproofingKit(int drainId, DrainFormModel drainCreateInfo)
+        {
+            drainCreateInfo.WaterproofingKits = this.drains.GetWaterproofingKits();
+            drainCreateInfo.Id = drainId;
+
+            return View(drainCreateInfo);
+        }
+
+        [Authorize(Roles = AdministratorRoleName)]
+        [HttpPost]
+        public IActionResult AddWaterproofingKit(DrainFormModel drainCreateInfo)
+        {
+            var isAdded = this.drains.AddWaterproofingKit(drainCreateInfo.WaterproofingKitId, drainCreateInfo.Id);
+
+            if (!isAdded)
+            {
+                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddWaterproofingKit", drainCreateInfo) });
+            }
+
+            var drain = this.drains.Details(drainCreateInfo.Id);
+            drainCreateInfo = this.mapper.Map<DrainFormModel>(drain);
+
+            return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "Edit", drainCreateInfo) });
+        }
+
+        [Authorize(Roles = AdministratorRoleName)]
+        public IActionResult RemoveWaterproofingKit(int kitId, int drainId)
+        {
+            var waterproofingKit = this.drains.RemoveWaterproofingKit(kitId, drainId);
+
+            if (waterproofingKit == false)
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction(nameof(Edit), new { id = drainId });
         }
     }
 }
