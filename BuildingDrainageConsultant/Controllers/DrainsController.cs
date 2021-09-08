@@ -321,5 +321,44 @@
 
             return RedirectToAction(nameof(Edit), new { id = drainId });
         }
+
+        [Authorize(Roles = AdministratorRoleName)]
+        public IActionResult AddExtensions(int drainId, DrainFormModel drainCreateInfo)
+        {
+            drainCreateInfo.Extensions = this.drains.GetExtensions();
+            drainCreateInfo.Id = drainId;
+
+            return View(drainCreateInfo);
+        }
+
+        [Authorize(Roles = AdministratorRoleName)]
+        [HttpPost]
+        public IActionResult AddExtensions(DrainFormModel drainCreateInfo)
+        {
+            var isAdded = this.drains.AddExtension(drainCreateInfo.ExtensionId, drainCreateInfo.Id);
+
+            if (!isAdded)
+            {
+                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddExtensions", drainCreateInfo) });
+            }
+
+            var drain = this.drains.Details(drainCreateInfo.Id);
+            drainCreateInfo = this.mapper.Map<DrainFormModel>(drain);
+
+            return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "Edit", drainCreateInfo) });
+        }
+
+        [Authorize(Roles = AdministratorRoleName)]
+        public IActionResult RemoveExtension(int extensionId, int drainId)
+        {
+            var extension = this.drains.RemoveExtension(extensionId, drainId);
+
+            if (extension == false)
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction(nameof(Edit), new { id = drainId });
+        }
     }
 }

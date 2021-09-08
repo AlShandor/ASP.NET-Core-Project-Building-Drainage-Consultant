@@ -3,6 +3,7 @@
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
     using BuildingDrainageConsultant.Services.Accessories.Models;
+    using BuildingDrainageConsultant.Services.Extensions.Models;
     using BuildingDrainageConsultant.Services.WaterproofingKits.Models;
     using System.Collections.Generic;
 
@@ -44,5 +45,6 @@
 
         public IEnumerable<AccessoryServiceModel> Accessories { get; set; }
 
+        public IEnumerable<ExtensionServiceModel> Extensions { get; set; }
     }
 }

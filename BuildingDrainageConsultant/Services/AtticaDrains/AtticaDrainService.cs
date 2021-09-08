@@ -271,7 +271,7 @@
                                  .Include(a => a.AtticaParts)
                                  .SingleOrDefault(a => a.Id == drainId);
 
-            var part = drain.AtticaParts.Where(at => at.Id == partId).FirstOrDefault();
+            var part = drain.AtticaParts.FirstOrDefault(p => p.Id == partId);
 
             if (drain == null || part == null)
             {

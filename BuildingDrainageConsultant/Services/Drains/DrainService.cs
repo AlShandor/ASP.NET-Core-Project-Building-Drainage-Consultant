@@ -8,6 +8,7 @@
     using BuildingDrainageConsultant.Models.Drains;
     using BuildingDrainageConsultant.Services.Accessories.Models;
     using BuildingDrainageConsultant.Services.Drains.Models;
+    using BuildingDrainageConsultant.Services.Extensions.Models;
     using BuildingDrainageConsultant.Services.WaterproofingKits.Models;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
@@ -321,6 +322,54 @@
             }
 
             drain.Accessories.Remove(accessory);
+            this.data.SaveChanges();
+
+            return true;
+        }
+
+        public IEnumerable<ExtensionServiceModel> GetExtensions()
+        => this.data.Extensions
+                .AsQueryable()
+                .ProjectTo<ExtensionServiceModel>(this.mapper)
+                .ToList();
+
+        public bool AddExtension(int extensionId, int drainId)
+        {
+            var extension = this.data.Extensions.Find(extensionId);
+            var drain = this.data.Drains
+                                 .Include(a => a.Extensions)
+                                 .SingleOrDefault(a => a.Id == drainId);
+
+            if (extension == null || drain == null)
+            {
+                return false;
+            }
+
+            if (drain.Extensions.Contains(extension))
+            {
+                return true;
+            }
+
+            drain.Extensions.Add(extension);
+            data.SaveChanges();
+
+            return true;
+        }
+
+        public bool RemoveExtension(int extensionId, int drainId)
+        {
+            var drain = this.data.Drains
+                                 .Include(d => d.Extensions)
+                                 .SingleOrDefault(d => d.Id == drainId);
+
+            var extension = drain.Extensions.FirstOrDefault(e => e.Id == extensionId);
+
+            if (drain == null || extension == null)
+            {
+                return false;
+            }
+
+            drain.Extensions.Remove(extension);
             this.data.SaveChanges();
 
             return true;
