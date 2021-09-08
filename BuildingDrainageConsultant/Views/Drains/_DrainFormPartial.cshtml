@@ -8,144 +8,159 @@
 
 <div class="row">
     <div class="offset-md-3 col-md-6">
-        <h2 class="heading-margin text-center">@ViewBag.Title</h2>
-        <form method="post">
-            @if (Model.Image != null)
-            {
-                <input asp-for="ImageId" value="@Model.ImageId" type="hidden" />
-            }
+        @if (isDetailsView)
+        {
+            <h2 class="heading-margin text-center">@Model.Name</h2>
+        }
+        else
+        {
+            <h2 class="heading-margin text-center">@ViewBag.Title</h2>
+        }
 
-            <partial name="_ImagePartial" model="Model" />
+    <form method="post">
+        @if (Model.Image != null)
+        {
+            <input asp-for="ImageId" value="@Model.ImageId" type="hidden" />
+        }
+        <partial name="_ImagePartial" model="Model" />
 
-            @if (isEditView || isDetailsView)
-            {
-                <partial name="_WaterproofingKitPartial" model="Model" />
-            }
+        @if (isEditView || isDetailsView)
+        {
+            <partial name="_WaterproofingKitPartial" model="Model" />
+        }
 
-            <h4 class="card-title text-center">
-                <span class="font-weight-bold text-dark text-uppercase small">Specifications</span>
-            </h4>
-            <hr />
+        @if (isEditView || isDetailsView)
+        {
+            <partial name="_AccessoriesPartial" model="Model" />
+        }
+
+        <h4 class="card-title text-center">
+            <span class="font-weight-bold text-dark text-uppercase small">Specifications</span>
+        </h4>
+        <hr />
+        @if (!isDetailsView)
+        {
             <div class="form-group">
                 <label asp-for="Name"></label>
                 <input class="shadow-sm form-control" asp-for="Name" placeholder="e.g. HL3020" disabled="@isDetailsView">
                 <span asp-validation-for="Name" class="small text-danger"></span>
             </div>
+        }
 
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="shadow-sm form-control" rows="4" disabled="@isDetailsView"></textarea>
+            <span asp-validation-for="Description" class="small text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="FlowRate"></label>
+            <input class="shadow-sm form-control" asp-for="FlowRate" placeholder="l/s" disabled="@isDetailsView">
+            <span asp-validation-for="FlowRate" class="small text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="DrainageArea"></label>
+            <input class="shadow-sm form-control" asp-for="DrainageArea" placeholder="m²" disabled="@isDetailsView">
+            <span asp-validation-for="DrainageArea" class="small text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Depth"></label>
+            <input class="shadow-sm form-control" asp-for="Depth" placeholder="mm" disabled="@isDetailsView">
+            <span asp-validation-for="Depth" class="small text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Direction"></label>
+            <select class="shadow-sm form-control" asp-for="Direction" asp-items="Html.GetEnumSelectList<DrainDirectionEnum>()" disabled="@isDetailsView">
+                <option value="">--Select an option--</option>
+            </select>
+            <span asp-validation-for="Direction" class="small text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Diameter"></label>
+            <select class="shadow-sm form-control" asp-for="Diameter" asp-items="Html.GetEnumSelectList<DrainDiameterEnum>()" disabled="@isDetailsView">
+                <option value="">--Select an option--</option>
+            </select>
+            <span asp-validation-for="Diameter" class="small text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="VisiblePart"></label>
+            <select class="shadow-sm form-control" asp-for="VisiblePart" asp-items="Html.GetEnumSelectList<DrainVisiblePartEnum>()" disabled="@isDetailsView">
+                <option value="">--Select an option--</option>
+            </select>
+            <span asp-validation-for="VisiblePart" class="small text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Waterproofing"></label>
+            <select class="shadow-sm form-control" asp-for="Waterproofing" asp-items="Html.GetEnumSelectList<DrainWaterproofingEnum>()" disabled="@isDetailsView">
+                <option value="">--Select an option--</option>
+            </select>
+            <span asp-validation-for="Waterproofing" class="small text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Heating"></label>
+            <select class="shadow-sm form-control" asp-for="Heating" asp-items="Html.GetEnumSelectList<DrainHeatingEnum>()" disabled="@isDetailsView">
+                <option value="">--Select an option--</option>
+            </select>
+            <span asp-validation-for="Heating" class="small text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Renovation"></label>
+            <select class="shadow-sm form-control" asp-for="Renovation" asp-items="Html.GetEnumSelectList<DrainRenovationEnum>()" disabled="@isDetailsView">
+                <option value="">--Select an option--</option>
+            </select>
+            <span asp-validation-for="Renovation" class="small text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="FlapSeal"></label>
+            <select class="shadow-sm form-control" asp-for="FlapSeal" asp-items="Html.GetEnumSelectList<DrainFlapSealEnum>()" disabled="@isDetailsView">
+                <option value="">--Select an option--</option>
+            </select>
+            <span asp-validation-for="FlapSeal" class="small text-danger"></span>
+        </div>
+
+        @if (isAddView)
+        {
             <div class="form-group">
-                <label asp-for="Description"></label>
-                <textarea asp-for="Description" class="shadow-sm form-control" rows="4" disabled="@isDetailsView"></textarea>
-                <span asp-validation-for="Description" class="small text-danger"></span>
+                <input class="btn btn-success" type="submit" value="Add Accessories" />
             </div>
+        }
 
-            <div class="form-group">
-                <label asp-for="FlowRate"></label>
-                <input class="shadow-sm form-control" asp-for="FlowRate" placeholder="l/s" disabled="@isDetailsView">
-                <span asp-validation-for="FlowRate" class="small text-danger"></span>
-            </div>
+        @if (isEditView)
+        {
+            <input class="btn btn-primary" type="submit" value="Save" />
+        }
 
-            <div class="form-group">
-                <label asp-for="DrainageArea"></label>
-                <input class="shadow-sm form-control" asp-for="DrainageArea" placeholder="m²" disabled="@isDetailsView">
-                <span asp-validation-for="DrainageArea" class="small text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Depth"></label>
-                <input class="shadow-sm form-control" asp-for="Depth" placeholder="mm" disabled="@isDetailsView">
-                <span asp-validation-for="Depth" class="small text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Direction"></label>
-                <select class="shadow-sm form-control" asp-for="Direction" asp-items="Html.GetEnumSelectList<DrainDirectionEnum>()" disabled="@isDetailsView">
-                    <option value="">--Select an option--</option>
-                </select>
-                <span asp-validation-for="Direction" class="small text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Diameter"></label>
-                <select class="shadow-sm form-control" asp-for="Diameter" asp-items="Html.GetEnumSelectList<DrainDiameterEnum>()" disabled="@isDetailsView">
-                    <option value="">--Select an option--</option>
-                </select>
-                <span asp-validation-for="Diameter" class="small text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="VisiblePart"></label>
-                <select class="shadow-sm form-control" asp-for="VisiblePart" asp-items="Html.GetEnumSelectList<DrainVisiblePartEnum>()" disabled="@isDetailsView">
-                    <option value="">--Select an option--</option>
-                </select>
-                <span asp-validation-for="VisiblePart" class="small text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Waterproofing"></label>
-                <select class="shadow-sm form-control" asp-for="Waterproofing" asp-items="Html.GetEnumSelectList<DrainWaterproofingEnum>()" disabled="@isDetailsView">
-                    <option value="">--Select an option--</option>
-                </select>
-                <span asp-validation-for="Waterproofing" class="small text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Heating"></label>
-                <select class="shadow-sm form-control" asp-for="Heating" asp-items="Html.GetEnumSelectList<DrainHeatingEnum>()" disabled="@isDetailsView">
-                    <option value="">--Select an option--</option>
-                </select>
-                <span asp-validation-for="Heating" class="small text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Renovation"></label>
-                <select class="shadow-sm form-control" asp-for="Renovation" asp-items="Html.GetEnumSelectList<DrainRenovationEnum>()" disabled="@isDetailsView">
-                    <option value="">--Select an option--</option>
-                </select>
-                <span asp-validation-for="Renovation" class="small text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="FlapSeal"></label>
-                <select class="shadow-sm form-control" asp-for="FlapSeal" asp-items="Html.GetEnumSelectList<DrainFlapSealEnum>()" disabled="@isDetailsView">
-                    <option value="">--Select an option--</option>
-                </select>
-                <span asp-validation-for="FlapSeal" class="small text-danger"></span>
-            </div>
-
-            @if (isAddView)
+        @if (isDetailsView)
+        {
+            if (User.Identity.IsAuthenticated)
             {
-                <div class="form-group">
-                    <input class="btn btn-success" type="submit" value="Add Accessories" />
-                </div>
-            }
-
-            @if (isEditView)
-            {
-                <input class="btn btn-primary" type="submit" value="Save" />
-            }
-
-            @if (isDetailsView)
-            {
-                if (User.Identity.IsAuthenticated)
+                if (User.IsAdmin())
                 {
-                    if (User.IsAdmin())
-                    {
-                        <input asp-controller="Drains" asp-action="Edit" asp-route-id="@Model.Id" class="shadow btn btn-warning" type="submit" formmethod="get" value="Edit" />
+                    <input asp-controller="Drains" asp-action="Edit" asp-route-id="@Model.Id" class="shadow btn btn-warning" type="submit" formmethod="get" value="Edit" />
 
-                        <partial name="_DeleteButtonWithModalPopup" model="@Model" />
-                    }
-
-                    if (Model.IsMyDrain)
-                    {
-                        <button asp-controller="Drains" asp-action="AddToMine" asp-route-id="@Model.Id" class="shadow btn btn-secondary float-right" type="submit" formmethod="get" disabled><i class="pr-1 bi bi-bookmark-plus-fill"></i>Added To My Drains</button>
-                    }
-                    else
-                    {
-                        <button asp-controller="Drains" asp-action="AddToMine" asp-route-id="@Model.Id" class="shadow btn btn-success float-right" type="submit" formmethod="get"><i class="pr-1 bi bi-bookmark-plus-fill"></i>Add To My Drains</button>
-                    }
+                    <partial name="_DeleteButtonWithModalPopup" model="@Model" />
                 }
 
+                if (Model.IsMyDrain)
+                {
+                    <button asp-controller="Drains" asp-action="AddToMine" asp-route-id="@Model.Id" class="shadow btn btn-secondary float-right" type="submit" formmethod="get" disabled><i class="pr-1 bi bi-bookmark-plus-fill"></i>Added To My Drains</button>
+                }
+                else
+                {
+                    <button asp-controller="Drains" asp-action="AddToMine" asp-route-id="@Model.Id" class="shadow btn btn-success float-right" type="submit" formmethod="get"><i class="pr-1 bi bi-bookmark-plus-fill"></i>Add To My Drains</button>
+                }
             }
-        </form>
+
+        }
+    </form>
     </div>
 </div>

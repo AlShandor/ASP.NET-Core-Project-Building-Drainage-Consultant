@@ -3,6 +3,7 @@
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
     using BuildingDrainageConsultant.Models.Drains;
+    using BuildingDrainageConsultant.Services.Accessories.Models;
     using BuildingDrainageConsultant.Services.Drains.Models;
     using BuildingDrainageConsultant.Services.WaterproofingKits.Models;
     using System.Collections.Generic;
@@ -62,9 +63,15 @@
 
         public IEnumerable<WaterproofingKitServiceModel> GetWaterproofingKits();
 
+        public IEnumerable<AccessoryServiceModel> GetAccessories();
+
         public bool AddWaterproofingKit(int waterproofingKitId, int drainId);
 
+        public bool AddAccessory(int accessoryId, int drainId);
+
         public bool RemoveWaterproofingKit(int kitId, int drainId);
+
+        public bool RemoveAccessory(int accessoryId, int drainId);
 
         public bool AddToMine(string userId, int drainId);
 

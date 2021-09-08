@@ -282,5 +282,44 @@
 
             return RedirectToAction(nameof(Edit), new { id = drainId });
         }
+
+        [Authorize(Roles = AdministratorRoleName)]
+        public IActionResult AddAccessories(int drainId, DrainFormModel drainCreateInfo)
+        {
+            drainCreateInfo.Accessories = this.drains.GetAccessories();
+            drainCreateInfo.Id = drainId;
+
+            return View(drainCreateInfo);
+        }
+
+        [Authorize(Roles = AdministratorRoleName)]
+        [HttpPost]
+        public IActionResult AddAccessories(DrainFormModel drainCreateInfo)
+        {
+            var isAdded = this.drains.AddAccessory(drainCreateInfo.AccessoryId, drainCreateInfo.Id);
+
+            if (!isAdded)
+            {
+                return Json(new { isValid = false, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "AddAccessories", drainCreateInfo) });
+            }
+
+            var drain = this.drains.Details(drainCreateInfo.Id);
+            drainCreateInfo = this.mapper.Map<DrainFormModel>(drain);
+
+            return Json(new { isValid = true, html = AjaxRenderHtmlHelper.RenderRazorViewToString(this, "Edit", drainCreateInfo) });
+        }
+
+        [Authorize(Roles = AdministratorRoleName)]
+        public IActionResult RemoveAccessory(int accessoryId, int drainId)
+        {
+            var accessory = this.drains.RemoveAccessory(accessoryId, drainId);
+
+            if (accessory == false)
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction(nameof(Edit), new { id = drainId });
+        }
     }
 }

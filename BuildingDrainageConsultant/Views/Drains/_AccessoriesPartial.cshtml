@@ -1,0 +1,58 @@
+﻿@model DrainFormModel
+
+@{
+    var isDetailsView = ViewBag.View == "Details" ? true : false;
+    var isEditView = ViewBag.View == "Edit" ? true : false;
+}
+
+<div class="form-group mb-3">
+    <h4 class="card-title text-center">
+        <span class="font-weight-bold text-dark">Accessories</span>
+    </h4>
+    <hr />
+    <input asp-for="Id" value="@Model.Id" type="hidden" />
+    @if (!isDetailsView)
+    {
+        <div class="form-group">
+            <a onclick="showInPopup('@Url.Action("AddAccessories","Drains", new { drainId = Model.Id } ,Context.Request.Scheme)','Choose Accessory')" class="btn btn-success text-white">Add Accessory</a>
+        </div>
+    }
+
+    <div class="row col-12">
+        @if (Model.Accessories != null)
+        {
+            foreach (var accessory in Model.Accessories)
+            {
+                <div class="shadow col-4 p-2 mb-2">
+                    <div class="card h-100">
+                        <input value="@accessory.Id" type="hidden" />
+
+                        @if (accessory.Image != null)
+                        {
+                            var imgSource = accessory.Image.Id == 1 ? "common/defaultImage.gif" : $"accessories/{accessory.Image.Name}";
+                            <div class="card-img-custom">
+                                <img src="~/images/@imgSource" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
+                                <hr />
+                            </div>
+                        }
+
+                        <div class="card-body text-center">
+                            <h5 class="font-weight-bold mt-2 text-left text-dark text-center text-uppercase ">@accessory.Name</h5>
+                        </div>
+
+
+                        <div class="form-group text-center">
+                            <a asp-controller="Accessories" asp-action="Details" asp-route-id="@accessory.Id" class="shadow btn btn-primary mb-2">View Details</a>
+
+                            @if (isEditView)
+                            {
+                                <button asp-controller="Drains" asp-action="RemoveAccessory" asp-route-accessoryId="@accessory.Id" asp-route-drainId="@Model.Id" class="shadow btn btn-danger">Remove</button>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

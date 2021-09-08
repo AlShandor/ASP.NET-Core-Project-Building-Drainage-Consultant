@@ -1,6 +1,7 @@
 ﻿namespace BuildingDrainageConsultant.Models.Drains
 {
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
+    using BuildingDrainageConsultant.Services.Accessories.Models;
     using BuildingDrainageConsultant.Services.Images.Models;
     using BuildingDrainageConsultant.Services.WaterproofingKits.Models;
     using System.Collections.Generic;
@@ -61,6 +62,8 @@
 
         public int WaterproofingKitId { get; set; }
 
+        public int AccessoryId { get; set; }
+
         public WaterproofingKitServiceModel WaterproofingKit { get; set; }
 
         public bool IsMyDrain { get; set; }
@@ -72,5 +75,7 @@
         public IEnumerable<ImageHLServiceModel> Images { get; set; }
 
         public IEnumerable<WaterproofingKitServiceModel> WaterproofingKits { get; set; }
+
+        public IEnumerable<AccessoryServiceModel> Accessories { get; set; }
     }
 }

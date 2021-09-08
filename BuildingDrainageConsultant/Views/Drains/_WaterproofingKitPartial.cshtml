@@ -6,12 +6,12 @@
 }
 
 <div class="form-group mb-3">
-    <h4 class="card-title text-center">
-        <span class="font-weight-bold text-dark text-uppercase small">Waterproofing Kit</span>
-    </h4>
-
     @if (Model.WaterproofingKit != null)
     {
+        <h4 class="card-title text-center">
+            <span class="font-weight-bold text-dark text-uppercase small">Waterproofing Kit</span>
+        </h4>
+        <hr />
         <div class="shadow-sm card col-6 border-1 mb-4">
             <input asp-for="WaterproofingKitId" value="@Model.WaterproofingKit.Id" type="hidden" />
             @if (Model.WaterproofingKit.Image != null)
@@ -45,4 +45,3 @@
         </div>
     }
 </div>
-<hr />

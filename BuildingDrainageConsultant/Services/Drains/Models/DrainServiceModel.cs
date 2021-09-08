@@ -2,7 +2,9 @@
 {
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
+    using BuildingDrainageConsultant.Services.Accessories.Models;
     using BuildingDrainageConsultant.Services.WaterproofingKits.Models;
+    using System.Collections.Generic;
 
     public class DrainServiceModel
     {
@@ -39,5 +41,8 @@
         public int? WaterproofingKitId { get; set; }
 
         public WaterproofingKitServiceModel WaterproofingKit { get; set; }
+
+        public IEnumerable<AccessoryServiceModel> Accessories { get; set; }
+
     }
 }

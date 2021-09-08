@@ -6,6 +6,7 @@
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
     using BuildingDrainageConsultant.Models.Drains;
+    using BuildingDrainageConsultant.Services.Accessories.Models;
     using BuildingDrainageConsultant.Services.Drains.Models;
     using BuildingDrainageConsultant.Services.WaterproofingKits.Models;
     using Microsoft.EntityFrameworkCore;
@@ -272,6 +273,59 @@
             return true;
         }
 
+        private IEnumerable<DrainDetailsServiceModel> GetDrains(IQueryable<Drain> drainQuery)
+            => drainQuery
+                .ProjectTo<DrainDetailsServiceModel>(this.mapper)
+                .ToList();
+
+        public IEnumerable<AccessoryServiceModel> GetAccessories()
+        => this.data.Accessories
+                .AsQueryable()
+                .ProjectTo<AccessoryServiceModel>(this.mapper)
+                .ToList();
+
+        public bool AddAccessory(int accessoryId, int drainId)
+        {
+            var accessory = this.data.Accessories.Find(accessoryId);
+            var drain = this.data.Drains
+                                 .Include(a => a.Accessories)
+                                 .SingleOrDefault(a => a.Id == drainId);
+
+            if (accessory == null || drain == null)
+            {
+                return false;
+            }
+
+            if (drain.Accessories.Contains(accessory))
+            {
+                return true;
+            }
+
+            drain.Accessories.Add(accessory);
+            data.SaveChanges();
+
+            return true;
+        }
+
+        public bool RemoveAccessory(int accessoryId, int drainId)
+        {
+            var drain = this.data.Drains
+                                 .Include(a => a.Accessories)
+                                 .SingleOrDefault(a => a.Id == drainId);
+
+            var accessory = drain.Accessories.FirstOrDefault(a => a.Id == accessoryId);
+
+            if (drain == null || accessory == null)
+            {
+                return false;
+            }
+
+            drain.Accessories.Remove(accessory);
+            this.data.SaveChanges();
+
+            return true;
+        }
+
         public bool AddToMine(string userId, int drainId)
         {
             var drain = this.data.Drains.Find(drainId);
@@ -351,10 +405,5 @@
 
             this.data.SaveChanges();
         }
-
-        private IEnumerable<DrainDetailsServiceModel> GetDrains(IQueryable<Drain> drainQuery)
-            => drainQuery
-                .ProjectTo<DrainDetailsServiceModel>(this.mapper)
-                .ToList();
     }
 }
