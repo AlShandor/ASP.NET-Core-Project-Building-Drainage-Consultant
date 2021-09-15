@@ -7,3 +7,24 @@
 }
 
 <partial name="_DrainFormPartial" model="@Model" />
+
+@section Scripts {
+
+    <script>
+        var rendered = false;
+        var targetDiv = document.getElementById("extensions-section");
+        var extensionBtn = document.getElementById("extension-button");
+        $(extensionBtn).click( ev => {
+            ev.preventDefault();
+            if (!rendered) {
+                targetDiv.style.display = "block";
+                extensionBtn.innerText = "Hide Extensions";
+                rendered = true;
+            } else {
+                targetDiv.style.display = "none";
+                extensionBtn.innerText = "Show Extensions";
+                rendered = false;
+            }
+        });
+    </script>
+}

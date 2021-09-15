@@ -3,67 +3,68 @@
 @{
     var isDetailsView = ViewBag.View == "Details" ? true : false;
     var isEditView = ViewBag.View == "Edit" ? true : false;
+    var extensionDivId = isDetailsView ? "extensions-section" : "";
 }
 
-<div class="form-group mb-3" id="extensions-section">
+<div class="form-group mb-3">
     <h4 class="card-title text-center">
         <span class="font-weight-bold text-dark">Extensions</span>
     </h4>
     <hr />
-    <input asp-for="Id" value="@Model.Id" type="hidden" />
-    @if (!isDetailsView)
+    @if (isDetailsView)
     {
-        <div class="form-group">
-            <a onclick="showInPopup('@Url.Action("AddExtensions","Drains", new { drainId = Model.Id } ,Context.Request.Scheme)','Choose Extension')" class="btn btn-success text-white">Add Extension</a>
+        <div class="form-group text-center">
+            <button class="shadow btn btn-primary mb-2" id="extension-button">Show Extensions</button>
         </div>
     }
 
-    <div class="row col-12">
-        @if (Model.Extensions != null)
+    <div id=@extensionDivId>
+        <input asp-for="Id" value="@Model.Id" type="hidden" />
+        @if (!isDetailsView)
         {
-            foreach (var extension in Model.Extensions)
-            {
-                <div class="shadow col-4 p-2 mb-2">
-                    <div class="card h-100">
-                        <input value="@extension.Id" type="hidden" />
-
-                        @if (extension.Image != null)
-                        {
-                            var imgSource = extension.Image.Id == 1 ? "common/defaultImage.gif" : $"extensions/{extension.Image.Name}";
-                            <div class="card-img-custom">
-                                <img src="~/images/@imgSource" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
-                                <hr />
-                            </div>
-                        }
-
-                        <div class="card-body text-center">
-                            <h5 class="font-weight-bold mt-2 text-left text-dark text-center text-uppercase ">@extension.Name</h5>
-                        </div>
-
-
-                        <div class="form-group text-center">
-                            <a asp-controller="Extensions" asp-action="Details" asp-route-id="@extension.Id" class="shadow btn btn-primary mb-2">View Details</a>
-
-                            @if (isEditView)
-                            {
-                                <button asp-controller="Drains" asp-action="RemoveExtension" asp-route-extensionId="@extension.Id" asp-route-drainId="@Model.Id" class="shadow btn btn-danger">Remove</button>
-                            }
-                        </div>
-
-                    </div>
-                </div>
-            }
+            <div class="form-group">
+                <a onclick="showInPopup('@Url.Action("AddExtensions","Drains", new { drainId = Model.Id } ,Context.Request.Scheme)','Choose Extension')" class="btn btn-success text-white">Add Extension</a>
+            </div>
         }
+
+        <div class="row col-12">
+            @if (Model.Extensions != null)
+            {
+                foreach (var extension in Model.Extensions)
+                {
+                    <div class="shadow col-4 p-2 mb-2">
+                        <div class="card h-100">
+                            <input value="@extension.Id" type="hidden" />
+
+                            @if (extension.Image != null)
+                            {
+                                var imgSource = extension.Image.Id == 1 ? "common/defaultImage.gif" : $"extensions/{extension.Image.Name}";
+                                <div class="card-img-custom">
+                                    <img src="~/images/@imgSource" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
+                                    <hr />
+                                </div>
+                            }
+
+                            <div class="card-body text-center">
+                                <h5 class="font-weight-bold mt-2 text-left text-dark text-center text-uppercase ">@extension.Name</h5>
+                            </div>
+
+
+                            <div class="form-group text-center">
+                                <a asp-controller="Extensions" asp-action="Details" asp-route-id="@extension.Id" class="shadow btn btn-primary mb-2">View Details</a>
+
+                                @if (isEditView)
+                                {
+                                    <button asp-controller="Drains" asp-action="RemoveExtension" asp-route-extensionId="@extension.Id" asp-route-drainId="@Model.Id" class="shadow btn btn-danger">Remove</button>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                }
+            }
+        </div>
     </div>
 </div>
 
-@if (isDetailsView)
-{
-    <h4 class="card-title text-center">
-        <span class="font-weight-bold text-dark">Extensions</span>
-    </h4>
-    <hr />
-    <div class="form-group text-center">
-        <button class="shadow btn btn-primary mb-2" id="extension-button">Show Extensions</button>
-    </div>
-}
+

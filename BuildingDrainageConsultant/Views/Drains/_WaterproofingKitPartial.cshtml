@@ -6,37 +6,34 @@
 }
 
 <div class="form-group mb-3">
-    @if (Model.WaterproofingKit != null)
-    {
-        <h4 class="card-title text-center">
-            <span class="font-weight-bold text-dark text-uppercase small">Waterproofing Kit</span>
-        </h4>
-        <hr />
-        <div class="shadow-sm card col-6 border-1 mb-4">
-            <input asp-for="WaterproofingKitId" value="@Model.WaterproofingKit.Id" type="hidden" />
-            @if (Model.WaterproofingKit.Image != null)
-            {
-                var imgSource = Model.WaterproofingKit.Image.Id == 1 ? "common/defaultImage.gif" : $"waterproofingkits/{Model.WaterproofingKit.Image.Name}";
+    <h4 class="card-title text-center">
+        <span class="font-weight-bold text-dark text-uppercase small">Waterproofing Kit</span>
+    </h4>
+    <hr />
+    <div class="shadow-sm card col-6 border-1 mb-4">
+        <input asp-for="WaterproofingKitId" value="@Model.WaterproofingKit.Id" type="hidden" />
+        @if (Model.WaterproofingKit.Image != null)
+        {
+            var imgSource = Model.WaterproofingKit.Image.Id == 1 ? "common/defaultImage.gif" : $"waterproofingkits/{Model.WaterproofingKit.Image.Name}";
 
-                <div class="card-img-custom">
-                    <img src="~/images/@imgSource" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
-                    <hr />
-                </div>
-            }
-            <div class="card-body text-center">
-                <h4 class="card-text">@Model.WaterproofingKit.Name</h4>
+            <div class="card-img-custom">
+                <img src="~/images/@imgSource" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
+                <hr />
             </div>
-
-            <div class="form-group text-center">
-                <a asp-controller="WaterproofingKits" asp-action="Details" asp-route-id="@Model.WaterproofingKit.Id" class="shadow btn btn-primary">View Details</a>
-
-                @if (isEditView)
-                {
-                    <button asp-controller="Drains" asp-action="RemoveWaterproofingKit" asp-route-kitId="@Model.WaterproofingKit.Id" asp-route-drainId="@Model.Id" class="shadow btn btn-danger">Remove</button>
-                }
-            </div>
+        }
+        <div class="card-body text-center">
+            <h4 class="card-text">@Model.WaterproofingKit.Name</h4>
         </div>
-    }
+
+        <div class="form-group text-center">
+            <a asp-controller="WaterproofingKits" asp-action="Details" asp-route-id="@Model.WaterproofingKit.Id" class="shadow btn btn-primary">View Details</a>
+
+            @if (isEditView)
+            {
+                <button asp-controller="Drains" asp-action="RemoveWaterproofingKit" asp-route-kitId="@Model.WaterproofingKit.Id" asp-route-drainId="@Model.Id" class="shadow btn btn-danger">Remove</button>
+            }
+        </div>
+    </div>
 
     @if (isEditView)
     {

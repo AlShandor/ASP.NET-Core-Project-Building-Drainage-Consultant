@@ -24,17 +24,17 @@
         }
         <partial name="_ImagePartial" model="Model" />
 
-        @if (isEditView || isDetailsView)
+        @if (isEditView || (isDetailsView && Model.WaterproofingKit != null))
         {
             <partial name="_WaterproofingKitPartial" model="Model" />
         }
 
-        @if (isEditView || isDetailsView)
+        @if (isEditView || (isDetailsView && Model.Accessories.Any()))
         {
             <partial name="_AccessoriesPartial" model="Model" />
         }
 
-        @if (isEditView || isDetailsView)
+        @if (isEditView || (isDetailsView && Model.Extensions.Any()))
         {
             <partial name="_ExtensionsPartial" model="Model" />
         }
