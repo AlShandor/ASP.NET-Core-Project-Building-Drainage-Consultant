@@ -115,7 +115,7 @@
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult AddImage(AccessoryFormModel accessoryCreateInfo)
         {
-            accessoryCreateInfo.Images = this.images.GetAccessoriesImages();
+            accessoryCreateInfo.Images = this.images.GetAccessoriesImages(string.Empty);
 
             return View(accessoryCreateInfo);
         }
@@ -140,7 +140,7 @@
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult EditImage(int modelId, AccessoryFormModel accessoryCreateInfo)
         {
-            accessoryCreateInfo.Images = this.images.GetAccessoriesImages();
+            accessoryCreateInfo.Images = this.images.GetAccessoriesImages(string.Empty);
             accessoryCreateInfo.Id = modelId;
 
             return View(accessoryCreateInfo);

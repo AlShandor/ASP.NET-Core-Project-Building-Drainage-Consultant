@@ -1,6 +1,7 @@
 ﻿namespace BuildingDrainageConsultant.Controllers
 {
     using AutoMapper;
+    using BuildingDrainageConsultant.Infrastructure;
     using BuildingDrainageConsultant.Models.Images;
     using BuildingDrainageConsultant.Services.Images;
     using Microsoft.AspNetCore.Authorization;
@@ -32,7 +33,7 @@
 
         public IActionResult DrainsGallery(ImageHLViewModel model)
         {
-            var drainImages = this.images.GetDrainImages();
+            var drainImages = this.images.GetDrainImages(model.SearchName);
 
             model.DisplayImages = drainImages;
             return View(model);
@@ -40,7 +41,7 @@
 
         public IActionResult AtticaDetailsGallery(ImageHLViewModel model)
         {
-            var atticaDetailsImages = this.images.GetAtticaDetailsImages();
+            var atticaDetailsImages = this.images.GetAtticaDetailsImages(model.SearchName);
 
             model.DisplayImages = atticaDetailsImages;
             return View(model);
@@ -48,7 +49,7 @@
 
         public IActionResult AtticaPartsGallery(ImageHLViewModel model)
         {
-            var atticaPartsImages = this.images.GetAtticaPartsImages();
+            var atticaPartsImages = this.images.GetAtticaPartsImages(model.SearchName);
 
             model.DisplayImages = atticaPartsImages;
             return View(model);
@@ -56,7 +57,7 @@
 
         public IActionResult ArticlesGallery(ImageHLViewModel model)
         {
-            var articlesImages = this.images.GetArticlesImages();
+            var articlesImages = this.images.GetArticlesImages(model.SearchName);
 
             model.DisplayImages = articlesImages;
             return View(model);
@@ -64,7 +65,7 @@
 
         public IActionResult WaterproofingKitsGallery(ImageHLViewModel model)
         {
-            var waterproofingKitsImages = this.images.GetWaterproofingKitsImages();
+            var waterproofingKitsImages = this.images.GetWaterproofingKitsImages(model.SearchName);
 
             model.DisplayImages = waterproofingKitsImages;
             return View(model);
@@ -72,14 +73,14 @@
 
         public IActionResult AccessoriesGallery(ImageHLViewModel model)
         {
-            var accesoriesImages = this.images.GetAccessoriesImages();
+            var accesoriesImages = this.images.GetAccessoriesImages(model.SearchName);
 
             model.DisplayImages = accesoriesImages;
             return View(model);
         }
         public IActionResult ExtensionsGallery(ImageHLViewModel model)
         {
-            var extensionsImages = this.images.GetExtensionsImages();
+            var extensionsImages = this.images.GetExtensionsImages(model.SearchName);
 
             model.DisplayImages = extensionsImages;
             return View(model);

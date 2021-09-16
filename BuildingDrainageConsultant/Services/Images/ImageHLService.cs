@@ -68,54 +68,75 @@
                 .ProjectTo<ImageHLServiceModel>(this.mapper)
                 .FirstOrDefault();
 
-        public IEnumerable<ImageHLServiceModel> GetDrainImages()
-        => this.data.Images
-                .Where(i => i.ImageCategory == ImageHLCategoriesEnum.Drains)
-                .OrderByDescending(i => i.Id)
-                .ProjectTo<ImageHLServiceModel>(this.mapper)
-                .ToList();
+        public IEnumerable<ImageHLServiceModel> GetDrainImages(string searchName)
+        {
+            searchName = string.IsNullOrEmpty(searchName) ? "" : searchName;
+            return this.data.Images
+                   .Where(i => i.ImageCategory == ImageHLCategoriesEnum.Drains && i.Name.Contains(searchName))
+                   .OrderByDescending(i => i.Id)
+                   .ProjectTo<ImageHLServiceModel>(this.mapper)
+                   .ToList();
+        }
 
-        public IEnumerable<ImageHLServiceModel> GetAtticaDetailsImages()
-        => this.data.Images
-                .Where(i => i.ImageCategory == ImageHLCategoriesEnum.AtticaDetails)
+        public IEnumerable<ImageHLServiceModel> GetAtticaDetailsImages(string searchName)
+        {
+            searchName = string.IsNullOrEmpty(searchName) ? "" : searchName;
+            return this.data.Images
+                .Where(i => i.ImageCategory == ImageHLCategoriesEnum.AtticaDetails && i.Name.Contains(searchName))
                 .OrderByDescending(i => i.Id)
                 .ProjectTo<ImageHLServiceModel>(this.mapper)
                 .ToList();
+        }
 
-        public IEnumerable<ImageHLServiceModel> GetAtticaPartsImages()
-        => this.data.Images
-                .Where(i => i.ImageCategory == ImageHLCategoriesEnum.AtticaParts)
+        public IEnumerable<ImageHLServiceModel> GetAtticaPartsImages(string searchName)
+        {
+            searchName = string.IsNullOrEmpty(searchName) ? "" : searchName;
+            return this.data.Images
+                .Where(i => i.ImageCategory == ImageHLCategoriesEnum.AtticaParts && i.Name.Contains(searchName))
                 .OrderByDescending(i => i.Id)
                 .ProjectTo<ImageHLServiceModel>(this.mapper)
                 .ToList();
+        }
 
-        public IEnumerable<ImageHLServiceModel> GetArticlesImages()
-        => this.data.Images
-                .Where(i => i.ImageCategory == ImageHLCategoriesEnum.Articles)
+        public IEnumerable<ImageHLServiceModel> GetArticlesImages(string searchName)
+        {
+            searchName = string.IsNullOrEmpty(searchName) ? "" : searchName;
+            return this.data.Images
+                .Where(i => i.ImageCategory == ImageHLCategoriesEnum.Articles && i.Name.Contains(searchName))
                 .OrderByDescending(i => i.Id)
                 .ProjectTo<ImageHLServiceModel>(this.mapper)
                 .ToList();
+        }
 
-        public IEnumerable<ImageHLServiceModel> GetWaterproofingKitsImages()
-            => this.data.Images
-                .Where(i => i.ImageCategory == ImageHLCategoriesEnum.WaterproofingKits)
+        public IEnumerable<ImageHLServiceModel> GetWaterproofingKitsImages(string searchName)
+        {
+            searchName = string.IsNullOrEmpty(searchName) ? "" : searchName;
+            return this.data.Images
+                .Where(i => i.ImageCategory == ImageHLCategoriesEnum.WaterproofingKits && i.Name.Contains(searchName))
                 .OrderByDescending(i => i.Id)
                 .ProjectTo<ImageHLServiceModel>(this.mapper)
                 .ToList();
+        }
 
-        public IEnumerable<ImageHLServiceModel> GetAccessoriesImages()
-            => this.data.Images
-                .Where(i => i.ImageCategory == ImageHLCategoriesEnum.Accessories)
+        public IEnumerable<ImageHLServiceModel> GetAccessoriesImages(string searchName)
+        {
+            searchName = string.IsNullOrEmpty(searchName) ? "" : searchName;
+            return this.data.Images
+                .Where(i => i.ImageCategory == ImageHLCategoriesEnum.Accessories && i.Name.Contains(searchName))
                 .OrderByDescending(i => i.Id)
                 .ProjectTo<ImageHLServiceModel>(this.mapper)
                 .ToList();
+        }
 
-        public IEnumerable<ImageHLServiceModel> GetExtensionsImages()
-            => this.data.Images
-                .Where(i => i.ImageCategory == ImageHLCategoriesEnum.Extensions)
+        public IEnumerable<ImageHLServiceModel> GetExtensionsImages(string searchName)
+        {
+            searchName = string.IsNullOrEmpty(searchName) ? "" : searchName;
+            return this.data.Images
+                .Where(i => i.ImageCategory == ImageHLCategoriesEnum.Extensions && i.Name.Contains(searchName))
                 .OrderByDescending(i => i.Id)
                 .ProjectTo<ImageHLServiceModel>(this.mapper)
                 .ToList();
+        }
 
         public bool Delete(int id)
         {

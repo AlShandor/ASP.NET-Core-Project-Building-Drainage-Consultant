@@ -194,7 +194,7 @@
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult AddImage(DrainFormModel drainCreateInfo)
         {
-            drainCreateInfo.Images = this.images.GetDrainImages();
+            drainCreateInfo.Images = this.images.GetDrainImages(string.Empty);
 
             return View(drainCreateInfo);
         }
@@ -219,7 +219,7 @@
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult EditImage(int modelId, DrainFormModel drainCreateInfo)
         {
-            drainCreateInfo.Images = this.images.GetDrainImages();
+            drainCreateInfo.Images = this.images.GetDrainImages(string.Empty);
             drainCreateInfo.Id = modelId;
 
             return View(drainCreateInfo);

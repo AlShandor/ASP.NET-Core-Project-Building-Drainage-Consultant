@@ -6,6 +6,8 @@
 
     public class ImageHLViewModel
     {
+        public string SearchName { get; set; }
+
         public string ImageCategory { get; set; }
 
         public IEnumerable<ImageHLServiceModel> DisplayImages { get; set; }

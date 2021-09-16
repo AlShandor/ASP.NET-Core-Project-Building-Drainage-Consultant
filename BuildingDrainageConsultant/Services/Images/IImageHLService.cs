@@ -11,19 +11,19 @@
 
         public ImageHLServiceModel GetImageById(int id);
 
-        public IEnumerable<ImageHLServiceModel> GetDrainImages();
+        public IEnumerable<ImageHLServiceModel> GetDrainImages(string searchName);
 
-        public IEnumerable<ImageHLServiceModel> GetAtticaDetailsImages();
+        public IEnumerable<ImageHLServiceModel> GetAtticaDetailsImages(string searchName);
 
-        public IEnumerable<ImageHLServiceModel> GetAtticaPartsImages();
+        public IEnumerable<ImageHLServiceModel> GetAtticaPartsImages(string searchName);
 
-        public IEnumerable<ImageHLServiceModel> GetArticlesImages();
+        public IEnumerable<ImageHLServiceModel> GetArticlesImages(string searchName);
 
-        public IEnumerable<ImageHLServiceModel> GetWaterproofingKitsImages();
+        public IEnumerable<ImageHLServiceModel> GetWaterproofingKitsImages(string searchName);
 
-        public IEnumerable<ImageHLServiceModel> GetAccessoriesImages();
+        public IEnumerable<ImageHLServiceModel> GetAccessoriesImages(string searchName);
 
-        public IEnumerable<ImageHLServiceModel> GetExtensionsImages();
+        public IEnumerable<ImageHLServiceModel> GetExtensionsImages(string searchName);
 
         public bool Delete(int id);
 

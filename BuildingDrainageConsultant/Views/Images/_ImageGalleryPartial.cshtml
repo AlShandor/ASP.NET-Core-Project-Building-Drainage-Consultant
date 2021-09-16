@@ -1,15 +1,32 @@
 ﻿@model ImageHLViewModel
 
-<form asp-action="AddImages" asp-controller="Images" method="post" enctype="multipart/form-data">
-    <div class="form-group">
-        <input type="hidden" asp-for="@Model.ImageCategory" value="@ViewBag.ImageCategory" />
-        <div class="col-sm-3 row mb-3">
-            <input asp-for="@Model.UploadImageFiles" type="file" multiple="multiple">
-            <span asp-validation-for="@Model.UploadImageFiles" class="text-danger"></span>
-        </div>
-        <button type="submit" class="btn btn-danger">Upload All</button>
+@{ 
+    var gallery = ViewBag.ImageCategory + "Gallery";
+}
+
+<div class="mb-4 form-inline row">
+    <div class="form-goup col-6">
+        <form asp-action="AddImages" asp-controller="Images" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="@Model.ImageCategory" value="@ViewBag.ImageCategory" />
+            <div class="col-3 mb-3">
+                <input asp-for="@Model.UploadImageFiles" class="mb-2" type="file" multiple="multiple">
+                <span asp-validation-for="@Model.UploadImageFiles" class="text-danger"></span>
+                <button type="submit" class="btn btn-success">Upload All</button>
+            </div>
+        </form>
     </div>
-</form>
+
+
+    <div class="col-4 offset-2 group-inline">
+        <form method="get">
+            <input asp-for="SearchName" class="form-control" placeholder="Search by Name..." />
+            <button type="submit" asp-controller="Images" asp-action=@gallery class="btn btn-primary ">
+                <i class="pr-1 pl-1 bi bi-search"></i>
+            </button>
+        </form>
+    </div>
+
+</div>
 
 <form method="post">
     <div class="row">

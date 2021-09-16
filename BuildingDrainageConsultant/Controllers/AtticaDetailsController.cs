@@ -111,7 +111,7 @@
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult AddImage(AtticaDetailFormModel drainCreateInfo)
         {
-            drainCreateInfo.Images = this.images.GetAtticaDetailsImages();
+            drainCreateInfo.Images = this.images.GetAtticaDetailsImages(string.Empty);
 
             return View(drainCreateInfo);
         }
@@ -136,7 +136,7 @@
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult EditImage(int modelId, AtticaDetailFormModel atticaDetailCreateInfo)
         {
-            atticaDetailCreateInfo.Images = this.images.GetAtticaDetailsImages();
+            atticaDetailCreateInfo.Images = this.images.GetAtticaDetailsImages(string.Empty);
             atticaDetailCreateInfo.Id = modelId;
 
             return View(atticaDetailCreateInfo);

@@ -116,7 +116,7 @@
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult AddImage(AtticaPartFormModel partCreateInfo)
         {
-            partCreateInfo.Images = this.images.GetAtticaPartsImages();
+            partCreateInfo.Images = this.images.GetAtticaPartsImages(string.Empty);
 
             return View(partCreateInfo);
         }
@@ -141,7 +141,7 @@
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult EditImage(int modelId, AtticaPartFormModel partCreateInfo)
         {
-            partCreateInfo.Images = this.images.GetAtticaPartsImages();
+            partCreateInfo.Images = this.images.GetAtticaPartsImages(string.Empty);
             partCreateInfo.Id = modelId;
 
             return View(partCreateInfo);

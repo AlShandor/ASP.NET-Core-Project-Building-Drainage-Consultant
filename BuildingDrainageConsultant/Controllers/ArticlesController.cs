@@ -116,7 +116,7 @@
 
         public IActionResult AddImage(ArticleFormModel articleCreateInfo)
         {
-            articleCreateInfo.Images = this.images.GetArticlesImages();
+            articleCreateInfo.Images = this.images.GetArticlesImages(string.Empty);
 
             return View(articleCreateInfo);
         }
@@ -139,7 +139,7 @@
 
         public IActionResult EditImage(int modelId, ArticleFormModel articleCreateInfo)
         {
-            articleCreateInfo.Images = this.images.GetArticlesImages();
+            articleCreateInfo.Images = this.images.GetArticlesImages(string.Empty);
             articleCreateInfo.Id = modelId;
 
             return View(articleCreateInfo);

@@ -114,7 +114,7 @@
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult AddImage(WaterproofingKitFormModel kitCreateInfo)
         {
-            kitCreateInfo.Images = this.images.GetWaterproofingKitsImages();
+            kitCreateInfo.Images = this.images.GetWaterproofingKitsImages(string.Empty);
 
             return View(kitCreateInfo);
         }
@@ -139,7 +139,7 @@
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult EditImage(int modelId, WaterproofingKitFormModel kitCreateInfo)
         {
-            kitCreateInfo.Images = this.images.GetWaterproofingKitsImages();
+            kitCreateInfo.Images = this.images.GetWaterproofingKitsImages(string.Empty);
             kitCreateInfo.Id = modelId;
 
             return View(kitCreateInfo);

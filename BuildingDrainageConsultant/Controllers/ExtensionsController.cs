@@ -116,7 +116,7 @@
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult AddImage(ExtensionFormModel extensionCreateInfo)
         {
-            extensionCreateInfo.Images = this.images.GetExtensionsImages();
+            extensionCreateInfo.Images = this.images.GetExtensionsImages(string.Empty);
 
             return View(extensionCreateInfo);
         }
@@ -141,7 +141,7 @@
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult EditImage(int modelId, ExtensionFormModel extensionCreateInfo)
         {
-            extensionCreateInfo.Images = this.images.GetExtensionsImages();
+            extensionCreateInfo.Images = this.images.GetExtensionsImages(string.Empty);
             extensionCreateInfo.Id = modelId;
 
             return View(extensionCreateInfo);
