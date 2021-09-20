@@ -2,9 +2,8 @@
 {
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.ImagesHL;
-    using BuildingDrainageConsultant.Services.Images;
-    using Microsoft.Extensions.DependencyInjection;
     using System;
+    using System.IO;
     using System.Linq;
 
     public class ImageSeeder : ISeeder
@@ -16,37 +15,44 @@
                 return;
             }
 
-            var imageService = serviceProvider.GetRequiredService<IImageHLService>();
+            SeedDefaultImage(dbContext);
+            SeedCategoryImages(dbContext, "Articles");
+            SeedCategoryImages(dbContext, "Accessories");
+            SeedCategoryImages(dbContext, "AtticaDetails");
+            SeedCategoryImages(dbContext, "AtticaParts");
+            SeedCategoryImages(dbContext, "Drains");
+            SeedCategoryImages(dbContext, "Extensions");
+            SeedCategoryImages(dbContext, "WaterproofingKits");
+        }
 
-            var images = new ImageHL[]
+        private void SeedDefaultImage(BuildingDrainageConsultantDbContext dbContext)
+        {
+            ImageHL image = new ImageHL();
+            image.Name = "defaultImage.gif";
+            image.Path = $"wwwroot/images/common/{image.Name}";
+            image.ImageCategory = ImageHLCategoriesEnum.Common;
+
+            dbContext.Images.Add(image);
+            dbContext.SaveChanges();
+        }
+
+        private void SeedCategoryImages(BuildingDrainageConsultantDbContext dbContext, string imageCategory)
+        {
+            ImageHLCategoriesEnum category;
+            Enum.TryParse(imageCategory, out category);
+
+            DirectoryInfo dirInfo = new DirectoryInfo($"wwwroot/images/{imageCategory.ToLower()}/");
+            var files = dirInfo.GetFiles();
+            foreach (FileInfo file in files)
             {
-                new ImageHL
-                {
-                    Name = "defaultImage.gif",
-                    Path = "wwwroot/images/common/defaultImage.gif",
-                    ImageCategory = ImageHLCategoriesEnum.Common
-                },
-                new ImageHL
-                {
-                    Name = "article1.png",
-                    Path = "wwwroot/images/articles/article1.png",
-                    ImageCategory = ImageHLCategoriesEnum.Articles
-                },
-                new ImageHL
-                {
-                    Name = "article2.png",
-                    Path = "wwwroot/images/articles/article2.png",
-                    ImageCategory = ImageHLCategoriesEnum.Articles
-                },
-                new ImageHL
-                {
-                    Name = "article3.png",
-                    Path = "wwwroot/images/articles/article3.png",
-                    ImageCategory = ImageHLCategoriesEnum.Articles
-                },
-            };
+                ImageHL image = new ImageHL();
+                image.Name = file.Name;
+                image.Path = $"wwwroot/images/{imageCategory.ToLower()}/{file.Name}";
+                image.ImageCategory = category;
+                dbContext.Images.Add(image);
+            }
 
-            imageService.CreateAll(images);
+            dbContext.SaveChanges();
         }
     }
 }

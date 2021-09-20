@@ -28,7 +28,5 @@
         public bool Delete(int id);
 
         public string GetImageGallery(int id);
-
-        public void CreateAll(ImageHL[] drains);
     }
 }

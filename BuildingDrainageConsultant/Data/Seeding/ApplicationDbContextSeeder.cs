@@ -21,14 +21,14 @@
                           {
                               new ImageSeeder(),
                               new ArticlesSeeder(),
+                              new MerchantsSeeder(),
                               new AtticaDetailsSeeder(),
                               new AtticaPartsSeeder(),
                               new AtticaDrainsSeeder(),
-                              new DrainsSeeder(),
-                              new MerchantsSeeder(),
                               new WaterproofingKitsSeeder(),
                               new AccessoriesSeeder(),
-                              new ExtensionsSeeder()
+                              new ExtensionsSeeder(),
+                              new DrainsSeeder()
                           };
 
             foreach (var seeder in seeders)
