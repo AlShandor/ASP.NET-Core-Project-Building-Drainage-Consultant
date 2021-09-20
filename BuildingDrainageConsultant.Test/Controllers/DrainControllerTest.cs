@@ -101,7 +101,7 @@
             .AndAlso()
             .ShouldReturn()
             .Redirect(redirect => redirect
-                .To<DrainsController>(c => c.All(With.Any<AllDrainsQueryModel>())));
+                .To<DrainsController>(c => c.Edit(1)));
 
         [Fact]
         public void AllShouldReturnCorrectViewWithModel()
