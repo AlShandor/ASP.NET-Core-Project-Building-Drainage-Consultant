@@ -137,3 +137,16 @@ body {
 #extensions-section{
     display:none
 }
+
+.dropdown-menu-center {
+    right: auto;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+}
+
+.hover-highlight:hover {
+    color: white;
+    background-color: #193c6c;
+}

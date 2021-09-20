@@ -11,12 +11,12 @@
 <body>
     <header>
         <nav class="navbar navbar-default navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
-            <div class="container-fluid">
+            <div class="container">
                 <a href="@Url.Action("Index", "Home", new { Area = "" })" class="navbar-brand">
                     <img src="~/images/common/logoSmall.png" title="title" alt="additional title" />
                 </a>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="navbar-nav navbar-collapse mr-auto">
 
                         @*Drains menu*@
                         <li class="nav-item dropdown">
@@ -24,16 +24,11 @@
                                 Drains
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-area="" asp-controller="Drains" asp-action="All"><i class="pr-2 bi bi-card-list"></i>All Drains</a>
+                                <a class="dropdown-item hover-highlight" asp-area="" asp-controller="Drains" asp-action="All"><i class="pr-2 bi bi-card-list"></i>All Drains</a>
                                 @if (User.Identity.IsAuthenticated)
                                 {
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Drains" asp-action="Mine"><i class="pr-2 bi bi-clipboard-check"></i>My Drains</a>
-                                    @if (User.IsAdmin())
-                                    {
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" asp-area="" asp-controller="Drains" asp-action="Add"><i class="pr-2 bi bi-plus-circle"></i>Add Drain</a>
-                                    }
+                                    <a class="dropdown-item hover-highlight" asp-area="" asp-controller="Drains" asp-action="Mine"><i class="pr-2 bi bi-clipboard-check"></i>My Drains</a>
                                 }
                             </div>
                         </li>
@@ -44,146 +39,21 @@
                                 Attica Details
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-area="" asp-controller="AtticaDetails" asp-action="All"><i class="pr-2 bi bi-card-list"></i>All Attica Details</a>
-                                @if (User.IsAdmin())
+                                <a class="dropdown-item hover-highlight" asp-area="" asp-controller="AtticaDetails" asp-action="All"><i class="pr-2 bi bi-card-list"></i>All Attica Details</a>
+                                @if (User.Identity.IsAuthenticated)
                                 {
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" asp-area="" asp-controller="AtticaDetails" asp-action="Add"><i class="pr-2 bi bi-plus-circle"></i>Add Attica Details</a>
+                                    <a class="dropdown-item hover-highlight" asp-area="" asp-controller="AtticaDrains" asp-action="Mine"><i class="pr-2 bi bi-clipboard-check"></i>My Attica Drains</a>
                                 }
                             </div>
                         </li>
 
-                        @*Attica Drains menu*@
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item dropdown">
-                                <a class="nav-item btn btn-lg text-white  dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Attica Drains
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" asp-area="" asp-controller="AtticaDrains" asp-action="Mine"><i class="pr-2 bi bi-clipboard-check"></i>My Attica Drains</a>
-                                    @if (User.IsAdmin())
-                                    {
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" asp-area="" asp-controller="AtticaDrains" asp-action="All"><i class="pr-2 bi bi-card-list"></i>All Attica Drains</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" asp-area="" asp-controller="AtticaDrains" asp-action="Add"><i class="pr-2 bi bi-plus-circle"></i>Add Attica Drains</a>
-                                        <div class="dropdown-divider"></div>
-                                        <h4 class="dropdown-header text-center">--Parts--</h4>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" asp-area="" asp-controller="AtticaParts" asp-action="All"><i class="pr-2 bi bi-card-list"></i>All Attica Parts</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" asp-area="" asp-controller="AtticaParts" asp-action="Add"><i class="pr-2 bi bi-plus-circle"></i>Add Attica Part</a>
-                                    }
-                                </div>
-                            </li>
-                        }
-
                         @*Merhchants*@
-                        @if (User.IsAdmin())
-                        {
-                            <li class="nav-item dropdown">
-                                <a class="nav-item btn btn-lg text-white dropdown-toggle sort-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Merchants
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" asp-area="" asp-controller="Merchants" asp-action="All"><i class="pr-2 bi bi-card-list"></i>All Merchants</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Merchants" asp-action="Add"><i class="pr-2 bi bi-plus-circle"></i>Add Merchant</a>
-                                </div>
-                            </li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-item text-white btn btn-lg" asp-area="" asp-controller="Merchants" asp-action="All">Merchants</a>
-                            </li>
-                        }
+                        <li class="nav-item">
+                            <a class="nav-item text-white btn btn-lg" asp-area="" asp-controller="Merchants" asp-action="All">Merchants</a>
+                        </li>
 
-                        @*Articles menu*@
-                        @if (User.IsAdmin())
-                        {
-                            <li class="nav-item dropdown">
-                                <a class="nav-item btn btn-lg text-white  dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Articles
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" asp-area="" asp-controller="Articles" asp-action="All"><i class="pr-2 bi bi-card-list"></i>All Articles</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Articles" asp-action="Add"><i class="pr-2 bi bi-plus-circle"></i>Add Article</a>
-                                </div>
-                            </li>
-                        }
-
-                        @*Waterproofing Kits menu*@
-                        @if (User.IsAdmin())
-                        {
-                            <li class="nav-item dropdown">
-                                <a class="nav-item btn btn-lg text-white  dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Waterproofing Kits
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" asp-area="" asp-controller="WaterproofingKits" asp-action="All"><i class="pr-2 bi bi-card-list"></i>All Waterproofing Kits</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" asp-area="" asp-controller="WaterproofingKits" asp-action="Add"><i class="pr-2 bi bi-plus-circle"></i>Add Waterproofing Kit</a>
-                                </div>
-                            </li>
-                        }
-
-                        @*Accessories menu*@
-                        @if (User.IsAdmin())
-                        {
-                            <li class="nav-item dropdown">
-                                <a class="nav-item btn btn-lg text-white  dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Accessories
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" asp-area="" asp-controller="Accessories" asp-action="All"><i class="pr-2 bi bi-card-list"></i>All Accessories</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Accessories" asp-action="Add"><i class="pr-2 bi bi-plus-circle"></i>Add Accessory</a>
-                                </div>
-                            </li>
-                        }
-
-                        @*Extensions menu*@
-                        @if (User.IsAdmin())
-                        {
-                            <li class="nav-item dropdown">
-                                <a class="nav-item btn btn-lg text-white  dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Extensions
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" asp-area="" asp-controller="Extensions" asp-action="All"><i class="pr-2 bi bi-card-list"></i>All Extensions</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Extensions" asp-action="Add"><i class="pr-2 bi bi-plus-circle"></i>Add Extension</a>
-                                </div>
-                            </li>
-                        }
-
-                        @*Images*@
-                        @if (User.IsAdmin())
-                        {
-                            <li class="nav-item dropdown">
-                                <a class="nav-item btn btn-lg text-white dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Images
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" asp-area="" asp-controller="Images" asp-action="DrainsGallery">Drains Gallery</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Images" asp-action="AtticaDetailsGallery">Attica Details Gallery</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Images" asp-action="AtticaPartsGallery">Attica Parts Gallery</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Images" asp-action="ArticlesGallery">Articles Gallery</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Images" asp-action="WaterproofingKitsGallery">Waterproofing Kits Gallery</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Images" asp-action="AccessoriesGallery">Accessories Gallery</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Images" asp-action="ExtensionsGallery">Extensions Gallery</a>
-                                </div>
-                            </li>
-                        }
+                        <partial name="_AdminMenuPartial" />
 
                     </ul>
 
@@ -191,6 +61,7 @@
                 </div>
             </div>
         </nav>
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">
