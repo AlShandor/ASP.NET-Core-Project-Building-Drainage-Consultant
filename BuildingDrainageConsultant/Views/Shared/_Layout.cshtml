@@ -43,7 +43,7 @@
                                 @if (User.Identity.IsAuthenticated)
                                 {
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item hover-highlight" asp-area="" asp-controller="AtticaDrains" asp-action="Mine"><i class="pr-2 bi bi-clipboard-check"></i>My Attica Drains</a>
+                                    <a class="dropdown-item hover-highlight" asp-area="" asp-controller="AtticaDrains" asp-action="Mine"><i class="pr-2 bi bi-clipboard-check"></i>My Attica Details</a>
                                 }
                             </div>
                         </li>
@@ -53,7 +53,10 @@
                             <a class="nav-item text-white btn btn-lg" asp-area="" asp-controller="Merchants" asp-action="All">Merchants</a>
                         </li>
 
-                        <partial name="_AdminMenuPartial" />
+                        @if (User.IsAdmin())
+                        {
+                            <partial name="_AdminMenuPartial" />
+                        }
 
                     </ul>
 
