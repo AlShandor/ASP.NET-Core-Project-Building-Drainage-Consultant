@@ -4,6 +4,7 @@
     using AutoMapper.QueryableExtensions;
     using BuildingDrainageConsultant.Data;
     using BuildingDrainageConsultant.Data.Models;
+    using BuildingDrainageConsultant.Data.Models.Enums.ImagesHL;
     using BuildingDrainageConsultant.Services.Extensions.Models;
     using BuildingDrainageConsultant.Services.Images;
     using System.Collections.Generic;
@@ -98,11 +99,11 @@
 
         public int GetImageIdByName(string name)
         {
-            var extensionImage = this.images.GetExtensionImageByName(name);
+            var extensionImage = this.images.GetImageIdByNameAndCategory(name, ImageHLCategoriesEnum.Extensions);
 
             if (extensionImage == null)
             {
-                return 1;
+                return DefaultImageId;
             }
 
             return extensionImage.Id;

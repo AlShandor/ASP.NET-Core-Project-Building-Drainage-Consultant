@@ -4,20 +4,25 @@
     using AutoMapper.QueryableExtensions;
     using BuildingDrainageConsultant.Data;
     using BuildingDrainageConsultant.Data.Models;
+    using BuildingDrainageConsultant.Data.Models.Enums.ImagesHL;
+    using BuildingDrainageConsultant.Services.Images;
     using BuildingDrainageConsultant.Services.WaterproofingKits.Models;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
     using static Data.DataConstants.WaterproofingKit;
+
     public class WaterproofingKitService : IWaterproofingKitService
     {
         private readonly BuildingDrainageConsultantDbContext data;
         private readonly IConfigurationProvider mapper;
-        public WaterproofingKitService(BuildingDrainageConsultantDbContext data, IMapper mapper)
+        private readonly IImageHLService images;
+
+        public WaterproofingKitService(BuildingDrainageConsultantDbContext data, IMapper mapper, IImageHLService images)
         {
             this.data = data;
             this.mapper = mapper.ConfigurationProvider;
+            this.images = images;
         }
 
         public IEnumerable<WaterproofingKitServiceModel> All(string searchTerm)
@@ -93,21 +98,16 @@
             return true;
         }
 
-        public void CreateAll(WaterproofingKit[] waterproofingKits)
+        public int GetImageIdByName(string name)
         {
-            foreach (var a in waterproofingKits)
-            {
-                var waterproofingKit = new WaterproofingKit
-                {
-                    Name = a.Name,
-                    ImageId = a.ImageId,
-                    Description = a.Description
-                };
+            var waterproofingKitImage = this.images.GetImageIdByNameAndCategory(name, ImageHLCategoriesEnum.WaterproofingKits);
 
-                this.data.WaterproofingKits.Add(waterproofingKit);
+            if (waterproofingKitImage == null)
+            {
+                return DefaultImageId;
             }
 
-            this.data.SaveChanges();
+            return waterproofingKitImage.Id;
         }
     }
 }

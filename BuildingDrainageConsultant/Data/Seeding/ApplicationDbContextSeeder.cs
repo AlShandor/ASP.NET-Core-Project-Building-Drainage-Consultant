@@ -26,8 +26,8 @@
                               new AtticaDetailsSeeder(),
                               new AtticaPartsSeeder(),
                               new AtticaDrainsSeeder(),
-                              new WaterproofingKitsSeeder(),
-                              new AccessoriesSeeder(),
+                              new WaterproofingKitsExcelSeeder(),
+                              new AccessoriesExcelSeeder(),
                               new ExtensionsExcelSeeder(),
                               new DrainsSeeder()
                           };

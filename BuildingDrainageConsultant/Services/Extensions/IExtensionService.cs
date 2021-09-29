@@ -1,6 +1,5 @@
 ﻿namespace BuildingDrainageConsultant.Services.Extensions
 {
-    using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Services.Extensions.Models;
     using System.Collections.Generic;
 

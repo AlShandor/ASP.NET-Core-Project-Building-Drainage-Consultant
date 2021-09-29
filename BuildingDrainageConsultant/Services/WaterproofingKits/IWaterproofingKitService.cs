@@ -1,6 +1,5 @@
 ﻿namespace BuildingDrainageConsultant.Services.WaterproofingKits
 {
-    using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Services.WaterproofingKits.Models;
     using System.Collections.Generic;
 
@@ -22,6 +21,6 @@
 
         public bool Delete(int id);
 
-        public void CreateAll(WaterproofingKit[] atticaParts);
+        public int GetImageIdByName(string name);
     }
 }

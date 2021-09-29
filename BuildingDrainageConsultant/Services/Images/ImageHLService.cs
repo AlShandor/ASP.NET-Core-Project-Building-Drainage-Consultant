@@ -139,15 +139,15 @@
                 .ToList();
         }
 
-        public ImageHL GetExtensionImageByName(string name)
+        public ImageHL GetImageIdByNameAndCategory(string name, ImageHLCategoriesEnum category)
         {
-            var images = this.data.Images.Where(i => i.ImageCategory == ImageHLCategoriesEnum.Extensions).ToList();
+            var images = this.data.Images.Where(i => i.ImageCategory == category).ToList();
 
             foreach (var image in images)
             {
-                //var imgName = Path.GetFileNameWithoutExtension(image.Name).ToLower();
+                var imgName = Path.GetFileNameWithoutExtension(image.Name).ToLower();
 
-                if (string.Equals(Path.GetFileNameWithoutExtension(image.Name).ToLower(), name.ToLower()))
+                if (string.Equals(imgName, name.ToLower()))
                 {
                     return image;
                 }

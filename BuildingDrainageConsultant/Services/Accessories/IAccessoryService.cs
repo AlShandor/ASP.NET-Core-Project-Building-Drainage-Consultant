@@ -1,6 +1,5 @@
 ﻿namespace BuildingDrainageConsultant.Services.Accessories
 {
-    using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Services.Accessories.Models;
     using System.Collections.Generic;
 
@@ -22,6 +21,6 @@
 
         public bool Delete(int id);
 
-        public void CreateAll(Accessory[] atticaParts);
+        public int GetImageIdByName(string name);
     }
 }

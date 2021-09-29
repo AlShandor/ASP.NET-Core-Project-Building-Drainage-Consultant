@@ -4,7 +4,9 @@
     using AutoMapper.QueryableExtensions;
     using BuildingDrainageConsultant.Data;
     using BuildingDrainageConsultant.Data.Models;
+    using BuildingDrainageConsultant.Data.Models.Enums.ImagesHL;
     using BuildingDrainageConsultant.Services.Accessories.Models;
+    using BuildingDrainageConsultant.Services.Images;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -13,11 +15,13 @@
     {
         private readonly BuildingDrainageConsultantDbContext data;
         private readonly IConfigurationProvider mapper;
+        private readonly IImageHLService images;
 
-        public AccessoryService(BuildingDrainageConsultantDbContext data, IMapper mapper)
+        public AccessoryService(BuildingDrainageConsultantDbContext data, IMapper mapper, IImageHLService images)
         {
             this.data = data;
             this.mapper = mapper.ConfigurationProvider;
+            this.images = images;
         }
 
         public IEnumerable<AccessoryServiceModel> All(string searchTerm)
@@ -91,21 +95,16 @@
             return true;
         }
 
-        public void CreateAll(Accessory[] accessories)
+        public int GetImageIdByName(string name)
         {
-            foreach (var a in accessories)
-            {
-                var accessory = new Accessory
-                {
-                    Name = a.Name,
-                    ImageId = a.ImageId,
-                    Description = a.Description
-                };
+            var accessoryImage = this.images.GetImageIdByNameAndCategory(name, ImageHLCategoriesEnum.Accessories);
 
-                this.data.Accessories.Add(accessory);
+            if (accessoryImage == null)
+            {
+                return DefaultImageId;
             }
 
-            this.data.SaveChanges();
+            return accessoryImage.Id;
         }
     }
 }
