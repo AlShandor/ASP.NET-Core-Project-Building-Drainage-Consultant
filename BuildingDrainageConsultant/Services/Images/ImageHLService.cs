@@ -145,9 +145,9 @@
 
             foreach (var image in images)
             {
-                var imgName = Path.GetFileNameWithoutExtension(image.Name).ToLower();
+                //var imgName = Path.GetFileNameWithoutExtension(image.Name).ToLower();
 
-                if (String.Equals(imgName, name.ToLower()))
+                if (string.Equals(Path.GetFileNameWithoutExtension(image.Name).ToLower(), name.ToLower()))
                 {
                     return image;
                 }
