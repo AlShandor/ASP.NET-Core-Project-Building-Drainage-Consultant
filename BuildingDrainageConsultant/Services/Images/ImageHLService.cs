@@ -8,6 +8,7 @@
     using BuildingDrainageConsultant.Models.Images;
     using BuildingDrainageConsultant.Services.Images.Models;
     using System;
+    using System.IO;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -46,7 +47,7 @@
                         continue;
                     }
 
-                    using (var stream = System.IO.File.Create(filePath))
+                    using (var stream = File.Create(filePath))
                     {
                         img.CopyTo(stream);
                         image.Name = fileName;
@@ -138,6 +139,23 @@
                 .ToList();
         }
 
+        public ImageHL GetExtensionImageByName(string name)
+        {
+            var images = this.data.Images.Where(i => i.ImageCategory == ImageHLCategoriesEnum.Extensions).ToList();
+
+            foreach (var image in images)
+            {
+                var imgName = Path.GetFileNameWithoutExtension(image.Name).ToLower();
+
+                if (String.Equals(imgName, name.ToLower()))
+                {
+                    return image;
+                }
+            }
+
+            return null;
+        }
+
         public bool Delete(int id)
         {
             var image = this.data.Images.Find(id);
@@ -150,9 +168,9 @@
             this.data.Images.Remove(image);
             data.SaveChanges();
 
-            if (System.IO.File.Exists(image.Path))
+            if (File.Exists(image.Path))
             {
-                System.IO.File.Delete(image.Path);
+                File.Delete(image.Path);
             }
 
             return true;

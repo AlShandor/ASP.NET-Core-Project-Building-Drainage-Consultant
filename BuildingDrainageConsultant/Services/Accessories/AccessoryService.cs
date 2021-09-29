@@ -5,7 +5,6 @@
     using BuildingDrainageConsultant.Data;
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Services.Accessories.Models;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -14,6 +13,7 @@
     {
         private readonly BuildingDrainageConsultantDbContext data;
         private readonly IConfigurationProvider mapper;
+
         public AccessoryService(BuildingDrainageConsultantDbContext data, IMapper mapper)
         {
             this.data = data;

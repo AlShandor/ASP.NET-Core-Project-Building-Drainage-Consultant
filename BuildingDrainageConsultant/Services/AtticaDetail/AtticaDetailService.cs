@@ -13,6 +13,7 @@
     {
         private readonly BuildingDrainageConsultantDbContext data;
         private readonly IConfigurationProvider mapper;
+
         public AtticaDetailService(BuildingDrainageConsultantDbContext data, IMapper mapper)
         {
             this.data = data;

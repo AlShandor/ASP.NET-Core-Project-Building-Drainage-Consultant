@@ -1,5 +1,6 @@
 ﻿namespace BuildingDrainageConsultant.Services.Images
 {
+    using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Models.Images;
     using BuildingDrainageConsultant.Services.Images.Models;
     using System.Collections.Generic;
@@ -23,6 +24,8 @@
         public IEnumerable<ImageHLServiceModel> GetAccessoriesImages(string searchName);
 
         public IEnumerable<ImageHLServiceModel> GetExtensionsImages(string searchName);
+
+        public ImageHL GetExtensionImageByName(string name);
 
         public bool Delete(int id);
 

@@ -1,5 +1,6 @@
 ﻿namespace BuildingDrainageConsultant.Data.Seeding
 {
+    using BuildingDrainageConsultant.Data.Seeding.ExcelSeeders;
     using System;
     using System.Collections.Generic;
 
@@ -27,7 +28,7 @@
                               new AtticaDrainsSeeder(),
                               new WaterproofingKitsSeeder(),
                               new AccessoriesSeeder(),
-                              new ExtensionsSeeder(),
+                              new ExtensionsExcelSeeder(),
                               new DrainsSeeder()
                           };
 

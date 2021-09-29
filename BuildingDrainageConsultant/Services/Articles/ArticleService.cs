@@ -20,6 +20,7 @@
             this.data = data;
             this.mapper = mapper.ConfigurationProvider;
         }
+
         public IEnumerable<ArticleServiceModel> All()
         {
             var articlesQuery = this.data.Articles.AsQueryable();

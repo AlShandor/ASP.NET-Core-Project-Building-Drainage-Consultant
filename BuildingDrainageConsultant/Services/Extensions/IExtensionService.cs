@@ -23,6 +23,6 @@
 
         public bool Delete(int id);
 
-        public void CreateAll(Extension[] extensions);
+        public int GetImageIdByName(string name);
     }
 }

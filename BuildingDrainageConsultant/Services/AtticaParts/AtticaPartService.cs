@@ -13,11 +13,13 @@
     {
         private readonly BuildingDrainageConsultantDbContext data;
         private readonly IConfigurationProvider mapper;
+
         public AtticaPartService(BuildingDrainageConsultantDbContext data, IMapper mapper)
         {
             this.data = data;
             this.mapper = mapper.ConfigurationProvider;
         }
+
         public IEnumerable<AtticaPartServiceModel> All(string searchTerm)
         {
             var atticaPartsQuery = this.data.AtticaParts.AsQueryable();

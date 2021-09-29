@@ -5,20 +5,23 @@
     using BuildingDrainageConsultant.Data;
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Services.Extensions.Models;
-    using System;
+    using BuildingDrainageConsultant.Services.Images;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
 
     using static Data.DataConstants.Extension;
+
     public class ExtensionService : IExtensionService
     {
         private readonly BuildingDrainageConsultantDbContext data;
         private readonly IConfigurationProvider mapper;
-        public ExtensionService(BuildingDrainageConsultantDbContext data, IMapper mapper)
+        private readonly IImageHLService images;
+
+        public ExtensionService(BuildingDrainageConsultantDbContext data, IMapper mapper, IImageHLService images)
         {
             this.data = data;
             this.mapper = mapper.ConfigurationProvider;
+            this.images = images;
         }
 
         public IEnumerable<ExtensionServiceModel> All(string searchTerm)
@@ -93,21 +96,16 @@
             return true;
         }
 
-        public void CreateAll(Extension[] extensions)
+        public int GetImageIdByName(string name)
         {
-            foreach (var a in extensions)
-            {
-                var extension = new Extension
-                {
-                    Name = a.Name,
-                    ImageId = a.ImageId,
-                    Description = a.Description
-                };
+            var extensionImage = this.images.GetExtensionImageByName(name);
 
-                this.data.Extensions.Add(extension);
+            if (extensionImage == null)
+            {
+                return 1;
             }
 
-            this.data.SaveChanges();
+            return extensionImage.Id;
         }
     }
 }
