@@ -8,6 +8,7 @@
     using System.IO;
     using System.Linq;
 
+    using static DataConstants.ExcelSeeding;
     public class WaterproofingKitsExcelSeeder : ISeeder
     {
         public void Seed(BuildingDrainageConsultantDbContext dbContext, IServiceProvider serviceProvider)
@@ -34,11 +35,13 @@
                             continue;
                         }
 
+                        var kitName = reader.GetValue(NameColumn).ToString().Trim();
+
                         var waterproofingKitData = new WaterproofingKit
                         {
-                            Name = reader.GetValue(0).ToString(),
-                            ImageId = waterproofingKitService.GetImageIdByName(reader.GetValue(0).ToString()),
-                            Description = reader.GetValue(1).ToString()
+                            Name = kitName,
+                            ImageId = waterproofingKitService.GetImageIdByName(kitName),
+                            Description = reader.GetValue(DescriptionColumn).ToString()
                         };
 
                         dbContext.WaterproofingKits.Add(waterproofingKitData);

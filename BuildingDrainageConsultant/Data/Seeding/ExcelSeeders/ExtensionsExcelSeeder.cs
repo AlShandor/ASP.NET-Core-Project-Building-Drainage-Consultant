@@ -8,6 +8,7 @@
     using System.IO;
     using System.Linq;
 
+    using static DataConstants.ExcelSeeding;
     public class ExtensionsExcelSeeder : ISeeder
     {
         public void Seed(BuildingDrainageConsultantDbContext dbContext, IServiceProvider serviceProvider)
@@ -34,11 +35,13 @@
                             continue;
                         }
 
+                        var extensionName = reader.GetValue(NameColumn).ToString().Trim();
+
                         var extensionData = new Extension
                         {
-                            Name = reader.GetValue(0).ToString(),
-                            ImageId = extensionService.GetImageIdByName(reader.GetValue(0).ToString()),
-                            Description = reader.GetValue(1).ToString()
+                            Name = extensionName,
+                            ImageId = extensionService.GetImageIdByName(extensionName),
+                            Description = reader.GetValue(DescriptionColumn).ToString()
                         };
 
                         dbContext.Extensions.Add(extensionData);

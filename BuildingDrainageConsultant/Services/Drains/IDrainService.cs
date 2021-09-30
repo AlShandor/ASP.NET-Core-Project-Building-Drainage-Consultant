@@ -86,6 +86,10 @@
 
         public bool IsMyDrain(int drainId, string userId);
 
-        public void CreateAll(Drain[] drains);
+        public int GetImageIdByName(string name);
+
+        public int? GetWaterproofingKitId(string kitName);
+
+        public ICollection<Accessory> GetAccessoriesFromString(string accessoriesString);
     }
 }

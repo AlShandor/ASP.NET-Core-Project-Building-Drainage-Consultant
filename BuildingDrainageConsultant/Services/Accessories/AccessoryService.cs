@@ -106,5 +106,20 @@
 
             return accessoryImage.Id;
         }
+
+        public Accessory GetAccessoryByName(string name)
+        {
+            var accessories = this.data.Accessories.ToList();
+
+            foreach (var acc in accessories)
+            {
+                if (string.Equals(acc.Name.ToLower(), name.ToLower()))
+                {
+                    return acc;
+                }
+            }
+
+            return null;
+        }
     }
 }

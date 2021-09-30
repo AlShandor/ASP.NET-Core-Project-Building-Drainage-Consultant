@@ -109,5 +109,19 @@
 
             return waterproofingKitImage.Id;
         }
+
+        public WaterproofingKit GetWaterproofingKit(string kitName)
+        {
+            var waterproofingKits = this.data.WaterproofingKits.ToList();
+            foreach (var kit in waterproofingKits)
+            {
+                if (string.Equals(kit.Name.ToLower(), kitName.ToLower()))
+                {
+                    return kit;
+                }
+            }
+
+            return null;
+        }
     }
 }

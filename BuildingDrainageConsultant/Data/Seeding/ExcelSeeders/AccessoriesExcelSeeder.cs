@@ -8,6 +8,7 @@
     using System.IO;
     using System.Linq;
 
+    using static DataConstants.ExcelSeeding;
     public class AccessoriesExcelSeeder : ISeeder
     {
         public void Seed(BuildingDrainageConsultantDbContext dbContext, IServiceProvider serviceProvider)
@@ -34,11 +35,13 @@
                             continue;
                         }
 
+                        var accessoryName = reader.GetValue(NameColumn).ToString().Trim();
+
                         var accessoryData = new Accessory
                         {
-                            Name = reader.GetValue(0).ToString(),
-                            ImageId = accessoryService.GetImageIdByName(reader.GetValue(0).ToString()),
-                            Description = reader.GetValue(1).ToString()
+                            Name = accessoryName,
+                            ImageId = accessoryService.GetImageIdByName(accessoryName),
+                            Description = reader.GetValue(DescriptionColumn).ToString()
                         };
 
                         dbContext.Accessories.Add(accessoryData);

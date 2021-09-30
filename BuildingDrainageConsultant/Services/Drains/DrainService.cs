@@ -5,10 +5,14 @@
     using BuildingDrainageConsultant.Data;
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
+    using BuildingDrainageConsultant.Data.Models.Enums.ImagesHL;
     using BuildingDrainageConsultant.Models.Drains;
+    using BuildingDrainageConsultant.Services.Accessories;
     using BuildingDrainageConsultant.Services.Accessories.Models;
     using BuildingDrainageConsultant.Services.Drains.Models;
     using BuildingDrainageConsultant.Services.Extensions.Models;
+    using BuildingDrainageConsultant.Services.Images;
+    using BuildingDrainageConsultant.Services.WaterproofingKits;
     using BuildingDrainageConsultant.Services.WaterproofingKits.Models;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
@@ -19,11 +23,22 @@
     {
         private readonly BuildingDrainageConsultantDbContext data;
         private readonly IConfigurationProvider mapper;
+        private readonly IImageHLService images;
+        private readonly IWaterproofingKitService waterproofingKits;
+        private readonly IAccessoryService accessories;
 
-        public DrainService(BuildingDrainageConsultantDbContext data, IMapper mapper)
+        public DrainService(
+            BuildingDrainageConsultantDbContext data, 
+            IMapper mapper, 
+            IImageHLService images,
+            IWaterproofingKitService waterproofingKits,
+            IAccessoryService accessories)
         {
             this.data = data;
             this.mapper = mapper.ConfigurationProvider;
+            this.images = images;
+            this.waterproofingKits = waterproofingKits;
+            this.accessories = accessories;
         }
 
         public DrainQueryServiceModel All(
@@ -428,31 +443,50 @@
             return true;
         }
 
-        public void CreateAll(Drain[] drains)
+        public int GetImageIdByName(string name)
         {
-            foreach (var d in drains)
-            {
-                var drain = new Drain
-                {
-                    Name = d.Name,
-                    FlowRate = d.FlowRate,
-                    DrainageArea = d.DrainageArea,
-                    Depth = d.Depth,
-                    Direction = d.Direction,
-                    Diameter = d.Diameter,
-                    VisiblePart = d.VisiblePart,
-                    Waterproofing = d.Waterproofing,
-                    Heating = d.Heating,
-                    Renovation = d.Renovation,
-                    FlapSeal = d.FlapSeal,
-                    ImageId = d.ImageId,
-                    Description = d.Description
-                };
+            var drainImage = this.images.GetImageIdByNameAndCategory(name, ImageHLCategoriesEnum.Drains);
 
-                this.data.Drains.Add(drain);
+            if (drainImage == null)
+            {
+                return DefaultImageId;
             }
 
-            this.data.SaveChanges();
+            return drainImage.Id;
+        }
+
+        public int? GetWaterproofingKitId(string kitName)
+        {
+            var kit = this.waterproofingKits.GetWaterproofingKit(kitName);
+
+            if (kit == null)
+            {
+                return null;
+            }
+
+            return kit.Id;
+        }
+
+        public ICollection<Accessory> GetAccessoriesFromString(string accessoriesString)
+        {
+            if (string.IsNullOrEmpty(accessoriesString))
+            {
+                return null;
+            }
+
+            var accessoriesStringCollection = accessoriesString.Split("+").Select(a => a.Trim());
+            List<Accessory> accessories = new();
+
+            foreach (var accName in accessoriesStringCollection)
+            {
+                var accessory = this.accessories.GetAccessoryByName(accName);
+                if (accessory != null)
+                {
+                    accessories.Add(accessory);
+                }
+            }
+
+            return accessories;
         }
     }
 }

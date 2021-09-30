@@ -29,7 +29,7 @@
                               new WaterproofingKitsExcelSeeder(),
                               new AccessoriesExcelSeeder(),
                               new ExtensionsExcelSeeder(),
-                              new DrainsSeeder()
+                              new DrainsExcelSeeder()
                           };
 
             foreach (var seeder in seeders)
