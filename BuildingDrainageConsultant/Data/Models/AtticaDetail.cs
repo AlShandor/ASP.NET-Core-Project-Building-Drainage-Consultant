@@ -16,7 +16,7 @@
         [Required]
         public AtticaWalkableEnum IsWalkable { get; set; }
 
-        public AtticaScreedWaterproofingEnum ScreedWaterproofing { get; set; }
+        public AtticaScreedWaterproofingEnum? ScreedWaterproofing { get; set; }
 
         [Required]
         [MaxLength(DescriptionMaxLength)]

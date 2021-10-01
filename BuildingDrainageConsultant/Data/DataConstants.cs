@@ -101,6 +101,11 @@
             public const int ImageColumn = 13;
             public const int WaterproofingKitColumn = 14;
             public const int AccessoriesColumn = 15;
+
+            // Attica
+            public const int WalkableColumn = 2;
+            public const int RoofTypeColumn = 3;
+            public const int ScreedWaterproofingColumn = 4;
         }
     }
 }

@@ -5,7 +5,9 @@
     using BuildingDrainageConsultant.Data;
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.Attica;
+    using BuildingDrainageConsultant.Data.Models.Enums.ImagesHL;
     using BuildingDrainageConsultant.Services.AtticaDetail.Models;
+    using BuildingDrainageConsultant.Services.Images;
     using System.Linq;
 
     using static Data.DataConstants.AtticaDetail;
@@ -13,11 +15,13 @@
     {
         private readonly BuildingDrainageConsultantDbContext data;
         private readonly IConfigurationProvider mapper;
+        private readonly IImageHLService images;
 
-        public AtticaDetailService(BuildingDrainageConsultantDbContext data, IMapper mapper)
+        public AtticaDetailService(BuildingDrainageConsultantDbContext data, IMapper mapper, IImageHLService images)
         {
             this.data = data;
             this.mapper = mapper.ConfigurationProvider;
+            this.images = images;
         }
 
         public AtticaDetailQueryServiceModel All(AtticaRoofTypeEnum roofType, AtticaWalkableEnum isWalkable)
@@ -119,23 +123,16 @@
             return true;
         }
 
-        public void CreateAll(AtticaDetail[] atticaDetails)
+        public int GetImageIdByName(string name)
         {
-            foreach (var a in atticaDetails)
-            {
-                var atticaDetail = new AtticaDetail
-                {
-                    RoofType = a.RoofType,
-                    IsWalkable = a.IsWalkable,
-                    ScreedWaterproofing = a.ScreedWaterproofing,
-                    Description = a.Description,
-                    ImageId = a.ImageId
-                };
+            var atticaDetailImage = this.images.GetImageIdByNameAndCategory(name, ImageHLCategoriesEnum.AtticaDetails);
 
-                this.data.AtticaDetails.Add(atticaDetail);
+            if (atticaDetailImage == null)
+            {
+                return DefaultImageId;
             }
 
-            this.data.SaveChanges();
+            return atticaDetailImage.Id;
         }
     }
 }
