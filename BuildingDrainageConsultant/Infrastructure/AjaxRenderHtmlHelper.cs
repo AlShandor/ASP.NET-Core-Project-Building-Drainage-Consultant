@@ -13,6 +13,9 @@
         public static string RenderRazorViewToString(Controller controller, string viewName, object model = null)
         {
             controller.ViewData.Model = model;
+            controller.ViewData.ModelState.ClearValidationState("Name");
+            controller.ViewData.ModelState.ClearValidationState("Description");
+
             using (var sw = new StringWriter())
             {
                 IViewEngine viewEngine = controller.HttpContext.RequestServices.GetService(typeof(ICompositeViewEngine)) as ICompositeViewEngine;

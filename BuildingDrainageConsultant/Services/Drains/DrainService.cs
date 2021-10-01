@@ -241,7 +241,7 @@
             return drains;
         }
 
-        public IEnumerable<WaterproofingKitServiceModel> GetWaterproofingKits()
+        public ICollection<WaterproofingKitServiceModel> GetWaterproofingKits()
             => this.data.WaterproofingKits
                 .AsQueryable()
                 .ProjectTo<WaterproofingKitServiceModel>(this.mapper)
@@ -294,7 +294,7 @@
                 .ProjectTo<DrainDetailsServiceModel>(this.mapper)
                 .ToList();
 
-        public IEnumerable<AccessoryServiceModel> GetAccessories()
+        public ICollection<AccessoryServiceModel> GetAccessories()
         => this.data.Accessories
                 .AsQueryable()
                 .ProjectTo<AccessoryServiceModel>(this.mapper)
@@ -342,7 +342,7 @@
             return true;
         }
 
-        public IEnumerable<ExtensionServiceModel> GetExtensions()
+        public ICollection<ExtensionServiceModel> GetExtensions()
         => this.data.Extensions
                 .AsQueryable()
                 .ProjectTo<ExtensionServiceModel>(this.mapper)

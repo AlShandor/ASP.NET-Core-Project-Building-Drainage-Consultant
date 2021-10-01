@@ -62,11 +62,11 @@
 
         public IEnumerable<DrainDetailsServiceModel> ByUser(string userId);
 
-        public IEnumerable<WaterproofingKitServiceModel> GetWaterproofingKits();
+        public ICollection<WaterproofingKitServiceModel> GetWaterproofingKits();
 
-        public IEnumerable<AccessoryServiceModel> GetAccessories();
+        public ICollection<AccessoryServiceModel> GetAccessories();
 
-        public IEnumerable<ExtensionServiceModel> GetExtensions();
+        public ICollection<ExtensionServiceModel> GetExtensions();
 
         public bool AddWaterproofingKit(int waterproofingKitId, int drainId);
 

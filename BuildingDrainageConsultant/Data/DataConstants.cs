@@ -43,16 +43,16 @@
         {
             public const int NameMaxLength = 50;
             public const int CityMaxLength = 30;
-            public const int AddressMaxLength = 300;
+            public const int AddressMaxLength = 1000;
             public const int WebsiteMaxLength = 200;
             public const int EmailMaxLength = 100;
-            public const int PhoneNumberMaxLength = 20;
+            public const int PhoneNumberMaxLength = 50;
         }
 
         public class Article
         {
             public const int TitleMaxLength = 60;
-            public const int ContentMaxLength = 1000;
+            public const int ContentMaxLength = 6000;
             public const int DefaultImageId = 1;
         }
 

@@ -77,11 +77,11 @@
 
         public IEnumerable<ImageHLServiceModel> Images { get; set; }
 
-        public IEnumerable<WaterproofingKitServiceModel> WaterproofingKits { get; set; }
+        public ICollection<WaterproofingKitServiceModel> WaterproofingKits { get; set; }
 
-        public IEnumerable<AccessoryServiceModel> Accessories { get; set; }
+        public ICollection<AccessoryServiceModel> Accessories { get; set; }
 
-        public IEnumerable<ExtensionServiceModel> Extensions { get; set; }
+        public ICollection<ExtensionServiceModel> Extensions { get; set; }
 
     }
 }
