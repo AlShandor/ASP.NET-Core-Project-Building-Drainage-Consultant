@@ -24,7 +24,7 @@
                               new ArticlesSeeder(),
                               new MerchantsSeeder(),
                               new AtticaDetailsExcelSeeder(),
-                              new AtticaPartsSeeder(),
+                              new AtticaPartsExcelSeeder(),
                               new AtticaDrainsSeeder(),
                               new WaterproofingKitsExcelSeeder(),
                               new AccessoriesExcelSeeder(),

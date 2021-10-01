@@ -4,7 +4,9 @@
     using AutoMapper.QueryableExtensions;
     using BuildingDrainageConsultant.Data;
     using BuildingDrainageConsultant.Data.Models;
+    using BuildingDrainageConsultant.Data.Models.Enums.ImagesHL;
     using BuildingDrainageConsultant.Services.AtticaParts.Models;
+    using BuildingDrainageConsultant.Services.Images;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -13,11 +15,13 @@
     {
         private readonly BuildingDrainageConsultantDbContext data;
         private readonly IConfigurationProvider mapper;
+        private readonly IImageHLService images;
 
-        public AtticaPartService(BuildingDrainageConsultantDbContext data, IMapper mapper)
+        public AtticaPartService(BuildingDrainageConsultantDbContext data, IMapper mapper, IImageHLService images)
         {
             this.data = data;
             this.mapper = mapper.ConfigurationProvider;
+            this.images = images;
         }
 
         public IEnumerable<AtticaPartServiceModel> All(string searchTerm)
@@ -92,21 +96,16 @@
             return true;
         }
 
-        public void CreateAll(AtticaPart[] atticaParts)
+        public int GetImageIdByName(string name)
         {
-            foreach (var a in atticaParts)
-            {
-                var atticaPart = new AtticaPart
-                {
-                    Name = a.Name,
-                    ImageId = a.ImageId,
-                    Description = a.Description
-                };
+            var atticaPartImage = this.images.GetImageIdByNameAndCategory(name, ImageHLCategoriesEnum.AtticaParts);
 
-                this.data.AtticaParts.Add(atticaPart);
+            if (atticaPartImage == null)
+            {
+                return DefaultImageId;
             }
 
-            this.data.SaveChanges();
+            return atticaPartImage.Id;
         }
     }
 }

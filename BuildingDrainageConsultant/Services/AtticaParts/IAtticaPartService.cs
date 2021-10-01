@@ -22,6 +22,6 @@
 
         public bool Delete(int id);
 
-        public void CreateAll(AtticaPart[] atticaParts);
+        public int GetImageIdByName(string name);
     }
 }

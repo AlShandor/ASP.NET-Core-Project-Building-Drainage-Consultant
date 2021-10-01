@@ -106,6 +106,7 @@
             public const int WalkableColumn = 2;
             public const int RoofTypeColumn = 3;
             public const int ScreedWaterproofingColumn = 4;
+            public const int AtticaPartImageNameColumn = 2;
         }
     }
 }
