@@ -57,6 +57,9 @@
                         DrainFlapSealEnum flapSeal;
                         Enum.TryParse(reader.GetValue(FlapSealColumn).ToString().Trim(), out flapSeal);
 
+                        DrainLoadClassEnum loadClass;
+                        Enum.TryParse(reader.GetValue(LoadClassColumn).ToString().Trim(), out loadClass);
+
                         var imageName = reader.GetValue(ImageColumn).ToString().Trim();
 
                         var waterproofingKitName = reader.GetValue(WaterproofingKitColumn) == null ? 
@@ -81,6 +84,7 @@
                             Heating = heating,
                             Renovation = renovation,
                             FlapSeal = flapSeal,
+                            LoadClass = loadClass,
                             ImageId = drainService.GetImageIdByName(imageName),
                             WaterproofingKitId = drainService.GetWaterproofingKitId(waterproofingKitName),
                             Accessories = drainService.GetAccessoriesFromString(accessories)

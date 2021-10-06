@@ -67,9 +67,9 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     City = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     Latitude = table.Column<double>(type: "float", nullable: true),
                     Longitude = table.Column<double>(type: "float", nullable: true),
@@ -193,8 +193,8 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: false),
                     ImageId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -215,7 +215,7 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
-                    Content = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(max)", maxLength: 6000, nullable: false),
                     ImageId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -237,8 +237,8 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RoofType = table.Column<int>(type: "int", nullable: false),
                     IsWalkable = table.Column<int>(type: "int", nullable: false),
-                    ScreedWaterproofing = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    ScreedWaterproofing = table.Column<int>(type: "int", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(3000)", maxLength: 3000, nullable: false),
                     ImageId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -258,8 +258,8 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: false),
                     ImageId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -279,8 +279,8 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: false),
                     ImageId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -300,8 +300,8 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: false),
                     ImageId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -347,7 +347,7 @@ namespace BuildingDrainageConsultant.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
                     FlowRate = table.Column<double>(type: "float", maxLength: 15, nullable: false),
                     DrainageArea = table.Column<int>(type: "int", maxLength: 400, nullable: false),
                     Depth = table.Column<int>(type: "int", maxLength: 300, nullable: false),
@@ -358,7 +358,8 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     Heating = table.Column<int>(type: "int", nullable: false),
                     Renovation = table.Column<int>(type: "int", nullable: false),
                     FlapSeal = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    LoadClass = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: false),
                     ImageId = table.Column<int>(type: "int", nullable: true),
                     WaterproofingKitId = table.Column<int>(type: "int", nullable: true)
                 },

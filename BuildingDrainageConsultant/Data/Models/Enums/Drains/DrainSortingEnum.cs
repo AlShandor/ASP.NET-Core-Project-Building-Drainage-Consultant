@@ -1,4 +1,4 @@
-﻿namespace BuildingDrainageConsultant.Models.Drains
+﻿namespace BuildingDrainageConsultant.Data.Models.Enums.Drains
 {
     public enum DrainSortingEnum
     {

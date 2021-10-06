@@ -58,6 +58,10 @@
         public DrainFlapSealEnum FlapSeal { get; set; }
 
         [Required]
+        [Display(Name = "Load Class")]
+        public DrainLoadClassEnum LoadClass { get; set; }
+
+        [Required]
         [StringLength(DescriptionMaxLength)]
         public string Description { get; set; }
 

@@ -2,7 +2,6 @@
 {
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
-    using BuildingDrainageConsultant.Models.Drains;
     using BuildingDrainageConsultant.Services.Accessories.Models;
     using BuildingDrainageConsultant.Services.Drains.Models;
     using BuildingDrainageConsultant.Services.Extensions.Models;
@@ -20,6 +19,7 @@
              DrainHeatingEnum heating,
              DrainRenovationEnum renovation,
              DrainFlapSealEnum flapSeal,
+             DrainLoadClassEnum loadClass,
              DrainSortingEnum sorting,
              int currentPage,
              int drainsPerPage);
@@ -37,6 +37,7 @@
             DrainHeatingEnum heating,
             DrainRenovationEnum renovation,
             DrainFlapSealEnum flapSeal,
+            DrainLoadClassEnum loadClass,
             int? imageId,
             string description);
 
@@ -53,6 +54,7 @@
             DrainHeatingEnum heating,
             DrainRenovationEnum renovation,
             DrainFlapSealEnum flapSeal,
+            DrainLoadClassEnum loadClass,
             int? imageId,
             string description);
 

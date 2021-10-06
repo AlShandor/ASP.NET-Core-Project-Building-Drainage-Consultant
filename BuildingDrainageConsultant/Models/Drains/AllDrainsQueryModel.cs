@@ -19,6 +19,7 @@
         public DrainHeatingEnum Heating { get; set; }
         public DrainRenovationEnum Renovation { get; set; }
         public DrainFlapSealEnum FlapSeal { get; set; }
+        public DrainLoadClassEnum LoadClass { get; set; }
 
         public int CurrentPage { get; set; } = 1;
 

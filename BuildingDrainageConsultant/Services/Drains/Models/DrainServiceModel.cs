@@ -33,6 +33,8 @@
 
         public DrainFlapSealEnum FlapSeal { get; set; }
 
+        public DrainLoadClassEnum LoadClass { get; set; }
+
         public string Description { get; set; }
 
         public int? ImageId { get; set; }

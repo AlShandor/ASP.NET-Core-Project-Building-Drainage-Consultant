@@ -1,4 +1,4 @@
-﻿namespace BuildingDrainageConsultant.Models.AtticaDrains
+﻿namespace BuildingDrainageConsultant.Data.Models.Enums.Attica
 {
     public enum AtticaDrainSortingEnum
     {

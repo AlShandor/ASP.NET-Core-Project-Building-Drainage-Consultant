@@ -6,7 +6,6 @@
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.Drains;
     using BuildingDrainageConsultant.Data.Models.Enums.ImagesHL;
-    using BuildingDrainageConsultant.Models.Drains;
     using BuildingDrainageConsultant.Services.Accessories;
     using BuildingDrainageConsultant.Services.Accessories.Models;
     using BuildingDrainageConsultant.Services.Drains.Models;
@@ -50,6 +49,7 @@
             DrainHeatingEnum heating,
             DrainRenovationEnum renovation,
             DrainFlapSealEnum flapSeal,
+            DrainLoadClassEnum loadClass,
             DrainSortingEnum sorting,
             int currentPage,
             int drainsPerPage)
@@ -96,6 +96,10 @@
                 drainQuery = drainQuery.Where(d => d.FlapSeal == flapSeal);
             }
 
+            if (loadClass != 0)
+            {
+                drainQuery = drainQuery.Where(d => d.LoadClass == loadClass);
+            }
 
             drainQuery = sorting switch
             {
@@ -139,6 +143,7 @@
             DrainHeatingEnum heating,
             DrainRenovationEnum renovation,
             DrainFlapSealEnum flapSeal,
+            DrainLoadClassEnum loadClass,
             int? imageId,
             string description)
         {
@@ -155,6 +160,7 @@
                 Heating = heating,
                 Renovation = renovation,
                 FlapSeal = flapSeal,
+                LoadClass = loadClass,
                 ImageId = imageId == null ? DefaultImageId : imageId,
                 Description = description
             };
@@ -178,6 +184,7 @@
             DrainHeatingEnum heating,
             DrainRenovationEnum renovation,
             DrainFlapSealEnum flapSeal,
+            DrainLoadClassEnum loadClass,
             int? imageId,
             string description)
         {
@@ -199,6 +206,7 @@
             drainData.Heating = heating;
             drainData.Renovation = renovation;
             drainData.FlapSeal = flapSeal;
+            drainData.LoadClass = loadClass;
             drainData.ImageId = imageId == null ? DefaultImageId : imageId;
             drainData.Description = description;
 

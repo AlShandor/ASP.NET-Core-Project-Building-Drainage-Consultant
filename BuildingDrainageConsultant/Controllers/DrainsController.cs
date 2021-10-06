@@ -49,6 +49,7 @@
                   drain.Heating,
                   drain.Renovation,
                   drain.FlapSeal,
+                  drain.LoadClass,
                   drain.ImageId,
                   drain.Description);
 
@@ -66,6 +67,7 @@
                 query.Heating,
                 query.Renovation,
                 query.FlapSeal,
+                query.LoadClass,
                 query.Sorting,
                 query.CurrentPage,
                 AllDrainsQueryModel.DrainsPerPage);
@@ -134,6 +136,7 @@
                 drain.Heating,
                 drain.Renovation,
                 drain.FlapSeal,
+                drain.LoadClass,
                 drain.ImageId,
                 drain.Description);
 
