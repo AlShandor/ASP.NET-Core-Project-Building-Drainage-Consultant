@@ -2,12 +2,16 @@
 {
     public enum AtticaDrainSortingEnum
     {
-        FlowRateAscending = 1,
+        FlowRate35mmAscending = 1,
 
-        FlowRateDescending = 2,
+        FlowRate35mmDescending = 2,
 
-        DiameterAscending = 3,
+        FlowRate100mmAscending = 3,
 
-        DiameterDescending = 4
+        FlowRate100mmDescending = 4,
+
+        DiameterAscending = 5,
+
+        DiameterDescending = 6
     }
 }

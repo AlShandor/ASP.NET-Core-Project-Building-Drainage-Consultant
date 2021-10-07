@@ -15,8 +15,10 @@
             {
                 Id = drainId,
                 Name = "ValidAtticaDrain",
-                FlowRate = 1,
-                DrainageArea = 2,
+                FlowRate35mm = 1.1,
+                FlowRate100mm = 2.2,
+                DrainageArea35mm = 3,
+                DrainageArea100mm = 4,
                 ScreedWaterproofing = AtticaScreedWaterproofingEnum.Bitumen,
                 ConcreteWaterproofing = AtticaConcreteWaterproofingEnum.Bitumen,
                 Diameter = AtticaDiameterEnum.DN110,

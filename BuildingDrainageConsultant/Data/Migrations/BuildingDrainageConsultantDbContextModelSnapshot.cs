@@ -165,10 +165,16 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     b.Property<int>("Diameter")
                         .HasColumnType("int");
 
-                    b.Property<int>("DrainageArea")
+                    b.Property<int>("DrainageArea100mm")
                         .HasColumnType("int");
 
-                    b.Property<double>("FlowRate")
+                    b.Property<int>("DrainageArea35mm")
+                        .HasColumnType("int");
+
+                    b.Property<double>("FlowRate100mm")
+                        .HasColumnType("float");
+
+                    b.Property<double>("FlowRate35mm")
                         .HasColumnType("float");
 
                     b.Property<string>("Name")

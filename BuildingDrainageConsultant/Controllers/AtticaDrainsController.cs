@@ -59,8 +59,10 @@
             var drainId = this.atticaDrains.Create(
                   atticaDrain.AtticaDetailId,
                   atticaDrain.Name,
-                  atticaDrain.FlowRate,
-                  atticaDrain.DrainageArea,
+                  atticaDrain.FlowRate35mm,
+                  atticaDrain.FlowRate100mm,
+                  atticaDrain.DrainageArea35mm,
+                  atticaDrain.DrainageArea100mm,
                   atticaDrain.ScreedWaterproofing,
                   atticaDrain.ConcreteWaterproofing,
                   atticaDrain.Diameter,
@@ -127,9 +129,10 @@
 
             this.atticaDrains.Edit(
                 id,
-                atticaDrain.Name,
-                atticaDrain.FlowRate,
-                atticaDrain.DrainageArea,
+                atticaDrain.FlowRate35mm,
+                atticaDrain.FlowRate100mm,
+                atticaDrain.DrainageArea35mm,
+                atticaDrain.DrainageArea100mm,
                 atticaDrain.ScreedWaterproofing,
                 atticaDrain.ConcreteWaterproofing,
                 atticaDrain.Diameter,

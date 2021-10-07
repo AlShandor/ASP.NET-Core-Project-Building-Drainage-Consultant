@@ -5,7 +5,6 @@
     using BuildingDrainageConsultant.Services.AtticaDrains;
     using Microsoft.Extensions.DependencyInjection;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
     public class AtticaDrainsSeeder : ISeeder
@@ -26,8 +25,10 @@
             {
                 new AtticaDrain
                 {
-                    FlowRate = 3.6,
-                    DrainageArea = 120,
+                    FlowRate35mm = 3.6,
+                    FlowRate100mm = 4.2,
+                    DrainageArea35mm = 120,
+                    DrainageArea100mm = 130,
                     ScreedWaterproofing = AtticaScreedWaterproofingEnum.Bitumen,
                     ConcreteWaterproofing = AtticaConcreteWaterproofingEnum.Bitumen,
                     Diameter = AtticaDiameterEnum.DN110,
@@ -38,8 +39,10 @@
                 },
                 new AtticaDrain
                 {
-                    FlowRate = 3.6,
-                    DrainageArea = 120,
+                    FlowRate35mm = 3.6,
+                    FlowRate100mm = 4.2,
+                    DrainageArea35mm = 120,
+                    DrainageArea100mm = 130,
                     ScreedWaterproofing = AtticaScreedWaterproofingEnum.PVC,
                     ConcreteWaterproofing = AtticaConcreteWaterproofingEnum.Bitumen,
                     Diameter = AtticaDiameterEnum.DN75,
@@ -50,8 +53,10 @@
                 },
                 new AtticaDrain
                 {
-                    FlowRate = 3.6,
-                    DrainageArea = 120,
+                    FlowRate35mm = 3.6,
+                    FlowRate100mm = 4.2,
+                    DrainageArea35mm = 120,
+                    DrainageArea100mm = 130,
                     ScreedWaterproofing = AtticaScreedWaterproofingEnum.PVC,
                     ConcreteWaterproofing = AtticaConcreteWaterproofingEnum.TPO,
                     Diameter = AtticaDiameterEnum.DN50,
@@ -62,8 +67,10 @@
                 },
                 new AtticaDrain
                 {
-                    FlowRate = 3.6,
-                    DrainageArea = 120,
+                    FlowRate35mm = 3.6,
+                    FlowRate100mm = 4.2,
+                    DrainageArea35mm = 120,
+                    DrainageArea100mm = 130,
                     ScreedWaterproofing = AtticaScreedWaterproofingEnum.PVC,
                     ConcreteWaterproofing = AtticaConcreteWaterproofingEnum.Bitumen,
                     Diameter = AtticaDiameterEnum.DN110,

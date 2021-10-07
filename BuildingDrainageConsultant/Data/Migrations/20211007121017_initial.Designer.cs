@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuildingDrainageConsultant.Data.Migrations
 {
     [DbContext(typeof(BuildingDrainageConsultantDbContext))]
-    [Migration("20211006143059_init")]
-    partial class init
+    [Migration("20211007121017_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -167,10 +167,16 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     b.Property<int>("Diameter")
                         .HasColumnType("int");
 
-                    b.Property<int>("DrainageArea")
+                    b.Property<int>("DrainageArea100mm")
                         .HasColumnType("int");
 
-                    b.Property<double>("FlowRate")
+                    b.Property<int>("DrainageArea35mm")
+                        .HasColumnType("int");
+
+                    b.Property<double>("FlowRate100mm")
+                        .HasColumnType("float");
+
+                    b.Property<double>("FlowRate35mm")
                         .HasColumnType("float");
 
                     b.Property<string>("Name")

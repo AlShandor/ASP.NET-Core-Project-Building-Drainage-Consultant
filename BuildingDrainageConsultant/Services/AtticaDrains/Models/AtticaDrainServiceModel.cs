@@ -11,9 +11,13 @@
 
         public string Name { get; set; }
 
-        public double FlowRate { get; set; }
+        public double FlowRate35mm { get; set; }
 
-        public int DrainageArea { get; set; }
+        public double FlowRate100mm { get; set; }
+
+        public int DrainageArea35mm { get; set; }
+
+        public int DrainageArea100mm { get; set; }
 
         public AtticaScreedWaterproofingEnum ScreedWaterproofing { get; set; }
 

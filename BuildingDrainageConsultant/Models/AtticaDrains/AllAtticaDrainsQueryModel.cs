@@ -7,6 +7,7 @@
     public class AllAtticaDrainsQueryModel
     {
         public const int DrainsPerPage = 6;
+
         public string SearchTerm { get; set; }
 
         public AtticaScreedWaterproofingEnum ScreedWaterproofing { get; set; }

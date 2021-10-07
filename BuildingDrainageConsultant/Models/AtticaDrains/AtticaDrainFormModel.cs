@@ -13,12 +13,20 @@
         public string Name { get; set; }
 
         [Required]
-        [Display(Name = "Flow Rate (l/s)")]
-        public double FlowRate { get; set; }
+        [Display(Name = "Flow Rate (l/s) - Water level 35 mm above the Waterproofing")]
+        public double FlowRate35mm { get; set; }
 
         [Required]
-        [Display(Name = "Drainage Area (m²)")]
-        public int DrainageArea { get; set; }
+        [Display(Name = "Flow Rate (l/s) - Water level 100 mm above the Waterproofing")]
+        public double FlowRate100mm { get; set; }
+
+        [Required]
+        [Display(Name = "Drainage Area (m²) - Water level 35mm above the Waterproofing")]
+        public int DrainageArea35mm { get; set; }
+
+        [Required]
+        [Display(Name = "Drainage Area (m²) - Water level 100 mm above the Waterproofing")]
+        public int DrainageArea100mm { get; set; }
 
         [Display(Name = "Screed Waterproofing")]
         public AtticaScreedWaterproofingEnum ScreedWaterproofing { get; set; }

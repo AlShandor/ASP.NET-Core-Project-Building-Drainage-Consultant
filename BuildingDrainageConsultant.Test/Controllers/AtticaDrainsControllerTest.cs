@@ -30,6 +30,8 @@
             1,
             "AtticaDrainName1",
             3.5,
+            4.5,
+            4,
             5,
             AtticaScreedWaterproofingEnum.Bitumen,
             AtticaConcreteWaterproofingEnum.Bitumen,
@@ -38,8 +40,10 @@
         public void PostAddShouldBeForAuthorizedUsersAndReturnRedirectWithValidModel(
             int atticaDetailId,
             string name,
-            double flowRate,
-            int drainageArea,
+            double flowRate35mm,
+            double flowRate100mm,
+            int drainageArea35mm,
+            int drainageArea100mm,
             AtticaScreedWaterproofingEnum screedWaterproofing,
             AtticaConcreteWaterproofingEnum concreteWaterproofing,
             AtticaDiameterEnum diameter,
@@ -59,8 +63,10 @@
             {
                 AtticaDetailId = atticaDetailId,
                 Name = name,
-                FlowRate = flowRate,
-                DrainageArea = drainageArea,
+                FlowRate35mm = flowRate35mm,
+                FlowRate100mm = flowRate100mm,
+                DrainageArea35mm = drainageArea35mm,
+                DrainageArea100mm = drainageArea100mm,
                 ScreedWaterproofing = screedWaterproofing,
                 ConcreteWaterproofing = concreteWaterproofing,
                 Diameter = diameter,
@@ -76,8 +82,10 @@
                     .Any(d =>
                         d.AtticaDetailId == atticaDetailId &&
                         d.Name == name &&
-                        d.FlowRate == flowRate &&
-                        d.DrainageArea == drainageArea &&
+                        d.FlowRate35mm == flowRate35mm &&
+                        d.FlowRate100mm == flowRate100mm &&
+                        d.DrainageArea35mm == drainageArea35mm &&
+                        d.DrainageArea100mm == drainageArea100mm &&
                         d.ScreedWaterproofing == screedWaterproofing &&
                         d.ConcreteWaterproofing == concreteWaterproofing &&
                         d.Diameter == diameter &&

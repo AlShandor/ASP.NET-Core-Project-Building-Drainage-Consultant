@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BuildingDrainageConsultant.Data.Migrations
 {
-    public partial class init : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -322,8 +322,10 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FlowRate = table.Column<double>(type: "float", nullable: false),
-                    DrainageArea = table.Column<int>(type: "int", nullable: false),
+                    FlowRate35mm = table.Column<double>(type: "float", nullable: false),
+                    FlowRate100mm = table.Column<double>(type: "float", nullable: false),
+                    DrainageArea35mm = table.Column<int>(type: "int", nullable: false),
+                    DrainageArea100mm = table.Column<int>(type: "int", nullable: false),
                     ScreedWaterproofing = table.Column<int>(type: "int", nullable: false),
                     ConcreteWaterproofing = table.Column<int>(type: "int", nullable: false),
                     Diameter = table.Column<int>(type: "int", nullable: false),

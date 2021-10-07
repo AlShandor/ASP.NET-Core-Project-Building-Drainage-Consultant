@@ -5,7 +5,7 @@
         public class User
         {
             public const int PasswordMaxLength = 100;
-            public const int PasswordMinLength = 6;
+            public const int PasswordMinLength = 4;
         }
 
         public class Drain
@@ -27,8 +27,8 @@
         public class AtticaDrain
         {
             public const int NameMaxLength = 50;
-            public const int FlowRateMax = 4;
-            public const int DraingeAreaMax = 100;
+            public const int FlowRateMax = 6;
+            public const int DraingeAreaMax = 200;
 
         }
 

@@ -5,7 +5,6 @@
     using BuildingDrainageConsultant.Data;
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.Attica;
-    using BuildingDrainageConsultant.Models.AtticaDrains;
     using BuildingDrainageConsultant.Services.AtticaDetail.Models;
     using BuildingDrainageConsultant.Services.AtticaDrains.Models;
     using BuildingDrainageConsultant.Services.AtticaParts.Models;
@@ -78,8 +77,10 @@
             {
                 AtticaDrainSortingEnum.DiameterAscending => atticaDrainQuery.OrderBy(d => d.Diameter),
                 AtticaDrainSortingEnum.DiameterDescending => atticaDrainQuery.OrderByDescending(d => d.Diameter),
-                AtticaDrainSortingEnum.FlowRateAscending => atticaDrainQuery.OrderBy(d => d.FlowRate),
-                AtticaDrainSortingEnum.FlowRateDescending => atticaDrainQuery.OrderByDescending(d => d.FlowRate),
+                AtticaDrainSortingEnum.FlowRate35mmAscending => atticaDrainQuery.OrderBy(d => d.FlowRate35mm),
+                AtticaDrainSortingEnum.FlowRate35mmDescending => atticaDrainQuery.OrderByDescending(d => d.FlowRate35mm),
+                AtticaDrainSortingEnum.FlowRate100mmAscending => atticaDrainQuery.OrderBy(d => d.FlowRate100mm),
+                AtticaDrainSortingEnum.FlowRate100mmDescending => atticaDrainQuery.OrderByDescending(d => d.FlowRate100mm),
                 _ => atticaDrainQuery.OrderByDescending(d => d.Id)
             };
 
@@ -103,8 +104,10 @@
         public int Create(
             int detailId,
             string name,
-            double flowRate,
-            int drainageArea,
+            double flowRate35mm,
+            double flowRate100mm,
+            int drainageArea35mm,
+            int drainageArea100mm,
             AtticaScreedWaterproofingEnum screedWaterproofing,
             AtticaConcreteWaterproofingEnum concreteWaterproofing,
             AtticaDiameterEnum diameter,
@@ -113,8 +116,10 @@
             var atticaDrainData = new AtticaDrain
             {
                 Name = name,
-                FlowRate = flowRate,
-                DrainageArea = drainageArea,
+                FlowRate35mm = flowRate35mm,
+                FlowRate100mm = flowRate100mm,
+                DrainageArea35mm = drainageArea35mm,
+                DrainageArea100mm = drainageArea100mm,
                 ScreedWaterproofing = screedWaterproofing,
                 ConcreteWaterproofing = concreteWaterproofing,
                 Diameter = diameter,
@@ -133,9 +138,10 @@
 
         public bool Edit(
             int id,
-            string name,
-            double flowRate,
-            int drainageArea,
+            double flowRate35mm,
+            double flowRate100mm,
+            int drainageArea35mm,
+            int drainageArea100mm,
             AtticaScreedWaterproofingEnum screedWaterproofing,
             AtticaConcreteWaterproofingEnum concreteWaterproofing,
             AtticaDiameterEnum diameter,
@@ -156,8 +162,10 @@
                 .ToArray();
 
             atticaDrainData.Name = string.Join(" + ", atticaPartsNames);
-            atticaDrainData.FlowRate = flowRate;
-            atticaDrainData.DrainageArea = drainageArea;
+            atticaDrainData.FlowRate35mm = flowRate35mm;
+            atticaDrainData.FlowRate100mm = flowRate100mm;
+            atticaDrainData.DrainageArea35mm = drainageArea35mm;
+            atticaDrainData.DrainageArea100mm = drainageArea100mm;
             atticaDrainData.ScreedWaterproofing = screedWaterproofing;
             atticaDrainData.ConcreteWaterproofing = concreteWaterproofing;
             atticaDrainData.Diameter = diameter;
@@ -348,8 +356,10 @@
                 var atticaDrain = new AtticaDrain
                 {
                     Name = a.Name,
-                    FlowRate = a.FlowRate,
-                    DrainageArea = a.DrainageArea,
+                    FlowRate35mm = a.FlowRate35mm,
+                    FlowRate100mm = a.FlowRate100mm,
+                    DrainageArea35mm = a.DrainageArea35mm,
+                    DrainageArea100mm = a.DrainageArea100mm,
                     ScreedWaterproofing = a.ScreedWaterproofing,
                     ConcreteWaterproofing = a.ConcreteWaterproofing,
                     Diameter = a.Diameter,

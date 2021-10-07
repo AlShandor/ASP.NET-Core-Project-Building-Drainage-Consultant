@@ -2,7 +2,6 @@
 {
     using BuildingDrainageConsultant.Data.Models;
     using BuildingDrainageConsultant.Data.Models.Enums.Attica;
-    using BuildingDrainageConsultant.Models.AtticaDrains;
     using BuildingDrainageConsultant.Services.AtticaDetail.Models;
     using BuildingDrainageConsultant.Services.AtticaDrains.Models;
     using BuildingDrainageConsultant.Services.AtticaParts.Models;
@@ -25,8 +24,10 @@
         public int Create(
             int detailId,
             string name,
-            double flowRate,
-            int drainageArea,
+            double flowRate35mm,
+            double flowRate100mm,
+            int drainageArea35mm,
+            int drainageArea100mm,
             AtticaScreedWaterproofingEnum screedWaterproofing,
             AtticaConcreteWaterproofingEnum concreteWaterproofing,
             AtticaDiameterEnum diameter,
@@ -34,9 +35,10 @@
 
         public bool Edit(
             int id,
-            string name,
-            double flowRate,
-            int drainageArea,
+            double flowRate35mm,
+            double flowRate100mm,
+            int drainageArea35mm,
+            int drainageArea100mm,
             AtticaScreedWaterproofingEnum screedWaterproofing,
             AtticaConcreteWaterproofingEnum concreteWaterproofing,
             AtticaDiameterEnum diameter,
