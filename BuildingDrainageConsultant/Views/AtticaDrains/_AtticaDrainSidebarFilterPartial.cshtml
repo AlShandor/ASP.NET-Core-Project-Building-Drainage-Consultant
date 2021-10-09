@@ -36,11 +36,23 @@
         </div>
         <hr />
 
-        <div class="mt-3 mb-2 pl-2">
-            <select class="shadow-sm form-control" asp-for="ScreedWaterproofing" asp-items="Html.GetEnumSelectList<AtticaScreedWaterproofingEnum>()" id="screedWaterproofing-select">
-                <option value="">--Screed Waterproofing--</option>
-            </select>
-        </div>
+        @if (Model.AtticaDetail.ScreedWaterproofing != 0)
+        {
+            <div class="mt-3 mb-2 pl-2">
+                <input class="shadow-sm form-control" asp-for="ScreedWaterproofing" value="@Model.AtticaDetail.ScreedWaterproofing" type="text" hidden>
+                <select class="shadow-sm form-control" disabled>
+                    <option selected value="">@Model.AtticaDetail.ScreedWaterproofing</option>
+                </select>
+            </div>
+        }
+        else
+        {
+            <div class="mt-3 mb-2 pl-2">
+                <select class="shadow-sm form-control" asp-for="ScreedWaterproofing" asp-items="Html.GetEnumSelectList<AtticaScreedWaterproofingEnum>()" id="screedWaterproofing-select">
+                    <option value="">--Screed Waterproofing--</option>
+                </select>
+            </div>
+        }
 
         <div class="mt-3 mb-2 pl-2">
             <select class="shadow-sm form-control" asp-for="ConcreteWaterproofing" asp-items="Html.GetEnumSelectList<AtticaConcreteWaterproofingEnum>()" id="concreteWaterproofing-select">

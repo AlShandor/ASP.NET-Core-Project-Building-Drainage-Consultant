@@ -63,7 +63,7 @@
 
             if (direction != 0)
             {
-                drainQuery = drainQuery.Where(d => d.Direction == direction);
+                drainQuery = drainQuery.Where(d => d.Direction == direction || d.Direction == DrainDirectionEnum.HorizontalVertical);
             }
 
             if (diameter != 0)
