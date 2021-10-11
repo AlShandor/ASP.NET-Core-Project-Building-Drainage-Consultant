@@ -22,18 +22,24 @@
             <div class="shadow-sm card h-100 border-1">
                 <div class="card-body d-flex flex-column text-center">
                     <h3 class="card-title text-center">
-                        <span class="font-weight-bold text-primary text-uppercase small">@merchant.Name</span>
+                        <span class="font-weight-bold text-primary text-uppercase small" id="@merchant.Id">@merchant.Name</span>
                     </h3>
                     <div class="form-group">
-                        <h4 class="font-weight-bold pl-2 text-left text-dark text-uppercase small">@merchant.Address</h4>
-                        <h5 class="font-weight-bold pl-2 pb-2 text-left text-dark text-uppercase small">@merchant.City</h5>
+                        <h6 class="font-weight-bold pl-2 pb-2 text-left text-uppercase text-center ">@merchant.City</h6>
+
+                        @if (!string.IsNullOrEmpty(merchant.Address))
+                        {
+                            <h4 class="font-weight-bold pl-2 text-left text-dark small"><i class="pr-3 bi bi-geo-alt-fill"></i>@merchant.Address</h4>
+                        }
+
                         <h5 class="font-weight-bold pl-2 text-left text-dark text-uppercase small"><i class="pr-3 bi bi-telephone-fill"></i>@merchant.Phone</h5>
-                        @if (merchant.Email != null)
+
+                        @if (!string.IsNullOrEmpty(merchant.Email))
                         {
                             <h5 class="font-weight-bold pl-2 text-left text-dark small"><i class="pr-3 bi bi-envelope-fill"></i>@merchant.Email</h5>
-
                         }
-                        @if (merchant.Email != null)
+
+                        @if (!string.IsNullOrEmpty(merchant.Website))
                         {
                             <h5 class="font-weight-bold pl-2 text-left text-dark small"><i class="pr-3 bi bi-globe"></i>@merchant.Website</h5>
                         }
@@ -66,19 +72,19 @@
 
         function getLocationsFromModelRequests() {
             var requestData = [];
-
             @foreach (var merchant in Model){
                 if (merchant.Latitude == null || merchant.Longitude == null)
                 {
                     continue;
                 }
 
-                @:var reqData = {lat:@merchant.Latitude, long:@merchant.Longitude, name:'@merchant.Name'};
+                @:var nameStr = document.getElementById('@merchant.Id').innerHTML;
+                @:var reqData = { lat:@merchant.Latitude, long:@merchant.Longitude, name: nameStr };
 
                 @:requestData.push(reqData);
              }
-
             return requestData;
         }
+
     </script>
 }

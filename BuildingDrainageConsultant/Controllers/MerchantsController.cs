@@ -9,7 +9,7 @@
     using BuildingDrainageConsultant.Services.Merchants.Models;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Caching.Memory;
-    
+
     using static WebConstants.Cache;
     using static Areas.Admin.AdminConstants;
     using Microsoft.AspNetCore.Authorization;
@@ -56,17 +56,7 @@
         }
         public IActionResult All()
         {
-            var allMerchants = this.cache.Get<IEnumerable<MerchantServiceModel>>(nameof(AllMerchantsCacheKey));
-
-            if (allMerchants == null)
-            {
-                allMerchants = this.merchants.All();
-
-                var cacheOptions = new MemoryCacheEntryOptions()
-                    .SetAbsoluteExpiration(TimeSpan.FromMinutes(1));
-
-                this.cache.Set(AllMerchantsCacheKey, allMerchants, cacheOptions);
-            }
+            var allMerchants = this.merchants.All();
 
             return View(allMerchants);
         }

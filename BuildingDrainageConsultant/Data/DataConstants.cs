@@ -46,7 +46,7 @@
             public const int AddressMaxLength = 1000;
             public const int WebsiteMaxLength = 200;
             public const int EmailMaxLength = 100;
-            public const int PhoneNumberMaxLength = 50;
+            public const int PhoneNumberMaxLength = 70;
         }
 
         public class Article
@@ -107,6 +107,15 @@
             public const int RoofTypeColumn = 3;
             public const int ScreedWaterproofingColumn = 4;
             public const int AtticaPartImageNameColumn = 2;
+
+            // Merchants
+            public const int CityColumn = 1;
+            public const int AddressColumn = 2;
+            public const int EmailColumn = 3;
+            public const int PhoneColumn = 4;
+            public const int WebsiteColumn = 5;
+            public const int LatitudeColumn = 6;
+            public const int LongitudeColumn = 7;
         }
     }
 }

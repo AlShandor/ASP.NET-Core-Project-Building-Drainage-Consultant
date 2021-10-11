@@ -22,7 +22,7 @@
                           {
                               new ImageSeeder(),
                               new ArticlesSeeder(),
-                              new MerchantsSeeder(),
+                              new MerchantsExcelSeeder(),
                               new AtticaDetailsExcelSeeder(),
                               new AtticaPartsExcelSeeder(),
                               new AtticaDrainsSeeder(),
