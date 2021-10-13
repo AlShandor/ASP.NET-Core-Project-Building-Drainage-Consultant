@@ -33,7 +33,7 @@
         [Required]
         public AtticaVisiblePartEnum VisiblePart { get; set; }
 
-        public ICollection<AtticaPart> AtticaParts { get; set; } = new List<AtticaPart>();
+        public virtual ICollection<AtticaPart> AtticaParts { get; set; } = new List<AtticaPart>();
 
         public int? AtticaDetailId { get; set; }
 

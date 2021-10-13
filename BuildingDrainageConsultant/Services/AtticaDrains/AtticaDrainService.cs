@@ -7,6 +7,7 @@
     using BuildingDrainageConsultant.Data.Models.Enums.Attica;
     using BuildingDrainageConsultant.Services.AtticaDetail.Models;
     using BuildingDrainageConsultant.Services.AtticaDrains.Models;
+    using BuildingDrainageConsultant.Services.AtticaParts;
     using BuildingDrainageConsultant.Services.AtticaParts.Models;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
@@ -16,10 +17,13 @@
     {
         private readonly BuildingDrainageConsultantDbContext data;
         private readonly IConfigurationProvider mapper;
-        public AtticaDrainService(BuildingDrainageConsultantDbContext data, IMapper mapper)
+        private readonly IAtticaPartService atticaParts;
+
+        public AtticaDrainService(BuildingDrainageConsultantDbContext data, IMapper mapper, IAtticaPartService atticaParts)
         {
             this.data = data;
             this.mapper = mapper.ConfigurationProvider;
+            this.atticaParts = atticaParts;
         }
 
         public IEnumerable<AtticaDrainServiceModel> All(string searchTerm)
@@ -257,7 +261,7 @@
                 return true;
             }
 
-            
+
             drain.AtticaParts.Add(atticaPart);
             var atticaPartsNames = drain.AtticaParts.Select(p => p.Name).ToArray();
             drain.Name = string.Join(" + ", atticaPartsNames);
@@ -348,30 +352,26 @@
             return true;
         }
 
-        // Seed method
-        public void CreateAll(AtticaDrain[] atticaDrains)
+        public ICollection<AtticaPart> GetAtticaPartsFromString(string partsString)
         {
-            foreach (var a in atticaDrains)
+            if (string.IsNullOrEmpty(partsString))
             {
-                var atticaDrain = new AtticaDrain
-                {
-                    Name = a.Name,
-                    FlowRate35mm = a.FlowRate35mm,
-                    FlowRate100mm = a.FlowRate100mm,
-                    DrainageArea35mm = a.DrainageArea35mm,
-                    DrainageArea100mm = a.DrainageArea100mm,
-                    ScreedWaterproofing = a.ScreedWaterproofing,
-                    ConcreteWaterproofing = a.ConcreteWaterproofing,
-                    Diameter = a.Diameter,
-                    VisiblePart = a.VisiblePart,
-                    AtticaDetailId = a.AtticaDetailId,
-                    AtticaParts = a.AtticaParts
-                };
-
-                this.data.AtticaDrains.Add(atticaDrain);
+                return null;
             }
 
-            this.data.SaveChanges();
+            var partsStringCollection = partsString.Split("+").Select(a => a.Trim());
+            List<AtticaPart> parts = new();
+
+            foreach (var partName in partsStringCollection)
+            {
+                var part = this.atticaParts.GetAtticaPartByName(partName);
+                if (part != null)
+                {
+                    parts.Add(part);
+                }
+            }
+
+            return parts;
         }
 
         private IEnumerable<AtticaDrainServiceModel> GetAtticaDrains(IQueryable<AtticaDrain> drainQuery)

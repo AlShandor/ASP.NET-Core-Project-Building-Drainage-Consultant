@@ -23,5 +23,7 @@
         public bool Delete(int id);
 
         public int GetImageIdByName(string name);
+
+        public AtticaPart GetAtticaPartByName(string name);
     }
 }

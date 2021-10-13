@@ -103,10 +103,17 @@
             public const int AccessoriesColumn = 15;
 
             // Attica
+            public const int AtticaPartsColumn = 0;
+            public const int AtticaPartImageNameColumn = 2;
+            public const int AtticaDetailIdColumn = 1;
             public const int WalkableColumn = 2;
             public const int RoofTypeColumn = 3;
             public const int ScreedWaterproofingColumn = 4;
-            public const int AtticaPartImageNameColumn = 2;
+            public const int ConcreteWaterproofingColumn = 5;
+            public const int FlowRate35mmColumn = 8;
+            public const int FlowRate100mmColumn = 9;
+            public const int DrainageArea35mmColumn = 10;
+            public const int DrainageArea100mmColumn = 11;
 
             // Merchants
             public const int CityColumn = 1;

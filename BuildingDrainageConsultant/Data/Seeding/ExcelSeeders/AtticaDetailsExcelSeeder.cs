@@ -61,11 +61,10 @@
                         };
 
                         dbContext.AtticaDetails.Add(atticaDetailData);
+                        dbContext.SaveChanges();
                     }
                 }
             }
-
-            dbContext.SaveChanges();
         }
     }
 }

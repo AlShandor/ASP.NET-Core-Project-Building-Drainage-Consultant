@@ -107,5 +107,20 @@
 
             return atticaPartImage.Id;
         }
+
+        public AtticaPart GetAtticaPartByName(string name)
+        {
+            var parts = this.data.AtticaParts.ToList();
+
+            foreach (var part in parts)
+            {
+                if (string.Equals(part.Name.ToLower(), name.ToLower()))
+                {
+                    return part;
+                }
+            }
+
+            return null;
+        }
     }
 }
