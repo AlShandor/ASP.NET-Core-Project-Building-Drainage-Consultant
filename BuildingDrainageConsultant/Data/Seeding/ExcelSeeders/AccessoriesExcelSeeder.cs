@@ -35,13 +35,14 @@
                             continue;
                         }
 
-                        var accessoryName = reader.GetValue(NameColumn).ToString().Trim();
+                        var name = reader.GetValue(NameColumn) == null ? string.Empty : reader.GetValue(NameColumn).ToString().Trim();
+                        var description = reader.GetValue(DescriptionColumn) == null ? string.Empty : reader.GetValue(DescriptionColumn).ToString().Trim();
 
                         var accessoryData = new Accessory
                         {
-                            Name = accessoryName,
-                            ImageId = accessoryService.GetImageIdByName(accessoryName),
-                            Description = reader.GetValue(DescriptionColumn).ToString()
+                            Name = name,
+                            Description = description,
+                            ImageId = accessoryService.GetImageIdByName(name)
                         };
 
                         dbContext.Accessories.Add(accessoryData);

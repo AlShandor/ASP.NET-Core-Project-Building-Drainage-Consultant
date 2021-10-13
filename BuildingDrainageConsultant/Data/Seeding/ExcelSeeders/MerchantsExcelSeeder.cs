@@ -35,12 +35,12 @@
                             continue;
                         }
 
-                        var name = reader.GetValue(NameColumn) == null ? string.Empty : reader.GetValue(NameColumn).ToString();
-                        var city = reader.GetValue(CityColumn) == null ? string.Empty : reader.GetValue(CityColumn).ToString();
-                        var address = reader.GetValue(AddressColumn) == null ? string.Empty : reader.GetValue(AddressColumn).ToString();
-                        var email = reader.GetValue(EmailColumn) == null ? string.Empty : reader.GetValue(EmailColumn).ToString();
-                        var phone = reader.GetValue(PhoneColumn) == null ? string.Empty : reader.GetValue(PhoneColumn).ToString();
-                        var website = reader.GetValue(WebsiteColumn) == null ? string.Empty : reader.GetValue(WebsiteColumn).ToString();
+                        var name = reader.GetValue(NameColumn) == null ? string.Empty : reader.GetValue(NameColumn).ToString().Trim();
+                        var city = reader.GetValue(CityColumn) == null ? string.Empty : reader.GetValue(CityColumn).ToString().Trim();
+                        var address = reader.GetValue(AddressColumn) == null ? string.Empty : reader.GetValue(AddressColumn).ToString().Trim();
+                        var email = reader.GetValue(EmailColumn) == null ? string.Empty : reader.GetValue(EmailColumn).ToString().Trim();
+                        var phone = reader.GetValue(PhoneColumn) == null ? string.Empty : reader.GetValue(PhoneColumn).ToString().Trim();
+                        var website = reader.GetValue(WebsiteColumn) == null ? string.Empty : reader.GetValue(WebsiteColumn).ToString().Trim();
                         double? latitude = reader.GetValue(LatitudeColumn) == null ? null : double.Parse(reader.GetValue(LatitudeColumn).ToString(), System.Globalization.CultureInfo.InvariantCulture);
                         double? longitude = reader.GetValue(LongitudeColumn) == null ? null : double.Parse(reader.GetValue(LongitudeColumn).ToString(), System.Globalization.CultureInfo.InvariantCulture);
 

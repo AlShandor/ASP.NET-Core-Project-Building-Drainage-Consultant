@@ -35,13 +35,14 @@
                             continue;
                         }
 
-                        var kitName = reader.GetValue(NameColumn).ToString().Trim();
+                        var name = reader.GetValue(NameColumn) == null ? string.Empty : reader.GetValue(NameColumn).ToString().Trim();
+                        var description = reader.GetValue(DescriptionColumn) == null ? string.Empty : reader.GetValue(DescriptionColumn).ToString().Trim();
 
                         var waterproofingKitData = new WaterproofingKit
                         {
-                            Name = kitName,
-                            ImageId = waterproofingKitService.GetImageIdByName(kitName),
-                            Description = reader.GetValue(DescriptionColumn).ToString()
+                            Name = name,
+                            Description = description,
+                            ImageId = waterproofingKitService.GetImageIdByName(name)
                         };
 
                         dbContext.WaterproofingKits.Add(waterproofingKitData);

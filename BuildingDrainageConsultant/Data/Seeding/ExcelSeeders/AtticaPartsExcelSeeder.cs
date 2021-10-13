@@ -35,10 +35,13 @@
                             continue;
                         }
 
+                        var name = reader.GetValue(NameColumn) == null ? string.Empty : reader.GetValue(NameColumn).ToString().Trim();
+                        var description = reader.GetValue(DescriptionColumn) == null ? string.Empty : reader.GetValue(DescriptionColumn).ToString().Trim();
+
                         var partData = new AtticaPart
                         {
-                            Name = reader.GetValue(NameColumn).ToString().Trim(),
-                            Description = reader.GetValue(DescriptionColumn).ToString(),
+                            Name = name,
+                            Description = description,
                             ImageId = atticaPartService.GetImageIdByName(reader.GetValue(AtticaPartImageNameColumn).ToString().Trim())
                         };
 

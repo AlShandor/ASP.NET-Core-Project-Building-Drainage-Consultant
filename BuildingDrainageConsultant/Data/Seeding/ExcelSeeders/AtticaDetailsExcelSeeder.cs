@@ -36,7 +36,8 @@
                             continue;
                         }
 
-                        var atticaDetailImageName = reader.GetValue(NameColumn).ToString().Trim();
+                        var description = reader.GetValue(DescriptionColumn) == null ? string.Empty : reader.GetValue(DescriptionColumn).ToString().Trim();
+                        var atticaDetailImageName = reader.GetValue(NameColumn) == null ? string.Empty : reader.GetValue(NameColumn).ToString().Trim();
 
                         AtticaRoofTypeEnum roofType;
                         Enum.TryParse(reader.GetValue(RoofTypeColumn).ToString().Trim(), out roofType);
@@ -52,7 +53,7 @@
 
                         var atticaDetailData = new AtticaDetail
                         {
-                            Description = reader.GetValue(DescriptionColumn).ToString(),
+                            Description = description,
                             RoofType = roofType,
                             IsWalkable = isWalkable,
                             ScreedWaterproofing = screedWaterproofing,

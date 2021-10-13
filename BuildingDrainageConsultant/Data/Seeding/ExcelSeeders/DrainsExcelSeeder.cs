@@ -36,6 +36,12 @@
                             continue;
                         }
 
+                        var name = reader.GetValue(NameColumn) == null ? string.Empty : reader.GetValue(NameColumn).ToString().Trim();
+                        var description = reader.GetValue(DescriptionColumn) == null ? string.Empty : reader.GetValue(DescriptionColumn).ToString().Trim();
+                        var flowRate = reader.GetValue(FlowRateColumn) == null ? 0 : double.Parse(reader.GetValue(FlowRateColumn).ToString().Trim());
+                        var drainageArea = reader.GetValue(DrainageAreaColumn) == null ? 0 : int.Parse(reader.GetValue(DrainageAreaColumn).ToString().Trim());
+                        var depth = reader.GetValue(DepthColumn) == null ? 0 : int.Parse(reader.GetValue(DepthColumn).ToString().Trim());
+
                         DrainDirectionEnum direction;
                         Enum.TryParse(reader.GetValue(DirectionColumn).ToString().Trim(), out direction);
 
@@ -60,7 +66,7 @@
                         DrainLoadClassEnum loadClass;
                         Enum.TryParse(reader.GetValue(LoadClassColumn).ToString().Trim(), out loadClass);
 
-                        var imageName = reader.GetValue(ImageColumn).ToString().Trim();
+                        var imageName = reader.GetValue(ImageColumn) == null ? string.Empty : reader.GetValue(ImageColumn).ToString().Trim();
 
                         var waterproofingKitName = reader.GetValue(WaterproofingKitColumn) == null ? 
                             string.Empty : 
@@ -72,11 +78,11 @@
 
                         var drainData = new Drain
                         {
-                            Name = reader.GetValue(NameColumn).ToString().Trim(),
-                            Description = reader.GetValue(DescriptionColumn).ToString().Trim(),
-                            FlowRate = double.Parse(reader.GetValue(FlowRateColumn).ToString().Trim()),
-                            DrainageArea = int.Parse(reader.GetValue(DrainageAreaColumn).ToString().Trim()),
-                            Depth = int.Parse(reader.GetValue(DepthColumn).ToString().Trim()),
+                            Name = name,
+                            Description = description,
+                            FlowRate = flowRate,
+                            DrainageArea = drainageArea,
+                            Depth = depth,
                             Direction = direction,
                             Diameter = diameter,
                             VisiblePart = visiblePart,

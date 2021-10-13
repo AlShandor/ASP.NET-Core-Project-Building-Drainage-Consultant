@@ -35,13 +35,14 @@
                             continue;
                         }
 
-                        var extensionName = reader.GetValue(NameColumn).ToString().Trim();
+                        var name = reader.GetValue(NameColumn) == null ? string.Empty : reader.GetValue(NameColumn).ToString().Trim();
+                        var description = reader.GetValue(DescriptionColumn) == null ? string.Empty : reader.GetValue(DescriptionColumn).ToString().Trim();
 
                         var extensionData = new Extension
                         {
-                            Name = extensionName,
-                            ImageId = extensionService.GetImageIdByName(extensionName),
-                            Description = reader.GetValue(DescriptionColumn).ToString()
+                            Name = name,
+                            Description = description,
+                            ImageId = extensionService.GetImageIdByName(name)
                         };
 
                         dbContext.Extensions.Add(extensionData);
