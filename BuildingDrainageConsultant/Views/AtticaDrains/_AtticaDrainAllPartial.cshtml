@@ -2,6 +2,7 @@
 
 @{
     var isMineView = ViewBag.View == "Mine" ? true : false;
+    var atticaString = "HL68";
 }
 
 <div class="row">
@@ -19,10 +20,10 @@
                 <div class="card-body text-center">
                     @if (atticaDrain.AtticaParts.Any())
                     {
-                        var part = atticaDrain.AtticaParts.First();
-                        @if (part.Image != null)
+                        var displayPart = atticaDrain.AtticaParts.First(x => x.Name.Contains(atticaString));
+                        @if (displayPart.Image != null)
                         {
-                            var imgSource = part.Image.Id == 1 ? "common/defaultImage.gif" : $"atticaparts/{part.Image.Name}";
+                            var imgSource = displayPart.Image.Id == 1 ? "common/defaultImage.gif" : $"atticaparts/{displayPart.Image.Name}";
                             <img src="~/images/@imgSource" class="card-img-top" alt="Alternate Text">
                         }
                     }
@@ -33,9 +34,9 @@
                     <div class="form-group">
                         @if (User.IsAdmin())
                         {
-                            <a asp-controller="AtticaDrains" asp-action="Edit" asp-route-id="@atticaDrain.Id" class="shadow btn btn-warning ">Edit</a>
+                            <a asp-controller="AtticaDrains" asp-action="Edit" asp-route-id="@atticaDrain.Id" class="shadow btn btn-warning mr-1 mb-2">Edit</a>
                         }
-                        <a asp-controller="AtticaDrains" asp-action="Details" asp-route-id="@atticaDrain.Id" class="shadow btn btn-primary">View Details</a>
+                        <a asp-controller="AtticaDrains" asp-action="Details" asp-route-id="@atticaDrain.Id" class="shadow btn btn-primary mb-2">View Details</a>
 
                         @if (isMineView)
                         {

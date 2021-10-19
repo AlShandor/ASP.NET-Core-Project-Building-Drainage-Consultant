@@ -58,7 +58,10 @@
 
             if (!string.IsNullOrWhiteSpace(searchTerm))
             {
-                drainQuery = drainQuery.Where(d => d.Name.ToLower().Contains(searchTerm.ToLower()));
+                drainQuery = drainQuery.Where(d =>
+                    d.Name.ToLower().Contains(searchTerm.ToLower()) ||
+                    (d.WaterproofingKit != null && d.WaterproofingKit.Name.ToLower().Contains(searchTerm.ToLower())) ||
+                    d.Accessories.Any(a => a.Name.ToLower().Contains(searchTerm.ToLower())));
             }
 
             if (direction != 0)

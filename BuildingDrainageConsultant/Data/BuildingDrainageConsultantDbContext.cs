@@ -3,12 +3,15 @@
     using BuildingDrainageConsultant.Data.Models;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Diagnostics;
+
     public class BuildingDrainageConsultantDbContext : IdentityDbContext<User>
     {
         public BuildingDrainageConsultantDbContext(DbContextOptions<BuildingDrainageConsultantDbContext> options)
             : base(options)
         {
         }
+
         public DbSet<Drain> Drains { get; set; }
         public DbSet<AtticaDrain> AtticaDrains { get; set; }
         public DbSet<AtticaDetail> AtticaDetails { get; set; }
@@ -19,6 +22,9 @@
         public DbSet<WaterproofingKit> WaterproofingKits { get; set; }
         public DbSet<Accessory> Accessories { get; set; }
         public DbSet<Extension> Extensions { get; set; }
+
+     //   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+     //=> optionsBuilder.ConfigureWarnings(x => x.Throw(RelationalEventId.MultipleCollectionIncludeWarning));
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
