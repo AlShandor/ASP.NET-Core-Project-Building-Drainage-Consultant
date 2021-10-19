@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "All Attica Drains";
+    ViewBag.Controller = "All";
 }
 
 <form method="get">
@@ -12,7 +13,12 @@
         <button type="submit" asp-controller="AtticaDrains" asp-action="All" class="btn btn-primary ">
             <i class="pr-1 pl-1 bi bi-search"></i>
         </button>
+
+
     </div>
 </form>
 
 <partial name="_AtticaDrainAllPartial" model="@Model" />
+
+<partial name="_AtticaDrainPaginationPartial" model="@Model" />
+

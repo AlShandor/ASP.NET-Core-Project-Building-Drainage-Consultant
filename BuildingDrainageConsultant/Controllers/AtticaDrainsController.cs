@@ -20,23 +20,23 @@
             this.mapper = mapper;
         }
 
-        public IActionResult SearchAtticaDrain(AllAtticaDrainsQueryModel allDrainsQuery)
+        public IActionResult SearchAtticaDrain(AllAtticaDrainsQueryModel query)
         {
             var queryResult = this.atticaDrains.SearchAtticaDrains(
-                allDrainsQuery.AtticaDetailId,
-                allDrainsQuery.SearchTerm,
-                allDrainsQuery.ScreedWaterproofing,
-                allDrainsQuery.ConcreteWaterproofing,
-                allDrainsQuery.Diameter,
-                allDrainsQuery.Sorting,
-                allDrainsQuery.CurrentPage,
-                allDrainsQuery.DrainsPerPage);
+                query.AtticaDetailId,
+                query.SearchTerm,
+                query.ScreedWaterproofing,
+                query.ConcreteWaterproofing,
+                query.Diameter,
+                query.Sorting,
+                query.CurrentPage,
+                query.DrainsPerPage);
 
-            allDrainsQuery.AtticaDetail = this.atticaDrains.GetAtticaDetailById(allDrainsQuery.AtticaDetailId);
-            allDrainsQuery.TotalDrains = queryResult.TotalDrains;
-            allDrainsQuery.Drains = queryResult.AtticaDrains;
+            query.AtticaDetail = this.atticaDrains.GetAtticaDetailById(query.AtticaDetailId);
+            query.TotalDrains = queryResult.TotalDrains;
+            query.Drains = queryResult.AtticaDrains;
 
-            return View(allDrainsQuery);
+            return View(query);
         }
 
         [Authorize(Roles = AdministratorRoleName)]
@@ -74,9 +74,13 @@
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult All([FromQuery] AllAtticaDrainsQueryModel query)
         {
-            var queryResults = this.atticaDrains.All(query.SearchTerm);
+            var queryResult = this.atticaDrains.All(
+                query.SearchTerm, 
+                query.CurrentPage,
+                query.DrainsPerPage);
 
-            query.Drains = queryResults;
+            query.TotalDrains = queryResult.TotalDrains;
+            query.Drains = queryResult.AtticaDrains;
 
             return View(query);
         }

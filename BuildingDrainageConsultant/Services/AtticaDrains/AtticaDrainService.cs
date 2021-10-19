@@ -26,7 +26,7 @@
             this.atticaParts = atticaParts;
         }
 
-        public IEnumerable<AtticaDrainServiceModel> All(string searchTerm)
+        public AtticaDrainQueryServiceModel All(string searchTerm, int currentPage, int drainsPerPage)
         {
             var atticaDrainQuery = this.data.AtticaDrains.AsQueryable();
 
@@ -35,12 +35,21 @@
                 atticaDrainQuery = atticaDrainQuery.Where(d => d.Name.ToLower().Contains(searchTerm.ToLower()));
             }
 
+            var totalDrains = atticaDrainQuery.Count();
+
             var atticaDrains = atticaDrainQuery
-                .OrderByDescending(d => d.Id)
+                .Skip((currentPage - 1) * drainsPerPage)
+                .Take(drainsPerPage)
                 .ProjectTo<AtticaDrainServiceModel>(this.mapper)
                 .ToList();
 
-            return atticaDrains;
+            return new AtticaDrainQueryServiceModel
+            {
+                TotalDrains = totalDrains,
+                CurrentPage = currentPage,
+                DrainsPerPage = drainsPerPage,
+                AtticaDrains = atticaDrains
+            };
         }
 
         public AtticaDrainQueryServiceModel SearchAtticaDrains(

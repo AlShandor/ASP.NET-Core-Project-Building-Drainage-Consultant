@@ -9,7 +9,7 @@
 
     public interface IAtticaDrainService
     {
-        public IEnumerable<AtticaDrainServiceModel> All(string searchTerm);
+        public AtticaDrainQueryServiceModel All(string searchTerm, int currentPage, int drainsPerPage);
 
         public AtticaDrainQueryServiceModel SearchAtticaDrains(
             int atticaDetailId,

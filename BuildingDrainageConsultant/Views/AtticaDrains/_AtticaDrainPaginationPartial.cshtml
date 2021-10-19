@@ -5,7 +5,7 @@
           cs-paging-totalitems="@Model.TotalDrains"
           cs-pagenumber-param="currentPage"
           asp-controller="AtticaDrains"
-          asp-action="SearchAtticaDrain"
+          asp-action="@ViewBag.Controller"
           asp-route-searchTerm="@Model.SearchTerm"
           asp-route-screedWaterproofing="@Model.ScreedWaterproofing"
           asp-route-concreteWaterproofing="@Model.ConcreteWaterproofing"
