@@ -1,0 +1,20 @@
+﻿@model AllAtticaDrainsQueryModel
+
+<cs-pager cs-paging-pagesize="@Model.DrainsPerPage"
+          cs-paging-pagenumber="@Model.CurrentPage"
+          cs-paging-totalitems="@Model.TotalDrains"
+          cs-pagenumber-param="currentPage"
+          asp-controller="AtticaDrains"
+          asp-action="SearchAtticaDrain"
+          asp-route-searchTerm="@Model.SearchTerm"
+          asp-route-screedWaterproofing="@Model.ScreedWaterproofing"
+          asp-route-concreteWaterproofing="@Model.ConcreteWaterproofing"
+          asp-route-diameter="@Model.Diameter"
+          asp-route-sorting="@Model.Sorting"
+          asp-route-atticaDetailId="@Model.AtticaDetailId"
+          cs-pager-li-current-class="page-item active"
+          cs-pager-li-other-class="page-item"
+          cs-pager-li-non-active-class="page-item disabled"
+          cs-pager-link-current-class="page-link"
+          cs-pager-link-other-class="page-link">
+</cs-pager>

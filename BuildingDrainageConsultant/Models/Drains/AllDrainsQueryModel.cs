@@ -7,7 +7,7 @@
 
     public class AllDrainsQueryModel
     {
-        public const int DrainsPerPage = 6;
+        public int DrainsPerPage = 6;
 
         [Display(Name = "Search by drain name")]
         public string SearchTerm { get; set; }

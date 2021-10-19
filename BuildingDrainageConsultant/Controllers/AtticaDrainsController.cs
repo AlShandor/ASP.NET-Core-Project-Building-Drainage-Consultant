@@ -30,7 +30,7 @@
                 allDrainsQuery.Diameter,
                 allDrainsQuery.Sorting,
                 allDrainsQuery.CurrentPage,
-                AllAtticaDrainsQueryModel.DrainsPerPage);
+                allDrainsQuery.DrainsPerPage);
 
             allDrainsQuery.AtticaDetail = this.atticaDrains.GetAtticaDetailById(allDrainsQuery.AtticaDetailId);
             allDrainsQuery.TotalDrains = queryResult.TotalDrains;

@@ -6,7 +6,7 @@
     using System.Collections.Generic;
     public class AllAtticaDrainsQueryModel
     {
-        public const int DrainsPerPage = 6;
+        public int DrainsPerPage = 6;
 
         public string SearchTerm { get; set; }
 

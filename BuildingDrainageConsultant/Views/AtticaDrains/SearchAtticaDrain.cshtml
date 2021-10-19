@@ -9,16 +9,17 @@
         <div class="row">
 
             <div class="col-md-8 order-md-2 col-lg-9">
-                <partial name="_AtticaDrainSortingBarPartial" model="@Model" />
+                <partial name="_AtticaDrainSortingPartial" model="@Model" />
 
-                <partial name="_AtticaDrainPagesNavigationPartial" model="@Model"/>
+                <partial name="_AtticaDrainPaginationPartial" model="@Model" />
 
                 <partial name="_AtticaDrainAllPartial" model="@Model" />
 
-                <partial name="_AtticaDrainPagesNavigationPartial" model="@Model" />
+                <partial name="_AtticaDrainPaginationPartial" model="@Model" />
+
             </div>
 
-            <partial name="_AtticaDrainSidebarFilterPartial" model="@Model" />
+            <partial name="_AtticaDrainFiltersPartial" model="@Model" />
         </div>
     </form>
 </div>

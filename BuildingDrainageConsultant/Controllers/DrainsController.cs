@@ -70,7 +70,7 @@
                 query.LoadClass,
                 query.Sorting,
                 query.CurrentPage,
-                AllDrainsQueryModel.DrainsPerPage);
+                query.DrainsPerPage);
 
             query.TotalDrains = queryResult.TotalDrains;
             query.Drains = queryResult.Drains;

@@ -1,0 +1,24 @@
+﻿@model AllDrainsQueryModel
+
+        <cs-pager cs-paging-pagesize="@Model.DrainsPerPage"
+                  cs-paging-pagenumber="@Model.CurrentPage"
+                  cs-paging-totalitems="@Model.TotalDrains"
+                  cs-pagenumber-param="currentPage"
+                  asp-controller="Drains"
+                  asp-action="All"
+                  asp-route-searchTerm="@Model.SearchTerm"
+                  asp-route-direction="@Model.Direction"
+                  asp-route-diameter="@Model.Diameter"
+                  asp-route-visiblePart="@Model.VisiblePart"
+                  asp-route-waterproofing="@Model.Waterproofing"
+                  asp-route-heating="@Model.Heating"
+                  asp-route-renovation="@Model.Renovation"
+                  asp-route-flapSeal="@Model.FlapSeal"
+                  asp-route-loadClass="@Model.LoadClass"
+                  asp-route-sorting="@Model.Sorting"
+                  cs-pager-li-current-class="page-item active"
+                  cs-pager-li-other-class="page-item"
+                  cs-pager-li-non-active-class="page-item disabled"
+                  cs-pager-link-current-class="page-link"
+                  cs-pager-link-other-class="page-link">
+        </cs-pager>

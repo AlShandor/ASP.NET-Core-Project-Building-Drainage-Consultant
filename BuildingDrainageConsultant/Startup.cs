@@ -48,9 +48,8 @@ namespace BuildingDrainageConsultant
                 .AddEntityFrameworkStores<BuildingDrainageConsultantDbContext>();
 
             services.AddAutoMapper(typeof(Startup));
-
             services.AddMemoryCache();
-
+            services.AddCloudscribePagination();
             services.AddControllersWithViews(options =>
             {
                 options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
