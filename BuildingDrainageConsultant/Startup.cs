@@ -15,6 +15,7 @@ namespace BuildingDrainageConsultant
     using BuildingDrainageConsultant.Services.WaterproofingKits;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
@@ -47,14 +48,21 @@ namespace BuildingDrainageConsultant
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<BuildingDrainageConsultantDbContext>();
 
-            services.AddAutoMapper(typeof(Startup));
-            services.AddMemoryCache();
-            services.AddCloudscribePagination();
             services.AddControllersWithViews(options =>
             {
                 options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
             });
 
+            //services.Configure<CookiePolicyOptions>(options =>
+            //{
+            //    options.CheckConsentNeeded = context => true;
+            //    options.MinimumSameSitePolicy = SameSiteMode.None;
+            //});
+
+            services.AddAutoMapper(typeof(Startup));
+            services.AddMemoryCache();
+            services.AddCloudscribePagination();
+            
             services.AddTransient<IDrainService, DrainService>();
             services.AddTransient<IMerchantService, MerchantService>();
             services.AddTransient<IAtticaPartService, AtticaPartService>();
@@ -71,7 +79,6 @@ namespace BuildingDrainageConsultant
         {
             app.PrepareDatabase();
 
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -83,11 +90,9 @@ namespace BuildingDrainageConsultant
                 app.UseHsts();
             }
 
-            app.SetCultureInfo("en-US");
-            
-
             app.UseHttpsRedirection()
                 .UseStaticFiles()
+                //.UseCookiePolicy()
                 .UseRouting()
                 .UseAuthentication()
                 .UseAuthorization()
@@ -100,6 +105,8 @@ namespace BuildingDrainageConsultant
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapRazorPages();
             });
+
+            app.SetCultureInfo("en-US");
         }
     }
 }
