@@ -53,11 +53,11 @@ namespace BuildingDrainageConsultant
                 options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
             });
 
-            //services.Configure<CookiePolicyOptions>(options =>
-            //{
-            //    options.CheckConsentNeeded = context => true;
-            //    options.MinimumSameSitePolicy = SameSiteMode.None;
-            //});
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
 
             services.AddAutoMapper(typeof(Startup));
             services.AddMemoryCache();
@@ -92,7 +92,8 @@ namespace BuildingDrainageConsultant
 
             app.UseHttpsRedirection()
                 .UseStaticFiles()
-                //.UseCookiePolicy()
+                .SetCultureInfo("en-US")
+                .UseCookiePolicy()
                 .UseRouting()
                 .UseAuthentication()
                 .UseAuthorization()
@@ -105,8 +106,6 @@ namespace BuildingDrainageConsultant
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapRazorPages();
             });
-
-            app.SetCultureInfo("en-US");
         }
     }
 }

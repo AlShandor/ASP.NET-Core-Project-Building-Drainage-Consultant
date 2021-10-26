@@ -242,9 +242,9 @@
         public IEnumerable<DrainDetailsServiceModel> ByUser(string userId)
         {
             var user = this.data.Users
+                .Where(user => user.Id == userId)
                 .Include(d => d.Drains)
                 .ThenInclude(d => d.Image)
-                .Where(user => user.Id == userId)
                 .FirstOrDefault();
 
             var drains = this.GetDrains(user.Drains.AsQueryable());
@@ -262,8 +262,9 @@
         {
             var waterproofingKit = this.data.WaterproofingKits.Find(waterproofingKitId);
             var drain = this.data.Drains
+                                 .Where(a => a.Id == drainId)
                                  .Include(a => a.WaterproofingKit)
-                                 .SingleOrDefault(a => a.Id == drainId);
+                                 .SingleOrDefault();
 
             if (waterproofingKit == null || drain == null)
             {
@@ -284,8 +285,9 @@
         public bool RemoveWaterproofingKit(int kitId, int drainId)
         {
             var drain = this.data.Drains
+                                 .Where(a => a.Id == drainId)
                                  .Include(a => a.WaterproofingKit)
-                                 .SingleOrDefault(a => a.Id == drainId);
+                                 .SingleOrDefault();
 
             var kit = drain.WaterproofingKit;
 
@@ -315,8 +317,9 @@
         {
             var accessory = this.data.Accessories.Find(accessoryId);
             var drain = this.data.Drains
+                                 .Where(a => a.Id == drainId)
                                  .Include(a => a.Accessories)
-                                 .SingleOrDefault(a => a.Id == drainId);
+                                 .SingleOrDefault();
 
             if (accessory == null || drain == null)
             {
@@ -337,8 +340,9 @@
         public bool RemoveAccessory(int accessoryId, int drainId)
         {
             var drain = this.data.Drains
+                                 .Where(a => a.Id == drainId)
                                  .Include(a => a.Accessories)
-                                 .SingleOrDefault(a => a.Id == drainId);
+                                 .SingleOrDefault();
 
             var accessory = drain.Accessories.FirstOrDefault(a => a.Id == accessoryId);
 
@@ -363,8 +367,9 @@
         {
             var extension = this.data.Extensions.Find(extensionId);
             var drain = this.data.Drains
+                                 .Where(a => a.Id == drainId)
                                  .Include(a => a.Extensions)
-                                 .SingleOrDefault(a => a.Id == drainId);
+                                 .SingleOrDefault();
 
             if (extension == null || drain == null)
             {
@@ -385,8 +390,9 @@
         public bool RemoveExtension(int extensionId, int drainId)
         {
             var drain = this.data.Drains
+                                 .Where(d => d.Id == drainId)
                                  .Include(d => d.Extensions)
-                                 .SingleOrDefault(d => d.Id == drainId);
+                                 .SingleOrDefault();
 
             var extension = drain.Extensions.FirstOrDefault(e => e.Id == extensionId);
 
@@ -438,8 +444,9 @@
         public bool RemoveFromMine(string userId, int drainId)
         {
             var user = this.data.Users
+                .Where(u => u.Id == userId)
                 .Include(u => u.Drains)
-                .FirstOrDefault(u => u.Id == userId);
+                .FirstOrDefault();
 
             var drain = user.Drains.FirstOrDefault(d => d.Id == drainId);
 

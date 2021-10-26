@@ -213,10 +213,10 @@
         public IEnumerable<AtticaDrainServiceModel> ByUser(string userId)
         {
             var user = this.data.Users
+                .Where(user => user.Id == userId)
                 .Include(d => d.AtticaDrains)
                 .ThenInclude(ad => ad.AtticaParts)
-                .ThenInclude(p => p.Image)
-                .Where(user => user.Id == userId)
+                .ThenInclude(p => p.Image)        
                 .FirstOrDefault();
 
             var atticaDrains = this.GetAtticaDrains(user.AtticaDrains.AsQueryable());
@@ -257,8 +257,9 @@
         {
             var atticaPart = this.data.AtticaParts.Find(partId);
             var drain = this.data.AtticaDrains
+                                 .Where(a => a.Id == drainId)
                                  .Include(a => a.AtticaParts)
-                                 .SingleOrDefault(a => a.Id == drainId);
+                                 .SingleOrDefault();
 
             if (atticaPart == null || drain == null)
             {
@@ -289,8 +290,9 @@
         public bool RemovePart(int partId, int drainId)
         {
             var drain = this.data.AtticaDrains
+                                 .Where(a => a.Id == drainId)
                                  .Include(a => a.AtticaParts)
-                                 .SingleOrDefault(a => a.Id == drainId);
+                                 .SingleOrDefault();
 
             var part = drain.AtticaParts.FirstOrDefault(p => p.Id == partId);
 
@@ -333,8 +335,9 @@
         public bool RemoveFromMine(string userId, int atticaDrainId)
         {
             var user = this.data.Users
+                .Where(u => u.Id == userId)
                 .Include(u => u.AtticaDrains)
-                .FirstOrDefault(u => u.Id == userId);
+                .FirstOrDefault();
 
             var atticaDrain = user.AtticaDrains.FirstOrDefault(d => d.Id == atticaDrainId);
 
