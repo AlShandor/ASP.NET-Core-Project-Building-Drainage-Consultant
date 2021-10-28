@@ -8,7 +8,8 @@
     using System.IO;
     using System.Linq;
 
-    using static DataConstants.ExcelSeeding;
+    using static ExcelSeedingConstants.Attica;
+
     public class AtticaPartsExcelSeeder : ISeeder
     {
         public void Seed(BuildingDrainageConsultantDbContext dbContext, IServiceProvider serviceProvider)

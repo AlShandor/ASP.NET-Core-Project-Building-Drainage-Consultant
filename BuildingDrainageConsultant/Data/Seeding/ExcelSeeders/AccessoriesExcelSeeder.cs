@@ -8,7 +8,7 @@
     using System.IO;
     using System.Linq;
 
-    using static DataConstants.ExcelSeeding;
+    using static ExcelSeedingConstants.Drains;
     public class AccessoriesExcelSeeder : ISeeder
     {
         public void Seed(BuildingDrainageConsultantDbContext dbContext, IServiceProvider serviceProvider)

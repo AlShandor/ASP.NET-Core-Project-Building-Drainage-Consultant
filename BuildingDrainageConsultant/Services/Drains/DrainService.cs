@@ -56,66 +56,10 @@
         {
             var drainQuery = this.data.Drains.AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(searchTerm))
-            {
-                drainQuery = drainQuery.Where(d =>
-                    d.Name.ToLower().Contains(searchTerm.ToLower()) ||
-                    (d.WaterproofingKit != null && d.WaterproofingKit.Name.ToLower().Contains(searchTerm.ToLower())) ||
-                    d.Accessories.Any(a => a.Name.ToLower().Contains(searchTerm.ToLower())));
-            }
+            drainQuery = FilterDrainQueryByParameters(drainQuery, searchTerm, direction, diameter, visiblePart, 
+                                                 waterproofing, heating, renovation, flapSeal, loadClass);
 
-            if (direction != 0)
-            {
-                drainQuery = drainQuery.Where(d => d.Direction == direction || d.Direction == DrainDirectionEnum.HorizontalVertical);
-            }
-
-            if (diameter != 0)
-            {
-                drainQuery = drainQuery.Where(d => d.Diameter == diameter);
-            }
-
-            if (visiblePart != 0)
-            {
-                drainQuery = drainQuery.Where(d => d.VisiblePart == visiblePart);
-            }
-
-            if (waterproofing != 0)
-            {
-                drainQuery = drainQuery.Where(d => d.Waterproofing == waterproofing);
-            }
-
-            if (heating != 0)
-            {
-                drainQuery = drainQuery.Where(d => d.Heating == heating);
-            }
-
-            if (renovation != 0)
-            {
-                drainQuery = drainQuery.Where(d => d.Renovation == renovation);
-            }
-
-            if (flapSeal != 0)
-            {
-                drainQuery = drainQuery.Where(d => d.FlapSeal == flapSeal);
-            }
-
-            if (loadClass != 0)
-            {
-                drainQuery = drainQuery.Where(d => d.LoadClass == loadClass);
-            }
-
-            drainQuery = sorting switch
-            {
-                DrainSortingEnum.Name => drainQuery.OrderBy(d => d.Name),
-                DrainSortingEnum.DepthAscending => drainQuery.OrderBy(d => d.Depth),
-                DrainSortingEnum.Waterproofing => drainQuery.OrderBy(d => d.Waterproofing),
-                DrainSortingEnum.VisiblePart => drainQuery.OrderBy(d => d.VisiblePart),
-                DrainSortingEnum.FlowRateAscending => drainQuery.OrderBy(d => d.FlowRate),
-                DrainSortingEnum.FlowRateDescending => drainQuery.OrderByDescending(d => d.FlowRate),
-                DrainSortingEnum.DiameterAscending => drainQuery.OrderBy(d => d.Diameter),
-                DrainSortingEnum.DiameterDescending => drainQuery.OrderByDescending(d => d.Diameter),
-                _ => drainQuery.OrderByDescending(d => d.Id)
-            };
+            drainQuery = SortDrainQueryResults(drainQuery, sorting);
 
             var totalDrains = drainQuery.Count();
 
@@ -505,6 +449,87 @@
             }
 
             return accessories;
+        }
+
+        private IQueryable<Drain> FilterDrainQueryByParameters(
+            IQueryable<Drain> drainQuery,
+            string searchTerm,
+            DrainDirectionEnum direction,
+            DrainDiameterEnum diameter,
+            DrainVisiblePartEnum visiblePart,
+            DrainWaterproofingEnum waterproofing,
+            DrainHeatingEnum heating,
+            DrainRenovationEnum renovation,
+            DrainFlapSealEnum flapSeal,
+            DrainLoadClassEnum loadClass)
+        {
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                drainQuery = drainQuery.Where(d =>
+                    d.Name.ToLower().Contains(searchTerm.ToLower()) ||
+                    (d.WaterproofingKit != null && d.WaterproofingKit.Name.ToLower().Contains(searchTerm.ToLower())) ||
+                    d.Accessories.Any(a => a.Name.ToLower().Contains(searchTerm.ToLower())));
+            }
+
+            if (direction != 0)
+            {
+                drainQuery = drainQuery.Where(d => d.Direction == direction || d.Direction == DrainDirectionEnum.HorizontalVertical);
+            }
+
+            if (diameter != 0)
+            {
+                drainQuery = drainQuery.Where(d => d.Diameter == diameter);
+            }
+
+            if (visiblePart != 0)
+            {
+                drainQuery = drainQuery.Where(d => d.VisiblePart == visiblePart);
+            }
+
+            if (waterproofing != 0)
+            {
+                drainQuery = drainQuery.Where(d => d.Waterproofing == waterproofing);
+            }
+
+            if (heating != 0)
+            {
+                drainQuery = drainQuery.Where(d => d.Heating == heating);
+            }
+
+            if (renovation != 0)
+            {
+                drainQuery = drainQuery.Where(d => d.Renovation == renovation);
+            }
+
+            if (flapSeal != 0)
+            {
+                drainQuery = drainQuery.Where(d => d.FlapSeal == flapSeal);
+            }
+
+            if (loadClass != 0)
+            {
+                drainQuery = drainQuery.Where(d => d.LoadClass == loadClass);
+            }
+
+            return drainQuery;
+        }
+
+        private IQueryable<Drain> SortDrainQueryResults(IQueryable<Drain> drainQuery, DrainSortingEnum sorting)
+        {
+            drainQuery = sorting switch
+            {
+                DrainSortingEnum.Name => drainQuery.OrderBy(d => d.Name),
+                DrainSortingEnum.DepthAscending => drainQuery.OrderBy(d => d.Depth),
+                DrainSortingEnum.Waterproofing => drainQuery.OrderBy(d => d.Waterproofing),
+                DrainSortingEnum.VisiblePart => drainQuery.OrderBy(d => d.VisiblePart),
+                DrainSortingEnum.FlowRateAscending => drainQuery.OrderBy(d => d.FlowRate),
+                DrainSortingEnum.FlowRateDescending => drainQuery.OrderByDescending(d => d.FlowRate),
+                DrainSortingEnum.DiameterAscending => drainQuery.OrderBy(d => d.Diameter),
+                DrainSortingEnum.DiameterDescending => drainQuery.OrderByDescending(d => d.Diameter),
+                _ => drainQuery.OrderByDescending(d => d.Id)
+            };
+
+            return drainQuery;
         }
     }
 }

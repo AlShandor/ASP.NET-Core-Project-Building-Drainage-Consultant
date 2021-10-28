@@ -66,36 +66,10 @@
 
             atticaDrainQuery = atticaDrainQuery.Where(d => d.AtticaDetailId == atticaDetailId);
 
-            if (!string.IsNullOrWhiteSpace(searchTerm))
-            {
-                atticaDrainQuery = atticaDrainQuery.Where(d => d.Name.ToLower().Contains(searchTerm.ToLower()));
-            }
+            atticaDrainQuery = FilterAtticaDrainQueryByParameters(atticaDrainQuery, searchTerm, screedWaterproofing, 
+                                                                  concreteWaterproofing, diameter);
 
-            if (screedWaterproofing != 0)
-            {
-                atticaDrainQuery = atticaDrainQuery.Where(d => d.ScreedWaterproofing == screedWaterproofing);
-            }
-
-            if (concreteWaterproofing != 0)
-            {
-                atticaDrainQuery = atticaDrainQuery.Where(d => d.ConcreteWaterproofing == concreteWaterproofing);
-            }
-
-            if (diameter != 0)
-            {
-                atticaDrainQuery = atticaDrainQuery.Where(d => d.Diameter == diameter);
-            }
-
-            atticaDrainQuery = sorting switch
-            {
-                AtticaDrainSortingEnum.DiameterAscending => atticaDrainQuery.OrderBy(d => d.Diameter),
-                AtticaDrainSortingEnum.DiameterDescending => atticaDrainQuery.OrderByDescending(d => d.Diameter),
-                AtticaDrainSortingEnum.FlowRate35mmAscending => atticaDrainQuery.OrderBy(d => d.FlowRate35mm),
-                AtticaDrainSortingEnum.FlowRate35mmDescending => atticaDrainQuery.OrderByDescending(d => d.FlowRate35mm),
-                AtticaDrainSortingEnum.FlowRate100mmAscending => atticaDrainQuery.OrderBy(d => d.FlowRate100mm),
-                AtticaDrainSortingEnum.FlowRate100mmDescending => atticaDrainQuery.OrderByDescending(d => d.FlowRate100mm),
-                _ => atticaDrainQuery.OrderByDescending(d => d.Id)
-            };
+            atticaDrainQuery = SortAtticaDrainQueryResults(atticaDrainQuery, sorting);
 
             var totalDrains = atticaDrainQuery.Count();
 
@@ -390,5 +364,51 @@
             => drainQuery
                 .ProjectTo<AtticaDrainServiceModel>(this.mapper)
                 .ToList();
+
+        private IQueryable<AtticaDrain> FilterAtticaDrainQueryByParameters(
+            IQueryable<AtticaDrain> atticaDrainQuery, 
+            string searchTerm,
+            AtticaScreedWaterproofingEnum screedWaterproofing,
+            AtticaConcreteWaterproofingEnum concreteWaterproofing,
+            AtticaDiameterEnum diameter)
+        {
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                atticaDrainQuery = atticaDrainQuery.Where(d => d.Name.ToLower().Contains(searchTerm.ToLower()));
+            }
+
+            if (screedWaterproofing != 0)
+            {
+                atticaDrainQuery = atticaDrainQuery.Where(d => d.ScreedWaterproofing == screedWaterproofing);
+            }
+
+            if (concreteWaterproofing != 0)
+            {
+                atticaDrainQuery = atticaDrainQuery.Where(d => d.ConcreteWaterproofing == concreteWaterproofing);
+            }
+
+            if (diameter != 0)
+            {
+                atticaDrainQuery = atticaDrainQuery.Where(d => d.Diameter == diameter);
+            }
+
+            return atticaDrainQuery;
+        }
+
+        private IQueryable<AtticaDrain> SortAtticaDrainQueryResults(IQueryable<AtticaDrain> atticaDrainQuery, AtticaDrainSortingEnum sorting)
+        {
+            atticaDrainQuery = sorting switch
+            {
+                AtticaDrainSortingEnum.DiameterAscending => atticaDrainQuery.OrderBy(d => d.Diameter),
+                AtticaDrainSortingEnum.DiameterDescending => atticaDrainQuery.OrderByDescending(d => d.Diameter),
+                AtticaDrainSortingEnum.FlowRate35mmAscending => atticaDrainQuery.OrderBy(d => d.FlowRate35mm),
+                AtticaDrainSortingEnum.FlowRate35mmDescending => atticaDrainQuery.OrderByDescending(d => d.FlowRate35mm),
+                AtticaDrainSortingEnum.FlowRate100mmAscending => atticaDrainQuery.OrderBy(d => d.FlowRate100mm),
+                AtticaDrainSortingEnum.FlowRate100mmDescending => atticaDrainQuery.OrderByDescending(d => d.FlowRate100mm),
+                _ => atticaDrainQuery.OrderByDescending(d => d.Id)
+            };
+
+            return atticaDrainQuery;
+        }
     }
 }
