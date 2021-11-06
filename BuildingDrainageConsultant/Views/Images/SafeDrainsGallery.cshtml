@@ -1,0 +1,12 @@
+﻿@model ImageHLViewModel
+
+@{
+    ViewBag.Title = "Safe Drain Images";
+    ViewBag.ImageCategory = "SafeDrains";
+}
+
+<partial name="_ImageGalleryPartial" model="@Model" />
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

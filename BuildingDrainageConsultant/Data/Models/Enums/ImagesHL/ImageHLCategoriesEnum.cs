@@ -9,6 +9,7 @@
         Articles = 5,
         WaterproofingKits = 6,
         Accessories = 7,
-        Extensions = 8
+        Extensions = 8,
+        SafeDrains = 9
     }
 }

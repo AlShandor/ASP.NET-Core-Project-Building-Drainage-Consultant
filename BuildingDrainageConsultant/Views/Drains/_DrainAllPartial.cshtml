@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DrainDetailsServiceModel>
+﻿@model IEnumerable<DrainListingServiceModel>
 
 @{
     var isAllView = ViewBag.View == "All" ? true : false;
@@ -12,11 +12,11 @@
         <div class="offset-3 col-6">
             @if (isAllView)
             {
-                <h2 class="text-center">No drains found by the given criteria!</h2>
+                <h2 class="text-center">No Drains found by the given criteria!</h2>
             }
             @if (isMineView)
             {
-                <h2 class="text-center">You have no saved drains!</h2>
+                <h2 class="text-center">You have no saved Drains!</h2>
             }
         </div>
     }
@@ -69,5 +69,4 @@
             </div>
         </div>
     }
-
 </div>

@@ -14,6 +14,8 @@
 
         public IEnumerable<ImageHLServiceModel> GetDrainImages(string searchName);
 
+        public IEnumerable<ImageHLServiceModel> GetSafeDrainImages(string searchName);
+
         public IEnumerable<ImageHLServiceModel> GetAtticaDetailsImages(string searchName);
 
         public IEnumerable<ImageHLServiceModel> GetAtticaPartsImages(string searchName);

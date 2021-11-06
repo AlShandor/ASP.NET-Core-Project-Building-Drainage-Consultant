@@ -10,6 +10,6 @@
 
         public int TotalDrains { get; set; }
 
-        public IEnumerable<AtticaDrainServiceModel> AtticaDrains { get; set; }
+        public IEnumerable<AtticaDrainListingModel> AtticaDrains { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace BuildingDrainageConsultant.Services.Drains.Models
 {
-    public class DrainDetailsServiceModel
+    public class DrainListingServiceModel
     {
         public int Id { get; set; }
 

@@ -66,7 +66,7 @@
             var drains = drainQuery
                 .Skip((currentPage - 1) * drainsPerPage)
                 .Take(drainsPerPage)
-                .ProjectTo<DrainDetailsServiceModel>(this.mapper)
+                .ProjectTo<DrainListingServiceModel>(this.mapper)
                 .ToList();
 
             return new DrainQueryServiceModel
@@ -183,7 +183,7 @@
             return true;
         }
 
-        public IEnumerable<DrainDetailsServiceModel> ByUser(string userId)
+        public IEnumerable<DrainListingServiceModel> ByUser(string userId)
         {
             var user = this.data.Users
                 .Where(user => user.Id == userId)
@@ -245,11 +245,6 @@
 
             return true;
         }
-
-        private IEnumerable<DrainDetailsServiceModel> GetDrains(IQueryable<Drain> drainQuery)
-            => drainQuery
-                .ProjectTo<DrainDetailsServiceModel>(this.mapper)
-                .ToList();
 
         public ICollection<AccessoryServiceModel> GetAccessories()
         => this.data.Accessories
@@ -450,6 +445,11 @@
 
             return accessories;
         }
+
+        private IEnumerable<DrainListingServiceModel> GetDrains(IQueryable<Drain> drainQuery)
+            => drainQuery
+                .ProjectTo<DrainListingServiceModel>(this.mapper)
+                .ToList();
 
         private IQueryable<Drain> FilterDrainQueryByParameters(
             IQueryable<Drain> drainQuery,

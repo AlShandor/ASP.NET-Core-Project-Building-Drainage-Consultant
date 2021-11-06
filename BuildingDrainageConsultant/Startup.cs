@@ -12,6 +12,7 @@ namespace BuildingDrainageConsultant
     using BuildingDrainageConsultant.Services.Extensions;
     using BuildingDrainageConsultant.Services.Images;
     using BuildingDrainageConsultant.Services.Merchants;
+    using BuildingDrainageConsultant.Services.SafeDrains;
     using BuildingDrainageConsultant.Services.WaterproofingKits;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -64,6 +65,7 @@ namespace BuildingDrainageConsultant
             services.AddCloudscribePagination();
             
             services.AddTransient<IDrainService, DrainService>();
+            services.AddTransient<ISafeDrainService, SafeDrainService>();
             services.AddTransient<IMerchantService, MerchantService>();
             services.AddTransient<IAtticaPartService, AtticaPartService>();
             services.AddTransient<IAtticaDetailService, AtticaDetailService>();

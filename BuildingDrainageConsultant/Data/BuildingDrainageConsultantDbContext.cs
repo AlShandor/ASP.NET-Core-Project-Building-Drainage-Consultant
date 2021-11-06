@@ -13,6 +13,8 @@
         }
 
         public DbSet<Drain> Drains { get; set; }
+
+        public DbSet<SafeDrain> SafeDrains { get; set; }
         public DbSet<AtticaDrain> AtticaDrains { get; set; }
         public DbSet<AtticaDetail> AtticaDetails { get; set; }
         public DbSet<Merchant> Merchants { get; set; }
@@ -66,6 +68,13 @@
             builder
                 .Entity<ImageHL>()
                 .HasMany(i => i.Drains)
+                .WithOne(d => d.Image)
+                .HasForeignKey(d => d.ImageId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            builder
+                .Entity<ImageHL>()
+                .HasMany(i => i.SafeDrains)
                 .WithOne(d => d.Image)
                 .HasForeignKey(d => d.ImageId)
                 .OnDelete(DeleteBehavior.SetNull);

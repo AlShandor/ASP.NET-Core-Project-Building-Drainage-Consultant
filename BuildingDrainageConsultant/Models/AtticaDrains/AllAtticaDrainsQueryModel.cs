@@ -22,7 +22,7 @@
 
         public AtticaDrainSortingEnum Sorting { get; set; }
 
-        public IEnumerable<AtticaDrainServiceModel> Drains { get; set; }
+        public IEnumerable<AtticaDrainListingModel> Drains { get; set; }
 
         public int AtticaDetailId { get; set; }
 

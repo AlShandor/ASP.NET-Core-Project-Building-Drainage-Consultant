@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SafeDrainListingServiceModel>
+
+@{
+    var isAllView = ViewBag.View == "All" ? true : false;
+    var isMineView = ViewBag.View == "Mine" ? true : false;
+}
+
+<div class="row">
+
+    @if (!Model.Any())
+    {
+        <div class="offset-3 col-6">
+            @if (isAllView)
+            {
+                <h2 class="text-center">No Safe Drains found by the given criteria!</h2>
+            }
+            @if (isMineView)
+            {
+                <h2 class="text-center">You have no saved Safe Drains!</h2>
+            }
+        </div>
+    }
+
+    @foreach (var safeDrain in Model)
+    {
+        List<string> titleStrings = new();
+        titleStrings.Add(safeDrain.Name);
+
+        var cardTitle = string.Join(" + ", titleStrings);
+        var safeDrainDescriptionTruncated = safeDrain.Description.Length > 90 ? safeDrain.Description.ToString().Substring(0, 90) + "..." : safeDrain.Description;
+
+        <div class="col-6 col-md-6 col-lg-4 mb-3">
+            <div class="shadow card h-100 border-1">
+                @if (safeDrain.Image != null)
+                {
+                    var imgSource = safeDrain.Image.Id == 1 ? "common/defaultImage.gif" : $"safedrains/{safeDrain.Image.Name}";
+
+                    <div class="card-img-custom">
+                        <img src="~/images/@imgSource" class="img-fluid mx-auto d-block card-img-custom" alt="Card image cap">
+                        <hr />
+                    </div>
+                }
+
+                <div class="card-body text-center">
+                    <h4 class="card-title text-center">
+                        <span class="font-weight-bold text-dark text-uppercase small">@cardTitle</span>
+                    </h4>
+                    <p class="card-text">@safeDrainDescriptionTruncated</p>
+                    <a asp-controller="SafeDrains" asp-action="Details" asp-route-id="@safeDrain.Id" class="shadow btn btn-primary mb-2 mr-1">View Details</a>
+
+                    @if (isMineView)
+                    {
+                        <a asp-controller="SafeDrains" asp-action="RemoveFromMine" asp-route-id="@safeDrain.Id" class="shadow btn btn-danger mb-2">Remove</a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

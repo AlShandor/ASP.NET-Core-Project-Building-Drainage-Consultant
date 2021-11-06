@@ -56,7 +56,7 @@
             return RedirectToAction(nameof(Edit), new { id = drainId });
         }
 
-        public IActionResult All([FromQuery] AllDrainsQueryModel query)
+        public IActionResult All(AllDrainsQueryModel query)
         {
             var queryResult = this.drains.All(
                 query.SearchTerm,

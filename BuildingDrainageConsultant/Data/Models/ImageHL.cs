@@ -20,6 +20,8 @@
 
         public ICollection<Drain> Drains { get; set; }
 
+        public ICollection<SafeDrain> SafeDrains { get; set; }
+
         public ICollection<AtticaDetail> AtticaDetails { get; set; }
 
         public ICollection<AtticaPart> AtticaParts { get; set; }

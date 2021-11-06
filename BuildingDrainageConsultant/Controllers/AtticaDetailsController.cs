@@ -46,7 +46,7 @@
             return RedirectToAction(nameof(All));
         }
 
-        public IActionResult All([FromQuery] AllAtticaDetailsQueryModel query)
+        public IActionResult All(AllAtticaDetailsQueryModel query)
         {
             var queryResults = this.atticaDetails.All(
                 query.RoofType,

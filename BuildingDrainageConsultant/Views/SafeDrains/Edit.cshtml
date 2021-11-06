@@ -1,0 +1,15 @@
+﻿@model SafeDrainFormModel
+
+@{
+    ViewBag.Title = "Edit Safe Drain";
+    ViewBag.View = "Edit";
+    ViewBag.ImageGallery = "safedrains";
+}
+
+<div id="view-all">
+    <partial name="_SafeDrainFormPartial" model="@Model" />
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

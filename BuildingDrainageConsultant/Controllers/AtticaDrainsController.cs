@@ -72,7 +72,7 @@
         }
 
         [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult All([FromQuery] AllAtticaDrainsQueryModel query)
+        public IActionResult All(AllAtticaDrainsQueryModel query)
         {
             var queryResult = this.atticaDrains.All(
                 query.SearchTerm, 

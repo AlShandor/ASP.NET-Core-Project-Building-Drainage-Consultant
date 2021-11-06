@@ -60,7 +60,7 @@
 
         public bool AddAtticaPart(int partId, int drainId);
 
-        public IEnumerable<AtticaDrainServiceModel> ByUser(string userId);
+        public IEnumerable<AtticaDrainListingModel> ByUser(string userId);
 
         public bool AddToMine(string userId, int atticaDrainId);
 

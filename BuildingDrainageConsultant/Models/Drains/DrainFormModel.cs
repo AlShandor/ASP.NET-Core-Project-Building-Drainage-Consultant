@@ -18,17 +18,17 @@
         public string Name { get; set; }
 
         [Required]
-        [Range(0, FlowRateMax)]
+        [Range(FlowRateMin, FlowRateMax)]
         [Display(Name = "Flow Rate (l/s)")]
         public double FlowRate { get; set; }
 
         [Required]
-        [Range(0, DraingeAreaMax)]
+        [Range(DraingeAreaMin, DraingeAreaMax)]
         [Display(Name = "Drainage Area (m²)")]
         public int DrainageArea { get; set; }
 
         [Required]
-        [Range(0, DepthMax)]
+        [Range(DepthMin, DepthMax)]
         [Display(Name = "Depth (mm)")]
         public int Depth { get; set; }
 

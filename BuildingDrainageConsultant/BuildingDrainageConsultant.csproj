@@ -41,6 +41,7 @@
     <Folder Include="wwwroot\images\articles\" />
     <Folder Include="wwwroot\images\accessories\" />
     <Folder Include="wwwroot\images\extensions\" />
+    <Folder Include="wwwroot\images\safedrains\" />
     <Folder Include="wwwroot\images\waterproofingkits\" />
   </ItemGroup>
 

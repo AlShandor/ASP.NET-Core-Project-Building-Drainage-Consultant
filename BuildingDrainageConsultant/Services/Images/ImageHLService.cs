@@ -79,6 +79,16 @@
                    .ToList();
         }
 
+        public IEnumerable<ImageHLServiceModel> GetSafeDrainImages(string searchName)
+        {
+            searchName = string.IsNullOrEmpty(searchName) ? "" : searchName;
+            return this.data.Images
+                   .Where(i => i.ImageCategory == ImageHLCategoriesEnum.SafeDrains && i.Name.Contains(searchName))
+                   .OrderByDescending(i => i.Id)
+                   .ProjectTo<ImageHLServiceModel>(this.mapper)
+                   .ToList();
+        }
+
         public IEnumerable<ImageHLServiceModel> GetAtticaDetailsImages(string searchName)
         {
             searchName = string.IsNullOrEmpty(searchName) ? "" : searchName;

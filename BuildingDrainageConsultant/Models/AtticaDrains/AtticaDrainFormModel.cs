@@ -6,6 +6,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using static Data.DataConstants.AtticaDrain;
     public class AtticaDrainFormModel
     {
         public int Id { get; set; }
@@ -14,18 +15,22 @@
 
         [Required]
         [Display(Name = "Flow Rate (l/s) - Water level 35 mm above the Waterproofing")]
+        [Range(FlowRateMin, FlowRateMax)]
         public double FlowRate35mm { get; set; }
 
         [Required]
         [Display(Name = "Flow Rate (l/s) - Water level 100 mm above the Waterproofing")]
+        [Range(FlowRateMin, FlowRateMax)]
         public double FlowRate100mm { get; set; }
 
         [Required]
         [Display(Name = "Drainage Area (m²) - Water level 35mm above the Waterproofing")]
+        [Range(DraingeAreaMin, DraingeAreaMax)]
         public int DrainageArea35mm { get; set; }
 
         [Required]
         [Display(Name = "Drainage Area (m²) - Water level 100 mm above the Waterproofing")]
+        [Range(DraingeAreaMin, DraingeAreaMax)]
         public int DrainageArea100mm { get; set; }
 
         [Display(Name = "Screed Waterproofing")]

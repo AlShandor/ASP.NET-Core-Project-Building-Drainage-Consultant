@@ -62,7 +62,7 @@
 
         public bool Delete(int id);
 
-        public IEnumerable<DrainDetailsServiceModel> ByUser(string userId);
+        public IEnumerable<DrainListingServiceModel> ByUser(string userId);
 
         public ICollection<WaterproofingKitServiceModel> GetWaterproofingKits();
 

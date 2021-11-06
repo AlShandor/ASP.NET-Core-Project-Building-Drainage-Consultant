@@ -228,7 +228,6 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Depth")
-                        .HasMaxLength(300)
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -243,14 +242,12 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("DrainageArea")
-                        .HasMaxLength(400)
                         .HasColumnType("int");
 
                     b.Property<int>("FlapSeal")
                         .HasColumnType("int");
 
                     b.Property<double>("FlowRate")
-                        .HasMaxLength(15)
                         .HasColumnType("float");
 
                     b.Property<int>("Heating")
@@ -380,6 +377,60 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Merchants");
+                });
+
+            modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.SafeDrain", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Depth")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(5000)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Diameter")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Direction")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DrainageArea3mVertical")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DrainageAreaFree")
+                        .HasColumnType("int");
+
+                    b.Property<double>("FlowRate3mVertical")
+                        .HasColumnType("float");
+
+                    b.Property<double>("FlowRateFree")
+                        .HasColumnType("float");
+
+                    b.Property<int>("Heating")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ImageId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<int>("Waterproofing")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ImageId");
+
+                    b.ToTable("SafeDrains");
                 });
 
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.User", b =>
@@ -639,6 +690,21 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("SafeDrainUser", b =>
+                {
+                    b.Property<int>("SafeDrainsId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UsersId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("SafeDrainsId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("SafeDrainUser");
+                });
+
             modelBuilder.Entity("AccessoryDrain", b =>
                 {
                     b.HasOne("BuildingDrainageConsultant.Data.Models.Accessory", null)
@@ -761,6 +827,16 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     b.Navigation("Image");
                 });
 
+            modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.SafeDrain", b =>
+                {
+                    b.HasOne("BuildingDrainageConsultant.Data.Models.ImageHL", "Image")
+                        .WithMany("SafeDrains")
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Image");
+                });
+
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.WaterproofingKit", b =>
                 {
                     b.HasOne("BuildingDrainageConsultant.Data.Models.ImageHL", "Image")
@@ -852,6 +928,21 @@ namespace BuildingDrainageConsultant.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("SafeDrainUser", b =>
+                {
+                    b.HasOne("BuildingDrainageConsultant.Data.Models.SafeDrain", null)
+                        .WithMany()
+                        .HasForeignKey("SafeDrainsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BuildingDrainageConsultant.Data.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("BuildingDrainageConsultant.Data.Models.AtticaDetail", b =>
                 {
                     b.Navigation("AtticaDrains");
@@ -870,6 +961,8 @@ namespace BuildingDrainageConsultant.Data.Migrations
                     b.Navigation("Drains");
 
                     b.Navigation("Extensions");
+
+                    b.Navigation("SafeDrains");
 
                     b.Navigation("WaterproofingKits");
                 });

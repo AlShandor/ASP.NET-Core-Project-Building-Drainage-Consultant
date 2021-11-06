@@ -15,15 +15,15 @@
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(FlowRateMax)]
+        [Range(FlowRateMin, FlowRateMax)]
         public double FlowRate { get; set; }
 
         [Required]
-        [MaxLength(DraingeAreaMax)]
+        [Range(DraingeAreaMin, DraingeAreaMax)]
         public int DrainageArea { get; set; }
 
         [Required]
-        [MaxLength(DepthMax)]
+        [Range(DepthMin, DepthMax)]
         public int Depth { get; set; }
 
         [Required]

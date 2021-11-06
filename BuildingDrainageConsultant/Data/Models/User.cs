@@ -7,6 +7,8 @@
     {
         public ICollection<Drain> Drains { get; set; } = new List<Drain>();
 
+        public ICollection<SafeDrain> SafeDrains { get; set; } = new List<SafeDrain>();
+
         public ICollection<AtticaDrain> AtticaDrains { get; set; } = new List<AtticaDrain>();
     }
 }

@@ -33,6 +33,21 @@
                             </div>
                         </li>
 
+                        @*Safe Drains menu*@
+                        <li class="nav-item dropdown">
+                            <a class="nav-item btn btn-lg text-white  dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Safe Drains
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item hover-highlight" asp-area="" asp-controller="SafeDrains" asp-action="All"><i class="pr-2 bi bi-card-list"></i>All Safe Drains</a>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item hover-highlight" asp-area="" asp-controller="SafeDrains" asp-action="Mine"><i class="pr-2 bi bi-clipboard-check"></i>My Safe Drains</a>
+                                }
+                            </div>
+                        </li>
+
                         @*Attica Details menu*@
                         <li class="nav-item dropdown">
                             <a class="nav-item btn btn-lg text-white  dropdown-toggle sort-dropdown" asp-area="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,7 +63,7 @@
                             </div>
                         </li>
 
-                        @*Merhchants*@
+                        @*Merchants*@
                         <li class="nav-item">
                             <a class="nav-item text-white btn btn-lg" asp-area="" asp-controller="Merchants" asp-action="All">Merchants</a>
                         </li>

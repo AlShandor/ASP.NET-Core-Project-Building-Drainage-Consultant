@@ -1,0 +1,20 @@
+﻿@model AllSafeDrainsQueryModel
+
+<cs-pager cs-paging-pagesize="@Model.DrainsPerPage"
+          cs-paging-pagenumber="@Model.CurrentPage"
+          cs-paging-totalitems="@Model.TotalDrains"
+          cs-pagenumber-param="currentPage"
+          asp-controller="SafeDrains"
+          asp-action="All"
+          asp-route-searchTerm="@Model.SearchTerm"
+          asp-route-direction="@Model.Direction"
+          asp-route-diameter="@Model.Diameter"
+          asp-route-waterproofing="@Model.Waterproofing"
+          asp-route-heating="@Model.Heating"
+          asp-route-sorting="@Model.Sorting"
+          cs-pager-li-current-class="page-item active"
+          cs-pager-li-other-class="page-item"
+          cs-pager-li-non-active-class="page-item disabled"
+          cs-pager-link-current-class="page-link"
+          cs-pager-link-other-class="page-link">
+</cs-pager>

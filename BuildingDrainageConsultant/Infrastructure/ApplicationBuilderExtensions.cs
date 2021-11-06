@@ -45,7 +45,6 @@
             var userManager = services.GetRequiredService<UserManager<User>>();
             var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
-
             Task
                 .Run(async () =>
                 {
@@ -66,6 +65,7 @@
                         Email = adminEmail,
                         UserName = adminEmail,
                         Drains = new List<Drain>(),
+                        SafeDrains = new List<SafeDrain>(),
                         AtticaDrains = new List<AtticaDrain>()
                     };
 

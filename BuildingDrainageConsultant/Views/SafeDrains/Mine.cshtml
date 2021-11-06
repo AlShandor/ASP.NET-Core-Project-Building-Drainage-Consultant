@@ -1,0 +1,16 @@
+﻿@model IEnumerable<SafeDrainListingServiceModel>
+
+@{
+    ViewBag.Title = "My Safe Drains";
+    ViewBag.View = "Mine";
+}
+
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-md-8 order-md-2 col-lg-9">
+
+            <partial name="_SafeDrainAllPartial" model="@Model" />
+
+        </div>
+    </div>
+</div>

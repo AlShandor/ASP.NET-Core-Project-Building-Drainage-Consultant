@@ -27,6 +27,6 @@
 
         public DrainSortingEnum Sorting { get; set; }
 
-        public IEnumerable<DrainDetailsServiceModel> Drains { get; set; }
+        public IEnumerable<DrainListingServiceModel> Drains { get; set; }
     }
 }

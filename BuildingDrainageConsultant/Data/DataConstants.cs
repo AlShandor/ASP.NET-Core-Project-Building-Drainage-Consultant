@@ -12,8 +12,24 @@
         {
             public const int NameMaxLength = 60;
             public const int DescriptionMaxLength = 5000;
+            public const int FlowRateMin = 0;
             public const int FlowRateMax = 15;
+            public const int DraingeAreaMin = 0;
             public const int DraingeAreaMax = 400;
+            public const int DepthMin = 0;
+            public const int DepthMax = 300;
+            public const int DefaultImageId = 1;
+        }
+
+        public class SafeDrain
+        {
+            public const int NameMaxLength = 60;
+            public const int DescriptionMaxLength = 5000;
+            public const int FlowRateMin = 0;
+            public const int FlowRateMax = 15;
+            public const int DraingeAreaMin = 0;
+            public const int DraingeAreaMax = 400;
+            public const int DepthMin = 0;
             public const int DepthMax = 300;
             public const int DefaultImageId = 1;
         }
@@ -27,7 +43,9 @@
         public class AtticaDrain
         {
             public const int NameMaxLength = 50;
+            public const int FlowRateMin = 0;
             public const int FlowRateMax = 6;
+            public const int DraingeAreaMin = 0;
             public const int DraingeAreaMax = 200;
 
         }

@@ -1,7 +1,6 @@
 ﻿namespace BuildingDrainageConsultant.Controllers
 {
     using AutoMapper;
-    using BuildingDrainageConsultant.Infrastructure;
     using BuildingDrainageConsultant.Models.Images;
     using BuildingDrainageConsultant.Services.Images;
     using Microsoft.AspNetCore.Authorization;
@@ -36,6 +35,14 @@
             var drainImages = this.images.GetDrainImages(model.SearchName);
 
             model.DisplayImages = drainImages;
+            return View(model);
+        }
+
+        public IActionResult SafeDrainsGallery(ImageHLViewModel model)
+        {
+            var safeDrainImages = this.images.GetSafeDrainImages(model.SearchName);
+
+            model.DisplayImages = safeDrainImages;
             return View(model);
         }
 

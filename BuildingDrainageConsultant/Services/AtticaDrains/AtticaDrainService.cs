@@ -40,7 +40,7 @@
             var atticaDrains = atticaDrainQuery
                 .Skip((currentPage - 1) * drainsPerPage)
                 .Take(drainsPerPage)
-                .ProjectTo<AtticaDrainServiceModel>(this.mapper)
+                .ProjectTo<AtticaDrainListingModel>(this.mapper)
                 .ToList();
 
             return new AtticaDrainQueryServiceModel
@@ -76,7 +76,7 @@
             var atticaDrains = atticaDrainQuery
                 .Skip((currentPage - 1) * drainsPerPage)
                 .Take(drainsPerPage)
-                .ProjectTo<AtticaDrainServiceModel>(this.mapper)
+                .ProjectTo<AtticaDrainListingModel>(this.mapper)
                 .ToList();
 
             return new AtticaDrainQueryServiceModel
@@ -184,7 +184,7 @@
             return true;
         }
 
-        public IEnumerable<AtticaDrainServiceModel> ByUser(string userId)
+        public IEnumerable<AtticaDrainListingModel> ByUser(string userId)
         {
             var user = this.data.Users
                 .Where(user => user.Id == userId)
@@ -360,9 +360,9 @@
             return parts;
         }
 
-        private IEnumerable<AtticaDrainServiceModel> GetAtticaDrains(IQueryable<AtticaDrain> drainQuery)
+        private IEnumerable<AtticaDrainListingModel> GetAtticaDrains(IQueryable<AtticaDrain> drainQuery)
             => drainQuery
-                .ProjectTo<AtticaDrainServiceModel>(this.mapper)
+                .ProjectTo<AtticaDrainListingModel>(this.mapper)
                 .ToList();
 
         private IQueryable<AtticaDrain> FilterAtticaDrainQueryByParameters(

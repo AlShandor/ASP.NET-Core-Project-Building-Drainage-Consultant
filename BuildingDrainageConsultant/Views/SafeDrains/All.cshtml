@@ -1,0 +1,43 @@
+﻿@model AllSafeDrainsQueryModel
+
+@{
+    ViewBag.Title = "All Safe Drains";
+    ViewBag.View = "All";
+}
+
+<div class="container pt-5">
+    <form asp-controller="SafeDrains" asp-action="All" name="form" method="get">
+        <div class="row">
+            <div class="col-md-8 order-md-2 col-lg-9">
+                <partial name="_SafeDrainSortingPartial" model="@Model" />
+
+                <partial name="_SafeDrainPaginationPartial" model="@Model" />
+
+                <partial name="_SafeDrainAllPartial" model="@Model.Drains" />
+
+                <partial name="_SafeDrainPaginationPartial" model="@Model" />
+
+            </div>
+
+            <partial name="_SafeDrainFiltersPartial" />
+
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+
+    <script>
+        document.getElementById("sort-dropdown").addEventListener("change", () => {
+            document.forms["form"].submit();
+        });
+
+        $("#reset-drains-button").click(function () {
+            document.getElementById("searchTerm-input").value = "";
+            document.getElementById("direction-select").value = "";
+            document.getElementById("diameter-select").value = "";
+            document.getElementById("waterproofing-select").value = "";
+            document.getElementById("heating-select").value = "";
+        });
+    </script>
+}
