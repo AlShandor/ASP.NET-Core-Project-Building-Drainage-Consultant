@@ -21,6 +21,7 @@
             SeedCategoryImages(dbContext, "AtticaDetails");
             SeedCategoryImages(dbContext, "AtticaParts");
             SeedCategoryImages(dbContext, "Drains");
+            SeedCategoryImages(dbContext, "SafeDrains");
             SeedCategoryImages(dbContext, "Extensions");
             SeedCategoryImages(dbContext, "WaterproofingKits");
         }

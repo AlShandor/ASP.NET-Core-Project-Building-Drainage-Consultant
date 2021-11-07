@@ -16,22 +16,22 @@
 
         [Required]
         [Range(FlowRateMin, FlowRateMax)]
-        [Display(Name = "Flow Rate (l/s) Free Flow")]
+        [Display(Name = "Flow Rate (l/s) DIN EN 1253 Free Flow")]
         public double FlowRateFree { get; set; }
 
         [Required]
         [Range(FlowRateMin, FlowRateMax)]
-        [Display(Name = "Flow Rate (l/s)  ")]
+        [Display(Name = "Flow Rate (l/s) DIN EN 1253 with 3m Vertical Branch")]
         public double FlowRate3mVertical { get; set; }
 
         [Required]
         [Range(DraingeAreaMin, DraingeAreaMax)]
-        [Display(Name = "Drainage Area (m²) Free Flow")]
+        [Display(Name = "Drainage Area (m²) DIN EN 1253 Free Flow")]
         public int DrainageAreaFree { get; set; }
 
         [Required]
         [Range(DraingeAreaMin, DraingeAreaMax)]
-        [Display(Name = "Drainage Area (m²) with 3 m Vertical Branch")]
+        [Display(Name = "Drainage Area (m²) DIN EN 1253 with 3m Vertical Branch")]
 
         public int DrainageArea3mVertical { get; set; }
 

@@ -23,6 +23,22 @@
             public const int AccessoriesColumn = 15;
         }
 
+        public class SafeDrains
+        {
+            public const int NameColumn = 0;
+            public const int DescriptionColumn = 1;
+            public const int FlowRateFreeColumn = 2;
+            public const int FlowRate3mVerticalColumn = 3;
+            public const int DrainageAreaFreeColumn = 4;
+            public const int DrainageArea3mVerticalColumn = 5;
+            public const int DepthColumn = 6;
+            public const int DirectionColumn = 7;
+            public const int DiameterColumn = 8;
+            public const int WaterproofingColumn = 9;
+            public const int HeatingColumn = 10;
+            public const int ImageColumn = 11;
+        }
+
         public class Attica
         {
             public const int NameColumn = 0;
