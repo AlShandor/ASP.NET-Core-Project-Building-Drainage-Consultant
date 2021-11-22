@@ -143,5 +143,47 @@
                 .ActionAttributes(attrs => attrs
                     .RestrictingForHttpMethod(HttpMethod.Post)
                     .RestrictingForAuthorizedRequests());
+
+        [Fact]
+        public void AddImageAuthorizedUsersOnlyAndShouldReturnCorrectView()
+            => MyController<AtticaDetailsController>
+            .Calling(c => c.AddImage(
+                    With.Empty<AtticaDetailFormModel>()))
+            .ShouldHave()
+            .ActionAttributes(attrs => attrs
+                    .RestrictingForAuthorizedRequests())
+            .AndAlso()
+            .ShouldReturn()
+            .View(view => view
+                    .WithModelOfType<AtticaDetailFormModel>());
+
+        [Fact]
+        public void AddImagePostAuthorizedUsersAndHttpPostOnlyAndShouldReturnJSON()
+            => MyController<AtticaDetailsController>
+            .Calling(c => c.AddImage(
+                    With.Empty<int>(),
+                    With.Empty<AtticaDetailFormModel>()))
+            .ShouldHave()
+            .ActionAttributes(attrs => attrs
+                    .RestrictingForHttpMethod(HttpMethod.Post)
+                    .RestrictingForAuthorizedRequests())
+            .AndAlso()
+            .ShouldReturn()
+            .Json();
+
+        [Fact]
+        public void EditImageAuthorizedUsersOnlyAndShouldReturnCorrectView()
+            => MyController<AtticaDetailsController>
+            .Calling(c => c.EditImage(
+                    With.Empty<int>(),
+                    With.Empty<AtticaDetailFormModel>()))
+            .ShouldHave()
+            .ActionAttributes(attrs => attrs
+                    .RestrictingForAuthorizedRequests())
+            .AndAlso()
+            .ShouldReturn()
+            .View(view => view
+                    .WithModelOfType<AtticaDetailFormModel>());
+
     }
 }
